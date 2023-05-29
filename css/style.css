@@ -1,0 +1,129 @@
+[data-bs-theme=dark] body {
+  background-color: #111316;
+}
+
+body{
+  transition: all .2s;
+}
+
+a{
+  text-decoration: none;
+}
+a:hover{
+  text-decoration: underline;
+}
+span.logo{
+    color:orange;
+}
+
+.fs-big{
+  font-size:9rem
+}
+
+.header-line{
+  height: 5px; width: 150px;
+}
+
+/* Navbar */
+
+#nav-lg-menu li{
+  font-size: 17px;
+  margin-right: 1rem;
+}
+
+#nav-lg-menu a.active, #offcanvasNavbar a:hover.active{
+color:orange;
+text-decoration: none;
+}
+#nav-lg-menu a:hover, #offcanvasNavbar a:hover{
+color:orange;
+  text-decoration: none;
+
+}
+#offcanvasNavbar{
+  font-size: 18px;
+  font-weight: 600;
+  top:97px;
+}
+#offcanvasNavbar i{
+height:50px
+}
+
+
+#topnav .rounded-circle:hover{
+  background-color:rgba(0, 0, 0, 0.2);
+}
+
+#nav-lg-menu a {
+  display: inline-block;
+  position: relative;
+  background-color: transparent;
+}
+
+#nav-lg-menu a::after{
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 3px;
+  bottom: 0;
+  left: 0;
+  background-color: gray;
+  transform-origin: center length;
+  transition: transform 0.3s ease-in-out,background-color .3s ease;
+}
+
+#nav-lg-menu a:hover::after {
+  transform: scaleX(1);
+}
+
+/* main */
+main {
+  margin-top:90px;
+  padding-top:0.5rem;
+  min-height: 69vh;
+}
+
+/* misc  */
+.bd-callout{
+  border-radius: 0;
+  border-left: 0.25rem solid;
+  border-top:0;
+  border-right:0;
+  border-bottom:0
+}
+#cards .border-3:hover{
+border-color: rgb(0 0 0 / 10%)
+}
+[data-bs-theme=dark] #cards .border-3:hover {
+  border-color: rgb(255 255 255 / 25%)
+}
+
+.bg-purple{
+background-color: #6e2bf2;
+}
+/* Converter */
+#quickactions .btn{
+  font-size:0.75rem;
+}
+#quickactions .btn:hover{
+opacity: 80%;
+}
+.conversor{
+  text-decoration: none;
+}
+
+/* Balance */
+.spinner-border-sm {
+--bs-spinner-width: 1.4rem;
+--bs-spinner-height: 1.4rem;
+}
+
+/* Donate */
+.material-svg{
+transform: scale(0.5); opacity: 0.6;
+}
+
+/* API */
+.terminal{
+background-image: linear-gradient(55deg,#f5f7fd,#fbfbfe)}

@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Bitcoin Funded Addresses - bitcoin data.science</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description"
+        content="Daily snapshots and charts of the total number of Bitcoin funded addresses by format.">
+    <meta name="robots" content="index, follow" />
+    <meta name="keywords"
+        content="Bitcoin Funded Address, Funded Addresses Format, Percent, Percent of bitcoin funded addresses" />
+    <link rel="shortcut icon" href="img/favicon.svg">
+    <link rel="canonical" href="https://bitcoindata.science/bitcoin-funded-addresses.html">
+    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="img/safari-pinned-tab.svg" color="#111316">
+    <meta name="apple-mobile-web-app-title" content="bitcoin data.science">
+    <meta name="application-name" content="bitcoin data.science">
+    <meta name="msapplication-TileColor" content="#2b5797">
+    <meta name="theme-color" content="#111316">
+    <meta property="og:title" content="Bitcoin Funded Addresses - bitcoin data.science" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://bitcoindata.science/" />
+    <meta property="og:image" content="https://bitcoindata.science/img/logo.png" />
+    <meta property="og:description"
+        content="Daily snapshots and charts of the total number of Bitcoin funded addresses by format." />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="bitcoin data.science" />
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "Check the balance of your bitcoin addresses",
+          "description": "Daily snapshots and charts of the total number of Bitcoin funded addresses by format.",
+          "alternateName": [
+            "bitcoindata.science",
+            "Bitcoin Data Science",
+            "bitcoin datascience"
+          ],
+          "url": "https://bitcoindata.science",
+          "logo": "https://bitcoindata.science/img/logo.svg",
+          "sameAs": [
+            "https://bitcoindata.science"
+          ]
+        }
+     </script>
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+     <link href="css/style.css" rel="stylesheet">
+     <!-- Global site tag (gtag.js) - Google Analytics -->
+     <script async src="https://www.googletagmanager.com/gtag/js?id=G-D7YK9RV236"></script>
+     <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+  
+        gtag('config', 'G-D7YK9RV236');
+     </script>
+     <script src="components/navbar.js" type="text/javascript" defer></script>
+     <script src="components/footer.js" type="text/javascript" defer></script>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-md navbar-dark">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+                aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blockdata-dashboard.html">Blockdata Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="bitcoin-funded-addresses.html">Funded Addresses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="plot-your-transaction-in-mempool.html">Your TX in the Mempool</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="bitcoin-balance-check.html">Balance Check</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="bitcoin-units-converter.html">Unit Converter</a>
+                    </li>
+                </ul>
+            </div>
+            <label class="dropdown navbar-nav">
+                <span class="dd-button nav-item dropdown">
+                    <a class="nav-link dropdown-toggle px-3 font-weight-normal lang">English</a>
+                </span>
+                <input type="checkbox" class="dd-input" id="test">
+                <span class="dd-menu drop lang">
+                    <span class="card card-body border border-dark  p-2" style="background-color: #121212;"><a
+                            class="lang pr-4" href="https://bitcoindata.science/pt">Português</a>
+                    </span>
+                </span>
+            </label>
+        </div>
+    </nav>
+    <!-- Page Content -->
+    <main class="pt-3 my-2">
+        <div class="mt-2"
+            style="background:linear-gradient(to right, rgb(15, 12, 41), rgb(48, 43, 99), rgb(36, 36, 62));">
+            <div class="container">
+                <div class="pt-5 pb-5 col-md-10">
+                    <h1 class="display-4" style="font-size: 2.5rem">Bitcoin Funded Addresses</h1>
+                    <h2 class="lead">Daily snapshots and charts of the total number of Bitcoin funded addresses by
+                        format.</h2>
+                    <p class="text-default pt-2">Data created by <a class="conversor"
+                            href="https://loyce.club/">LoyceV</a>.</p><BR>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="form_container m-0 p-3">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="text-white rounded my-3 mr-4">
+                            <h5 class="my-1 text-center pt-2">Total Funded Addresses</h5>
+                            <div id="fundedadd"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 w-100">
+                        <div class="text-white rounded my-3 mr-4">
+                            <h5 class="my-1 text-center pt-2 pb-4">Last Snapshot</h5>
+                            <div id="pie"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="p-5 text-white rounded my-3 mr-4" id="analysis"> </div>
+                </div>
+            </div>
+            <!-- /main page -->
+        </div>
+    </main>
+    <footer class="footer mt-auto py-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 py-2">
+                    2020, bitcoin data.science<br><a href="mailto:bitmover@protonmail.ch">Contato</a>
+                </div>
+                <div class="col-md-4 py-2"><span class="text-muted-center  align-middle">
+                        Webhosting generously donated by <a
+                            href="https://bitcointalk.org/index.php?action=profile;u=314792">examplens</a></span>
+                </div>
+                <div class="col-md-4">
+                    <label>
+                        <span class="dd-button dropdown">
+                            <a class="btn btn-danger">Donate</a></span>
+                        <input type="checkbox" class="dd-input dddonate">
+                        <span class="dd-menu drop lang dddonate mx-3 my-2" style="top:-14rem;">
+                            <span class="card card-body border border-dark" style="background-color: #121212;">
+                                <span class="card-text  text-default"><a
+                                        href="bitcoin:3CrySAp8G1PfvjrYT4HPQhE8MouBKWd9WB"><img
+                                            class="rounded img-fluid mr-3" style="float:left;max-width:35%"
+                                            src="img/3CrySAp8G1PfvjrYT4HPQhE8MouBKWd9WB.png" alt="Donate"></a>
+                                    Donations will be used to cover website costs.
+                                </span>
+                                <span class="text-center text-monospace mb-0 pb-0"><a
+                                        class="user-select-all text-light text-decoration-none conversor"
+                                        href="bitcoin:3CrySAp8G1PfvjrYT4HPQhE8MouBKWd9WB">3CrySAp8G1PfvjrYT4HPQhE8MouBKWd9WB</a></span>
+                            </span>
+                        </span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- /main -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script>
+        var addresses=[];
+        async function getAddresses() {
+            const response = await fetch('https://bitcoindata.science/json/total_number_of_funded_addresses.json');
+            let data = await response.text();
+            data = data.replace(/"bc1p": }],/g, `"bc1p": 0}],`);
+            addresses.push(JSON.parse(data))
+            addresses=addresses[0]
+        }
+        getAddresses();
+        console.log(addresses)
+        var addressestoday = addresses
+        addressestoday = Object.entries(addressestoday)[Object.entries(addressestoday).length - 1][1][0];
+        delete addressestoday['total']
+
+        var totalstart = Object.entries(addresses)[0][1][0]["total"];
+        var totaltoday = Object.entries(addresses)[Object.entries(addresses).length - 1][1][0]["total"];
+
+        var legacystart = Object.entries(addresses)[0][1][0]["1"];
+        var legacytoday = Object.entries(addresses)[Object.entries(addresses).length - 1][1][0]["1"]
+        var diflegacy = legacytoday - legacystart
+
+        var p2shstart = Object.entries(addresses)[0][1][0]["3"];
+        var p2shtoday = Object.entries(addresses)[Object.entries(addresses).length - 1][1][0]["3"]
+        var difp2sh = p2shtoday - p2shstart
+
+        var bechstart = Object.entries(addresses)[0][1][0]["bc1q"];
+        var bechtoday = Object.entries(addresses)[Object.entries(addresses).length - 1][1][0]["bc1q"]
+        var difbech = bechtoday - bechstart
+
+        var tapstart = Object.entries(addresses)[371][1][0]["bc1p"];
+        var taptoday = Object.entries(addresses)[Object.entries(addresses).length - 1][1][0]["bc1p"]
+        var diftap = taptoday - tapstart
+
+
+        document.getElementById("analysis").innerHTML = ("Since September 2020, the total number of addresses has changed from <span class='text-info'>" + totalstart.toLocaleString('en-US', { style: 'decimal', maximumFractionDigits: "0", }) + "</span> to <span class='text-info'>" + totaltoday.toLocaleString('en-US', { style: 'decimal', maximumFractionDigits: "0", }) + " (+" + ((totaltoday - totalstart) / totalstart).toLocaleString('en-US', { style: 'percent', maximumFractionDigits: "2", }) +
+            ")  </span><div class='pl-2'><br /><span class='pt-2 text-primary'>Legacy</span> addresses change: <span class='text-primary'>" + (diflegacy / legacystart).toLocaleString('en-US', { style: 'percent', maximumFractionDigits: "2", }) +
+            "</span><br /><span class='pt-2 text-success'>P2SH</span> addresses change: <span class='text-success'>" + (difp2sh / p2shstart).toLocaleString('en-US', { style: 'percent', maximumFractionDigits: "2", }) +
+            "</span><br /><span class='pt-2 text-warning'>Bech32</span> addresses change: <span class='text-warning'>" + (difbech / (bechstart)).toLocaleString('en-US', { style: 'percent', maximumFractionDigits: "2", }) +
+
+            "</span><br /><span class='pt-2 text-danger'>Taproot</span> addresses change (since January 2021): <span class='text-danger'>" + (diftap / (tapstart)).toLocaleString('en-US', { style: 'percent', maximumFractionDigits: "2", }) +
+            "</div>"
+        );
+
+        window.seriesdata = Object.entries(addresses).map(x => ({
+            'x': new Date(x[0].split("/").reverse().join("-")),
+            'y': x[1][0]["1"]
+        }));
+
+        window.seriesdata3 = Object.entries(addresses).map(x => ({
+            'x': new Date(x[0].split("/").reverse().join("-")),
+            'y': x[1][0]["3"]
+        }));
+
+        window.seriesdatab = Object.entries(addresses).map(x => ({
+            'x': new Date(x[0].split("/").reverse().join("-")),
+            'y': x[1][0]['bc1q']
+        }));
+
+        window.seriesdatatap = Object.entries(addresses).map(x => ({
+            'x': new Date(x[0].split("/").reverse().join("-")),
+            'y': x[1][0]['bc1p']
+        }));
+
+        var options = {
+            chart: {
+                height: 280,
+                width: "100%",
+                type: 'area',
+                stacked: true,
+            },
+            fill: {
+                type: 'gradient',
+                gradient: {
+                    opacityFrom: 0.8,
+                    opacityTo: 0.6,
+                }
+            },
+            markers: {
+                size: 1,
+                strokeWidth: 1,
+                strokeOpacity: 0.4,
+                hover: {
+                    size: 5
+                }
+            },
+            series: [{
+                name: "P2PKH (Legacy)",
+                data: window.seriesdata
+            },
+            {
+                name: "P2SH",
+                data: window.seriesdata3
+            },
+            {
+                name: "Bech32",
+                data: window.seriesdatab
+            },
+            {
+                name: "Taproot",
+                data: window.seriesdatatap
+            },
+            ],
+            xaxis: {
+                type: 'datetime',
+                labels: {
+                    format: 'dd MMM yy'
+                },
+                tooltip: {
+                    enabled: false
+                },
+                axisTicks: {
+                    color: "#f5f7ff2a"
+                },
+                axisBorder: {
+                    show: false,
+                },
+            },
+            yaxis: {
+                tickAmount: 4,
+                labels: {
+                    formatter: function (val) {
+                        return (val).toLocaleString('en-US', { style: 'decimal', maximumFractionDigits: "0", });
+                    },
+                }
+            },
+            tooltip: {
+                inverseOrder: true,
+                x: {
+                    format: 'dd MMM yy'
+                },
+                y: {
+                    show: true,
+                    formatter: function (value, { series, seriesIndex, dataPointIndex, w }) {
+                        return (value).toLocaleString('en-US', { style: 'decimal', maximumFractionDigits: "0", }) + "  (" + (value / (Object.entries(window.addresses)[dataPointIndex][1][0]["total"])).toLocaleString('en-US', { style: 'percent', maximumFractionDigits: "1", }) + ")"
+                    },
+                }
+            },
+        }
+        var adds = new ApexCharts(document.querySelector('#fundedadd'), options);
+        adds.render();
+
+        //PIE CHART
+        var optionspie = {
+            chart: {
+                type: "donut",
+                offsetX: 0
+            },
+            stroke: {
+                width: 0.5,
+                colors: '#21272d'
+            },
+            plotOptions: {
+                pie: {
+                    donut: {
+                        size: '77%',
+                        labels: {
+                            show: true,
+                            name: {
+                                show: true,
+                                fontSize: '20px',
+                                fontWeight: 600,
+                                offsetY: -10,
+                            },
+                            value: {
+                                show: true,
+                                fontSize: '20px',
+                                offsetY: 16,
+                                formatter: function (val) {
+                                    return (val / (Object.entries(addresses)[Object.entries(addresses).length - 1][1][0]['total'])).toLocaleString('en-US', { style: "percent", minimumFractionDigits: "1", })
+                                }
+                            },
+                            total: {
+                                show: true,
+                                showAlways: false,
+                                label: 'Total Addresses',
+                                fontSize: '18px',
+                                color: '#007cda',
+                                formatter: function (w) {
+                                    return (w.globals.seriesTotals.reduce((a, b) => {
+                                        return a + b
+                                    }, 0)).toLocaleString('en-US', { style: "decimal", maximumFractionDigits: "0", })
+                                }
+                            }
+                        }
+                    },
+                }
+            },
+            series: Object.values(addressestoday),
+            labels: ["P2PKH (Legacy)", "P2SH", "Bech32", "Taproot"],
+            tooltip: {
+                y: {
+                    formatter: function (value, {
+                        series,
+                        seriesIndex,
+                        dataPointIndex,
+                        w
+                    }) {
+                        return value.toLocaleString('en-US', { style: "decimal", minimumFractionDigits: "0", })
+                    }
+                },
+            },
+        };
+
+        var chartpie = new ApexCharts(document.querySelector("#pie"), optionspie);
+        chartpie.render();
+
+        // Success
+
+        window.Apex = {
+            chart: {
+                zoom: {
+                    foreColor: "#bbc7d2",
+                    enabled: false,
+                },
+                animations: {
+                    enabled: true
+                },
+                fontFamily: 'Nunito,Helvetica, Arial, sans-serif',
+                foreColor: '#ccc',
+                toolbar: {
+                    show: false
+                },
+            },
+            stroke: {
+                curve: 'smooth',
+                width: 3,
+            },
+            dataLabels: {
+                enabled: false
+            },
+            tooltip: {
+                theme: 'dark'
+            },
+            noData: {
+                text: 'Loading...'
+            },
+            legend: {
+                show: false
+            },
+            grid: {
+                show: true,
+                borderColor: "#f5f7ff55",
+                strokeDashArray: 6,
+            },
+        };
+    </script>
+</body>
+
+</html>

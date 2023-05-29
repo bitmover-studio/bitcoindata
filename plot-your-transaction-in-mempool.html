@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+   <meta charset="utf-8">
+   <title>Plot your transaction in the mempool - bitcoin data.science</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <meta name="description"
+      content="Mempool and transaction Fee Calculator. Plot your transaction in the mempool and estimate how much you need to spend in Bitcoin transaction fees.">
+   <meta name="robots" content="index, follow" />
+   <meta name="keywords" content="bitcoin, transaction fee, mempool, transaction size,vbytes, virtual bytes" />
+   <link rel="shortcut icon" href="img/favicon.svg">
+   <link rel="canonical" href="https://bitcoindata.science/plot-your-transaction-in-mempool.html">
+   <link rel="alternate" hreflang="x-default" href="https://bitcoindata.science" />
+   <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+   <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+   <link rel="manifest" href="/site.webmanifest">
+   <link rel="mask-icon" href="img/safari-pinned-tab.svg" color="#111316">
+   <meta name="apple-mobile-web-app-title" content="bitcoin data.science">
+   <meta name="application-name" content="bitcoin data.science">
+   <meta name="msapplication-TileColor" content="#2b5797">
+   <meta name="theme-color" content="#111316">
+   <meta property="og:title" content="Bitcoin Mempool and Transaction Fee Calculator" />
+   <meta property="og:type" content="website" />
+   <meta property="og:url" content="https://bitcoindata.science/" />
+   <meta property="og:image" content="https://bitcoindata.science/img/logo.png" />
+   <meta property="og:description"
+      content="Mempool and transaction fee calculator. Plot your transaction in the mempool and estimate how much you need to spend in Bitcoin transaction fees." />
+   <meta property="og:locale" content="en_US" />
+   <meta property="og:locale:alternate" content="pt_BR" />
+   <meta property="og:site_name" content="bitcoin data.science" />
+   <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Check the balance of your bitcoin addresses",
+        "description": "Check the balance of multiple bitcoin addresses, from different wallets",
+        "alternateName": [
+          "bitcoindata.science",
+          "Bitcoin Data Science",
+          "bitcoin datascience"
+        ],
+        "url": "https://bitcoindata.science",
+        "logo": "https://bitcoindata.science/img/logo.svg",
+        "sameAs": [
+          "https://bitcoindata.science"
+        ]
+      }
+   </script>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+   <link href="css/style.css" rel="stylesheet">
+   <!-- Global site tag (gtag.js) - Google Analytics -->
+   <script async src="https://www.googletagmanager.com/gtag/js?id=G-D7YK9RV236"></script>
+   <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+
+      gtag('config', 'G-D7YK9RV236');
+   </script>
+   <script src="components/navbar.js" type="text/javascript" defer></script>
+   <script src="components/footer.js" type="text/javascript" defer></script>
+</head>
+
+<body>
+   <!-- Navbar -->
+   <header>
+      <navbar-component />
+   </header>
+   <!-- Page Content -->
+   <main class="container col-lg-10">
+      <div class="container mt-3">
+
+         <div class="alert alert-warning bd-callout border-warning-subtle" role="alert">
+            <h4 class="alert-heading">Under Construction</h4>
+
+            <p>This page is to be redesigned. Links might be broken.</p>
+         </div>
+
+         <h1 class="h1 fw-semibold mb-0">Plot your Transaction in the Mempool</h1>
+         <span class="header-line bg-info rounded mb-2 d-inline-block"> </span>
+         <h2 class="lead">Estimate when your transaction is going to confirm and calculate how much you will spend
+            in Bitcoin transaction fees.</h2>
+         <a href="#how" class="conversor">How do I use this?</a>
+         <div class="p-3">
+            <div id="feeopt"></div>
+         </div>
+      </div>
+      <div class="container">
+         <div class="row">
+            <div class="col-md-7 px-4 pt-5 pb-5 form_container" style="font-size:0.9rem;">
+               <div>
+                  <label for="txid">Insert your <em>unconfirmed</em> transaction ID below to see it in the
+                     mempool.</label>
+                  <div class="txsearch input-group form ps-0 bg-transparent border mb-2">
+                     <input id="txid" class="form-control my-0 py-1 bg-transparent input borderless"
+                        style="border:0; box-shadow: none;" type="text" placeholder="Transaction ID" aria-label="Search"
+                        onpaste="txid()" oninput="txid()" onMouseOut="calculate()">
+                     <div class="input-group-append" onclick="txid()" style="cursor:pointer">
+                        <span class="input-group-text bg-transparent borderless mr-2 text-primary"
+                           style="border:0;background:transparent!important;" id="basic-text1">
+                           <svg width="1.5em" height="1.5em" transform="scale(-1,1)" viewBox="0 0 16 16"
+                              class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd"
+                                 d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z">
+                              </path>
+                              <path fill-rule="evenodd"
+                                 d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z">
+                              </path>
+                           </svg>
+                        </span>
+                     </div>
+                  </div>
+                  <span id="txconf"><BR></span>
+                  <span class="mt-2 py-2">Alternatively, fill your transaction details below.</span><BR>
+                  <label for="ninputs" id="labeloutput">How many inputs and outputs do you have?</label>
+                  <div class="form-row">
+                     <div class="col-md-6">
+                        <div class="input-group mb-3 input-group-sm">
+                           <span class="input-group-text pe-3" id="basic-addon1">inputs</span>
+                           <input type="text" oninput="this.value=this.value.replace(/[^0-9]|^0+/g,'');"
+                              style="background-color:transparent" class="form-control input-sm" onchange="calculate()"
+                              id="ninputs" aria-describedby="basic-addon1" value="1">
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="input-group mb-3 input-group-sm">
+                        <span class="input-group-text" id="basic-addon2">outputs</span>
+                        <input type="text" aria-labelledby="labeloutput"
+                           oninput="this.value=this.value.replace(/[^0-9]|^0+/g,'');"
+                           style="background-color:transparent" class="form-control input-sm border-primary2"
+                           onchange="calculate()" id="noutputs" aria-describedby="basic-addon2" value="2">
+                     </div>
+                  </div>
+               </div>
+               <label for="satpbyte" id="rangelb">Choose your fee per vbyte: </label><span
+                  class="text-center text-danger small pl-4" id="overpay"></span>
+               <div class="form-row">
+                  <div class="col-md-6">
+                     <div class="input-group mb-3 input-group-sm">
+                        <input type="text" aria-labelledby="rangelb"
+                           oninput="this.value=this.value.replace(/[^0-9]|^0+/g,'');calculate();line();overpay();"
+                           style="background-color:transparent" class="form-control sat border-primary2"
+                           onchange="calculate();line();overpay();" id="satpbyte" aria-describedby="basic-addon3"
+                           value="1">
+                        <span class="input-group-text  bg-dark border-primary2" id="basic-addon3">sat/vbyte &nbsp;
+                        </span>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <input type="range" min="1" value="1" aria-labelledby="rangelb" class="slider sat"
+                        style="max-width:100%" onclick="calculate();line();overpay();">
+                  </div>
+               </div>
+               <BR>
+               <span>Address Format </span><span class="small text-muted"> (If you have multiple formats, select the
+                  most common input address format.)</span>
+               <ul class="nav nav-pills pl-5 py-2 list-group list-group-horizontal" id="pills-tab">
+                  <li class="nav-item ">
+                     <input type="button" name="AddressType" value="p2pkh"
+                        class="nav-link active btn btn-info shadow-none text-monospace py-1 px-3 my-2" id="pills-1-tab"
+                        data-toggle="pill" aria-selected="true">
+                  </li>
+                  <li class="nav-item">
+                     <input type="button" name="AddressType" value="p2sh"
+                        class="nav-link btn btn-info shadow-none text-monospace py-1 px-3 my-2 " id="pills-3-tab"
+                        data-toggle="pill" aria-selected="false">
+                  </li>
+                  <li class="nav-item">
+                     <input type="button" name="AddressType" value="Bech32"
+                        class="nav-link btn btn-info shadow-none text-monospace px-3 py-1 my-2" id="pills-bc1-tab"
+                        data-toggle="pill" aria-selected="false">
+                  </li>
+                  <li class="pl-5 ml-2">
+                     <aside class="text-monospace text-muted" id="1p2pkh" style="display:block">
+                        <code>P2PKH</code> (Pay To Pubkey Hash)<br>
+                        Legacy format.<BR> Address starting with <code>1</code>.
+                     </aside>
+                     <aside class="text-monospace text-muted" id="1p2sh" style="display:none"><code>P2SH-SegWit</code>
+                        (Pay-to-Script Hash)<br>
+                        "Compatible" Segwit format.<BR> Address starting with <code>3</code>.
+                     </aside>
+                     <aside class="text-monospace text-muted" id="1Bech32" style="display:none"><code>Bech32</code>
+                        (<code>P2WPKH</code> and <code>P2WSH</code>)<br>
+                        Native Segwit format.<BR> Address starting with <code>bc1</code>.
+                     </aside>
+                  </li>
+               </ul>
+               <aside id="p2pkh" style="display:block">
+                  <table class="table mt-2 table-borderless table-responsive-sm text-uppercase ">
+                     <tr class="border-bottom">
+                        <td>Transaction size</td>
+                        <td class="text-right"><span id="fees"></span>
+                        </td>
+                     </tr>
+                     <tr class="border-bottom">
+                        <td>Transaction fees</td>
+                        <td class="text-right"><span id="pricebtc" class="pr-2"></span> <span id="priceusd"
+                              class="pl-2"></span>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>SegWit Fee Savings</td>
+                        <td class="text-right">upgrade to segwit to save <span class="text-danger"
+                              id="1reduction"></span>
+                           on fees.
+                        </td>
+                     </tr>
+                  </table>
+               </aside>
+               <aside id="p2sh" style="display:none">
+                  <table class="table mt-2 table-borderless table-responsive-sm text-uppercase">
+                     <tr class="border-bottom">
+                        <td>Transaction size</td>
+                        <td class="text-right"><span id="3fees"></span>
+                        </td>
+                     </tr>
+                     <tr class="border-bottom">
+                        <td>Transaction fees</td>
+                        <td class="text-right"><span id="3pricebtc" class="pr-2"></span> <span id="3priceusd"
+                              class="pl-2"></span>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>SegWit Fee Savings</td>
+                        <td class="text-right">You saved <span class="text-warning" id="3reduction"></span> on fees
+                           using SegWit.
+                        </td>
+                     </tr>
+                  </table>
+               </aside>
+               <aside id="Bech32" style="display:none">
+                  <table class="table mt-2 table-borderless table-responsive-sm text-uppercase">
+                     <tr class="border-bottom">
+                        <td>Transaction size</td>
+                        <td class="text-right"><span id="sfees"></span>
+                        </td>
+                     </tr>
+                     <tr class="border-bottom">
+                        <td>Transaction fees</td>
+                        <td class="text-right"><span id="spricebtc" class="pr-2"></span> <span id="spriceusd"
+                              class="pl-2"></span>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>SegWit Fee Savings</td>
+                        <td class="text-right">You saved <span class="text-success" id="1reduction2"></span> on fees
+                           using native SegWit.
+                        </td>
+                     </tr>
+                  </table>
+               </aside>
+            </div>
+            <div class="col px-0 mt-0 mb-3 pt-3" style="height:530px">
+               <h2 class="font-weight-normal mb-0 h5 text-center">Current Mempool <span id="charttitle"></span>
+                  <div id="chartx" class="small"></div>
+               </h2>
+               <div id="chart" class="float-center p-0 m-0 pb-2 mb-2"></div>
+               <div class="text-right px-2 pb-2 mb-2">
+                  <small id="source" class="form-text text-center text-muted">Powered by <a
+                        href="https://bitcoiner.live/">Bitcoiner.live</a> and <a
+                        href="https://www.sochain.com/">SoChain</a>.</small>
+               </div>
+            </div>
+         </div>
+      </div>
+      <section class="pt-4 container" style="font-size:0.9rem" id="how">
+         <header>
+            <h3>What is the mempool?</h3>
+         </header>
+         <p>When you send a bitcoin transaction, it is broadcasted to all nodes in the bitcoin network. And then it goes
+            to the mempool.
+            The mempool is a collection of unconfirmed transactions waiting to get into the next blocks.
+            A transaction is only <em>confirmed</em> when it is registered in a block.<BR>
+         </p>
+         <h3>Why is transaction size important?</h3>
+         <p>A block has a limited block size. Maximum block size is <span class="text-info"><em>1 vMB (virtual
+                  Megabyte)</em></span> and it cannot fit all transactions in the mempool at once.
+            To get into a block, you will need to pay a fee per each <abbr class="text-info font-italic"
+               title="virtual byte (vbyte). Virtual size, introduced with Segwit activation, is a measurement used to compare the size of Bitcoin transactions in the proportion maximum with the block size limit.">vbyte</abbr>
+            of your transaction, also known as fee rate. Fee rate is measured in satoshis per vbyte, or just
+            <code>sat/vbyte</code>.
+         </p>
+         <p>Miners usually prioritize transactions with a high fee rate to get in the next block. Thus, transactions
+            form a queue in the mempool waiting to get into a block (i.e get a confirmation), such that transactions
+            that pay more per vbyte are confirmed beforehand.</p>
+         <h3>What is this chart and how is the <span class="text-info"><em>Optimum Fee</em></span> calculated?</h3>
+         <p>The chart above represents the transactions in the mempool sorted by their fee rate. Transactions paying
+            more fee per vbyte are on the top and will get into the next blocks sooner than transactions on the bottom.
+         </p>
+         <p>The white lines show the virtual size of the next three blocks. As more transactions are always being
+            broadcasted to the mempool, a feerate inside the next block limit does not guarantee that it will be
+            confirmed soon, but it is a good estimate.</p>
+         <p>The <span class="text-info"><em>Optimum Fee</em></span> is the lowest fee inside the next block, plus
+            <code>5 sat/vbyte</code>. This code underestimate fees in some situations, so do not use this fee if you
+            need a confirmation in the next block.
+         </p>
+         <h3>How is transaction size calculated?</h3>
+         <p>Every input and output has a size, and that size depends on its respective address format. This tool
+            calculates the size of bitcoin transactions (in vbytes). You just need to enter the number of inputs and
+            outputs, your address format, and choose a fee per byte.</p>
+         <p>Your transaction size and cost are displayed in BTC and USD value. Compare the value with the size of the
+            next two blocks (marked in the chart) and estimate the transaction fee you want to pay.
+         </p>
+         <h3>How do I pay less in fees?<BR></h3>
+         <p>There are 3 things that control a transaction fee:</p>
+         <ul>
+            <li>Number of <abbr class="text-info font-italic" title="the number of UTXO being spend.">inputs</abbr> and
+               <abbr class="text-info font-italic" title="the number of destination addresses.">outputs</abbr>.
+            </li>
+            <li>Address Format. Use segwit to pay lower fees, specially <code>P2WPKH</code> and <code>P2WSH</code>
+               address formats.</li>
+            <li>Fee per vybte. Usually measured in satoshi per vbyte (<code>sat/vbyte</code>)</li>
+         </ul>
+         <p>You need to make your transaction as small as possible. Reducing the number of inputs and outputs will help.
+            Use segwit, especially <code>Bech32</code> address formats and choose the fee rate (if you are not in hurry,
+            use a low fee/vbyte).</p>
+         <span class="h5">Further Reading and References:<BR></span>
+         <p class="py-2 px-3"><a style="color:#3d69bd;font-weight:400"
+               href="https://en.bitcoin.it/wiki/Weight_units">Weight Units</a> in Bitcoin Wiki.<BR>
+            <a style="color:#3d69bd;font-weight:400" href="https://en.bitcoin.it/wiki/Segregated_Witness">Segregated
+               Witness</a> (SegWit) in Bitcoin Wiki.
+            <span class="float-right mr-5"><a href="#top" class="h3 small" style="color:#3d69bd;font-weight:400"
+                  title="Back to top.">
+                  <svg aria-hidden="true" height="3em" width="3em" data-prefix="fas" data-icon="angle-up" role="img"
+                     xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                     <path fill="currentColor"
+                        d="M177 159.7l136 136c9.4 9.4 9.4 24.6 0 33.9l-22.6 22.6c-9.4 9.4-24.6 9.4-33.9 0L160 255.9l-96.4 96.4c-9.4 9.4-24.6 9.4-33.9 0L7 329.7c-9.4-9.4-9.4-24.6 0-33.9l136-136c9.4-9.5 24.6-9.5 34-.1z">
+                     </path>
+                  </svg>
+               </a></span>
+         </p>
+      </section>
+      <!-- /main page -->
+   </main>
+   <footer-component />
+
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+   <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
+
+   <script src="components/fee-calculate.js"></script>
+
+   <script>
+      const inputs = [...document.querySelectorAll("input.sat")];
+      inputs.forEach((inp, i) => inp.addEventListener("input", () => inputs[1 - i].value = inputs[i].value))
+
+      var options = {
+         series: [],
+         noData: {
+            text: "Loading..."
+         },
+         grid: { padding: { top: 22 }, },
+         chart: {
+            animations: {
+               enabled: false
+            },
+            toolbar: {
+               show: false,
+               offsetX: 0,
+               offsetY: 0,
+               tools: {
+                  download: false,
+                  selection: true,
+                  zoom: false,
+                  zoomin: false,
+                  zoomout: false,
+                  pan: false
+               }
+            },
+            fontFamily: ' SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace',
+            id: 'mychart',
+            type: 'bar',
+            width: '100%',
+            height: '100%',
+            stacked: true,
+            sparkline: {
+               enabled: true
+            }
+         },
+         markers: {
+            size: 0
+         },
+         plotOptions: {
+            bar: {
+               horizontal: false,
+               columnWidth: "75%"
+            },
+         },
+         xaxis: {
+            categories: [''],
+            type: 'category',
+            tickPlacement: 'on'
+         },
+         tooltip: {
+            theme: "dark",
+            y: {
+               show: false,
+               formatter: function (value, {
+                  series,
+                  seriesIndex,
+                  dataPointIndex
+               }) {
+                  return ''
+               },
+               title: {
+                  formatter: (seriesName) => (isNaN(sum.reduce(reducer) - cumulative[seriesName - 1])) ? seriesName + " sat/vbyte - 0.000 vMB" : seriesName + " sat/vbyte - " + ((sum.reduce(reducer) - cumulative[seriesName - 1]) / 4000000).toLocaleString("en-US") + " vMB",
+                  offsetX: 0,
+               }
+            },
+            x: {
+               show: false
+            }
+         },
+         fill: {
+            opacity: [1],
+         },
+         stroke: {
+            width: 0.3, curve: 'straight'
+         },
+         theme: {
+            palette: 'palette10',
+            monochrome: {
+               enabled: true,
+               color: '#007bff',
+               shadeTo: 'light',
+               shadeIntensity: 2.5
+            },
+         },
+         dataLabels: {
+            enabled: true,
+            style: {
+               colors: ['#fff']
+            },
+            formatter: function (value, { seriesIndex, dataPointIndex, w }) {
+               return w.config.series[seriesIndex].name + " sat/vbyte"
+            }
+         },
+         legend: {
+            show: false
+         },
+      };
+      var chart = new ApexCharts(document.querySelector("#chart"), options);
+      chart.render();
+
+      var intervalID = window.setInterval(checkAPI, 60000);
+
+      seeAPI = function () {
+         $.getJSON("https://bitcoiner.live/api/mempool/latest", function memapi(response) {
+            arr = Object.entries(response.mempool).map(x => ({
+               name: x[0],
+               type: 'column',
+               data: [x[1]],
+            }))
+            sum = Object.entries(response.mempool).map(x => (x[1]));
+            response.onload = chart.updateSeries(arr);
+            window.onload = line();
+            window.onload = sugfee();
+         });
+      }
+
+      function checkAPI() {
+         window.onload = seeAPI();
+      };
+      line = function () {
+         cumulative = sum.map((elem, index) => sum.slice(0, index + 1).reduce((a, b) => a + b));
+         document.querySelector('input[type=range]').max = parseInt(cumulative.length);
+         reducer = (accumulator, currentValue) => accumulator + currentValue;
+         document.getElementById("charttitle").innerHTML = "Size: " + parseFloat((sum.reduce(reducer) - cumulative[0]) / 4000000).toFixed(3) + " vMB";
+         ApexCharts.exec('mychart', 'updateOptions', {
+            yaxis: {
+               show: false,
+               max: sum.reduce(reducer),
+               min: 0,
+            },
+            annotations: {
+               position: 'front',
+               yaxis: [{
+                  y: sum.reduce(reducer) - 4000000,
+                  borderColor: '#cbdae9',
+                  strokeDashArray: 0,
+                  label: {
+                     offsetY: 2,
+                     orientation: 'horizontal',
+                     text: '1 vMB (1 Block)',
+                     borderColor: 'transparent',
+                     textAnchor: 'start',
+                     position: 'left',
+                     style: {
+                        color: '#cbdae9',
+                        background: 'transparent',
+                        cssClass: 'h7'
+                     },
+                  },
+               }, {
+                  y: sum.reduce(reducer) - 8000000,
+                  borderColor: '#cbdae9',
+                  strokeDashArray: 0,
+                  label: {
+                     offsetY: 2,
+                     borderColor: 'transparent',
+                     textAnchor: 'end',
+                     style: {
+                        color: '#cbdae9',
+                        background: 'transparent',
+                        cssClass: 'h7 px-10'
+                     },
+                     orientation: 'horizontal',
+                     text: '2 vMB'
+                  }
+               }, {
+                  y: sum.reduce(reducer) - 12000000,
+                  borderColor: '#cbdae9',
+                  strokeDashArray: 0,
+                  label: {
+                     offsetY: 13,
+                     borderColor: 'transparent',
+                     style: {
+                        color: '#cbdae9',
+                        background: 'transparent',
+                        cssClass: 'h7'
+                     },
+                     orientation: 'horizontal',
+                     text: '3 vMB',
+                  }
+               }, {
+                  y: (cumulative[document.getElementById("satpbyte").value - 1]),
+                  borderColor: '#00e396',
+                  strokeDashArray: 0,
+                  label: {
+                     borderColor: 'transparent',
+                     textAnchor: 'end',
+                     offsetX: -70,
+                     style: {
+                        color: '#00e396',
+                        background: 'transparent',
+                        fontSize: '15px',
+                        fontWeight: 500,
+                     },
+                     orientation: 'horizontal',
+                     text: "Your Transaction: " + document.getElementById("satpbyte").value + ' sat/vbyte '
+                  }
+               }
+               ]
+            },
+         })
+      }
+      window.onload = seeAPI();
+
+      function txid() {
+         var request = new XMLHttpRequest();
+         var url = "https://www.sochain.com/api/v2/tx/btc/" + document.getElementById("txid").value;
+         request.open("GET", url);
+         request.responseType = 'json';
+         request.onload = function () {
+            var feerate = Number(100000000 * request.response.data.fee / request.response.data.vsize).toFixed(0);
+            var blockconf = (sum.reduce(reducer) - cumulative[feerate - 1]) / 4000000;
+            var inputa = Object.keys(request.response.data.inputs).length;
+            var outputa = Object.keys(request.response.data.outputs).length;
+            var confirmations = request.response.data.confirmations;
+            document.getElementById("satpbyte").value = feerate;
+            document.querySelector('input[type=range]').value = feerate;
+            document.getElementById('ninputs').value = inputa;
+            document.getElementById('noutputs').value = outputa;
+            if (request.response.data.confirmations > 0) {
+               document.getElementById("txconf").innerHTML = "<div class='alert mt-1 text-success bg-dark1 alert-dismissible fade show py-1 px-4 border-success' role='alert' style='font-size:0.8rem;*/ box-shadow: 0 0 6px #00e396;*/'>Transaction already confirmed!<button type='button' class='close py-0' data-dismiss='alert' aria-label='Close' style='text-shadow:0 0'><span aria-hidden='true'>&times;</span>  </button></div>"
+            } else {
+               if (isNaN(blockconf) || (parseInt(blockconf + 1) == 1)) {
+                  document.getElementById("txconf").innerHTML = "<div class='alert mt-1 bg-dark1 border-info text-info alert-dismissible fade show py-1 px-4' role='alert' style='font-size:0.8rem;/* box-shadow: 0 0 6px #17a2b8; */'>Transaction not confirmed! Estimated confirmation in 1 block. <button type='button' class='close py-0' data-dismiss='alert' aria-label='Close' style='text-shadow:0 0'><span aria-hidden='true'>&times;</span>  </button></div>";
+               } else {
+                  document.getElementById("txconf").innerHTML = "<div class='alert mt-1 text-warning bg-dark1 alert-dismissible border-warning  fade show py-1 px-4' role='alert' style='font-size:0.8rem;/* box-shadow: 0 0 6px #ff9800; */'>Transaction not confirmed! " + parseFloat(blockconf).toFixed(3) + " vMb (" + parseInt(blockconf + 1) + " blocks) from the top of the mempool.<button type='button' class='close py-0' data-dismiss='alert' aria-label='Close' style='text-shadow:0 0'><span aria-hidden='true'>&times;</span>  </button></div>";
+               }
+            }
+            return line();
+            return calculate();
+         }
+         request.send();
+      }
+      function overpay() {
+         if (parseInt((sum.reduce(reducer) - cumulative[parseInt(document.getElementById("satpbyte").value) - 20]) / 4000000) == 0) {
+            document.getElementById("overpay").innerHTML = "Warning: You may be overpaying fees.";
+         }
+         else { document.getElementById("overpay").innerHTML = ""; }
+      }
+
+
+      function sugfee() {
+         for (let i = 0; i < cumulative.length; i++) {
+            if (parseInt((sum.reduce(reducer) - cumulative[i - 3]) / 4000000) == 0) {
+               document.getElementById("feeopt").innerHTML = "<div class='alert mt-1' role='alert' style='background-color:transparent; color:#b2bfca!important;'><strong class='h5 text-info'>Optimum Fee: " + parseInt(i) + " sat/vbyte</strong><p class='small pl-3 my-1'><strong class='text-info-emphasis'>Warning</strong>: This is a good cost/benefit fee. Your transaction may not confirm within 1 hour, but probably will. If you really need a confirmation within the next block, and do not mind overpaying fees, use your wallet recommended fee.</p></div>";
+               break;
+            }
+            else { }
+         }
+      }
+   </script>
+</body>
+
+</html>

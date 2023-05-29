@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+   <meta charset="utf-8">
+   <title>bitcoin data.science - 404 error</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="description" content="Data analysis and tools for anything related to bitcoin.">
+   <meta name="robots" content="index, follow" />
+   <meta name="keywords" content="bitcoin, data science, analytics, blockchain, bitcointalk" />
+   <link rel="shortcut icon" href="img/favicon.svg">
+   <link rel="canonical" href="https://bitcoindata.science/">
+   <link rel="alternate" hreflang="x-default" href="https://bitcoindata.science" />
+   <link rel="alternate" hreflang="pt" href="https://bitcoindata.science/pt/" />
+   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+   <link rel="manifest" href="/site.webmanifest">
+   <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#e89800">
+   <meta name="apple-mobile-web-app-title" content="bitcoin data.science">
+   <meta name="application-name" content="bitcoin data.science">
+   <meta name="msapplication-TileColor" content="#2b5797">
+   <meta name="theme-color" content="#18191a">
+   <meta property="og:title" content="bitcoin data.science - Data Analysis and bitcoin" />
+   <meta property="og:type" content="website" />
+   <meta property="og:url" content="https://bitcoindata.science/" />
+   <meta property="og:image" content="https://bitcoindata.science/img/logo.png" />
+   <meta property="og:description" content="Data analysis and tools for anything related to bitcoin." />
+   <meta property="og:locale" content="en_US" />
+   <meta property="og:site_name" content="bitcoin data.science" />
+   <script type="application/ld+json">
+         {
+           "@context": "https://schema.org",
+           "@type": "Organization",
+           "name": "bitcoin data.science",
+           "description": "Data analysis and tools for anything related to bitcoin.",
+           "alternateName": [
+             "bitcoindata.science",
+             "Bitcoin Data Science",
+             "bitcoin datascience"
+           ],
+           "url": "https://bitcoindata.science",
+           "logo": "https://bitcoindata.science/img/logo.svg",
+           "sameAs": [
+             "https://bitcoindata.science"
+           ]
+         }
+      </script>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+   <link href="css/style.css" rel="stylesheet">
+   <!-- Global site tag (gtag.js) - Google Analytics -->
+   <script async src="https://www.googletagmanager.com/gtag/js?id=G-D7YK9RV236"></script>
+   <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+
+      gtag('config', 'G-D7YK9RV236');
+   </script>
+   <script src="components/navbar.js" type="text/javascript" defer></script>
+   <script src="components/footer.js" type="text/javascript" defer></script>
+</head>
+
+<body>
+   <!-- Navbar -->
+   <header>
+      <navbar-component />
+   </header>
+   <!-- Page Content -->
+   <main class="container-fluid col-lg-10 col-xl-8">
+      <div class="mt-3">
+         <div class="text-center">
+            <h1 class="text-danger h1"><em><span class="fs-big me-2">404</span> Error</h1></em>
+            <p class="lead fw-semibold text-danger">File not found.</p>
+         </div>
+         <p>Please send me an <a href="mailto:bitmover@proton.ch">e-mail</a> or a <a
+            href="https://bitcointalk.org/index.php?action=profile;u=1554927" target="_blank" rel="noreferrer">bitcointalk message</a> if you have found any bug.</p>
+
+         <p class="lead">Maybe you are looking for one of those pages?</p>
+         <div id="cards" class="row row-cols-1 row-cols-md-2 g-3">
+            <div class="col">
+               <div class="card h-100 border-3 bg-transparent me-4">
+                  <div class="card-body">
+                     <h3 class="h4 fw-bolder card-title"><a href="https://bitcoindata.science/bitcoin-balance-check.html"
+                           class="text-success-emphasis stretched-link">Balance Check</a></h3>
+                     <p class="card-text">See the balance of multiple bitcoin addresses at the same time. All address
+                        formats supported.</p>
+                     <div
+                        class="position-absolute top-0 start-100 translate-middle bg-success-subtle border-success-subtle border rounded-pill p-3 mt-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                           class="bi bi-wallet2  text-success-emphasis" viewBox="0 0 16 16">
+                           <path
+                              d="M12.136.326A1.5 1.5 0 0 1 14 1.78V3h.5A1.5 1.5 0 0 1 16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 13.5v-9a1.5 1.5 0 0 1 1.432-1.499L12.136.326zM5.562 3H13V1.78a.5.5 0 0 0-.621-.484L5.562 3zM1.5 4a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-13z" />
+                        </svg>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="col">
+               <div class="card h-100 border-3 bg-transparent me-4">
+                  <div class="card-body">
+                     <h3 class="h4 fw-bolder card-title"><a href="https://bitcoindata.science/bitcoin-units-converter.html"
+                           class="text-primary-emphasis stretched-link">Unit Converter</a></h3>
+                     <p class="card-text">Convert bitcoin units BTC, mBTC, uBTC, bitcent, satoshi, finney and more to
+                        USD, EUR or any other fiat currency. </p>
+                     <p class="card-text">168 fiat currencies supported. Prices are updated in real-time.</p>
+                     <div
+                        class="position-absolute top-0 start-100 translate-middle bg-primary-subtle border-primary-subtle border rounded-pill p-3 mt-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                           class="bi bi-arrow-left-right text-primary-emphasis" viewBox="0 0 16 16">
+                           <path fill-rule="evenodd"
+                              d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z" />
+                        </svg>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="col">
+               <div class="card h-100 border-3 bg-transparent me-4">
+                  <div class="card-body">
+                     <h3 class="h4 fw-bolder card-title"><a href="https://bitcoindata.science/plot-your-transaction-in-mempool.html"
+                           class="text-info stretched-link">Transaction Size</a></h3>
+                     <p class="card-text">Calculate the size of your transaction, based in the number of inputs, outputs
+                        and address format. You can also how much you will spend in Bitcoin transaction fees.</p>
+                     <div
+                        class="position-absolute top-0 start-100 translate-middle bg-info-subtle border-info-subtle border rounded-pill p-3 mt-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                           class="bi bi-calculator text-info" viewBox="0 0 16 16">
+                           <path
+                              d="M12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h8zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z" />
+                           <path
+                              d="M4 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-2zm0 4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-4z" />
+                        </svg>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="col">
+               <div class="card h-100 border-3 bg-transparent me-4">
+                  <div class="card-body">
+                     <h3 class="h4 fw-bolder card-title"><a href="https://bitcoindata.science/plot-your-transaction-in-mempool.html"
+                           class="text-warning-emphasis stretched-link">Giveaway Manager</a></h3>
+                     <p class="card-text"><em>Provably fair</em> giveaway manager.</p>
+                     <P class="card-text"> Giveaways can have their results easily verified using only the blockhash
+                        and a simple javascript function.
+                        It is also possible to save and share the results in a unique URL.</P>
+                     <div
+                        class="position-absolute top-0 start-100 translate-middle bg-warning-subtle border-warning-subtle border rounded-pill p-3 mt-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                           class="bi bi-gift text-warning-emphasis" viewBox="0 0 16 16">
+                           <path
+                              d="M3 2.5a2.5 2.5 0 0 1 5 0 2.5 2.5 0 0 1 5 0v.006c0 .07 0 .27-.038.494H15a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 14.5V7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h2.038A2.968 2.968 0 0 1 3 2.506V2.5zm1.068.5H7v-.5a1.5 1.5 0 1 0-3 0c0 .085.002.274.045.43a.522.522 0 0 0 .023.07zM9 3h2.932a.56.56 0 0 0 .023-.07c.043-.156.045-.345.045-.43a1.5 1.5 0 0 0-3 0V3zM1 4v2h6V4H1zm8 0v2h6V4H9zm5 3H9v8h4.5a.5.5 0 0 0 .5-.5V7zm-7 8V7H2v7.5a.5.5 0 0 0 .5.5H7z" />
+                        </svg>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="m-4 text-center">
+            <a href="https://bitcoindata.science" title="Home" class="btn btn-primary shadow-sm btn-lg px-5 text-decoration-none">Back to Home</a>
+         </div>
+      </div>
+      <!-- /main page -->
+   </main>
+
+   <footer-component />
+
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+      crossorigin="anonymous"></script>
+</body>
+
+</html>

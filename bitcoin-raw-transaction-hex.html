@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+   <meta charset="utf-8">
+   <title>Get Transaction Hex - bitcoin data.science</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <meta name="description" content="Get Bitcoin Raw Transaction in Hex Format">
+   <meta name="robots" content="index, follow" />
+   <meta name="keywords" content="Bitcoin Transaction Hex,Transaction Hex, Tx Hex, Get Bitcoin Transaction Hex" />
+   <link rel="shortcut icon" href="img/favicon.svg">
+   <link rel="canonical" href="https://bitcoindata.science/bitcoin-raw-transaction-hex.html">
+   <link rel="alternate" hreflang="x-default" href="https://bitcoindata.science" />
+   <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+   <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+   <link rel="manifest" href="/site.webmanifest">
+   <link rel="mask-icon" href="img/safari-pinned-tab.svg" color="#111316">
+   <meta name="apple-mobile-web-app-title" content="bitcoin data.science">
+   <meta name="application-name" content="bitcoin data.science">
+   <meta name="msapplication-TileColor" content="#2b5797">
+   <meta name="theme-color" content="#111316">
+   <meta property="og:title" content="Get Transaction Hex - bitcoin data.science" />
+   <meta property="og:type" content="website" />
+   <meta property="og:url" content="https://bitcoindata.science/" />
+   <meta property="og:image" content="https://bitcoindata.science/img/logo.png" />
+   <meta property="og:description"
+      content="Bitcoin Transaction Hex,Transaction Hex, Tx Hex, Get Bitcoin Transaction Hex" />
+   <meta property="og:locale" content="en_US" />
+   <meta property="og:site_name" content="bitcoin data.science" />
+   <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Check the balance of your bitcoin addresses",
+        "description": "Check the balance of multiple bitcoin addresses, from different wallets",
+        "alternateName": [
+          "bitcoindata.science",
+          "Bitcoin Data Science",
+          "bitcoin datascience"
+        ],
+        "url": "https://bitcoindata.science",
+        "logo": "https://bitcoindata.science/img/logo.svg",
+        "sameAs": [
+          "https://bitcoindata.science"
+        ]
+      }
+   </script>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+   <link href="css/style.css" rel="stylesheet">
+   <!-- Global site tag (gtag.js) - Google Analytics -->
+   <script async src="https://www.googletagmanager.com/gtag/js?id=G-D7YK9RV236"></script>
+   <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+
+      gtag('config', 'G-D7YK9RV236');
+   </script>
+   <script src="components/navbar.js" type="text/javascript" defer></script>
+   <script src="components/footer.js" type="text/javascript" defer></script>
+</head>
+
+<body>
+   <!-- Navbar -->
+   <header>
+      <navbar-component />
+   </header>
+   <!-- Page Content -->
+   <main class="container-fluid col-lg-10 col-xl-8">
+      <div class="mt-3">
+         <h1 class="h1 fw-semibold mb-0">Get <span class="d-none d-md-inline">Bitcoin</span> Raw Transaction Hex</h1>
+         <span class="header-line bg-warning rounded mb-2 d-inline-block"> </span>
+         <div class="p-3">
+         </div>
+
+         <div class="bg-body-tertiary rounded p-5 border shadow-sm">
+            <div class="mb-3">
+               <label for="TransactionId" class="form-label">Enter bitcoin Transaction id:</label>
+               <input type="text" class="form-control font-monospace bg-body" id="TransactionId" rows="6"></input>
+            </div>
+            <button type="button" id="submit" class="btn btn-warning shadow-sm btn-lg px-5" onclick="handleClick()">Get
+               Transaction Hex</button>
+         </div>
+         <p id="source" class="small text-muted text-end">Data from mempool.space.</p>
+
+         <div id="hex" class="mt-4 px-3 text-break">
+         </div>
+      </div>
+   </main>
+   <footer-component />
+
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
+      </script>
+   <script>
+
+      const outputArea = document.getElementById("hex")
+      var hex = "";
+      async function handleClick() {
+         document.getElementById("submit").innerHTML = '<span class="spinner-border spinner-border-sm me-3" role="status" aria-hidden="true"></span>Loading...'
+         document.getElementById("submit").disabled = true;
+         txId = document.getElementById('TransactionId').value;
+         outputArea.innerHTML = await getTxHex(txId)
+         document.getElementById("submit").innerHTML = 'Get Transaction Hex',
+         document.getElementById("submit").disabled = false
+      }
+
+      async function getTxHex(id) {
+         try {
+            const response = await fetch('https://mempool.space/api/tx/' + id + '/hex');
+            const data = await response.text();
+            let txHex = data;
+            return "<p>Transaction Hex:</p> <code class='text-break  text-warning-emphasis'> " + txHex + "</code>"
+         }
+         catch (error) {
+            console.warn(error)
+         }
+      };
+
+   </script>
+</body>
+
+</html>
