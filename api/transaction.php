@@ -2,7 +2,8 @@
 
 header('Cache-Control: max-age=30');
 
-if (isset($_GET["id"])) $id = $_GET["id"];
+if (isset($_GET["id"]))
+    $id = $_GET["id"];
 
 $response = "https://mempool.space/api/tx/" . $id;
 $responsejson = file_get_contents($response);
@@ -14,11 +15,11 @@ $jsonArray = json_decode($json);
 $price = $jsonArray->bitcoin->usd;
 
 // Fee //
-$fee =  ($data->fee) / 100000000;
+$fee = ($data->fee) / 100000000;
 $fee = 'fee: ' . number_format($fee, 8) . ' $' . number_format($price * $fee, 2);
 
 // Fee Rate //
-$fee_rate =  ($data->fee) / (($data->weight) / 4);
+$fee_rate = ($data->fee) / (($data->weight) / 4);
 $fee_rate = 'fee rate: ' . number_format($fee_rate, 2) . ' sat/vB';
 
 // confirmed //
@@ -32,7 +33,7 @@ $idstring = 'transaction id: ' . substr($id, 0, 10) . '...' . substr($id, -10);
 $inputs = array();
 foreach ($data->vin as $element) {
     if (isset($element->prevout->scriptpubkey_address)) {
-        $inputs[] =  '   ' . substr($element->prevout->scriptpubkey_address, 0, 10) . '...' . substr($element->prevout->scriptpubkey_address, -10)
+        $inputs[] = '   ' . substr($element->prevout->scriptpubkey_address, 0, 10) . '...' . substr($element->prevout->scriptpubkey_address, -10)
             . ' ' . ($element->prevout->value) / 100000000 . ' $' . number_format($price * ($element->prevout->value / 100000000), 2) . '/n';
     }
 }
@@ -40,16 +41,16 @@ foreach ($data->vin as $element) {
 $outputs = array();
 foreach ($data->vout as $element) {
     if (isset($element->scriptpubkey_address)) {
-        $outputs[] =  '   ' . substr($element->scriptpubkey_address, 0, 10) . '...' . substr($element->scriptpubkey_address, -10)
-            . ' ' . ($element->value) / 100000000  . ' $' . number_format($price * ($element->value / 100000000), 2) . '/n';
+        $outputs[] = '   ' . substr($element->scriptpubkey_address, 0, 10) . '...' . substr($element->scriptpubkey_address, -10)
+            . ' ' . ($element->value) / 100000000 . ' $' . number_format($price * ($element->value / 100000000), 2) . '/n';
     }
 }
-$string =  $idstring . '/n' . $confirmed . '/n' . $fee . '/n' . $fee_rate . '/n /n' . 'inputs: /n' . implode($inputs) . '/n' . 'outputs: /n' . implode($outputs);
+$string = $idstring . '/n' . $confirmed . '/n' . $fee . '/n' . $fee_rate . '/n /n' . 'inputs: /n' . implode($inputs) . '/n' . 'outputs: /n' . implode($outputs);
 $array = explode('/n', $string);
 array_pop($array);
 
-$font  = 4;
-$width  = 500;
+$font = 4;
+$width = 500;
 $height = (imagefontheight($font)) * (count($array));
 
 $image = imagecreatetruecolor($width, $height);
@@ -60,7 +61,7 @@ imagecolortransparent($image, $white);
 imagefill($image, 0, 0, $white);
 
 foreach ($array as $i => $st) {
-    imagestring($image, $font, 10, ($i + 1) * ($font + 10),  $st, $black);
+    imagestring($image, $font, 10, ($i + 1) * ($font + 10), $st, $black);
 }
 
 header('Content-type: image/gif');
