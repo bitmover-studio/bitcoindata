@@ -353,6 +353,271 @@
             </div>
          </div>
 
+         <!-- Fiat to BTC API -->
+         <div class="my-5" id="local-price">
+            <a href="#fiattobtc" class="link-danger">
+               <h2 class="h2 fw-semibold mb-0">Local Fiat to BTC
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link"
+                     viewBox="0 0 16 16">
+                     <path
+                        d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z" />
+                     <path
+                        d="M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z" />
+                  </svg>
+               </h2>
+            </a>
+
+            <p class="h6 my-3 pt-3">Parameters</p>
+            <table class="table table-striped">
+               <thead>
+                  <tr>
+                     <th scope="col">Name</th>
+                     <th scope="col">Type</th>
+                     <th scope="col">Default</th>
+                     <th scope="col">description</th>
+                  </tr>
+               </thead>
+               <tbody class="table-group-divider">
+                  <tr>
+                     <th scope="row">fiatamount</th>
+                     <td>float</td>
+                     <td>1</td>
+                     <td>The amount of your fiat currency to convert to btc.</td>
+                  </tr>
+                  <tr>
+                     <th scope="row">currency</th>
+                     <td>string</td>
+                     <td>USD</td>
+                     <td>The Fiat currency you want to see the price.</td>
+                  </tr>
+               </tbody>
+            </table>
+
+            <p class="h6 mt-4 mb-2"> Usage:</p>
+            <p>Requesting how much bitcoin is 10 GBP.</p>
+            <code
+               class="bg-body-secondary p-1 rounded">GET https://bitcoindata.science/api/fiattobtc.php?fiatamount=10&currency=GBP</code>
+
+
+            <p class="h6 my-3 pt-3">Response:</p>
+            <img alt="Local Fiat to BTC" title="Local Fiat to BTC" width="115" height="16"
+               src="https://bitcoindata.science/api/fiattobtc.php?fiatamount=10&currency=GBP" />
+
+            <p class="h6 my-3 pt-3">Embed in bitcointalk post:</p>
+
+            <div class="row g-4">
+               <div class="col-md-5">
+                  <div class="row">
+                     <div class="col">
+                        <div class="form-floating">
+                           <input type="number" class="form-control" id="floatingFiatInput" placeholder="Enter a number"
+                              value="10" onChange="javascript:setContent(this.value,'amount')">
+                           <label for="floatingFiatInput">fiatamount</label>
+                        </div>
+                     </div>
+                     <div class="col">
+                        <div class="form-floating">
+                           <select class="form-select" id="floatingSelect1" aria-label="Fiat currency select"
+                              onChange="javascript:setContent(this.value,'fiattobtc-currency')">
+                              <option selected>GBP</option>
+                              <option>AFN</option>
+                              <option>ALL</option>
+                              <option>AMD</option>
+                              <option>ANG</option>
+                              <option>AOA</option>
+                              <option>ARS</option>
+                              <option>AUD</option>
+                              <option>AWG</option>
+                              <option>AZN</option>
+                              <option>BAM</option>
+                              <option>BBD</option>
+                              <option>BDT</option>
+                              <option>BGN</option>
+                              <option>BHD</option>
+                              <option>BIF</option>
+                              <option>BMD</option>
+                              <option>BND</option>
+                              <option>BOB</option>
+                              <option>BRL</option>
+                              <option>BSD</option>
+                              <option>BTN</option>
+                              <option>BWP</option>
+                              <option>BYN</option>
+                              <option>BZD</option>
+                              <option>CAD</option>
+                              <option>CDF</option>
+                              <option>CHF</option>
+                              <option>CLF</option>
+                              <option>CLP</option>
+                              <option>CNH</option>
+                              <option>CNY</option>
+                              <option>COP</option>
+                              <option>CRC</option>
+                              <option>CUC</option>
+                              <option>CUP</option>
+                              <option>CVE</option>
+                              <option>CZK</option>
+                              <option>DJF</option>
+                              <option>DKK</option>
+                              <option>DOP</option>
+                              <option>DZD</option>
+                              <option>EGP</option>
+                              <option>ERN</option>
+                              <option>ETB</option>
+                              <option>EUR</option>
+                              <option>FJD</option>
+                              <option>FKP</option>
+                              <option>GBP</option>
+                              <option>GEL</option>
+                              <option>GGP</option>
+                              <option>GHS</option>
+                              <option>GIP</option>
+                              <option>GMD</option>
+                              <option>GNF</option>
+                              <option>GTQ</option>
+                              <option>GYD</option>
+                              <option>HKD</option>
+                              <option>HNL</option>
+                              <option>HRK</option>
+                              <option>HTG</option>
+                              <option>HUF</option>
+                              <option>IDR</option>
+                              <option>ILS</option>
+                              <option>IMP</option>
+                              <option>INR</option>
+                              <option>IQD</option>
+                              <option>IRR</option>
+                              <option>ISK</option>
+                              <option>JEP</option>
+                              <option>JMD</option>
+                              <option>JOD</option>
+                              <option>JPY</option>
+                              <option>KES</option>
+                              <option>KGS</option>
+                              <option>KHR</option>
+                              <option>KMF</option>
+                              <option>KPW</option>
+                              <option>KRW</option>
+                              <option>KWD</option>
+                              <option>KYD</option>
+                              <option>KZT</option>
+                              <option>LAK</option>
+                              <option>LBP</option>
+                              <option>LKR</option>
+                              <option>LRD</option>
+                              <option>LSL</option>
+                              <option>LYD</option>
+                              <option>MAD</option>
+                              <option>MDL</option>
+                              <option>MGA</option>
+                              <option>MKD</option>
+                              <option>MMK</option>
+                              <option>MNT</option>
+                              <option>MOP</option>
+                              <option>MRO</option>
+                              <option>MRU</option>
+                              <option>MUR</option>
+                              <option>MVR</option>
+                              <option>MWK</option>
+                              <option>MXN</option>
+                              <option>MYR</option>
+                              <option>MZN</option>
+                              <option>NAD</option>
+                              <option>NGN</option>
+                              <option>NIO</option>
+                              <option>NOK</option>
+                              <option>NPR</option>
+                              <option>NZD</option>
+                              <option>OMR</option>
+                              <option>PAB</option>
+                              <option>PEN</option>
+                              <option>PGK</option>
+                              <option>PHP</option>
+                              <option>PKR</option>
+                              <option>PLN</option>
+                              <option>PYG</option>
+                              <option>QAR</option>
+                              <option>RON</option>
+                              <option>RSD</option>
+                              <option>RUB</option>
+                              <option>RWF</option>
+                              <option>SAR</option>
+                              <option>SBD</option>
+                              <option>SCR</option>
+                              <option>SDG</option>
+                              <option>SEK</option>
+                              <option>SGD</option>
+                              <option>SHP</option>
+                              <option>SLL</option>
+                              <option>SOS</option>
+                              <option>SRD</option>
+                              <option>SSP</option>
+                              <option>STD</option>
+                              <option>STN</option>
+                              <option>SVC</option>
+                              <option>SYP</option>
+                              <option>SZL</option>
+                              <option>THB</option>
+                              <option>TJS</option>
+                              <option>TMT</option>
+                              <option>TND</option>
+                              <option>TOP</option>
+                              <option>TRY</option>
+                              <option>TTD</option>
+                              <option>TWD</option>
+                              <option>TZS</option>
+                              <option>UAH</option>
+                              <option>UGX</option>
+                              <option>USD</option>
+                              <option>UYU</option>
+                              <option>UZS</option>
+                              <option>VES</option>
+                              <option>VND</option>
+                              <option>VUV</option>
+                              <option>WST</option>
+                              <option>XAF</option>
+                              <option>XAG</option>
+                              <option>XAU</option>
+                              <option>XCD</option>
+                              <option>XDR</option>
+                              <option>XOF</option>
+                              <option>XPD</option>
+                              <option>XPF</option>
+                              <option>XPT</option>
+                              <option>YER</option>
+                              <option>ZAR</option>
+                              <option>ZMW</option>
+                              <option>ZWL</option>
+                           </select>
+                           <label for="floatingSelect1">Fiat Currency</label>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-md-7">
+                  <div class="h-100 rounded p-4 bg-body-tertiary border shadow-sm position-relative"
+                     style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-title="Copied!"
+                     data-bs-delay='{"show":0,"hide":150}' data-bs-placement="top" data-bs-animation="true"
+                     data-bs-trigger="click"
+                     onclick="navigator.clipboard.writeText(document.getElementById('fiattobtc-code').innerText);window.getSelection().selectAllChildren(document.getElementById('fiattobtc-code'));">
+
+                     <code lang="bbcode" class="text-primary-emphasis" id="fiattobtc-code">
+                  &#91;url=https://bitcoindata.science/bitcointalk-api.html#fiattobtc&#93;&#91;img height=16&#93;https://bitcoindata.science/api/fiattobtc.php?fiatamount=<span class="text-danger-emphasis" id="fiatamount">1</span>&amp;currency=<span class="text-danger-emphasis " id="fiattobtc-currency">BRL</span>&#91;/img&#93;&#91;/url&#93;
+               </code>
+                     <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48" title="Click to Copy"
+                        alt="Click to Copy" class="position-absolute top-0 end-0" fill="currentColor"
+                        style="transform: scale(0.5); opacity: 0.6;" data-bs-toggle="tooltip"
+                        data-bs-title="Click to Copy" data-bs-delay='{"show":0,"hide":100}' data-bs-placement="top"
+                        data-bs-animation="true" data-bs-trigger="hover">
+                        <path
+                           d="M9 43.95q-1.2 0-2.1-.9-.9-.9-.9-2.1V10.8h3v30.15h23.7v3Zm6-6q-1.2 0-2.1-.9-.9-.9-.9-2.1v-28q0-1.2.9-2.1.9-.9 2.1-.9h22q1.2 0 2.1.9.9.9.9 2.1v28q0 1.2-.9 2.1-.9.9-2.1.9Zm0-3h22v-28H15v28Zm0 0v-28 28Z">
+                        </path>
+                     </svg>
+                  </div>
+               </div>
+            </div>
+         </div>
+
          <!-- Address Balance API -->
          <div class="my-5" id="address-balance">
             <a href="#address-balance" class="link-danger">

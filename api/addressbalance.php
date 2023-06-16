@@ -35,7 +35,7 @@ $addressvalue = number_format($addressbalance * $price, 2);
 $string = $address . " " . $addressbalance . " BTC - " . $addressvalue . " " . $currency;
 
 
-header('Content-type: image/png'); // filetype
+header('Content-type: image/gif'); // filetype
 
 $font = 4;
 $width = (imagefontwidth($font) * strlen($string)) + 3;

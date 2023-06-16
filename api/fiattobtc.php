@@ -1,19 +1,17 @@
 <?php
-//forked from https://github.com/edgycorner/Coin-Price-Image-generator/
-
 header('Cache-Control: max-age=45');
 $coin = "bitcoin";
 $currency = "usd";
-$amount = 1;
+$fiatamount = 1;
 $rates = 1;
 
 if (isset($_GET["currency"]))
     $currency = strtolower($_GET["currency"]);
-if (isset($_GET["amount"]))
-    $amount = $_GET["amount"];
+if (isset($_GET["fiatamount"]))
+    $fiatamount = $_GET["fiatamount"];
 if (isset($_GET["coin"]))
     $coin = $_GET["coin"];
-$amount = (float) $amount;
+$fiatamount = (float) $fiatamount;
 
 $link = "https://api.coingecko.com/api/v3/simple/price?ids=" . $coin . '&vs_currencies=usd';
 $json = file_get_contents($link);
@@ -53,9 +51,9 @@ else if ($currency == 'BDT') {
     $rates = $exratejsonArray->data[0]->referencePrice;
 }
 
-$str = $amount * $btcpriceusd * $rates;
-$string = number_format($str, 2);
-$string = $string . " " . $currency;
+$str = $fiatamount / ($btcpriceusd * $rates);
+$string = number_format($str, 8);
+$string = $string . " BTC";
 
 
 header('Content-type: image/gif'); // filetype
@@ -76,9 +74,9 @@ imagestring($image, $font, 0, 0, $string, $black);
 
 header('Content-type: image/gif');
 
-imagegif($image, 'localprice.gif');
+imagegif($image, 'fiattobtc.gif');
 
-readfile('localprice.gif');
+readfile('fiattobtc.gif');
 imagedestroy($image); // free up memory
 exit;
 
