@@ -1,0 +1,26 @@
+##### THIS ALLOWS US TO DEPLOY THE SITE FROM A GIT REPO ######
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home2/bitmover/public_html/
+    - /bin/cp -R api $DEPLOYPATH
+    - /bin/cp -R components $DEPLOYPATH
+    - /bin/cp -R css $DEPLOYPATH
+    - /bin/cp -R giveaway-manager $DEPLOYPATH
+    - /bin/cp -R img $DEPLOYPATH
+    - /bin/cp -R pt $DEPLOYPATH
+    - /bin/cp index.html $DEPLOYPATH
+    - /bin/cp 404.shtml $DEPLOYPATH
+    - /bin/cp bitcoin-balance-check.html $DEPLOYPATH
+    - /bin/cp bitcoin-fee-size-calculator.html $DEPLOYPATH
+    - /bin/cp bitcoin-funded-addresses.html $DEPLOYPATH
+    - /bin/cp bitcoin-raw-transaction-hex.html $DEPLOYPATH
+    - /bin/cp bitcoin-units-converter.html $DEPLOYPATH
+    - /bin/cp bitcointalk-api.html $DEPLOYPATH
+    - /bin/cp donate.html $DEPLOYPATH
+    - /bin/cp local-price-to-image.html $DEPLOYPATH
+    - /bin/cp plot-your-transaction-in-mempool.html $DEPLOYPATH
+    - /bin/cp README.md $DEPLOYPATH
+    - /bin/cp saldo-endereco-bitcoin.html $DEPLOYPATH
+    - /bin/cp site.webmanifest $DEPLOYPATH
+    - /bin/cp sitemap.xml $DEPLOYPATH
