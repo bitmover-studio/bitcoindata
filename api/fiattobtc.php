@@ -1,4 +1,6 @@
 <?php
+require "functions.php";
+
 header('Cache-Control: max-age=45');
 $coin = "bitcoin";
 $currency = "usd";
@@ -13,18 +15,14 @@ if (isset($_GET["coin"]))
     $coin = $_GET["coin"];
 $fiatamount = (float) $fiatamount;
 
-$link = "https://api.coingecko.com/api/v3/simple/price?ids=" . $coin . '&vs_currencies=usd';
-$json = file_get_contents($link);
-$jsonArray = json_decode($json);
-$btcpriceusd = $jsonArray->$coin->usd;
+$btcpriceusd = getBTCPriceUsd($coin);
 
 $currency = strtoupper($currency);
 
 if ($currency != 'USD' && $currency != 'BDT') {
     $exchangerate = "https://api.exchangerate.host/latest?base=USD";
-    $exchangeratejson = file_get_contents($exchangerate);
-    $exratejsonArray = json_decode($exchangeratejson);
-    $rates = $exratejsonArray->rates->$currency;
+    $exchangeratejson = getData($exchangerate);
+    $rates = $exchangeratejson->rates->$currency;
 }
 
 else if ($currency == 'BDT') {

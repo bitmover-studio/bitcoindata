@@ -1,4 +1,5 @@
 <?php
+require "functions.php";
 
 header('Cache-Control: max-age=45');
 $currency = "usd";
@@ -9,25 +10,43 @@ if (isset($_GET["address"]))
 if (isset($_GET["currency"]))
     $currency = strtolower($_GET["currency"]);
 
+$btcpriceusd = getBTCPriceUsd('bitcoin');
 
-$link = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd";
-$json = file_get_contents($link);
-$jsonArray = json_decode($json);
 $currency = strtoupper($currency);
-
-if ($currency != 'USD') {
-$exchangerate = "https://api.exchangerate.host/latest?base=USD";
-$exchangeratejson = file_get_contents($exchangerate);
-$exratejsonArray = json_decode($exchangeratejson);
-$rates = $exratejsonArray->rates->$currency;
+if ($currency != 'USD' && $currency != 'BDT') {
+    $exchangerate = "https://api.exchangerate.host/latest?base=USD";
+    $exchangeratejson = getData($exchangerate);
+    $rates = $exchangeratejson->rates->$currency;
 }
 
-$price = $jsonArray->bitcoin->usd;
-$price = $price * $rates;
+else if ($currency == 'BDT') {
+    $url = 'https://p2p.binance.com/bapi/c2c/v2/public/c2c/adv/quoted-price';
+    $postFields = array(
+        'assets' => array('USDT'),
+        'fiatCurrency' => 'BDT',
+        'tradeType' => 'BUY',
+        'fromUserRole' => 'USER'
+    );
+    $postData = json_encode($postFields);
 
-$explorer = "https://mempool.space/api/address/" . $address;
-$explorerjson = file_get_contents($explorer);
-$explorerjsonArray = json_decode($explorerjson);
+    $options = array(
+        'http' => array(
+            'header'  => "Content-type: application/json\r\n" .
+                         "Content-Length: " . strlen($postData) . "\r\n",
+            'method'  => 'POST',
+            'content' => $postData
+        )
+    );
+    $context  = stream_context_create($options);
+    $result = file_get_contents($url, false, $context);
+    $exratejsonArray = json_decode($result);
+    $rates = $exratejsonArray->data[0]->referencePrice;
+}
+
+$price = $btcpriceusd * $rates;
+
+$dataUrl = "https://mempool.space/api/address/" . $address;
+$explorerjsonArray = getData($dataUrl);
 
 $addressbalance = ($explorerjsonArray->chain_stats->funded_txo_sum - $explorerjsonArray->chain_stats->spent_txo_sum) / 100000000;
 $addressvalue = number_format($addressbalance * $price, 2);

@@ -1,5 +1,5 @@
 <?php
-//forked from https://github.com/edgycorner/Coin-Price-Image-generator/
+require "functions.php";
 
 header('Cache-Control: max-age=45');
 $coin = "bitcoin";
@@ -15,21 +15,15 @@ if (isset($_GET["coin"]))
     $coin = $_GET["coin"];
 $amount = (float) $amount;
 
-$link = "https://api.coingecko.com/api/v3/simple/price?ids=" . $coin . '&vs_currencies=usd';
-$json = file_get_contents($link);
-$jsonArray = json_decode($json);
-$btcpriceusd = $jsonArray->$coin->usd;
+$btcpriceusd = getBTCPriceUsd($coin);
 
 $currency = strtoupper($currency);
 
 if ($currency != 'USD' && $currency != 'BDT') {
     $exchangerate = "https://api.exchangerate.host/latest?base=USD";
-    $exchangeratejson = file_get_contents($exchangerate);
-    $exratejsonArray = json_decode($exchangeratejson);
-    $rates = $exratejsonArray->rates->$currency;
-}
-
-else if ($currency == 'BDT') {
+    $exchangeratejson = getData($exchangerate);
+    $rates = $exchangeratejson->rates->$currency;
+} else if ($currency == 'BDT') {
     $url = 'https://p2p.binance.com/bapi/c2c/v2/public/c2c/adv/quoted-price';
     $postFields = array(
         'assets' => array('USDT'),
@@ -41,13 +35,13 @@ else if ($currency == 'BDT') {
 
     $options = array(
         'http' => array(
-            'header'  => "Content-type: application/json\r\n" .
-                         "Content-Length: " . strlen($postData) . "\r\n",
-            'method'  => 'POST',
+            'header' => "Content-type: application/json\r\n" .
+            "Content-Length: " . strlen($postData) . "\r\n",
+            'method' => 'POST',
             'content' => $postData
         )
     );
-    $context  = stream_context_create($options);
+    $context = stream_context_create($options);
     $result = file_get_contents($url, false, $context);
     $exratejsonArray = json_decode($result);
     $rates = $exratejsonArray->data[0]->referencePrice;

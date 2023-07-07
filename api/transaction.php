@@ -1,18 +1,15 @@
 <?php
+require "functions.php";
 
 header('Cache-Control: max-age=30');
 
 if (isset($_GET["id"]))
     $id = $_GET["id"];
 
-$response = "https://mempool.space/api/tx/" . $id;
-$responsejson = file_get_contents($response);
-$data = json_decode($responsejson);
+$dataUrl = "https://mempool.space/api/tx/" . $id;
+$data = getData($dataUrl);
 
-$coingecko = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd";
-$json = file_get_contents($coingecko);
-$jsonArray = json_decode($json);
-$price = $jsonArray->bitcoin->usd;
+$price = getBTCPriceUsd('bitcoin');
 
 // Fee //
 $fee = ($data->fee) / 100000000;

@@ -1,9 +1,11 @@
 <?php
+require "functions.php";
 
 header('Cache-Control: max-age=180');
 
-$response = "https://mempool.space/api/v1/fees/recommended";
-$responsejson = file_get_contents($response);
+$feesUrl = "https://mempool.space/api/v1/fees/recommended";
+
+$responsejson = getRawData($feesUrl);
 $feesjson = str_replace([',', '}'], ' sat/vB,', $responsejson);
 $feesjson = str_replace(['{'], '', $feesjson);
 $feesjson = str_replace(['"'], '', $feesjson);
@@ -26,7 +28,8 @@ foreach ($fees_lines as $i => $fees_line) {
 
 // Output the image to the browser
 header('Content-Type: image/gif');
-imagegif($image);
+imagegif($image, 'bitcoinfees.gif');
+readfile('bitcoinfees.gif');
 
 // Free up memory
 imagedestroy($image);
