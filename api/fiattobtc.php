@@ -58,7 +58,7 @@ header('Content-type: image/gif'); // filetype
 
 $font = 4;
 $width = (imagefontwidth($font) * strlen($string)) + 3;
-$height = (imagefontheight($font));
+$height = (imagefontheight($font)-1);
 
 $image = imagecreatetruecolor($width, $height);
 $black = imagecolorallocate($image, 112, 112, 112);

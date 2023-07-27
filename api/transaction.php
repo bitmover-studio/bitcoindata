@@ -48,7 +48,7 @@ array_pop($array);
 
 $font = 4;
 $width = 500;
-$height = (imagefontheight($font)) * (count($array));
+$height = (imagefontheight($font)-0.7) * (count($array));
 
 $image = imagecreatetruecolor($width, $height);
 $black = imagecolorallocate($image, 112, 112, 112);
@@ -58,7 +58,7 @@ imagecolortransparent($image, $white);
 imagefill($image, 0, 0, $white);
 
 foreach ($array as $i => $st) {
-    imagestring($image, $font, 10, ($i + 1) * ($font + 10), $st, $black);
+    imagestring($image, $font, 10, ($i + 0.7) * ($font + 10), $st, $black);
 }
 
 header('Content-type: image/gif');
