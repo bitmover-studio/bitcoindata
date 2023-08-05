@@ -46,7 +46,9 @@ async function getAddressBalance(address, price) {
       balance.push({
         address: address,
         balance: (data.chain_stats.funded_txo_sum - data.chain_stats.spent_txo_sum) / 100000000,
-        value: (data.chain_stats.funded_txo_sum - data.chain_stats.spent_txo_sum) / 100000000 * price
+        value: (data.chain_stats.funded_txo_sum - data.chain_stats.spent_txo_sum) / 100000000 * price,
+        unconfirmed: (data.mempool_stats.funded_txo_sum - data.mempool_stats.spent_txo_sum) / 100000000,
+        unconfirmed_value: (data.mempool_stats.funded_txo_sum - data.mempool_stats.spent_txo_sum) / 100000000 * price,
       })
     }
     catch (error) {
@@ -57,6 +59,8 @@ async function getAddressBalance(address, price) {
         address: address,
         balance: data.balance / 100000000,
         value: data.balance / 100000000 * price,
+        unconfirmed: data.unconfirmed_balance,
+        unconfirmed_value: data.unconfirmed_balance * price,
       }
       )
     }
@@ -85,20 +89,30 @@ async function getBalances(price) {
   document.getElementById("submit").disabled = false;
 
   outputArea.innerHTML = `
-     <div class="bg-body-tertiary rounded border p-3 my-3 mt-5 row">
+    <div class="bg-body-tertiary rounded border p-3 my-3 mt-5 row">
        <div class="col-md-6 text-primary-emphasis">Total number of addresses: ${balance.length}</div>
        <div class="w-100 d-none d-xs-block"></div>
        <div class="col col-md-3 pe-0">${balance.reduce((a, e) => a + e.balance, 0).toLocaleString(undefined, { minimumFractionDigits: 8, maximumFractionDigits: 8 })} BTC</div>
        <div class="col col-md-3 pe-0">${balance.reduce((a, e) => a + e.value, 0).toLocaleString("en-US", { style: "currency", currency: "USD" })}</div>
-   </div>
+    </div>
 
     <p class="h6">Detailed Results</p>
     ${balance.map(i => `
-     <div class="bg-body-tertiary rounded border p-3 my-3 row">
+     <div class="bg-body-tertiary rounded border p-3 my-3">
+      <div class="row">
        <div class="col-md-6"><code><a target="_blank" rel="noreferrer" title="${i.address}" href="https://mempool.space/address/${i.address}">${i.address}</a></code></div>
-       <div class="w-100 d-none d-xs-block"></div>
-       <div class="col col-md-3 pe-0">${i.balance.toLocaleString(undefined, { minimumFractionDigits: 8, maximumFractionDigits: 8 })} BTC</div>
-       <div class="col col-md-3 pe-0">${i.value.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</div></div>
+        <div class="w-100 d-none d-xs-block"></div>
+        <div class="col col-md-3 pe-0">${i.balance.toLocaleString(undefined, { minimumFractionDigits: 8, maximumFractionDigits: 8 })} BTC</div>
+        <div class="col col-md-3 pe-0">${i.value.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</div>
+      </div>
+      ${i.unconfirmed !== 0 ? `
+       <div class="row">
+       <div class="col-md-6"><code class="text-warning-emphasis">unconfirmed</code></div>
+        <div class="w-100 d-none d-xs-block"></div>
+        <div class="col col-md-3 pe-0 text-warning-emphasis">${i.unconfirmed.toLocaleString(undefined, { minimumFractionDigits: 8, maximumFractionDigits: 8 })} BTC</div>
+        <div class="col col-md-3 pe-0 text-warning-emphasis">${i.unconfirmed_value.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</div>
+       </div>` : ''}
+      </div>
    `).join('')}
   `
 }
