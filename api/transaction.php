@@ -41,6 +41,12 @@ foreach ($data->vout as $element) {
         $outputs[] = '   ' . substr($element->scriptpubkey_address, 0, 10) . '...' . substr($element->scriptpubkey_address, -10)
             . ' ' . ($element->value) / 100000000 . ' $' . number_format($price * ($element->value / 100000000), 2) . '/n';
     }
+    else if ($element->scriptpubkey_type == 'op_return') {
+        $message = explode(' ', $element->scriptpubkey_asm);
+        $op_return = reset($message);
+        $decoded_message = hex2bin(array_pop($message));
+        $outputs[] = '   ' . $op_return . ' ' . $decoded_message .  ' ' . ($element->value) / 100000000 . ' $' . number_format($price * ($element->value / 100000000), 2) . '/n';
+    }
 }
 $string = $idstring . '/n' . $confirmed . '/n' . $fee . '/n' . $fee_rate . '/n /n' . 'inputs: /n' . implode($inputs) . '/n' . 'outputs: /n' . implode($outputs);
 $array = explode('/n', $string);
