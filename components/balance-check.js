@@ -98,7 +98,7 @@ async function getBalances(price) {
 
     <p class="h6">Detailed Results</p>
     ${balance.map(i => `
-     <div class="bg-body-tertiary rounded border p-3 my-3">
+     <div class="bg-body-tertiary rounded border p-3 my-3 row">
       <div class="row">
        <div class="col-md-6"><code><a target="_blank" rel="noreferrer" title="${i.address}" href="https://mempool.space/address/${i.address}">${i.address}</a></code></div>
         <div class="w-100 d-none d-xs-block"></div>
