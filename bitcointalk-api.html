@@ -62,7 +62,9 @@
       <div class="mt-3">
          <h1 class="h1 fw-semibold mb-0">API Docs</h1>
          <span class="header-line bg-danger rounded mb-2 d-inline-block"> </span>
-         <p class="lead"> Using blockchain data from mempool.space and price data from coingecko, exchange.host and binance p2p (in case of BDT), it is now possible to share bitcoin data such as address balances and transactions as an
+         <p class="lead"> Using blockchain data from mempool.space and price data from coingecko, exchange.host and
+            binance p2p (in case of BDT), it is now possible to share bitcoin data such as address balances and
+            transactions as an
             image in bitcointalk.org or any other forum using our API. The data is always updated when reloaded.</p>
 
          <!-- Local Price API -->
@@ -107,6 +109,18 @@
                      <td>string</td>
                      <td>USD</td>
                      <td>The Fiat currency you want to see the price.</td>
+                  </tr>
+                  <tr>
+                     <th scope="row">hex</th>
+                     <td>string</td>
+                     <td>707070</td>
+                     <td>Hexadecimal color code.</td>
+                  </tr>
+                  <tr>
+                     <th scope="row">bold</th>
+                     <td></td>
+                     <td><i>null</i></td>
+                     <td>Display font in bold when not <i>null</i>.</td>
                   </tr>
                </tbody>
             </table>
@@ -319,6 +333,22 @@
                         </div>
                      </div>
                   </div>
+                  <div class="row ">
+                     <div class="col g-4">
+                        <input type="color" class="form-control form-control-color d-inline-block" id="localpriceColor"
+                           value="#707070" title="Choose your color"
+                           onChange="javascript:setContent(this.value.substring(1),'localpricecolor')">
+                        <label for="localpriceColor" class="form-check-label">Hex</label>
+                     </div>
+                     <div class="col g-4">
+                        <div class="form-check">
+                           <input class="form-check-input" type="checkbox" value="" id="boldlocalprice" onClick="javascript:displayChecked(this.checked,'localpricecheckedbold')">
+                           <label class="form-check-label" for="boldlocalprice">
+                              Bold
+                           </label>
+                        </div>
+                     </div>
+                  </div>
                </div>
                <div class="col-md-7">
                   <div class="h-100 rounded p-4 bg-body-tertiary border shadow-sm position-relative"
@@ -328,7 +358,7 @@
                      onclick="navigator.clipboard.writeText(document.getElementById('local-price-code').innerText);window.getSelection().selectAllChildren(document.getElementById('local-price-code'));">
 
                      <code lang="bbcode" class="text-primary-emphasis" id="local-price-code">
-                  &#91;url=https://bitcoindata.science/bitcointalk-api.html#local-price&#93;&#91;img height=16&#93;https://bitcoindata.science/api/localprice.php?coin=<span class="text-danger-emphasis" id="coin">bitcoin</span>&amount=<span class="text-danger-emphasis" id="amount">1</span>&amp;currency=<span class="text-danger-emphasis " id="currency">BRL</span>&#91;/img&#93;&#91;/url&#93;
+                  &#91;url=https://bitcoindata.science/bitcointalk-api.html#local-price&#93;&#91;img height=16&#93;https://bitcoindata.science/api/localprice.php?coin=<span class="text-danger-emphasis" id="coin">bitcoin</span>&amount=<span class="text-danger-emphasis" id="amount">1</span>&amp;currency=<span class="text-danger-emphasis " id="currency">BRL</span>&amp;hex=<span class="text-danger-emphasis" id="localpricecolor">707070</span><span class="text-danger-emphasis d-none" id="localpricecheckedbold">&amp;bold</span>&#91;/img&#93;&#91;/url&#93;
                </code>
                      <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48" title="Click to Copy"
                         alt="Click to Copy" class="position-absolute top-0 end-0" fill="currentColor"
@@ -380,6 +410,18 @@
                      <td>string</td>
                      <td>USD</td>
                      <td>The Fiat currency you want to see the price.</td>
+                  </tr>
+                  <tr>
+                     <th scope="row">hex</th>
+                     <td>string</td>
+                     <td>707070</td>
+                     <td>Hexadecimal color code.</td>
+                  </tr>
+                  <tr>
+                     <th scope="row">bold</th>
+                     <td></td>
+                     <td><i>null</i></td>
+                     <td>Display font in bold when not <i>null</i>.</td>
                   </tr>
                </tbody>
             </table>
@@ -584,6 +626,22 @@
                         </div>
                      </div>
                   </div>
+                  <div class="row ">
+                     <div class="col g-4">
+                        <input type="color" class="form-control form-control-color d-inline-block" id="fiattobtcColor"
+                           value="#707070" title="Choose your color"
+                           onChange="javascript:setContent(this.value.substring(1),'fiatcolor')">
+                        <label for="fiattobtcColor" class="form-check-label">Hex</label>
+                     </div>
+                     <div class="col g-4">
+                        <div class="form-check">
+                           <input class="form-check-input" type="checkbox" value="" id="boldfiattobtc" onClick="javascript:displayChecked(this.checked,'fiatcheckedbold')">
+                           <label class="form-check-label" for="boldfiattobtc">
+                              Bold
+                           </label>
+                        </div>
+                     </div>
+                  </div>
                </div>
                <div class="col-md-7">
                   <div class="h-100 rounded p-4 bg-body-tertiary border shadow-sm position-relative"
@@ -593,7 +651,7 @@
                      onclick="navigator.clipboard.writeText(document.getElementById('fiattobtc-code').innerText);window.getSelection().selectAllChildren(document.getElementById('fiattobtc-code'));">
 
                      <code lang="bbcode" class="text-primary-emphasis" id="fiattobtc-code">
-                  &#91;url=https://bitcoindata.science/bitcointalk-api.html#fiattobtc&#93;&#91;img height=16&#93;https://bitcoindata.science/api/fiattobtc.php?fiatamount=<span class="text-danger-emphasis" id="fiatamount">10</span>&amp;currency=<span class="text-danger-emphasis " id="fiattobtc-currency">GBP</span>&#91;/img&#93;&#91;/url&#93;
+                  &#91;url=https://bitcoindata.science/bitcointalk-api.html#fiattobtc&#93;&#91;img height=16&#93;https://bitcoindata.science/api/fiattobtc.php?fiatamount=<span class="text-danger-emphasis" id="fiatamount">10</span>&amp;currency=<span class="text-danger-emphasis " id="fiattobtc-currency">GBP</span>&amp;hex=<span class="text-danger-emphasis" id="fiatcolor">707070</span><span class="text-danger-emphasis d-none" id="fiatcheckedbold">&amp;bold</span>&#91;/img&#93;&#91;/url&#93;
                </code>
                      <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48" title="Click to Copy"
                         alt="Click to Copy" class="position-absolute top-0 end-0" fill="currentColor"
@@ -645,6 +703,18 @@
                      <td>string</td>
                      <td>USD</td>
                      <td>The Fiat currency you want to see the balance.</td>
+                  </tr>
+                  <tr>
+                     <th scope="row">hex</th>
+                     <td>string</td>
+                     <td>707070</td>
+                     <td>Hexadecimal color code.</td>
+                  </tr>
+                  <tr>
+                     <th scope="row">bold</th>
+                     <td></td>
+                     <td><i>null</i></td>
+                     <td>Display font in bold when not <i>null</i>.</td>
                   </tr>
                </tbody>
             </table>
@@ -844,6 +914,22 @@
                      </select>
                      <label for="floatingSelect2">Fiat Currency</label>
                   </div>
+                  <div class="row ">
+                     <div class="col g-4">
+                        <input type="color" class="form-control form-control-color d-inline-block" id="addressColor"
+                           value="#707070" title="Choose your color"
+                           onChange="javascript:setContent(this.value.substring(1),'addresscolor')">
+                        <label for="addressColor" class="form-check-label">Hex</label>
+                     </div>
+                     <div class="col g-4">
+                        <div class="form-check">
+                           <input class="form-check-input" type="checkbox" value="" id="boldaddress" onClick="javascript:displayChecked(this.checked,'addresscheckedbold')">
+                           <label class="form-check-label" for="boldaddress">
+                              Bold
+                           </label>
+                        </div>
+                     </div>
+                  </div>
                </div>
                <div class="col-md-7">
                   <div class="h-100 rounded p-4 bg-body-tertiary border shadow-sm position-relative"
@@ -853,7 +939,7 @@
                      onclick="navigator.clipboard.writeText(document.getElementById('address-balance-code').innerText);window.getSelection().selectAllChildren(document.getElementById('address-balance-code'));">
 
                      <code lang="bbcode" class="text-primary-emphasis" id="address-balance-code">
-                        &#91;url=https://bitcoindata.science/bitcointalk-api.html#address-balance&#93;&#91;img height=16&#93;https://bitcoindata.science/api/addressbalance.php?address=<span class="text-danger-emphasis" id="address">1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa</span>&amp;currency=<span class="text-danger-emphasis " id="balance-currency">EUR</span>&#91;/img&#93;&#91;/url&#93;
+                        &#91;url=https://bitcoindata.science/bitcointalk-api.html#address-balance&#93;&#91;img height=16&#93;https://bitcoindata.science/api/addressbalance.php?address=<span class="text-danger-emphasis" id="address">1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa</span>&amp;currency=<span class="text-danger-emphasis " id="balance-currency">EUR</span>&amp;hex=<span class="text-danger-emphasis" id="addresscolor">707070</span><span class="text-danger-emphasis d-none" id="addresscheckedbold">&amp;bold</span>&#91;/img&#93;&#91;/url&#93;
                      </code>
                      <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48" title="Click to Copy"
                         alt="Click to Copy" class="position-absolute top-0 end-0" fill="currentColor"
@@ -948,11 +1034,24 @@
                      <td>-</td>
                      <td>Transaction ID</td>
                   </tr>
+                  <tr>
+                     <th scope="row">hex</th>
+                     <td>string</td>
+                     <td>707070</td>
+                     <td>Hexadecimal color code.</td>
+                  </tr>
+                  <tr>
+                     <th scope="row">bold</th>
+                     <td></td>
+                     <td><i>null</i></td>
+                     <td>Display font in bold when not <i>null</i>.</td>
+                  </tr>
                </tbody>
             </table>
 
             <p class="h6 mt-4 mb-2"> Usage:</p>
-            <p>Requesting data from Transaction ID <samp class="text-break">bf65241f5379e511bf79f9870253735e484ec0e2e3524a78632e1f73838b1bc2.</samp></p>
+            <p>Requesting data from Transaction ID <samp
+                  class="text-break">bf65241f5379e511bf79f9870253735e484ec0e2e3524a78632e1f73838b1bc2.</samp></p>
             <code
                class="bg-body-secondary p-1 rounded">GET https://bitcoindata.science/api/transaction.php?id=bf65241f5379e511bf79f9870253735e484ec0e2e3524a78632e1f73838b1bc2</code>
 
@@ -1007,6 +1106,14 @@
    <script>
       function setContent(value, content) {
          document.getElementById(content).innerHTML = value;
+      }
+
+      function displayChecked(element,target) {
+         if (element == true) {
+            document.getElementById(target).classList.remove("d-none");
+         } else {
+            document.getElementById(target).classList.add("d-none");
+         }
       }
       // Tooltips
       const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
