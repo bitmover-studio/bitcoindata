@@ -6,7 +6,10 @@ $coin = "bitcoin";
 $currency = "usd";
 $fiatamount = 1;
 $rates = 1;
+$hex = "707070";
 
+if (isset($_GET["hex"]))
+    $hex = strtolower($_GET["hex"]);
 if (isset($_GET["currency"]))
     $currency = strtolower($_GET["currency"]);
 if (isset($_GET["fiatamount"]))
@@ -61,14 +64,20 @@ $width = (imagefontwidth($font) * strlen($string)) + 3;
 $height = (imagefontheight($font)-1);
 
 $image = imagecreatetruecolor($width, $height);
-$black = imagecolorallocate($image, 112, 112, 112);
-$white = imagecolorallocate($image, 255, 255, 255);
+$textcolor = allocateHexColor($image, $hex);
+$white = imagecolorallocate($image, 199, 200, 210);
 imagecolortransparent($image, $white);
 
 imagefill($image, 0, 0, $white);
 
 
-imagestring($image, $font, 0, 0, $string, $black);
+imagestring($image, $font, 0, 0, $string, $textcolor);
+if (isset($_GET["bold"])) {
+    imagestring($image, $font, 1, 0, $string, $textcolor);
+    imagestring($image, $font, 0, 1, $string, $textcolor);
+    imagestring($image, $font, 1, 1, $string, $textcolor);
+    $height = (imagefontheight($font)+1);
+}
 
 header('Content-type: image/gif');
 

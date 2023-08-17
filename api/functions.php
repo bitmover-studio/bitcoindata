@@ -50,5 +50,11 @@ function getBTCPriceUsd($coin)
     }
     return $btcpriceusd;
 }
+function allocateHexColor($image, $hex) {
+    $red = hexdec(substr($hex, 0, 2));
+    $green = hexdec(substr($hex, 2, 2));
+    $blue = hexdec(substr($hex, 4, 2));
+    return imagecolorallocate($image, $red, $green, $blue);
+}
 
 ?>

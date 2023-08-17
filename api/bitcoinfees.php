@@ -3,6 +3,10 @@ require "functions.php";
 
 header('Cache-Control: max-age=180');
 
+$hex = "707070";
+if (isset($_GET["hex"]))
+    $hex = strtolower($_GET["hex"]);
+
 $feesUrl = "https://mempool.space/api/v1/fees/recommended";
 
 $responsejson = getRawData($feesUrl);
@@ -13,17 +17,22 @@ $feesjson = str_replace([':'], ': ', $feesjson);
 
 $fees_lines = explode(",", $feesjson);
 
-$font_size = 4;
+$font = 4;
 
 $image = imagecreatetruecolor(210, 100);
-$text_color = imagecolorallocate($image, 112, 112, 112);
-$white = imagecolorallocate($image, 255, 255, 255);
+$textcolor = allocateHexColor($image, $hex);
+$white = imagecolorallocate($image, 199, 200, 210);
 imagecolortransparent($image, $white);
 
 imagefill($image, 0, 0, $white);
 
 foreach ($fees_lines as $i => $fees_line) {
-    imagestring($image, $font_size, 10, ($i + 1) * ($font_size + 10), $fees_line, $text_color);
+    imagestring($image, $font, 10, ($i + 1) * ($font + 10), $fees_line, $textcolor);
+    if (isset($_GET["bold"])) {
+        imagestring($image, $font, 11, ($i + 1) * ($font + 10), $fees_line, $textcolor);
+        imagestring($image, $font, 10, ($i + 1) * ($font + 10) + 1, $fees_line, $textcolor);
+        imagestring($image, $font, 11, ($i + 1) * ($font + 10) + 1, $fees_line, $textcolor);
+    }
 }
 
 // Output the image to the browser
