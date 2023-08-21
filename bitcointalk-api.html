@@ -132,9 +132,10 @@
 
 
             <p class="h6 my-3 pt-3">Response:</p>
-            <img alt="Bitcoin Local Price API" title="Bitcoin Local Price API" width="115" height="16"
-               src="https://bitcoindata.science/api/localprice.php?coin=bitcoin&amount=0.1&currency=BRL" />
-
+            <div class="rounded border-1 border-light bg-bitcointalk p-4 col-md-5">
+               <img alt="Bitcoin Local Price API" title="Bitcoin Local Price API" width="115" height="16"
+                  src="https://bitcoindata.science/api/localprice.php?coin=bitcoin&amount=0.1&currency=BRL" />
+            </div>
             <p class="h6 my-3 pt-3">Embed in bitcointalk post:</p>
 
             <div class="row g-4">
@@ -342,7 +343,8 @@
                      </div>
                      <div class="col g-4">
                         <div class="form-check">
-                           <input class="form-check-input" type="checkbox" value="" id="boldlocalprice" onClick="javascript:displayChecked(this.checked,'localpricecheckedbold')">
+                           <input class="form-check-input" type="checkbox" value="" id="boldlocalprice"
+                              onClick="javascript:displayChecked(this.checked,'localpricecheckedbold')">
                            <label class="form-check-label" for="boldlocalprice">
                               Bold
                            </label>
@@ -433,9 +435,10 @@
 
 
             <p class="h6 my-3 pt-3">Response:</p>
-            <img alt="Local Fiat to BTC" title="Local Fiat to BTC" width="115" height="16"
-               src="https://bitcoindata.science/api/fiattobtc.php?fiatamount=10&currency=GBP" />
-
+            <div class="rounded border-1 border-light bg-bitcointalk p-4 col-md-5">
+               <img alt="Local Fiat to BTC" title="Local Fiat to BTC" width="115" height="16"
+                  src="https://bitcoindata.science/api/fiattobtc.php?fiatamount=10&currency=GBP" />
+            </div>
             <p class="h6 my-3 pt-3">Embed in bitcointalk post:</p>
 
             <div class="row g-4">
@@ -635,7 +638,8 @@
                      </div>
                      <div class="col g-4">
                         <div class="form-check">
-                           <input class="form-check-input" type="checkbox" value="" id="boldfiattobtc" onClick="javascript:displayChecked(this.checked,'fiatcheckedbold')">
+                           <input class="form-check-input" type="checkbox" value="" id="boldfiattobtc"
+                              onClick="javascript:displayChecked(this.checked,'fiatcheckedbold')">
                            <label class="form-check-label" for="boldfiattobtc">
                               Bold
                            </label>
@@ -726,9 +730,10 @@
                class="bg-body-secondary p-1 rounded">GET https://bitcoindata.science/api/addressbalance.php?address=3CrySAp8G1PfvjrYT4HPQhE8MouBKWd9WB&amp;currency=EUR</code>
 
             <p class="h6 my-3 pt-3">Response:</p>
-            <img alt="Bitcoin balance address API" title="Bitcoin balance address API" width="500" height="16"
-               src="https://bitcoindata.science/api/addressbalance.php?address=3CrySAp8G1PfvjrYT4HPQhE8MouBKWd9WB&currency=EUR" />
-
+            <div class="rounded border-1 border-light bg-bitcointalk p-4 col-md-5">
+               <img alt="Bitcoin balance address API" title="Bitcoin balance address API" width="500" height="16"
+                  src="https://bitcoindata.science/api/addressbalance.php?address=3CrySAp8G1PfvjrYT4HPQhE8MouBKWd9WB&currency=EUR" />
+            </div>
             <p class="h6 my-3 pt-3">Embed in bitcointalk post:</p>
 
             <div class="row g-4">
@@ -923,7 +928,8 @@
                      </div>
                      <div class="col g-4">
                         <div class="form-check">
-                           <input class="form-check-input" type="checkbox" value="" id="boldaddress" onClick="javascript:displayChecked(this.checked,'addresscheckedbold')">
+                           <input class="form-check-input" type="checkbox" value="" id="boldaddress"
+                              onClick="javascript:displayChecked(this.checked,'addresscheckedbold')">
                            <label class="form-check-label" for="boldaddress">
                               Bold
                            </label>
@@ -974,9 +980,10 @@
             <code class="bg-body-secondary p-1 rounded">GET https://bitcoindata.science/api/bitcoinfees.php</code>
 
             <p class="h6 my-3 pt-3">Response:</p>
-            <img alt="Bitcoin Fees" title="Bitcoin Mempool Fees" width="210" height='100'
-               src="https://bitcoindata.science/api/bitcoinfees.php" />
-
+            <div class="rounded border-1 border-light bg-bitcointalk p-4 col-md-5">
+               <img alt="Bitcoin Fees" title="Bitcoin Mempool Fees" width="210" height='94'
+                  src="https://bitcoindata.science/api/bitcoinfees.php" />
+            </div>
             <p class="h6 my-3 pt-3">Embed in bitcointalk post:</p>
 
             <div class="row g-4">
@@ -1057,9 +1064,10 @@
 
 
             <p class="h6 my-3 pt-3">Response:</p>
-            <img alt="Bitcoin Transaction API" title="Bitcoin Transaction API" width=500 height="240"
+            <div class="rounded border-1 border-light bg-bitcointalk p-4 col-md-5">
+            <img alt="Bitcoin Transaction API" title="Bitcoin Transaction API" width=500 height="230"
                src="https://bitcoindata.science/api/transaction.php?id=bf65241f5379e511bf79f9870253735e484ec0e2e3524a78632e1f73838b1bc2" />
-
+</div>
             <p class="h6 my-3 pt-3">Embed in bitcointalk post:</p>
 
             <div class="row g-4">
@@ -1108,7 +1116,7 @@
          document.getElementById(content).innerHTML = value;
       }
 
-      function displayChecked(element,target) {
+      function displayChecked(element, target) {
          if (element == true) {
             document.getElementById(target).classList.remove("d-none");
          } else {
