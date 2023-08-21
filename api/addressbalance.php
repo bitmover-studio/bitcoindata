@@ -3,7 +3,7 @@ require "functions.php";
 
 header('Cache-Control: max-age=45');
 $currency = "usd";
-$hex = "707070";
+$hex = "000";
 $rates = 1;
 
 if (isset($_GET["address"]))

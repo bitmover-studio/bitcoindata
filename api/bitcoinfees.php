@@ -3,7 +3,7 @@ require "functions.php";
 
 header('Cache-Control: max-age=180');
 
-$hex = "707070";
+$hex = "000";
 if (isset($_GET["hex"]))
     $hex = strtolower($_GET["hex"]);
 

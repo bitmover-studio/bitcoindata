@@ -6,7 +6,7 @@ $coin = "bitcoin";
 $currency = "usd";
 $amount = 1;
 $rates = 1;
-$hex = "707070";
+$hex = "000";
 
 if (isset($_GET["currency"]))
     $currency = strtolower($_GET["currency"]);
