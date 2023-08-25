@@ -29,95 +29,99 @@
       background-color: #E5E5E8;
     }
   </style>
+  <script src="../components/ad.js" type="text/javascript" defer></script>
 </head>
 
 <body>
 
   <main class="container pt-5 mb-5">
-    <h1 class=" pb-2 mb-4 text-dark border-dark">Bitcointalk Giveaway Manager</h1>
-    <h2 id="giveaway_name"></h2>
-    <form action="javascript:go()">
-      <div class="mb-3">
-        <label for="manually" class="form-label">Add competitors in order</label>
-        <div class="small text-muted mb-2">One competitor per line
-        </div>
-        <textarea class="form-control" id="manually" rows="6">satoshi&#10;Finney</textarea>
-      </div>
+    <div class="mt-5">
+      <ad-component></ad-component>
 
-      <div class="mb-3">
-        <label for="block" class="form-label">How many winners?</label>
-        <div class="small text-muted mb-2">max: 30</div>
-        <input type="number" min="1" step="1" max="30"
-          onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
-          class="form-control" id="n_winners" value="1">
-      </div>
-
-      <div class="mb-3">
-        <label for="block" class="form-label">Target Block</label>
-        <input type="number" min="0" step="1"
-          onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
-          class="form-control" id="block" value="0">
-      </div>
-
-      <div class="form-group row">
-        <div class="col-auto">
-          <button type="submit" class="btn btn-primary" id="submitbutton">Submit</button>
-
-          <div id="spinbutton" style="display:none"><button class="btn btn-outline-dark" type="button" disabled>
-              <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-              &nbsp;Loading...</button></div>
-        </div>
-        <div class="col-auto">
-          <button type="button" class="btn btn-secondary mb-3" onclick="save_share()">Save and Share</button>
-        </div>
-        <div class="col-lg">
-          <label for="url" class="visually-hidden">Share URL</label>
-          <input type="url" class="form-control" id="url" readonly onclick="copyurl()" data-toggle="tooltip"
-            data-placement="top" title="Click to copy to clipboard">
+      <h1 class=" pb-2 mb-4 text-dark border-dark">Bitcointalk Giveaway Manager</h1>
+      <h2 id="giveaway_name"></h2>
+      <form action="javascript:go()">
+        <div class="mb-3">
+          <label for="manually" class="form-label">Add competitors in order</label>
+          <div class="small text-muted mb-2">One competitor per line
+          </div>
+          <textarea class="form-control" id="manually" rows="6">satoshi&#10;Finney</textarea>
         </div>
 
+        <div class="mb-3">
+          <label for="block" class="form-label">How many winners?</label>
+          <div class="small text-muted mb-2">max: 30</div>
+          <input type="number" min="1" step="1" max="30"
+            onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+            class="form-control" id="n_winners" value="1">
+        </div>
+
+        <div class="mb-3">
+          <label for="block" class="form-label">Target Block</label>
+          <input type="number" min="0" step="1"
+            onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+            class="form-control" id="block" value="0">
+        </div>
+
+        <div class="form-group row">
+          <div class="col-auto">
+            <button type="submit" class="btn btn-primary" id="submitbutton">Submit</button>
+
+            <div id="spinbutton" style="display:none"><button class="btn btn-outline-dark" type="button" disabled>
+                <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                &nbsp;Loading...</button></div>
+          </div>
+          <div class="col-auto">
+            <button type="button" class="btn btn-secondary mb-3" onclick="save_share()">Save and Share</button>
+          </div>
+          <div class="col-lg">
+            <label for="url" class="visually-hidden">Share URL</label>
+            <input type="url" class="form-control" id="url" readonly onclick="copyurl()" data-toggle="tooltip"
+              data-placement="top" title="Click to copy to clipboard">
+          </div>
+
+        </div>
+      </form>
+
+      <div class="my-4 border-top border-dark py-4">
+        <h5 class="mb-4">Results</h5>
+        <p>Block hash: <output id="block-output"></output></p>
+        <div id="verify"></div>
+        <p>Decimal number: <code class="text-primary" id="rolled-number" class="text-primary"></code></p>
+        <p><strong>Winner: </strong><span class="h4"><span id="winner" class="badge text-bg-success "></span></span></p>
+        <output id="n_winner_div"></output>
       </div>
-    </form>
 
-    <div class="my-4 border-top border-dark py-4">
-      <h5 class="mb-4">Results</h5>
-      <p>Block hash: <output id="block-output"></output></p>
-      <div id="verify"></div>
-      <p>Decimal number: <code class="text-primary" id="rolled-number" class="text-primary"></code></p>
-      <p><strong>Winner: </strong><span class="h4"><span id="winner" class="badge text-bg-success "></span></span></p>
-      <output id="n_winner_div"></output>
-    </div>
+      <article class="mt-5">
+        <h2 class="h4 pb-2 mb-4 text-dark border-dark">Provably fair giveaway manager</h2>
+        <p>
+          As the <code>blockhash</code> is just a number, its last 6 digits is converted to <code>decimal</code> using
+          this function:</p>
 
-    <article class="mt-5">
-      <h2 class="h4 pb-2 mb-4 text-dark border-dark">Provably fair giveaway manager</h2>
-      <p>
-        As the <code>blockhash</code> is just a number, its last 6 digits is converted to <code>decimal</code> using
-        this function:</p>
+        <code class="text-primary">var decimal =  parseInt(blockhash.slice(-6), 16);</code>
+        <p></p>
+        <p>Now we have an integer (0 to 16777215) from the <code>blockhash</code>.</p>
 
-      <code class="text-primary">var decimal =  parseInt(blockhash.slice(-6), 16);</code>
-      <p></p>
-      <p>Now we have an integer (0 to 16777215) from the <code>blockhash</code>.</p>
+        <p>After dividing this <code>decimal</code> by the number of participants, we use the <i>modulo operator
+            (<code>%</code>)</i>
+          to get the division remainder becomes
+          the <code>index_number</code>.</p>
 
-      <p>After dividing this <code>decimal</code> by the number of participants, we use the <i>modulo operator
-          (<code>%</code>)</i>
-        to get the division remainder becomes
-        the <code>index_number</code>.</p>
+        <p>This <code>index_number</code> is applied in the participants list, to get the position of the winner.</p>
 
-      <p>This <code>index_number</code> is applied in the participants list, to get the position of the winner.</p>
-
-      <code class="text-primary">
+        <code class="text-primary">
           var index_number = decimal % competitors.length;</code>
-      <br />
-      <code class="text-primary">
+        <br />
+        <code class="text-primary">
           var winner = competitors[index_number];
         </code>
 
-      <p></p>
+        <p></p>
 
-      <p>For additional winners, the past winners are removed from the list and one more digit is added from the
-        blockhash. A maximum 30 was added to avoid working with big numbers.</p>
+        <p>For additional winners, the past winners are removed from the list and one more digit is added from the
+          blockhash. A maximum 30 was added to avoid working with big numbers.</p>
 
-    </article>
+      </article>
   </main>
 
   <footer class="text-center border-top border-dark mt-5 pt-5 container font-monospace">
@@ -128,8 +132,8 @@
       </div>
       <div class="col-md">
         <figure class="figure">
-          <img src="3CrySAp8G1PfvjrYT4HPQhE8MouBKWd9WB.webp" class="figure-img img-fluid rounded"
-            alt="buy me a coffee" title="3CrySAp8G1PfvjrYT4HPQhE8MouBKWd9WB" width="80" height="80">
+          <img src="3CrySAp8G1PfvjrYT4HPQhE8MouBKWd9WB.webp" class="figure-img img-fluid rounded" alt="buy me a coffee"
+            title="3CrySAp8G1PfvjrYT4HPQhE8MouBKWd9WB" width="80" height="80">
           <figcaption class="figure-caption"><span class="small">3CrySAp8G1PfvjrYT4HPQhE8MouBKWd9WB</span></figcaption>
         </figure>
       </div>
@@ -183,7 +187,7 @@
           let index_number = decimal % competitors.length
           let winner = competitors[index_number];
 
-          document.getElementById("block-output").innerHTML = "<code class='text-primary'>" +blockhash + "</code> <a class='small text-muted' target='_blank' href='https://mempool.space/block/" + block + "'>Verify</a>";
+          document.getElementById("block-output").innerHTML = "<code class='text-primary'>" + blockhash + "</code> <a class='small text-muted' target='_blank' href='https://mempool.space/block/" + block + "'>Verify</a>";
           document.getElementById("rolled-number").innerHTML = decimal;
           document.getElementById("winner").innerHTML = winner
 
@@ -212,10 +216,10 @@
             //   Get time of future block
             $.ajax('https://mempool.space/api/blocks/tip/height')
               .done(function (blockheight) {
-                var blockdelta =  document.getElementById("block").value - blockheight
+                var blockdelta = document.getElementById("block").value - blockheight
                 console.log(blockdelta)
                 var fblocktime = new Date(new Date().getTime() + 10 * 60000 * blockdelta);
-                document.getElementById("block-output").innerHTML = "Block <code>" + document.getElementById("block").value + "</code> not mined yet.<br/> Will probably be mined at <time style='color:var(--bs-code-color);' class='font-monospace'>" + fblocktime+"</time>";
+                document.getElementById("block-output").innerHTML = "Block <code>" + document.getElementById("block").value + "</code> not mined yet.<br/> Will probably be mined at <time style='color:var(--bs-code-color);' class='font-monospace'>" + fblocktime + "</time>";
                 document.getElementById("rolled-number").innerHTML = '';
 
               })
