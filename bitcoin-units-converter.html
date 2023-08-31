@@ -56,9 +56,8 @@
    <script src="components/navbar.js" type="text/javascript" defer></script>
    <script src="components/footer.js" type="text/javascript" defer></script>
    <script src="components/unit-converter.js" type="text/javascript" defer></script>
-
+   <script src="components/ad.js" type="text/javascript" defer></script>
 </head>
-
 
 <body>
    <!-- Navbar -->
@@ -67,7 +66,8 @@
    </header>
    <!-- Page Content -->
    <main class="container-fluid col-lg-10 col-xl-8">
-      <div class="mt-3">
+      <div class="mt-5">
+         <ad-component></ad-component>
          <h1 class="h1 fw-semibold mb-0">Bitcoin Units Converter</h1>
          <span class="header-line bg-primary rounded mb-2 d-inline-block"> </span>
          <h2 class="lead">Use any of the fields below to convert bitcoin units BTC,mBTC, uBTC, satoshi, finney to
@@ -394,8 +394,7 @@
       </p>
 
       <div class="mt-3 alert alert-info bd-callout border-info me-4" role="alert">
-         Do you want to share bitcoin price with your local board in the forum? Try out <a
-            class="alert-link"
+         Do you want to share bitcoin price with your local board in the forum? Try out <a class="alert-link"
             href="https://bitcoindata.science/local-price-to-image.html">local price to image API</a> tool.
       </div>
 
