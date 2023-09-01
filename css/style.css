@@ -132,6 +132,10 @@ opacity: 80%;
 transform: scale(0.5); opacity: 0.6;
 }
 
+.bg-l0tt0 {
+  background-color: #FBE24B;
+}
+
 /* API */
 .terminal{
 background-image: linear-gradient(55deg,#f5f7fd,#fbfbfe)}
