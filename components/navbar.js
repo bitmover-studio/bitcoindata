@@ -37,9 +37,6 @@ class Navbar extends HTMLElement {
                     <a class="nav-link" href="bitcoin-units-converter.html" title="Unit Converter">Unit Converter</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="plot-your-transaction-in-mempool.html" title="Tx Size">Tx Size</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="giveaway-manager/" title="Giveaway Manager">Giveaway Manager</a>
                 </li>
                 <li class="nav-item">
@@ -85,9 +82,6 @@ class Navbar extends HTMLElement {
             </li>
             <li class="nav-item py-2 pb-4  mt-3 border-1 border-bottom">
                 <a class="nav-link" href="bitcoin-units-converter.html" title="Unit Converter">Unit Converter</a>
-            </li>
-            <li class="nav-item py-2 pb-4  mt-3 border-1 border-bottom">
-                <a class="nav-link" href="plot-your-transaction-in-mempool.html" title="Tx Size">Tx Size</a>
             </li>
             <li class="nav-item py-2 pb-4  mt-3 border-1 border-bottom">
                 <a class="nav-link" href="giveaway-manager/"  title="Giveaway Manager">Giveaway Manager</a>
