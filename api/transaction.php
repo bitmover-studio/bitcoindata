@@ -35,6 +35,10 @@ foreach ($data->vin as $element) {
     if (isset($element->prevout->scriptpubkey_address)) {
         $inputs[] = '   ' . substr($element->prevout->scriptpubkey_address, 0, 10) . '...' . substr($element->prevout->scriptpubkey_address, -10)
             . ' ' . ($element->prevout->value) / 100000000 . ' $' . number_format($price * ($element->prevout->value / 100000000), 2) . '/n';
+    } else if ($element->is_coinbase == true) {
+        $decoded_message = hex2bin($element->scriptsig);
+        
+        $inputs[] =  '   ' . 'coinbase tx - ' . $decoded_message . '/n';
     }
 }
 // outputs //
