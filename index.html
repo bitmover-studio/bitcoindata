@@ -50,7 +50,6 @@
    <link href="css/style.css" rel="stylesheet">
    <script src="components/navbar.js" type="text/javascript" defer></script>
    <script src="components/footer.js" type="text/javascript" defer></script>
-   <script src="components/ad.js" type="text/javascript" defer></script>
 </head>
 
 <body>
@@ -60,8 +59,16 @@
    </header>
    <!-- Page Content -->
    <main class="container-fluid col-lg-10 col-xl-8">
-      <div class="mt-5">
-         <ad-component></ad-component>
+      <div class="mt-3">
+         <div class="alert alert-info bd-callout border-info-subtle me-4" role="alert">
+            <p class="alert-heading h4">New Version</p>
+            <p>This page was just redesigned. Work in progress.</p>
+            <p>Please send me an <a class="alert-link" href="mailto:bitmover@protonmail.ch">e-mail</a> or a <a
+                  href="https://bitcointalk.org/index.php?action=profile;u=1554927" target="_blank" rel="noreferrer"
+                  class="alert-link">bitcointalk message</a> if you have any suggestions
+               or if you have found bugs.</p>
+         </div>
+
          <div id="cards" class="row row-cols-1 row-cols-md-2 g-3">
             <div class="col">
                <div class="card h-100 border-3 bg-transparent me-4">
@@ -124,9 +131,7 @@
                   <div class="card-body">
                      <h3 class="h4 fw-bolder card-title"><a href="bitcointalk-api.html"
                            class="text-danger-emphasis stretched-link">Bitcoin Image API</a></h3>
-                     <P class="card-text"> Using blockchain data from mempool.space and price data from coingecko and
-                        exchange.host, it is now possible to share bitcoin data such as address balances and
-                        transactions as an
+                     <P class="card-text"> Using blockchain data from mempool.space and price data from coingecko and exchange.host, it is now possible to share bitcoin data such as address balances and transactions as an
                         image in bitcointalk.org or any other forum using our API.</P>
                      <div
                         class="position-absolute top-0 start-100 translate-middle bg-danger-subtle border-danger-subtle border rounded-pill p-3 mt-4">

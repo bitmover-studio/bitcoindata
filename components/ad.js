@@ -7,19 +7,16 @@ class Ad extends HTMLElement {
 
   connectedCallback() {
     this.innerHTML = `
-    <div class="container text-center my-4 mb-5" id="adBanner">
-      <a href="https://www.l0tt0.com/" title="l0tt0.com - Bitcoin Games Like You've Never Seen!" target="_blank" rel="noreferrer">
-        <img class="border-1 border-dark border img-fluid d-none d-md-inline-block" alt='l0tt0.com' src="https://bitcoindata.science/img/l0tt0_banner.gif" width='728' height='90'/>
-        <img class="border-1 border-dark border img-fluid d-md-none" alt="l0tt0.com" src="https://bitcoindata.science/img/l0tt0_banner.gif" width='320' height='50'/>
-      </a>
-      <div class="d-flex justify-content-center align-items-center">
-        <p class="small mb-0">Sponsored Content</p>
-        <button type="button" class="btn-close ms-2" aria-label="Close" title="Click to dimiss"></button>
+      <div class="dropdown float-end">
+          <a class="btn btn-info dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Sponsored Content
+          </a>
+          <div class="dropdown-menu p-4 text-muted" style="max-width: 30  0px;">
+              <p>Be seen by active bitcoin and cryptocurrency users</p>
+              <a class="btn btn-primary" href="./advertise.html" role="button">More Info</a>
+          </div>
       </div>
-    </div>`;
-    document.querySelector('.btn-close').addEventListener('click', function () {
-      document.querySelector('#adBanner').style.display = 'none';
-    });
+      `;
   }
 }
 
