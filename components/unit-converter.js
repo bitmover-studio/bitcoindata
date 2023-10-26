@@ -2,7 +2,7 @@
 
 var usdPrice = 0;
 var brlPrice = 0;
-var rates = [];
+var rates = {};
 var symbols = [];
 var fselect = document.getElementById("selEbank").options[selEbank.selectedIndex].text;
 var inputUSD = document.getElementById("inputUSD");
@@ -132,7 +132,7 @@ function unitConverter(source, valNum) {
 		inputmsat.value = parseFloat(valNum / usdPrice / rates[fselect] * 100000000000).toFixed(0);
 		inputUSD.value = parseFloat(valNum / rates[fselect]).toFixed(3);
 	}
-	document.getElementById('fcurrency').innerHTML = "<BR><img alt='country flag' class='mr-2 ml-1' src='https://flagcdn.com/" + document.getElementById("selEbank").options[selEbank.selectedIndex].text.slice(0, -1).toLowerCase() + ".svg' width='26' height='26'>" + "<strong class='m-2 text-primary-emphasis'>" + document.getElementById("selEbank").options[selEbank.selectedIndex].text + " - " + symbols[fselect].description + "</strong>";
+	document.getElementById('fcurrency').innerHTML = "<BR><img alt='country flag' class='mr-2 ml-1' src='https://flagcdn.com/" + document.getElementById("selEbank").options[selEbank.selectedIndex].text.slice(0, -1).toLowerCase() + ".svg' width='26' height='26'>" + "<strong class='m-2 text-primary-emphasis'>" + document.getElementById("selEbank").options[selEbank.selectedIndex].text + " - " + "</strong>";
 	document.getElementById('fdefault').innerHTML = "<a href='bitcoin-units-converter.html?d=" + document.getElementById("selEbank").options[selEbank.selectedIndex].text + "'>Set as default</a>";
 }
 
@@ -168,15 +168,21 @@ else { document.getElementById('selEbank').value = "EUR" }
 
 async function getRates() {
 	try {
-		const response = await fetch('https://api.exchangerate.host/latest?base=USD');
-		let data = await response.json();
-		rates = data.rates;
+		const response = await fetch('https://bitcoindata.science/api/rates.json');
+		let rawrates = await response.json();
+		for (var key in rawrates) {
+			rates[key.slice(3)] = rawrates[key];
+		}
 		delete rates.BTC
+
 		// Feeding data to accordion //
 		let nFiat = document.getElementById("nfiat");
 		let listSymbols = document.getElementById("listSymbols");
 		nFiat.innerText = Object.keys(rates).length;
 		listSymbols.innerHTML = Object.keys(rates).join(", ");
+		symbols =  Object.keys(rates);
+		console.log(symbols)
+
 		// Feeding data to select //
 		let selectOptions = document.getElementById("selEbank");
 		selectOptions.innerHTML = `
@@ -195,20 +201,6 @@ async function getRates() {
 	};
 }
 
-async function getSymbols() {
-	try {
-		const response = await fetch('https://api.exchangerate.host/symbols');
-		const data = await response.json();
-		symbols = data.symbols;
-		unitConverter(inputBTC.id, inputBTC.value);
-	}
-	catch (error) {
-		console.warn(error)
-
-	};
-}
-
-
 function handleClick(event) {
 	let fselect = document.getElementById("selEbank").options[selEbank.selectedIndex].text;
 	if (select.selectedIndex > 0) {
@@ -219,7 +211,6 @@ function handleClick(event) {
 select.addEventListener('click', handleClick);
 
 
-getSymbols();
 getBtcPrice();
 getRates()
 handleClick();
