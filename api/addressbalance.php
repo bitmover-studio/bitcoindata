@@ -16,33 +16,7 @@ if (isset($_GET["hex"]))
 $btcpriceusd = getBTCPriceUsd('bitcoin');
 
 $currency = strtoupper($currency);
-if ($currency != 'USD' && $currency != 'BDT') {
-    $exchangerate = "https://api.exchangerate.host/latest?base=USD";
-    $exchangeratejson = getData($exchangerate);
-    $rates = $exchangeratejson->rates->$currency;
-} else if ($currency == 'BDT') {
-    $url = 'https://p2p.binance.com/bapi/c2c/v2/public/c2c/adv/quoted-price';
-    $postFields = array(
-        'assets' => array('USDT'),
-        'fiatCurrency' => 'BDT',
-        'tradeType' => 'BUY',
-        'fromUserRole' => 'USER'
-    );
-    $postData = json_encode($postFields);
-
-    $options = array(
-        'http' => array(
-            'header' => "Content-type: application/json\r\n" .
-            "Content-Length: " . strlen($postData) . "\r\n",
-            'method' => 'POST',
-            'content' => $postData
-        )
-    );
-    $context = stream_context_create($options);
-    $result = file_get_contents($url, false, $context);
-    $exratejsonArray = json_decode($result);
-    $rates = $exratejsonArray->data[0]->referencePrice;
-}
+$rates = getFiatRates($currency);
 
 $price = $btcpriceusd * $rates;
 

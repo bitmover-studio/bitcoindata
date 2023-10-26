@@ -50,7 +50,54 @@ function getBTCPriceUsd($coin)
     }
     return $btcpriceusd;
 }
-function allocateHexColor($image, $hex) {
+
+function getFiatRates($currency)
+{
+    $usdcurrency = "USD" . $currency;
+    $storedRatesfile = 'rates.json';
+
+    if ($currency != 'USD' && $currency != 'BDT') {
+        if (file_exists($storedRatesfile) && (time() - filemtime($storedRatesfile)) < 60 * 60) { //file younger than 60 minutes
+            $exchangerate = json_decode(file_get_contents($storedRatesfile));
+            $rates = $exchangerate->$usdcurrency;
+        } else {
+            $exchangerate = "http://api.exchangerate.host/live?access_key=" . getenv("API_KEY");
+            $exchangeratejson = getData($exchangerate);
+            $data = $exchangeratejson->quotes;
+            $json = json_encode($data, JSON_PRETTY_PRINT);
+            file_put_contents('rates.json', $json);
+            $rates = $exchangeratejson->quotes->$usdcurrency;
+        }
+    } else if ($currency == 'BDT') {
+        $url = 'https://p2p.binance.com/bapi/c2c/v2/public/c2c/adv/quoted-price';
+        $postFields = array(
+            'assets' => array('USDT'),
+            'fiatCurrency' => 'BDT',
+            'tradeType' => 'BUY',
+            'fromUserRole' => 'USER'
+        );
+        $postData = json_encode($postFields);
+
+        $options = array(
+            'http' => array(
+                'header' => "Content-type: application/json\r\n" .
+                    "Content-Length: " . strlen($postData) . "\r\n",
+                'method' => 'POST',
+                'content' => $postData
+            )
+        );
+        $context = stream_context_create($options);
+        $result = file_get_contents($url, false, $context);
+        $exratejsonArray = json_decode($result);
+        $rates = $exratejsonArray->data[0]->referencePrice;
+    } else {
+        $rates = 1;
+    }
+    return $rates;
+}
+
+function allocateHexColor($image, $hex)
+{
     $red = hexdec(substr($hex, 0, 2));
     $green = hexdec(substr($hex, 2, 2));
     $blue = hexdec(substr($hex, 4, 2));
