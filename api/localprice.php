@@ -28,26 +28,33 @@ $str = $amount * $btcpriceusd * $rates;
 $string = number_format($str, 2);
 $string = $string . " " . $currency;
 
-
 header('Content-type: image/gif'); // filetype
 
 $font = 4;
 $width = (imagefontwidth($font) * strlen($string)) + 3;
 $height = (imagefontheight($font) - 1);
 
+if (isset($_GET["date"])) {
+    $height = 2 * (imagefontheight($font) - 1);
+} elseif (isset($_GET["bold"])) {
+    $height = (imagefontheight($font) + 1);
+}
+
 $image = imagecreatetruecolor($width, $height);
 $white = imagecolorallocate($image, 199, 200, 210);
+$textcolor = allocateHexColor($image, $hex);
 imagecolortransparent($image, $white);
 imagefill($image, 0, 0, $white);
 
-$textcolor = allocateHexColor($image, $hex);
 imagestring($image, $font, 0, 0, $string, $textcolor);
+
 if (isset($_GET["bold"])) {
     imagestring($image, $font, 1, 0, $string, $textcolor);
     imagestring($image, $font, 0, 1, $string, $textcolor);
     imagestring($image, $font, 1, 1, $string, $textcolor);
-    $height = (imagefontheight($font)+1);
 }
+
+printDate($image,$height,$textcolor);
 
 header('Content-type: image/gif');
 

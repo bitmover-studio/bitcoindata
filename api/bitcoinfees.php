@@ -19,7 +19,7 @@ $fees_lines = explode(",", $feesjson);
 
 $font = 4;
 
-$image = imagecreatetruecolor(210, 100);
+$image = imagecreatetruecolor(210, 110);
 $textcolor = allocateHexColor($image, $hex);
 $white = imagecolorallocate($image, 199, 200, 210);
 imagecolortransparent($image, $white);
@@ -33,6 +33,8 @@ foreach ($fees_lines as $i => $fees_line) {
         imagestring($image, $font, 10, ($i + 1) * ($font + 10) + 1, $fees_line, $textcolor);
         imagestring($image, $font, 11, ($i + 1) * ($font + 10) + 1, $fees_line, $textcolor);
     }
+    $date = gmdate('Y/m/d H:i') . " UTC";
+    imagestring($image, 1.8, 1.8, 1 + ($height / 2), $date, $textcolor);
 }
 
 // Output the image to the browser

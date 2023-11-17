@@ -104,4 +104,11 @@ function allocateHexColor($image, $hex)
     return imagecolorallocate($image, $red, $green, $blue);
 }
 
+function printDate($image,$height,$textcolor)
+{
+    if (isset($_GET["date"])) {
+        $date = gmdate('Y/m/d H:i') . " UTC";
+        imagestring($image, 1.8, 1.8, 1 + ($height / 2), $date, $textcolor);
+    }
+}
 ?>
