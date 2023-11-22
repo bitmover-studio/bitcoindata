@@ -86,23 +86,26 @@
 
          <div id="balances" class="mt-4 px-3">
          </div>
-         <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+         <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true" onBlur="javascript:document.title = 'Bitcoin Balance Checker - bitcoin data.science';">
             <div class="modal-dialog">
                <div class="modal-content">
-                 <div class="modal-header">
-                   <h5 class="modal-title"></h5>
-                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                 </div>
-                 <div class="modal-body">
-                   <p>Address: <code class="modal-address text-primary"></code></p>
-                   <p id="modal-body-text"><span class="modal-balance"></span> (<span class="modal-value"></span>)</p>
-                 </div>
-                 <div class="modal-footer">
-                   <button type="button" class="btn btn-secondary shadow-sm btn-lg px-5" data-bs-dismiss="modal">Close</button>
-                   <button type="button" class="btn btn-success shadow-sm btn-lg px-5" onclick="handleClick();clearInterval(timerCompareBalance)" data-bs-dismiss="modal">Reload Data</button>
-                 </div>
+                  <div class="modal-header">
+                     <h5 class="modal-title"></h5>
+                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                     <p>Address: <code class="modal-address text-primary"></code></p>
+                     <p id="modal-body-text" class="text-warning-emphasis font-monospace"><span
+                           class="modal-balance"></span> (<span class="modal-value"></span>)</p>
+                  </div>
+                  <div class="modal-footer">
+                     <button type="button" class="btn btn-secondary shadow-sm btn-lg px-5"
+                        data-bs-dismiss="modal" onclick="handleClick()">Close</button>
+                     <button type="button" class="btn btn-primary shadow-sm btn-lg px-5" onclick="handleClick()"
+                        data-bs-dismiss="modal">Reload Data</button>
+                  </div>
                </div>
-             </div>
+            </div>
          </div>
       </div>
    </main>

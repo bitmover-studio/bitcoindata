@@ -118,6 +118,7 @@ async function getBalances(price) {
 }
 
 function handleClick() {
+  clearInterval(timerCompareBalance);
   document.getElementById("submit").innerHTML = '<span class="spinner-border spinner-border-sm me-3" role="status" aria-hidden="true"></span>Loading...'
   document.getElementById("submit").disabled = true;
   balance = [];
@@ -126,12 +127,15 @@ function handleClick() {
   addressesList = textArea.value.split("\n");
   addressesList = addressesList.filter(n => n);
   getBtcPrice().then(price => getBalances(price))
+
+  var timerCompareBalance = setInterval(() => {
+    getBtcPrice().then(price => compareBalance(price));
+  }, 300000)
 }
 
 // Update Address Balance
 let newBalance = [];
 let modalText = {};
-
 const modal = new bootstrap.Modal(document.getElementById("modal"), {});
 
 async function compareBalance(price) {
@@ -147,8 +151,8 @@ async function compareBalance(price) {
         balance: newBalance[i].balance,
         value: newBalance[i].value,
         color: "",
-        title: "New confirmed transaction",
-        body: "Transaction confirmed"
+        title: "New transaction",
+        body: "confirmed"
       };
     }
     else if (balance[i].unconfirmed !== newBalance[i].unconfirmed) {
@@ -158,7 +162,7 @@ async function compareBalance(price) {
         value: newBalance[i].unconfirmed_value,
         color: "text-warning-emphasis",
         title: "Incoming transaction",
-        body: "Transaction not confirmed yet"
+        body: "unconfirmed"
       };
     }
   }
@@ -166,16 +170,18 @@ async function compareBalance(price) {
   document.querySelector('.modal-address').innerHTML = modalText.address;
   document.querySelector('.modal-balance').innerHTML = modalText.balance;
   document.querySelector('.modal-value').innerHTML = modalText.value.toLocaleString("en-US", { style: "currency", currency: "USD" });
-  document.getElementById('modal-body-text').className = modalText.color;
+  document.title = '(1) Bitcoin Balance Checker - bitcoin data.science';
 
-  if (Object.keys(modalText).length){
+  if (Object.keys(modalText).length) {
     modal.show()
   }
-  return modalText;
-};
 
-if (!Array.isArray(balance) || !balance.length) {
-  var timerCompareBalance = setInterval(() => {
-  getBtcPrice().then(price => compareBalance(price));
-}, 300000)
-}
+  // create a notification
+  let permission = await Notification.requestPermission();
+  if (permission === 'granted') {
+    const notification = new Notification(modalText.title, {
+      body: modalText.balance +" "+ modalText.balance + " "+ modalText.body,
+      icon: './img/bitcoin-data-science-logo-web.svg'
+    });
+  }
+};
