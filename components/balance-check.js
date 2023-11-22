@@ -36,6 +36,26 @@ async function getBtcPrice() {
 // Get Address Balance
 let balance = [];
 const outputArea = document.getElementById("balances")
+async function getMultipleAddressBalance(price, balancearray) {
+  var list = balancearray.join("|")
+  console.log(list)
+  try {
+    const response = await fetch('https://blockchain.info/balance?active=' + balancearray);
+    const data = await response.json();
+    balance = Object.keys(data).map(address => {
+      return {
+        address: address,
+        balance: data[address].final_balance / 100000000,
+        value: data[address].final_balance / 100000000 * price,
+        unconfirmed: 0,
+        unconfirmed_value: 0
+      };
+    });
+  }
+  catch (error) {
+    console.log('Try lass than 20 addresses: ' + error)
+  }
+}
 
 async function getAddressBalance(address, price, balancearray) {
   try {
@@ -79,11 +99,15 @@ function delay(ms) {
 async function getBalances(price) {
   balance = [];
   modalText = {}
-  for (const i of addressesList) {
-    // Use await with the delay function
-    await delay(500);
-    // Call the async function
-    await getAddressBalance(i, price, balance);
+  if (addressesList.length <= 20) {
+    for (const i of addressesList) {
+      // Use await with the delay function
+      await delay(500);
+      // Call the async function
+      await getAddressBalance(i, price, balance);
+    }
+  } else {
+    await getMultipleAddressBalance(price, addressesList)
   }
   document.getElementById("submit").innerHTML = 'Get Balance!'
   document.getElementById("submit").disabled = false;
@@ -166,13 +190,13 @@ async function compareBalance(price) {
       };
     }
   }
-  document.querySelector('.modal-title').innerHTML = modalText.title;
-  document.querySelector('.modal-address').innerHTML = modalText.address;
-  document.querySelector('.modal-balance').innerHTML = modalText.balance;
-  document.querySelector('.modal-value').innerHTML = modalText.value.toLocaleString("en-US", { style: "currency", currency: "USD" });
-  document.title = '(1) Bitcoin Balance Checker - bitcoin data.science';
 
-  if (Object.keys(modalText).length) {
+  if (Object.keys(modalText).length > 0) {
+    document.querySelector('.modal-title').innerHTML = modalText.title;
+    document.querySelector('.modal-address').innerHTML = modalText.address;
+    document.querySelector('.modal-balance').innerHTML = modalText.balance;
+    document.querySelector('.modal-value').innerHTML = modalText.value.toLocaleString("en-US", { style: "currency", currency: "USD" });
+    document.title = '(1) Bitcoin Balance Checker - bitcoin data.science';
     modal.show()
   }
 
@@ -180,7 +204,7 @@ async function compareBalance(price) {
   let permission = await Notification.requestPermission();
   if (permission === 'granted') {
     const notification = new Notification(modalText.title, {
-      body: modalText.balance +" "+ modalText.balance + " "+ modalText.body,
+      body: modalText.address + " " + modalText.balance + " " + modalText.body,
       icon: './img/bitcoin-data-science-logo-web.svg'
     });
   }
