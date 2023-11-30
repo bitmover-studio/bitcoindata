@@ -202,7 +202,7 @@ async function compareBalance(price) {
 
   // create a notification
   let permission = await Notification.requestPermission();
-  if (permission === 'granted') {
+  if (permission === 'granted' && Object.keys(modalText).length > 0) {
     const notification = new Notification(modalText.title, {
       body: modalText.address + " " + modalText.balance + " " + modalText.body,
       icon: './img/bitcoin-data-science-logo-web.svg'
