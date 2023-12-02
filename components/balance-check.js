@@ -191,7 +191,7 @@ async function compareBalance(price) {
     }
   }
 
-  if (Object.keys(modalText).length > 0) {
+  if (Object.keys(modalText).length > 0  && newBalance.length === balance.length) {
     document.querySelector('.modal-title').innerHTML = modalText.title;
     document.querySelector('.modal-address').innerHTML = modalText.address;
     document.querySelector('.modal-balance').innerHTML = modalText.balance;
@@ -202,10 +202,11 @@ async function compareBalance(price) {
 
   // create a notification
   let permission = await Notification.requestPermission();
-  if (permission === 'granted' && Object.keys(modalText).length > 0) {
+  if (permission === 'granted' && Object.keys(modalText).length > 0 && newBalance.length === balance.length) {
     const notification = new Notification(modalText.title, {
       body: modalText.address + " " + modalText.balance + " " + modalText.body,
       icon: './img/bitcoin-data-science-logo-web.svg'
     });
   }
+  modalText = {};
 };
