@@ -76,59 +76,49 @@
             could be withdrawn.
          </article>
          <div class="my-4">
+            <div class="row g-3 my-4">
+               <div class="col">
+                  <h3 class="h6">BTC Spot Price</h3>
+                  <p class="fw-semibold"><span id="BTCPrice"> </span> <span id="priceVar" class="small"></span></p>
+               </div>
+               <div class="col">
+                  <h3 class="h6">200-week MA</h3>
+                  <p class="fw-semibold"><span id="sma"> &nbsp;</span></p>
+               </div>
+               <div class="col">
+                  <h3 class="h6">Price Above SMA (%)</h3>
+                  <p class="fw-semibold"><span id="pricesma"></span></p>
+               </div>
+            </div>
             <div class="row g-3">
-               <div class="col">
-                  <div class="form-floating">
-                     <input type="text" class="form-control" id="BTCPrice" placeholder="BTC Price">
-                     <label for="BTCPrice">BTC Price</label>
-                  </div>
-               </div>
-               <div class="col">
-                  <div class="form-floating">
-                     <input type="text" class="form-control" id="sma" placeholder="200 Week SMA">
-                     <label for="sma">200 Week SMA</label>
-                  </div>
-               </div>
-               <div class="col">
-                  <div class="form-floating">
-                     <input type="number" class="form-control" id="pricesma" placeholder="Price Above SMA (%)">
-                     <label for="pricesma">Price Above SMA (%)</label>
-                  </div>
-               </div>
-               <div class="col">
-                  <div class="form-floating">
+               <div class="col pt-3">
+                  <label for="wrate" class="form-label">Withdrawal Rate per year (<span
+                        id="wRateRange"></span>%)</label>
+                  <input type="range" min="0" max="20" step="0.1" class="form-range" id="wrate" onChange="loadData()"
+                     value="4">
+                  <div class="form-floating mb-3">
                      <input type="number" class="form-control" id="stash" placeholder="BTC Stash" value="1"
                         onChange="loadData()">
                      <label for="stash">BTC stash</label>
                   </div>
-               </div>
-            </div>
-            <div class="row g-3 mt-2">
-               <div class="col">
-                  <div class="form-floating">
-                     <input type="number" class="form-control" id="wrate" placeholder="Withdrawal Rate per year (%)"
-                        value="4" onChange="loadData()">
-                     <label for="wrate">Withdrawal Rate per year (%)</label>
-                  </div>
-               </div>
-               <div class="col">
-                  <div class="form-floating">
+                  <div class="form-floating mb-3">
                      <input type="number" class="form-control" id="allowed" placeholder="Allowed Withdrawal" value="1"
                         onChange="loadData()">
                      <label for="allowed">Month withdrawal (BTC)</label>
                   </div>
-               </div>
-               <div class="col">
-                  <div class="form-floating">
+                  <div class="form-floating mb-3">
                      <input type="number" class="form-control" id="allowedvalue" placeholder="Allowed Withdrawal USD"
                         value="1" onChange="loadData()">
                      <label for="allowed">Month withdrawal (USD)</label>
                   </div>
                </div>
+               <div class="col-9">
+                  <div id="chart" class="px-0 mx-0">
+                  </div>
+               </div>
             </div>
-         </div>
 
-         <div id="chart" class="mt-4 mb-0  px-0 mx-0">
+
          </div>
          <p id="source" class="small mt-0 pt-0 text-muted text-end">Price data from coingecko</p>
       </div>
