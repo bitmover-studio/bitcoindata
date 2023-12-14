@@ -46,8 +46,11 @@
            ]
          }
       </script>
-   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"></script>
    <link href="css/style.css" rel="stylesheet">
    <script src="components/navbar.js" type="text/javascript" defer></script>
    <script src="components/footer.js" type="text/javascript" defer></script>
@@ -66,14 +69,16 @@
             <p class="lead fw-semibold text-danger">File not found.</p>
          </div>
          <p>Please send me an <a href="mailto:bitmover@proton.ch">e-mail</a> or a <a
-            href="https://bitcointalk.org/index.php?action=profile;u=1554927" target="_blank" rel="noreferrer">bitcointalk message</a> if you have found any bug.</p>
+               href="https://bitcointalk.org/index.php?action=profile;u=1554927" target="_blank"
+               rel="noreferrer">bitcointalk message</a> if you have found any bug.</p>
 
          <p class="lead">Maybe you are looking for one of those pages?</p>
          <div id="cards" class="row row-cols-1 row-cols-md-2 g-3">
             <div class="col">
                <div class="card h-100 border-3 bg-transparent me-4">
                   <div class="card-body">
-                     <h3 class="h4 fw-bolder card-title"><a href="https://bitcoindata.science/bitcoin-balance-check.html"
+                     <h3 class="h4 fw-bolder card-title"><a
+                           href="https://bitcoindata.science/bitcoin-balance-check.html"
                            class="text-success-emphasis stretched-link">Balance Check</a></h3>
                      <p class="card-text">See the balance of multiple bitcoin addresses at the same time. All address
                         formats supported.</p>
@@ -91,7 +96,8 @@
             <div class="col">
                <div class="card h-100 border-3 bg-transparent me-4">
                   <div class="card-body">
-                     <h3 class="h4 fw-bolder card-title"><a href="https://bitcoindata.science/bitcoin-units-converter.html"
+                     <h3 class="h4 fw-bolder card-title"><a
+                           href="https://bitcoindata.science/bitcoin-units-converter.html"
                            class="text-primary-emphasis stretched-link">Unit Converter</a></h3>
                      <p class="card-text">Convert bitcoin units BTC, mBTC, uBTC, bitcent, satoshi, finney and more to
                         USD, EUR or any other fiat currency. </p>
@@ -110,7 +116,8 @@
             <div class="col">
                <div class="card h-100 border-3 bg-transparent me-4">
                   <div class="card-body">
-                     <h3 class="h4 fw-bolder card-title"><a href="https://bitcoindata.science/plot-your-transaction-in-mempool.html"
+                     <h3 class="h4 fw-bolder card-title"><a
+                           href="https://bitcoindata.science/plot-your-transaction-in-mempool.html"
                            class="text-info stretched-link">Transaction Size</a></h3>
                      <p class="card-text">Calculate the size of your transaction, based in the number of inputs, outputs
                         and address format. You can also how much you will spend in Bitcoin transaction fees.</p>
@@ -130,7 +137,8 @@
             <div class="col">
                <div class="card h-100 border-3 bg-transparent me-4">
                   <div class="card-body">
-                     <h3 class="h4 fw-bolder card-title"><a href="https://bitcoindata.science/plot-your-transaction-in-mempool.html"
+                     <h3 class="h4 fw-bolder card-title"><a
+                           href="https://bitcoindata.science/plot-your-transaction-in-mempool.html"
                            class="text-warning-emphasis stretched-link">Giveaway Manager</a></h3>
                      <p class="card-text"><em>Provably fair</em> giveaway manager.</p>
                      <P class="card-text"> Giveaways can have their results easily verified using only the blockhash
@@ -149,17 +157,14 @@
             </div>
          </div>
          <div class="m-4 text-center">
-            <a href="https://bitcoindata.science" title="Home" class="btn btn-primary shadow-sm btn-lg px-5 text-decoration-none">Back to Home</a>
+            <a href="https://bitcoindata.science" title="Home"
+               class="btn btn-primary shadow-sm btn-lg px-5 text-decoration-none">Back to Home</a>
          </div>
       </div>
       <!-- /main page -->
    </main>
 
    <footer-component />
-
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-      crossorigin="anonymous"></script>
 </body>
 
 </html>
