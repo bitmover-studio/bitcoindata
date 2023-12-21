@@ -15,7 +15,7 @@
    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
-   <link rel="manifest" href="/site.webmanifest">
+   <link rel="manifest" href="https://bitcoindata.science/site.webmanifest">
    <link rel="mask-icon" href="img/safari-pinned-tab.svg" color="#111316">
    <meta name="apple-mobile-web-app-title" content="bitcoin data.science">
    <meta name="application-name" content="bitcoin data.science">
@@ -47,13 +47,16 @@
         ]
       }
    </script>
-   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"></script>
    <link href="css/style.css" rel="stylesheet">
    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
    <script src="components/navbar.js" type="text/javascript" defer></script>
    <script src="components/footer.js" type="text/javascript" defer></script>
-   <script src="components/strategy.js" type="text/javascript" defer></script>
+   <script src="components/strategy.js" type="text/javascript" async></script>
 </head>
 
 <body>
@@ -64,21 +67,29 @@
    <!-- Page Content -->
    <main class="container-fluid col-lg-10 col-xl-8">
       <div class="mt-3">
-         <h1 class="h1 fw-semibold mb-0">JayJuanGee<span class="d-none d-md-inline"> Bitcoin</span> Withdrawal Strategy
-         </h1>
-         <span class="header-line bg-info rounded mb-2 d-inline-block"> </span>
-         <h2 class="lead">Ideas of sustainable withdrawal that attempts to measure monthly budget limits based spot
+         <h1 class="h2 fw-semibold mb-0">JJG Sustaineable Bitcoin Withdrawal Strategy</h1>
+         <span class="header-line w-75 bg-info rounded mb-2 d-inline-block"> </span>
+         <h2 class="lead mb-4">Ideas of sustainable withdrawal that attempts to measure monthly budget limits based spot
             price relative to the 200-week moving average.</h2>
-
-         <article>If the BTC spot price is above than 25% above the 200-week moving average, the month limit could be
-            withdrawal (fixed by the Withdrawal Rate).
-            If the spot price is less than 25% above the 200-week moving average, then only 40% of the month’s limit
-            could be withdrawn.
-         </article>
+         <div class="row">
+            <div class="col d-sm-none d-md-inline">
+               <p><em class="fw-semibold">On the left side:</em> Input your Bitcoin stash size and your chosen
+                  withdrawal
+                  rate.</p>
+            </div>
+            <div class="col d-sm-none d-md-inline">
+               <p><em class="fw-semibold">On the right side:</em> you will see your authorized withdrawal rate based on
+                  your
+                  inputs. You will also be able to select to see how many months in advance you are
+                  authorized to withdraw in the event that the BTC spot price happens to be above certain price
+                  thresholds
+                  that are higher than the 200-week moving average</p>
+            </div>
+         </div>
          <div class="my-4">
-            <div class="row g-3 my-4">
+            <div class="row g-3 my-4 text-center">
                <div class="col">
-                  <h3 class="h6">BTC Spot Price</h3>
+                  <h3 class="h6 ">BTC Spot Price</h3>
                   <p class="fw-semibold"><span id="BTCPrice"> </span> <span id="priceVar" class="small"></span></p>
                </div>
                <div class="col">
@@ -91,43 +102,171 @@
                </div>
             </div>
             <div class="row g-3">
-               <div class="col pt-3">
-                  <label for="wrate" class="form-label">Withdrawal Rate per year (<span
-                        id="wRateRange"></span>%)</label>
-                  <input type="range" min="0" max="20" step="0.1" class="form-range" id="wrate" onChange="loadData()"
-                     value="4">
-                  <div class="form-floating mb-3">
-                     <input type="number" class="form-control" id="stash" placeholder="BTC Stash" value="1"
-                        onChange="loadData()">
-                     <label for="stash">BTC stash</label>
+               <div class="col-sm-2 pt-3">
+                  <div class="mb-3 ms-2">
+                     <label for="wrate" class="form-label small">Annual withdrawal rate</label>
+                     <p class="form-label small" id="withdrawalDescription">Conservative</p>
+                     <div class=" text-nowrap">
+                        <input value="4" type="range" min="0" max="30" step="0.25" class="form-range" id="wrate"
+                           oninput="calculateWithdrawalLimit()" height="3rem">
+                        <output for="wrate" id="wRateRange" class="fw-semibold align-top">4%</output>
+                     </div>
                   </div>
                   <div class="form-floating mb-3">
-                     <input type="number" class="form-control" id="allowed" placeholder="Allowed Withdrawal" value="1"
-                        onChange="loadData()">
-                     <label for="allowed">Month withdrawal (BTC)</label>
+                     <input type="number" class="form-control" id="stash" placeholder="BTC Stash" value="1" min="0"
+                        onChange="calculateWithdrawalLimit()">
+                     <label for="stash">BTC stash</label>
+                  </div>
+               </div>
+               <div class="col-sm-7">
+                  <h4 class="h6 text-center">Bitcoin 200 Week Moving Average Chart (log scale)</h4>
+                  <div id="chart" class="px-0 mx-0"></div>
+                  <div id="chart-line" class="px-0 mx-0"></div>
+                  <div id="source" class="small mt-0 pt-0 text-muted text-end">Price data from coingecko</div>
+               </div>
+               <div class="col-sm-3">
+                  <h4 class="h6 ">Authorized Withdrawal</h4>
+                  <div class="form-floating mb-3">
+                     <input type="number" class="form-control" id="allowed" placeholder="Allowed Withdrawal" 
+                        onChange="calculateWithdrawalLimit()" value="0" readonly>
+                     <label for="allowed">Allowed Withdrawal</label>
                   </div>
                   <div class="form-floating mb-3">
                      <input type="number" class="form-control" id="allowedvalue" placeholder="Allowed Withdrawal USD"
-                        value="1" onChange="loadData()">
-                     <label for="allowed">Month withdrawal (USD)</label>
+                       onChange="calculateWithdrawalLimit()" value="0" readonly>
+                     <label for="allowed">Allowed Withdrawal USD</label>
                   </div>
-               </div>
-               <div class="col-9">
-                  <div id="chart" class="px-0 mx-0">
+                  <h4 class="mt-4 h6 pb-0 mb-0">Advanced Withdrawal</h4>
+                  <small class="fw-semibold">(optional - yet recommend)</small>
+                  <div class="form-floating mb-3">
+                     <input type="number" class="form-control" id="monthAdvance" placeholder="No. Months in Advance"
+                       onChange="calculateWithdrawalLimit()" value="0" min="0" readonly>
+                     <label for="monthAdvance">No. Months in Advance</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                     <input type="number" class="form-control" id="allowedAdv" placeholder="Advanced Withdrawal" 
+                        onChange="calculateWithdrawalLimit()" value="0" readonly>
+                     <label for="allowedAdv">Advanced Withdrawal</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                     <input type="number" class="form-control" id="allowedAdvVal" placeholder="Advanced Withdrawal USD"
+                       onChange="calculateWithdrawalLimit()" value="0" readonly>
+                     <label for="allowedAdvVal">Advanced Withdrawal USD</label>
                   </div>
                </div>
             </div>
-
-
          </div>
-         <p id="source" class="small mt-0 pt-0 text-muted text-end">Price data from coingecko</p>
+      </div>
+
+      <article>
+         <h4 class="h5">How to use / consider the information provided through this tool:</h4>
+
+         <h5 class="h6">Underlying presumptions:</h5>
+         <p>This tool is meant to help a person/institution/government to manage his bitcoin holdings and to employ
+            sustainable BTC withdrawal methods.</p>
+         <p>This is not considered as a BTC trading tool, even though it presumes abilities to withdraw higher levels
+            of BTC withdrawal based on BTC’s spot price (including authorizations to withdraw more than one bitcoin
+            in
+            advance, as long as the BTC spot price is over certain price thresholds.</p>
+
+         <h5 class="h6">How the calculator works:</h5>
+         <p><em class="fw-semibold">My BTC Stash size:</em> Of course, this inputted data could be the total of your
+            BTC stash or it could be a part
+            of your BTC stash that is set into such a separate budget. This also could be part or all of a budget of
+            an institution, government or some
+            organization that might be authorized to spend
+            within such limits. I had personally been considering it as a way to set aside funds to fund developers.
+            So,
+            for example, a starting amount might
+            be 21 BTC for a developer fund and 21 BTC in order to pay for expenses to administer such fund.</p>
+
+         <p><em class="fw-semibold">Annual Withdrawal rate:</em> Of course, for the authorized monthly withdrawal,
+            this inputted rate ends up getting
+            divided by 12, but at the same time, since
+            we are using the 200-week moving average (which mostly tends to be a bottom price) to valuate the size of
+            our BTC stash, a sustainable withdrawal rate
+            ends up higher than traditional assets that tend to recommend withdrawal rates of 4% or less.
+            Accordingly:</p>
+         <p>
+         <ol class="list-group">
+            <li class="list-group-item border-0">A. 0% to 5%: considered as growth-oriented withdrawal rates, and
+               your BTC holdings (budget) will likely
+               continue to grow in value if you use such withdrawal rates</li>
+            <li class="list-group-item border-0">B. 6 to 10% presumptively sustainable withdrawal rates, and each
+               person using such tool would need to decide
+               for himself how conservative or
+               aggressive to be regarding the employment of such withdrawal rates</li>
+            <li class="list-group-item border-0">C. 11% to 16% - not as likely to be sustainable</li>
+            <li class="list-group-item border-0">D. 17% and higher – likely to deplete the fund, and of course, lower
+               rates are likely to sustain the fund
+               longer than higher rates</li>
+         </ol>
+         </p>
+         <p><em class="fw-semibold"> (Authorized) Month Withdrawal limit (BTC):</em> This output is calculated based
+            on BTC stash size * Annual withdrawal / 12. When the BTC spot price is at least 25% above the 200-week
+            moving average, then at least
+            1 month’s withdrawal will be authorized; however,</p>
+         <ol class="list-group">
+            <li class="list-group-item border-0">
+               A) if the BTC spot price is between 10% and 25% above the 200-week moving average, then you will be
+               authorized to withdraw for only 90% of the current month’s limit.</li>
+            <li class="list-group-item border-0">B. if the BTC spot price is between 0% and 10% above the 200-week
+               moving average, then you will be
+               authorized to withdraw for only 85% of the current month’s limit.</li>
+            <li class="list-group-item border-0">C. if the BTC spot price is between 10% and 20% below the 200-week
+               moving average, then you will be
+               authorized to withdraw for only 70% of the current month’s limit.</li>
+            <li class="list-group-item border-0">D. if the BTC spot price is between 20% and 30% below the 200-week
+               moving average, then you will be
+               authorized to withdraw for only 50% of the current month’s limit.</li>
+            <li class="list-group-item border-0">E. if the BTC spot price is greater than 30% and 35% below the
+               200-week moving average, then you will be
+               authorized to withdraw for only 40% of the current month’s limit.</li>
+            <li class="list-group-item border-0">F. if the BTC spot price is greater than 35% below the 200-week
+               moving average, then you will be not be
+               authorized to withdraw any BTC from the budget.</li>
+         </ol>
+
+         <p><em class="fw-semibold">(Authorized) Month Withdrawal limit (USD):</em> This output is calculated
+            based on BTC stash size * Annual withdrawal / 12 (* USD Spot price).
+            Since the BTC spot price is continuing to change, if the monthly withdrawal is not accomplished all at
+            one time, it is best to refer to the BTC
+            authorized monthly withdrawal amount to stay within limits.</p>
+
+         <p> <em class="fw-semibold">Advanced Withdrawal (No. Months):</em> This output is calculated based on if
+            the BTC spot price is higher than the 200 WMA. Accordingly:</p>
+         <ol class="list-group">
+            <li class="list-group-item border-0">
+               A. if the BTC spot price is between 33% and 66% above the 200-week moving average, then you will be
+               authorized to withdraw for the current month + an additional month.</li>
+            <li class="list-group-item border-0">B. if the BTC spot price is between 66% and 100% above the 200-week
+               moving average, then you will be
+               authorized to withdraw for the current month + 3 additional months.</li>
+            <li class="list-group-item border-0">C. if the BTC spot price is between 100% and 200% above the
+               200-week moving average, then you will be
+               authorized to withdraw for the current month + 5 additional months.</li>
+            <li class="list-group-item border-0"> D. if the BTC spot price is between 200% and 400% above the
+               200-week moving average, then you will be
+               authorized to withdraw for the current month + 11 additional months.</li>
+            <li class="list-group-item border-0"> E. if the BTC spot price is between 400% and 650% above the
+               200-week moving average, then you will be
+               authorized to withdraw for the current month + 23 additional months.</li>
+            <li class="list-group-item border-0"> F. if the BTC spot price is between 650% and 900% above the
+               200-week moving average, then you will be
+               authorized to withdraw for the current month + 35 additional months.</li>
+            <li class="list-group-item border-0"> G. if the BTC spot price is between 900% and 1,400% above the
+               200-week moving average, then you will be
+               authorized to withdraw for the current month + 47 additional months.</li>
+            <li class="list-group-item border-0"> H. if the BTC spot price is greater than 1,400% above the 200-week
+               moving average, then you will be
+               authorized to withdraw for the current month + 59 additional months.</li>
+
+      </article>
+
       </div>
    </main>
    <footer-component />
 
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-      crossorigin="anonymous"></script>
    <script>
       var callback = function (mutationsList, observer) {
          // Look through all mutations that just occured
@@ -135,6 +274,7 @@
             // If the `data-bs-theme` attribute was modified
             if (mutation.attributeName === 'data-bs-theme') {
                chart.updateOptions({ theme: { mode: localStorage.getItem('theme') } });
+               chartLine.updateOptions({ theme: { mode: localStorage.getItem('theme') } });
             }
          }
       };

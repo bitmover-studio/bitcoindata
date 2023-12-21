@@ -140,3 +140,8 @@ background-image: linear-gradient(55deg,#f5f7fd,#fbfbfe)}
     color: #476C8E;
     font: 13px verdana, helvetica, sans-serif;
 }
+
+/* JJG strategy */
+input[type="range"] {
+  width:70%;
+  }
