@@ -49,6 +49,7 @@ function calculateWithdrawalLimit() {
     let withdrawalDescription = document.getElementById('withdrawalDescription');
     let wrate = document.getElementById("wrate");
 
+    //Withdrawal Rate Description
     if (wrate.value > 17) {
         wRateRange.classList.remove("text-warning");
         wRateRange.classList.add("text-danger");
@@ -73,11 +74,11 @@ function calculateWithdrawalLimit() {
         withdrawalDescription.classList.remove("text-danger");
         withdrawalDescription.classList.remove("text-warning");
         withdrawalDescription.innerText = 'Conservative';
-
     }
+    document.getElementById("stashValue").innerText = (document.getElementById("stash").value * btcSpotPrice).toLocaleString("en-US", { style: "currency", currency: "USD" });
 
+    //Set Withdrawal Limit
     let withdrawalLimit;
-
     if (percentAboveMovingAverage >= 0.25) {
         withdrawalLimit = btcStashSize * annualWithdrawalRate / 12;
     } else if (percentAboveMovingAverage >= 10) {
@@ -96,9 +97,8 @@ function calculateWithdrawalLimit() {
     document.getElementById("allowed").value = withdrawalLimit.toFixed(8);
     document.getElementById("allowedvalue").value = (withdrawalLimit * btcSpotPrice).toFixed(2);
     document.getElementById("monthAdvance").value = calculateAdvancedWithdraw();
-    document.getElementById("allowedAdv").value = (calculateAdvancedWithdraw() *  withdrawalLimit).toFixed(8);
-    document.getElementById("allowedAdvVal").value = (calculateAdvancedWithdraw() *  withdrawalLimit * btcSpotPrice).toFixed(8);
-
+    document.getElementById("allowedAdv").value = (calculateAdvancedWithdraw() * withdrawalLimit).toFixed(8);
+    document.getElementById("allowedAdvVal").value = (calculateAdvancedWithdraw() * withdrawalLimit * btcSpotPrice).toFixed(2);
 }
 
 // Advanced Withdrawal
@@ -124,6 +124,17 @@ function calculateAdvancedWithdraw() {
     }
 }
 
+// Save and Load Input area data from past sessions
+//load
+if (window.localStorage["annualWithdrawalRate"] && window.localStorage["btcStashSize"]) {
+    document.getElementById("wrate").value = window.localStorage["annualWithdrawalRate"];
+    document.getElementById("stash").value = window.localStorage["btcStashSize"];
+}
+//save
+function saveToLocalStorage() {
+        window.localStorage['annualWithdrawalRate'] = document.getElementById("wrate").value;
+        window.localStorage['btcStashSize'] = document.getElementById("stash").value;
+}
 
 // Work on data
 fetchUrls(urls).then(([res1, res2, res3]) => {
@@ -131,7 +142,7 @@ fetchUrls(urls).then(([res1, res2, res3]) => {
     let oldprice = res2;
     let newprices = res3.prices;
     let prices = oldprice.concat(newprices);
-    let yesterdayPrice = prices[prices.length - 1][1];
+    let yesterdayPrice = prices[prices.length - 2][1];
     let priceVar = ((btcSpotPrice - yesterdayPrice) / yesterdayPrice);
     sma200 = calculateSMA(prices, 1400);
     let movingAverage = sma200[sma200.length - 1][1];
@@ -250,7 +261,7 @@ let optionsLine = {
         selection: {
             enabled: true,
             xaxis: {
-                min: new Date('19 Jun 2019').getTime(),
+                min: new Date('22 Jul 2010').getTime(),
                 max: new Date().getTime()
             },
             fill: {
@@ -277,12 +288,13 @@ let optionsLine = {
         }
     },
     yaxis: {
-        tickAmount: 2,
+        tickAmount: 3,
         labels: {
             formatter: function (val, index) {
                 return val.toLocaleString("en-US", { style: "currency", currency: "USD" });
             }
         },
+        show: false,
     }
 };
 
