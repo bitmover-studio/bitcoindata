@@ -29,26 +29,33 @@ function getRawData($url)
 
 function getBTCPriceUsd($coin)
 {
-    $priceUrl = "https://api.coingecko.com/api/v3/simple/price?ids=" . $coin . '&vs_currencies=usd';
-    $backupPriceUrl = 'https://api.binance.com/api/v3/ticker/24hr?symbol=BTCUSDT';
-    $storedPricefile = 'priceusd.json';
+    if ($coin === 'bitcoin') {
+        $priceUrl = "https://api.coingecko.com/api/v3/simple/price?ids=" . $coin . '&vs_currencies=usd';
+        $backupPriceUrl = 'https://api.binance.com/api/v3/ticker/24hr?symbol=BTCUSDT';
+        $storedPricefile = 'priceusd.json';
 
-    if (file_exists($storedPricefile) && (time() - filemtime($storedPricefile)) < 3 * 60) { //file younger than 3 minutes
-        $data = json_decode(file_get_contents($storedPricefile));
-        $btcpriceusd = $data->price;
-    } else {
-        $data = getData($priceUrl);
-        if ($data === false) {
-            $data = getData($backupPriceUrl);
-            $btcpriceusd = (float) $data->lastPrice;
+        if (file_exists($storedPricefile) && (time() - filemtime($storedPricefile)) < 3 * 60) { //file younger than 3 minutes
+            $data = json_decode(file_get_contents($storedPricefile));
+            $btcpriceusd = $data->price;
         } else {
-            $btcpriceusd = $data->$coin->usd;
+            $data = getData($priceUrl);
+            if ($data === false) {
+                $data = getData($backupPriceUrl);
+                $btcpriceusd = (float) $data->lastPrice;
+            } else {
+                $btcpriceusd = $data->$coin->usd;
+            }
+            $data = ['price' => $btcpriceusd];
+            $json = json_encode($data, JSON_PRETTY_PRINT);
+            file_put_contents('priceusd.json', $json);
         }
-        $data = ['price' => $btcpriceusd];
-        $json = json_encode($data, JSON_PRETTY_PRINT);
-        file_put_contents('priceusd.json', $json);
+        return $btcpriceusd;
+    } else {
+        $priceUrl = "https://api.coingecko.com/api/v3/simple/price?ids=" . $coin . '&vs_currencies=usd';
+        $data = getData($priceUrl);
+        $altcoinpriceusd = $data->$coin->usd;
+        return $altcoinpriceusd;
     }
-    return $btcpriceusd;
 }
 
 function getFiatRates($currency)
@@ -104,7 +111,7 @@ function allocateHexColor($image, $hex)
     return imagecolorallocate($image, $red, $green, $blue);
 }
 
-function printDate($image,$height,$textcolor)
+function printDate($image, $height, $textcolor)
 {
     if (isset($_GET["date"])) {
         $date = gmdate('Y/m/d H:i') . " UTC";
