@@ -26,7 +26,7 @@ $rates = getFiatRates($currency);
 
 $str = $fiatamount / ($btcpriceusd * $rates);
 $string = number_format($str, 8);
-$string = $string . ($coin === 'bitcoin')? " BTC" : '';
+$string =  ($coin === 'bitcoin')? $string . "BTC" : $string;
 
 
 header('Content-type: image/gif'); // filetype
