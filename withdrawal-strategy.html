@@ -57,6 +57,7 @@
    <script src="components/navbar.js" type="text/javascript" defer></script>
    <script src="components/footer.js" type="text/javascript" defer></script>
    <script src="components/strategy.js" type="text/javascript" async></script>
+   <script src="components/jjg-chart-options.js" type="text/javascript" async></script>
 </head>
 
 <body>
@@ -71,43 +72,34 @@
          <span class="header-line w-75 bg-primary rounded mb-2 d-inline-block"> </span>
          <h2 class="lead mb-4">Ideas of sustainable withdrawal that attempts to measure monthly budget limits based spot
             price relative to the 200-week moving average.</h2>
-         <div class="row">
-            <div class="col d-sm-none d-md-inline">
-               <p><em class="fw-semibold">On the left side:</em> Input your Bitcoin stash size and your chosen
-                  withdrawal
-                  rate.</p>
-            </div>
-            <div class="col d-sm-none d-md-inline">
-               <p><em class="fw-semibold">On the right side:</em> you will see your authorized withdrawal rate based on
-                  your
-                  inputs. You will also be able to select to see how many months in advance you are
-                  authorized to withdraw in the event that the BTC spot price happens to be above certain price
-                  thresholds
-                  that are higher than the 200-week moving average</p>
-            </div>
-         </div>
          <div class="my-4">
             <div class="row g-3 my-4 text-center">
                <div class="col">
                   <h3 class="h6 ">BTC Spot Price</h3>
-                  <p class="fw-semibold"><span id="BTCPrice"> </span> <span id="priceVar" class="small"></span></p>
+                  <p class="fw-semibold"><span id="BTCPrice"> &nbsp;</span> <span id="priceVar" class="small"></span>
+                  </p>
+                  <div class="text-muted small ms-2">BTC Stash Value (Spot) <div id="stashValue">Loading...</div>
+                  </div>
                </div>
                <div class="col">
                   <h3 class="h6">200-week MA</h3>
                   <p class="fw-semibold"><span id="sma"> &nbsp;</span></p>
+                  <div class="text-muted small ms-2">BTC Stash Value (200-WMA) <div id="stashWMAValue">Loading...</div>
+                  </div>
                </div>
                <div class="col">
-                  <h3 class="h6">Price Above SMA (%)</h3>
+                  <h3 class="h6">Price Above MA (%)</h3>
                   <p class="fw-semibold"><span id="pricesma"></span></p>
                </div>
             </div>
             <div class="row g-3">
                <div class="col-sm-2 pt-3 mt-3 ">
-                  <div class="mb-3 ms-2 pt-3">
+                  <h3 class="h5 mt-3 pt-3">Input Area</h3>
+                  <div class="mb-3 pt-3">
                      <label for="wrate" class="form-label h6">Annual withdrawal rate</label>
                      <p class="form-label small" id="withdrawalDescription">Conservative</p>
                      <div class=" text-nowrap">
-                        <input value="4" type="range" min="0" max="30" step="0.25" class="form-range" id="wrate"
+                        <input value="6" type="range" min="0" max="30" step="0.25" class="form-range" id="wrate"
                            oninput="calculateWithdrawalLimit()" height="3rem">
                         <output for="wrate" id="wRateRange" class="fw-semibold align-top">4%</output>
                      </div>
@@ -116,8 +108,7 @@
                      <div class="form-floating gx-1 mb-3 col-6 col-sm-12">
                         <input type="number" class="form-control" id="stash" placeholder="BTC Stash" step="0.01" min="0"
                            value="1" onChange="calculateWithdrawalLimit()">
-                        <label for="stash">BTC Stash</label>
-                        <div class="text-muted small ms-2" id="stashValue">Loading...</div>
+                        <label for="stash">BTC stash size</label>
                      </div>
                      <div class="col-6 col-sm-12 gx-1">
                         <button type="button" id="saveInputs" class="btn btn-primary shadow-sm  px-4 w-100"
@@ -125,14 +116,16 @@
                         <div class="text-muted small ms-2 text-center">Browser local storage</div>
 
                         <div class="toast-container position-absolute p-3">
-                           <div class="toast align-items-center" role="alert" id="liveToast" aria-live="assertive" aria-atomic="true">
+                           <div class="toast align-items-center" role="alert" id="liveToast" aria-live="assertive"
+                              aria-atomic="true">
                               <div class="d-flex">
-                                <div class="toast-body">
-                                 Inputed data saved for next visit.
-                                </div>
-                                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                                 <div class="toast-body">
+                                    Inputed data saved for next visit.
+                                 </div>
+                                 <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"
+                                    aria-label="Close"></button>
                               </div>
-                            </div>
+                           </div>
                         </div>
                      </div>
                   </div>
@@ -144,32 +137,35 @@
                   <div id="source" class="small mt-0 pt-0 text-muted text-end">Price data from coingecko</div>
                </div>
                <div class="col-sm-3">
+                  <h3 class="h6 mt-3 pt-3">Monthly Authorized Withdrawal</h3>
                   <h4 class="h6 mt-3 pt-3">Authorized Withdrawal</h4>
                   <div class="form-floating mb-3">
-                     <input type="number" class="form-control" id="allowed" placeholder="Allowed Withdrawal"
-                        onChange="calculateWithdrawalLimit()" value="0" readonly>
-                     <label for="allowed">Allowed Withdrawal</label>
+                     <input type="number" class="form-control" id="allowed" placeholder="Authorized Withdrawal"
+                        onChange="calculateWithdrawalLimit()" value="0" disabled>
+                     <label for="allowed">Authorized Withdrawal</label>
                   </div>
                   <div class="form-floating mb-3">
-                     <input type="number" class="form-control" id="allowedvalue" placeholder="Allowed Withdrawal USD"
-                        onChange="calculateWithdrawalLimit()" value="0" readonly>
-                     <label for="allowed">Allowed Withdrawal USD</label>
+                     <input type="number" class="form-control" id="allowedvalue" placeholder="Authorized Withdrawal USD"
+                        onChange="calculateWithdrawalLimit()" value="0" disabled>
+                     <label for="allowed">Authorized Withdrawal USD</label>
                   </div>
                   <h4 class="mt-4 h6 pb-0 mb-0">Advanced Withdrawal</h4>
-                  <small class="form-label small">(optional - yet recommend)</small>
+                  <small class="form-label small fw-semibold">(optional - yet recommend)
+                     <div class="fw-normal">see below description regarding how the number of advance months are reached</div>
+                  </small>
                   <div class="form-floating mb-3">
                      <input type="number" class="form-control" id="monthAdvance" placeholder="No. Months in Advance"
-                        onChange="calculateWithdrawalLimit()" value="0" min="0" readonly>
+                        onChange="calculateWithdrawalLimit()" value="0" min="0" disabled>
                      <label for="monthAdvance">No. Months in Advance</label>
                   </div>
                   <div class="form-floating mb-3">
                      <input type="number" class="form-control" id="allowedAdv" placeholder="Advanced Withdrawal"
-                        onChange="calculateWithdrawalLimit()" value="0" readonly>
+                        onChange="calculateWithdrawalLimit()" value="0" disabled>
                      <label for="allowedAdv">Advanced Withdrawal</label>
                   </div>
                   <div class="form-floating mb-3">
                      <input type="number" class="form-control" id="allowedAdvVal" placeholder="Advanced Withdrawal USD"
-                        onChange="calculateWithdrawalLimit()" value="0" readonly>
+                        onChange="calculateWithdrawalLimit()" value="0" disabled>
                      <label for="allowedAdvVal">Advanced Withdrawal USD</label>
                   </div>
                </div>

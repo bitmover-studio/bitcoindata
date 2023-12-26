@@ -76,20 +76,21 @@ function calculateWithdrawalLimit() {
         withdrawalDescription.innerText = 'Conservative';
     }
     document.getElementById("stashValue").innerText = (document.getElementById("stash").value * btcSpotPrice).toLocaleString("en-US", { style: "currency", currency: "USD" });
+    document.getElementById("stashWMAValue").innerText = (document.getElementById("stash").value * sma200[sma200.length-1][1]).toLocaleString("en-US", { style: "currency", currency: "USD" });
 
     //Set Withdrawal Limit
     let withdrawalLimit;
     if (percentAboveMovingAverage >= 0.25) {
         withdrawalLimit = btcStashSize * annualWithdrawalRate / 12;
-    } else if (percentAboveMovingAverage >= 10) {
+    } else if (percentAboveMovingAverage >= 0.1) {
         withdrawalLimit = btcStashSize * annualWithdrawalRate / 12 * 0.9;
     } else if (percentAboveMovingAverage >= 0) {
         withdrawalLimit = btcStashSize * annualWithdrawalRate / 12 * 0.85;
-    } else if (percentAboveMovingAverage >= -10) {
+    } else if (percentAboveMovingAverage >= -0.1) {
         withdrawalLimit = btcStashSize * annualWithdrawalRate / 12 * 0.7;
-    } else if (percentAboveMovingAverage >= -20) {
+    } else if (percentAboveMovingAverage >= -0.20) {
         withdrawalLimit = btcStashSize * annualWithdrawalRate / 12 * 0.5;
-    } else if (percentAboveMovingAverage >= -35) {
+    } else if (percentAboveMovingAverage >= -0.35) {
         withdrawalLimit = btcStashSize * annualWithdrawalRate / 12 * 0.4;
     }
 
@@ -132,18 +133,18 @@ if (window.localStorage["annualWithdrawalRate"] && window.localStorage["btcStash
 }
 //save
 function saveToLocalStorage() {
-        window.localStorage['annualWithdrawalRate'] = document.getElementById("wrate").value;
-        window.localStorage['btcStashSize'] = document.getElementById("stash").value;
+    window.localStorage['annualWithdrawalRate'] = document.getElementById("wrate").value;
+    window.localStorage['btcStashSize'] = document.getElementById("stash").value;
 }
 // Toast
 const toastTrigger = document.getElementById('saveInputs')
 const toastLiveExample = document.getElementById('liveToast')
 
 if (toastTrigger) {
-  const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
-  toastTrigger.addEventListener('click', () => {
-    toastBootstrap.show()
-  })
+    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+    toastTrigger.addEventListener('click', () => {
+        toastBootstrap.show()
+    })
 }
 
 // Work on data
@@ -163,7 +164,7 @@ fetchUrls(urls).then(([res1, res2, res3]) => {
         data: prices,
         type: "area",
     }, {
-        name: '200-Week SMA',
+        name: '200-Week MA',
         data: sma200,
         type: "line"
     }]);
@@ -185,128 +186,3 @@ fetchUrls(urls).then(([res1, res2, res3]) => {
     // Load Dynamic Data
     calculateWithdrawalLimit();
 });
-
-let options = {
-    chart: {
-        background: 'transparent',
-        zoom: {
-            autoScaleYaxis: true,
-        },
-        height: 380,
-        id: 'main',
-        toolbar: {
-            autoSelected: "pan",
-            show: false
-        },
-    },
-    legend: {
-        show: true,
-        position: 'top',
-    },
-    theme: {
-        mode: localStorage.getItem('theme'),
-    },
-    stroke: {
-        width: 2,
-        curve: 'smooth',
-    },
-    dataLabels: {
-        enabled: false
-    },
-    tooltip: {
-        theme: 'dark',
-        shared: true,
-        x: {
-            show: true,
-            format: 'yyyy/MM/dd',
-        },
-        y: [{
-            formatter: function (value, { series, seriesIndex, dataPointIndex, w }) {
-                let priceAboveMA = (series[0][dataPointIndex] - series[1][dataPointIndex]) / series[1][dataPointIndex]
-                return value.toLocaleString("en-US", { style: "currency", currency: "USD" }) + '<div class="small m-2 position-absolute top-0 end-0 text-center">Above MA: <br/>' + ((priceAboveMA > 0) ? '<span class="text-success-emphasis">' : '<span class="text-danger">') + priceAboveMA.toLocaleString("en-US", { style: "percent", minimumFractionDigits: 2, maximumFractionDigits: 2 })
-                    + "</span></div>"
-            }
-        }]
-    },
-    grid: {
-        borderColor: "#535A6C33",
-        xaxis: {
-            lines: {
-                show: true
-            }
-        }
-    },
-    series: [],
-    xaxis: {
-        type: 'datetime',
-    },
-    noData: {
-        text: 'Loading...'
-    },
-    yaxis: {
-        show: false,
-        forceNiceScale: true,
-        seriesName: 'BTC Price',
-        labels: {
-            formatter: function (val, index) {
-                return val.toLocaleString("en-US", { style: "currency", currency: "USD" });
-            },
-        },
-        logarithmic: true,
-    },
-};
-const chart = new ApexCharts(document.querySelector("#chart"), options);
-chart.render();
-
-let optionsLine = {
-    series: [],
-    chart: {
-        id: 'brush',
-        background: 'transparent',
-        height: 130,
-        brush: {
-            target: 'main',
-            enabled: true,
-        },
-        selection: {
-            enabled: true,
-            xaxis: {
-                min: new Date('22 Jul 2010').getTime(),
-                max: new Date().getTime()
-            },
-            fill: {
-                color: '#535A6C',
-                opacity: 0.3
-            }
-        },
-    },
-    theme: {
-        mode: localStorage.getItem('theme'),
-    },
-    grid: {
-        borderColor: "#535A6C33",
-        xaxis: {
-            lines: {
-                show: true
-            }
-        }
-    },
-    xaxis: {
-        type: 'datetime',
-        tooltip: {
-            enabled: false
-        }
-    },
-    yaxis: {
-        tickAmount: 3,
-        labels: {
-            formatter: function (val, index) {
-                return val.toLocaleString("en-US", { style: "currency", currency: "USD" });
-            }
-        },
-        show: false,
-    }
-};
-
-const chartLine = new ApexCharts(document.querySelector("#chart-line"), optionsLine);
-chartLine.render();
