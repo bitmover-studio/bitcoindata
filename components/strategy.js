@@ -135,6 +135,16 @@ function saveToLocalStorage() {
         window.localStorage['annualWithdrawalRate'] = document.getElementById("wrate").value;
         window.localStorage['btcStashSize'] = document.getElementById("stash").value;
 }
+// Toast
+const toastTrigger = document.getElementById('saveInputs')
+const toastLiveExample = document.getElementById('liveToast')
+
+if (toastTrigger) {
+  const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+  toastTrigger.addEventListener('click', () => {
+    toastBootstrap.show()
+  })
+}
 
 // Work on data
 fetchUrls(urls).then(([res1, res2, res3]) => {

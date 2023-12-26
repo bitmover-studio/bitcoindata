@@ -67,7 +67,7 @@
    <!-- Page Content -->
    <main class="container-fluid col-lg-10 col-xl-8">
       <div class="mt-3">
-         <h1 class="h2 fw-semibold mb-0">JJG Sustaineable Bitcoin Withdrawal Strategy</h1>
+         <h1 class="h2 fw-semibold mb-0">JJG Sustainable Bitcoin Withdrawal Strategy</h1>
          <span class="header-line w-75 bg-primary rounded mb-2 d-inline-block"> </span>
          <h2 class="lead mb-4">Ideas of sustainable withdrawal that attempts to measure monthly budget limits based spot
             price relative to the 200-week moving average.</h2>
@@ -104,7 +104,7 @@
             <div class="row g-3">
                <div class="col-sm-2 pt-3 mt-3 ">
                   <div class="mb-3 ms-2 pt-3">
-                     <label for="wrate" class="form-label small">Annual withdrawal rate</label>
+                     <label for="wrate" class="form-label h6">Annual withdrawal rate</label>
                      <p class="form-label small" id="withdrawalDescription">Conservative</p>
                      <div class=" text-nowrap">
                         <input value="4" type="range" min="0" max="30" step="0.25" class="form-range" id="wrate"
@@ -114,15 +114,26 @@
                   </div>
                   <div class="row g-3">
                      <div class="form-floating gx-1 mb-3 col-6 col-sm-12">
-                        <input type="number" class="form-control" id="stash" placeholder="BTC Stash" step="0.01"  min="0" value="1"
-                           onChange="calculateWithdrawalLimit()">
+                        <input type="number" class="form-control" id="stash" placeholder="BTC Stash" step="0.01" min="0"
+                           value="1" onChange="calculateWithdrawalLimit()">
                         <label for="stash">BTC Stash</label>
                         <div class="text-muted small ms-2" id="stashValue">Loading...</div>
                      </div>
                      <div class="col-6 col-sm-12 gx-1">
-                        <button type="button" id="submit" class="btn btn-primary shadow-sm  px-4 w-100"
+                        <button type="button" id="saveInputs" class="btn btn-primary shadow-sm  px-4 w-100"
                            onclick="saveToLocalStorage()">Save inputs</button>
-                        <div class="text-muted small ms-2">Browser local storage</div>
+                        <div class="text-muted small ms-2 text-center">Browser local storage</div>
+
+                        <div class="toast-container position-absolute p-3">
+                           <div class="toast align-items-center" role="alert" id="liveToast" aria-live="assertive" aria-atomic="true">
+                              <div class="d-flex">
+                                <div class="toast-body">
+                                 Inputed data saved for next visit.
+                                </div>
+                                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                              </div>
+                            </div>
+                        </div>
                      </div>
                   </div>
                </div>
@@ -145,7 +156,7 @@
                      <label for="allowed">Allowed Withdrawal USD</label>
                   </div>
                   <h4 class="mt-4 h6 pb-0 mb-0">Advanced Withdrawal</h4>
-                  <small class="fw-semibold">(optional - yet recommend)</small>
+                  <small class="form-label small">(optional - yet recommend)</small>
                   <div class="form-floating mb-3">
                      <input type="number" class="form-control" id="monthAdvance" placeholder="No. Months in Advance"
                         onChange="calculateWithdrawalLimit()" value="0" min="0" readonly>
