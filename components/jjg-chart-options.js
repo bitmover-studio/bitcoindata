@@ -1,4 +1,4 @@
-
+// Main Chart
 let options = {
     chart: {
         background: 'transparent',
@@ -45,7 +45,7 @@ let options = {
         }]
     },
     grid: {
-        show:true,
+        show: true,
         borderColor: "#535A6C33",
         xaxis: {
             lines: {
@@ -56,7 +56,7 @@ let options = {
             lines: {
                 show: false
             }
-        },  
+        },
     },
     series: [],
     xaxis: {
@@ -78,10 +78,12 @@ let options = {
     },
     markers: {
         size: 0
-     }
+    }
 };
 const chart = new ApexCharts(document.querySelector("#chart"), options);
 chart.render();
+
+// Brush Chart
 
 let optionsLine = {
     series: [],
@@ -136,8 +138,77 @@ let optionsLine = {
     },
     markers: {
         size: 0
-     }
+    }
 };
 
 const chartLine = new ApexCharts(document.querySelector("#chart-line"), optionsLine);
 chartLine.render();
+
+// Date and Annotations
+let dateInput = document.getElementById('date');
+dateInput.value = new Date().toISOString().substring(0, 10);
+
+function drawAnnotation(date) {
+    let index=findClosestIndex(prices,  new Date(dateInput.value).getTime())
+    chart.clearAnnotations();
+    chart.addXaxisAnnotation({
+                    x: new Date(date).getTime(),
+                    borderColor: '#0d6efd',
+                    label: {
+                        borderColor: '#0d6efd',
+                        style: {
+                            color: '#fff',
+                            background: "#0d6efdcc"
+                        },
+                        text: 'BTC spot Price - ' + prices[index][1].toLocaleString("en-US", { style: "currency", currency: "USD" })
+                    }
+                }, true
+    )
+    checkDate()
+}
+
+// Checkbox
+function checkDate() {
+    if (document.getElementById("useDate").checked === true) {
+        let index=findClosestIndex(prices,  new Date(dateInput.value).getTime());
+        btcSpotPrice = prices[index][1];
+        movingAverage = sma200[index][1];
+        percentAboveMovingAverage = (btcSpotPrice - movingAverage) / movingAverage;
+
+        document.getElementById("headerDate").innerText = "As of " + (dateInput.value);
+        document.getElementById("headerAboveMA").innerHTML = percentAboveMovingAverage.toLocaleString("en-US", { style: "percent", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        calculateWithdrawalLimit();
+
+        //toast
+        const toastBootstrap = bootstrap.Toast.getOrCreateInstance(document.getElementById('checkToast'))
+        toastBootstrap.show()
+    } else {
+        document.getElementById("headerDate").innerHTML = '&nbsp; ';
+        document.getElementById("headerAboveMA").innerHTML = '&nbsp; ';
+
+        btcSpotPrice = defaultSpotPrice;
+        movingAverage = sma200[sma200.length - 1][1];
+        percentAboveMovingAverage = (btcSpotPrice - movingAverage) / movingAverage;
+        calculateWithdrawalLimit();
+    }
+}
+
+// find date in data series
+function findClosestIndex(data, target) {
+    var closest = Math.abs(data[0][0] - target);
+    var index = 0;
+    for (var i = 1; i < data.length; i++) {
+        var diff = Math.abs(data[i][0] - target);
+        if (diff < closest) {
+            closest = diff;
+            index = i;
+        }
+    }
+    return index;
+}
+
+
+//checkBoxToast
+// Toast
+
+

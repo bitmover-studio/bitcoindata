@@ -3,6 +3,9 @@
 let percentAboveMovingAverage;
 let btcSpotPrice;
 let sma200;
+let prices;
+let movingAverage;
+let defaultSpotPrice; // price that will never change
 
 // Calculate SMA
 function calculateSMA(data, period) {
@@ -76,7 +79,7 @@ function calculateWithdrawalLimit() {
         withdrawalDescription.innerText = 'Conservative';
     }
     document.getElementById("stashValue").innerText = (document.getElementById("stash").value * btcSpotPrice).toLocaleString("en-US", { style: "currency", currency: "USD" });
-    document.getElementById("stashWMAValue").innerText = (document.getElementById("stash").value * sma200[sma200.length-1][1]).toLocaleString("en-US", { style: "currency", currency: "USD" });
+    document.getElementById("stashWMAValue").innerText = (document.getElementById("stash").value * movingAverage).toLocaleString("en-US", { style: "currency", currency: "USD" });
 
     //Set Withdrawal Limit
     let withdrawalLimit;
@@ -136,12 +139,17 @@ function saveToLocalStorage() {
     window.localStorage['annualWithdrawalRate'] = document.getElementById("wrate").value;
     window.localStorage['btcStashSize'] = document.getElementById("stash").value;
 }
+function restoreDefaults() {
+    document.getElementById("wrate").value = 6;
+    document.getElementById("stash").value = 1;
+    calculateWithdrawalLimit()
+}
 // Toast
 const toastTrigger = document.getElementById('saveInputs')
-const toastLiveExample = document.getElementById('liveToast')
+const saveInputsToast = document.getElementById('saveInputsToast')
 
 if (toastTrigger) {
-    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(saveInputsToast)
     toastTrigger.addEventListener('click', () => {
         toastBootstrap.show()
     })
@@ -150,13 +158,14 @@ if (toastTrigger) {
 // Work on data
 fetchUrls(urls).then(([res1, res2, res3]) => {
     btcSpotPrice = res1.price;
+    defaultSpotPrice=btcSpotPrice;
     let oldprice = res2;
     let newprices = res3.prices;
-    let prices = oldprice.concat(newprices);
+    prices = oldprice.concat(newprices);
     let yesterdayPrice = prices[prices.length - 2][1];
     let priceVar = ((btcSpotPrice - yesterdayPrice) / yesterdayPrice);
     sma200 = calculateSMA(prices, 1400);
-    let movingAverage = sma200[sma200.length - 1][1];
+    movingAverage = sma200[sma200.length - 1][1];
 
     // Load data into Chart
     chart.updateSeries([{
