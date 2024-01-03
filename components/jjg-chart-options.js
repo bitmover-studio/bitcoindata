@@ -1,3 +1,5 @@
+"use strict";
+
 // Main Chart
 let options = {
     chart: {
@@ -23,7 +25,7 @@ let options = {
         mode: localStorage.getItem('theme'),
     },
     stroke: {
-        width: 2,
+        width: 3,
         curve: 'smooth',
     },
     dataLabels: {
@@ -146,6 +148,8 @@ chartLine.render();
 
 // Date and Annotations
 let dateInput = document.getElementById('date');
+dateInput.max = new Date().toISOString().split("T")[0];
+dateInput.min = '2010-07-22';
 dateInput.value = new Date().toISOString().substring(0, 10);
 
 function drawAnnotation(date) {
@@ -206,9 +210,3 @@ function findClosestIndex(data, target) {
     }
     return index;
 }
-
-
-//checkBoxToast
-// Toast
-
-
