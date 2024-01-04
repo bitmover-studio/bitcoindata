@@ -145,3 +145,5 @@ background-image: linear-gradient(55deg,#f5f7fd,#fbfbfe)}
 input[type="range"] {
   width:70%;
   }
+
+.pointer,.pointer:hover{text-decoration: none;}

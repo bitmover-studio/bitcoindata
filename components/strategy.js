@@ -177,11 +177,6 @@ fetchUrls(urls).then(([res1, res2, res3]) => {
         data: sma200,
         type: "line"
     }]);
-    chartLine.updateSeries([{
-        name: 'BTC Spot Price',
-        data: prices,
-        type: "area"
-    }]);
 
     // Load Fixed Data
     percentAboveMovingAverage = (btcSpotPrice - movingAverage) / movingAverage;

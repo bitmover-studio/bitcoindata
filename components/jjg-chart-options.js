@@ -70,7 +70,6 @@ let options = {
     yaxis: {
         show: false,
         forceNiceScale: true,
-        seriesName: 'BTC Price',
         labels: {
             formatter: function (val, index) {
                 return val.toLocaleString("en-US", { style: "currency", currency: "USD" });
@@ -85,67 +84,6 @@ let options = {
 const chart = new ApexCharts(document.querySelector("#chart"), options);
 chart.render();
 
-// Brush Chart
-
-let optionsLine = {
-    series: [],
-    chart: {
-        animations: {
-            enabled: false
-        },
-        id: 'brush',
-        background: 'transparent',
-        height: 130,
-        brush: {
-            target: 'main',
-            enabled: true,
-        },
-        selection: {
-            enabled: true,
-            xaxis: {
-                min: new Date('22 Jul 2010').getTime(),
-                max: new Date().getTime()
-            },
-            fill: {
-                color: '#535A6C',
-                opacity: 0.3
-            }
-        },
-    },
-    theme: {
-        mode: localStorage.getItem('theme'),
-    },
-    grid: {
-        borderColor: "#535A6C33",
-        xaxis: {
-            lines: {
-                show: true
-            }
-        }
-    },
-    xaxis: {
-        type: 'datetime',
-        tooltip: {
-            enabled: false
-        }
-    },
-    yaxis: {
-        tickAmount: 3,
-        labels: {
-            formatter: function (val, index) {
-                return val.toLocaleString("en-US", { style: "currency", currency: "USD" });
-            }
-        },
-        show: false,
-    },
-    markers: {
-        size: 0
-    }
-};
-
-const chartLine = new ApexCharts(document.querySelector("#chart-line"), optionsLine);
-chartLine.render();
-
 // Date and Annotations
 let dateInput = document.getElementById('date');
 dateInput.max = new Date().toISOString().split("T")[0];
@@ -153,20 +91,20 @@ dateInput.min = '2010-07-22';
 dateInput.value = new Date().toISOString().substring(0, 10);
 
 function drawAnnotation(date) {
-    let index=findClosestIndex(prices,  new Date(dateInput.value).getTime())
+    let index = findClosestIndex(prices, new Date(dateInput.value).getTime())
     chart.clearAnnotations();
     chart.addXaxisAnnotation({
-                    x: new Date(date).getTime(),
-                    borderColor: '#0d6efd',
-                    label: {
-                        borderColor: '#0d6efd',
-                        style: {
-                            color: '#fff',
-                            background: "#0d6efdcc"
-                        },
-                        text: 'BTC spot Price - ' + prices[index][1].toLocaleString("en-US", { style: "currency", currency: "USD" })
-                    }
-                }, true
+        x: new Date(date).getTime(),
+        borderColor: '#0d6efd',
+        label: {
+            borderColor: '#0d6efd',
+            style: {
+                color: '#fff',
+                background: "#0d6efdcc"
+            },
+            text: 'BTC spot Price - ' + prices[index][1].toLocaleString("en-US", { style: "currency", currency: "USD" })
+        }
+    }, true
     )
     checkDate()
 }
@@ -174,7 +112,7 @@ function drawAnnotation(date) {
 // Checkbox
 function checkDate() {
     if (document.getElementById("useDate").checked === true) {
-        let index=findClosestIndex(prices,  new Date(dateInput.value).getTime());
+        let index = findClosestIndex(prices, new Date(dateInput.value).getTime());
         btcSpotPrice = prices[index][1];
         movingAverage = sma200[index][1];
         percentAboveMovingAverage = (btcSpotPrice - movingAverage) / movingAverage;
@@ -210,3 +148,54 @@ function findClosestIndex(data, target) {
     }
     return index;
 }
+
+
+// chart buttons area
+function linearLogarithimic() {
+    if (document.getElementById("linLog").checked === true) {
+        chart.updateOptions({
+            yaxis: {
+                logarithmic: true, forceNiceScale: true, show: false, labels: {
+                    formatter: function (val, index) {
+                        return val.toLocaleString("en-US", { style: "currency", currency: "USD" });
+                    },
+                }
+            }
+        })
+    } else {
+        chart.updateOptions({
+            yaxis: {
+                logarithmic: false, forceNiceScale: true, labels: {
+                    formatter: function (val, index) {
+                        return val.toLocaleString("en-US", { style: "currency", currency: "USD" });
+                    },
+                }
+            }
+        });
+    }
+}
+
+function chartPeriod(period) {
+    chart.updateSeries([{
+        name: 'BTC Price',
+        data: prices.slice(period),
+        type: "area",
+    }, {
+        name: '200-Week MA',
+        data: sma200.slice(period),
+        type: "line"
+    }])
+}
+let chartButtons = document.querySelectorAll(".pointer");
+function selectButton(event) {
+    for (let button of chartButtons) {
+        button.classList.remove("link-secondary","border-bottom","border-3");
+    }
+    // Adiciona a classe selected ao objeto clicado
+    event.target.classList.add("link-secondary","border-bottom","border-3");
+  }
+  
+  // Adiciona um evento de click a cada objeto
+  for (let button of chartButtons) {
+    button.addEventListener("click", selectButton);
+  }

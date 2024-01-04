@@ -71,7 +71,10 @@
          <h1 class="h2 fw-semibold mb-0">JJG Sustainable Bitcoin Withdrawal Strategy</h1>
          <span class="header-line w-50 bg-primary rounded mb-2 d-inline-block"> </span>
          <h2 class="lead mb-4">Ideas of sustainable withdrawal that calculates monthly budget limits based BTC spot
-            price relative to the 200-week moving average. <span class="small"><a href='https://bitcointalk.org/index.php?topic=5475347.msg63213914#msg63213914' class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover small fw-semibold" title="Reference">Reference</a> </span></h2>
+            price relative to the 200-week moving average. <span class="small"><a
+                  href='https://bitcointalk.org/index.php?topic=5475347.msg63213914#msg63213914'
+                  class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover small fw-semibold"
+                  title="Reference">Reference</a> </span></h2>
          <div class="my-4">
             <div class="row g-3 my-4 text-center">
                <div class="col">
@@ -132,8 +135,8 @@
                            </div>
                         </div>
                         <div class="toast-container position-absolute p-3">
-                           <div class="toast align-items-center text-bg-secondary " role="alert" id="saveInputsToast" aria-live="assertive"
-                              aria-atomic="true">
+                           <div class="toast align-items-center text-bg-secondary " role="alert" id="saveInputsToast"
+                              aria-live="assertive" aria-atomic="true">
                               <div class="d-flex">
                                  <div class="toast-body">
                                     Inputs stored in your browser for future visits.
@@ -158,8 +161,8 @@
                            </label>
                         </div>
                         <div class="toast-container position-absolute p-3">
-                           <div class="toast align-items-center text-bg-warning border-0" role="alert" id="checkToast" aria-live="assertive"
-                              aria-atomic="true">
+                           <div class="toast align-items-center text-bg-warning border-0" role="alert" id="checkToast"
+                              aria-live="assertive" aria-atomic="true">
                               <div class="d-flex">
                                  <div class="toast-body">
                                     Warning. Page will recalculate all fields according to this date.
@@ -174,8 +177,25 @@
                </div>
                <div class="col-sm-7">
                   <h4 class="h6 text-center">Bitcoin 200 Week Moving Average Chart (log scale)</h4>
+                  <div class="row justify-content-between">
+                     <div class="col">
+                        <span class="small border-1 px-2 border-end" onClick="chartPeriod(-30)"><a href=# class="pointer">1M</a></span>
+                        <span class="small border-1 px-2 border-end" onClick="chartPeriod(-180)"><a href=# class="pointer">6M</a></span>
+                        <span class="small border-1 px-2 border-end" onClick="chartPeriod(-365)"><a href=# class="pointer">1Y</a></span>
+                        <span class="small border-1 px-2 border-end" onClick="chartPeriod(-1825)"><a href=# class="pointer">5Y</a></span>
+                        <span class="small border-1 px-2 border-end" onClick="chartPeriod(-3650)"><a href=# class="pointer">10Y</a></span>
+                        <span class="small border-1 px-2" onClick="chartPeriod()"><a href=# class="pointer link-secondary border-bottom border-3">ALL</a></span>
+                     </div>
+                     <div class="col form-check gx-1">
+                        <input class="form-check-input" type="checkbox" checked id="linLog"
+                           onchange='linearLogarithimic();'>
+                        <label class="form-check-label small" for="linLog">
+                           Logarithimic scale
+                        </label>
+                     </div>
+                  </div>
+
                   <div id="chart" class="px-0 mx-0"></div>
-                  <div id="chart-line" class="px-0 mx-0"></div>
                   <div id="source" class="small mt-0 pt-0 text-muted text-end">Price data from coingecko</div>
                </div>
                <div class="col-sm-3">
@@ -223,7 +243,7 @@
          <p>This tool is meant to help a person/institution/government to manage his bitcoin holdings and to employ
             sustainable BTC withdrawal methods.</p>
          <p>This is not considered as a BTC trading tool, even though it presumes abilities to withdraw higher levels
-            of BTC withdrawal based on BTC’s spot price (including authorizations to withdraw more than one bitcoin
+            of BTC withdrawal based on BTC's spot price (including authorizations to withdraw more than one bitcoin
             in
             advance, as long as the BTC spot price is over certain price thresholds.</p>
 
@@ -255,7 +275,7 @@
                for himself how conservative or
                aggressive to be regarding the employment of such withdrawal rates</li>
             <li class="list-group-item border-0">C. 11% to 16% - not as likely to be sustainable</li>
-            <li class="list-group-item border-0">D. 17% and higher – likely to deplete the fund, and of course, lower
+            <li class="list-group-item border-0">D. 17% and higher - likely to deplete the fund, and of course, lower
                rates are likely to sustain the fund
                longer than higher rates</li>
          </ol>
@@ -263,23 +283,23 @@
          <p><em class="fw-semibold"> (Authorized) Month Withdrawal limit (BTC):</em> This output is calculated based
             on BTC stash size * Annual withdrawal / 12. When the BTC spot price is at least 25% above the 200-week
             moving average, then at least
-            1 month’s withdrawal will be authorized; however,</p>
+            1 month's withdrawal will be authorized; however,</p>
          <ol class="list-group">
             <li class="list-group-item border-0">
                A) if the BTC spot price is between 10% and 25% above the 200-week moving average, then you will be
-               authorized to withdraw for only 90% of the current month’s limit.</li>
+               authorized to withdraw for only 90% of the current month's limit.</li>
             <li class="list-group-item border-0">B. if the BTC spot price is between 0% and 10% above the 200-week
                moving average, then you will be
-               authorized to withdraw for only 85% of the current month’s limit.</li>
+               authorized to withdraw for only 85% of the current month's limit.</li>
             <li class="list-group-item border-0">C. if the BTC spot price is between 10% and 20% below the 200-week
                moving average, then you will be
-               authorized to withdraw for only 70% of the current month’s limit.</li>
+               authorized to withdraw for only 70% of the current month's limit.</li>
             <li class="list-group-item border-0">D. if the BTC spot price is between 20% and 30% below the 200-week
                moving average, then you will be
-               authorized to withdraw for only 50% of the current month’s limit.</li>
+               authorized to withdraw for only 50% of the current month's limit.</li>
             <li class="list-group-item border-0">E. if the BTC spot price is greater than 30% and 35% below the
                200-week moving average, then you will be
-               authorized to withdraw for only 40% of the current month’s limit.</li>
+               authorized to withdraw for only 40% of the current month's limit.</li>
             <li class="list-group-item border-0">F. if the BTC spot price is greater than 35% below the 200-week
                moving average, then you will be not be
                authorized to withdraw any BTC from the budget.</li>
@@ -332,7 +352,6 @@
             // If the `data-bs-theme` attribute was modified
             if (mutation.attributeName === 'data-bs-theme') {
                chart.updateOptions({ theme: { mode: localStorage.getItem('theme') } });
-               chartLine.updateOptions({ theme: { mode: localStorage.getItem('theme') } });
             }
          }
       };
