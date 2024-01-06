@@ -1,5 +1,5 @@
 [center][table][tr]
 [td]
-[font=Arial black][size=29pt][glow=#112,1][color=#112].....[/color][url=https://bitcoindata.science/][color=#fff]bitcoindata[/color][color=#ffa500].science[/color][/url][color=#112]......[/color][font=Arial][url=https://bitcoindata.science/bitcointalk-api][size=15pt][color=#fff]Bitcoin[color=transparent].[/color]API[color=transparent].[/color]for[color=transparent].[/color]Bitcointalk.org[/size][/url][/font][color=#112].....[/color][size=35pt][url=https://bitcoindata.science/][color=#ffa500][btc][/color][/url][/size][color=#112].....[/color][/glow][/size][/font]
+[font=Arial black][size=25pt][glow=#112,1][color=#112].....[/color][url=https://bitcoindata.science/][color=#fff]bitcoindata[/color][color=#ffa500].science[/color][/url][color=#112]......[/color][font=Arial][url=https://bitcoindata.science/bitcointalk-api][size=15pt][color=#fff]Bitcoin[color=transparent].[/color]API[color=transparent].[/color]for[color=transparent].[/color]Bitcointalk.org[/size][/url][/font][color=#112].....[/color][size=25pt][url=https://bitcoindata.science/][color=#ffa500][btc][/color][/url][/size][color=#112].....[/color][/glow][/size][/font]
 [/td]
 [/tr][/table][/center]
