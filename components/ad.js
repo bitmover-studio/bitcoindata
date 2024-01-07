@@ -7,16 +7,20 @@ class Ad extends HTMLElement {
 
   connectedCallback() {
     this.innerHTML = `
-      <div class="dropdown float-end">
-          <a class="btn btn-info dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Sponsored Content
-          </a>
-          <div class="dropdown-menu p-4 text-muted" style="max-width: 30  0px;">
-              <p>Be seen by active bitcoin and cryptocurrency users</p>
-              <a class="btn btn-primary" href="./advertise.html" role="button">More Info</a>
-          </div>
+      <div class="container text-center my-3 mb-5" id="Banner">
+        <a href="https://tinyurl.com/btctalksig" title="BC.Game - official Partner of Argentine National Team & CLOUD9" target="_blank" rel="noreferrer">
+          <img class="border-1 border-dark border img-fluid d-none d-md-inline-block" alt='BC.Game' src="https://bitcoindata.science/img/BC_Game_Cowboy.gif " width='728' height='90'/>
+          <img class="border-1 border-dark border img-fluid d-md-none" alt="BC.Game" src="https://bitcoindata.science/img/BC_Game_Cowboy_mobile.gif" width='320' height='50'/>
+        </a>
+        <div class="d-flex justify-content-center align-items-center">
+          <p class="small mb-0">Sponsored Content</p>
+          <button type="button" class="btn-close ms-2" aria-label="Close" title="Click to dimiss"></button>
+        </div>
       </div>
       `;
+    document.querySelector('.btn-close').addEventListener('click', function () {
+      document.querySelector('#Banner').style.display = 'none';
+    });
   }
 }
 

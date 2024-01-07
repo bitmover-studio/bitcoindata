@@ -29,11 +29,13 @@
       background-color: #E5E5E8;
     }
   </style>
+  <script src="../components/ad.js" type="text/javascript" defer></script>
 </head>
 
 <body>
 
   <main class="container pt-5 mb-5">
+    <ad-component></ad-component>
     <h1 class=" pb-2 mb-4 text-dark border-dark">Bitcointalk Giveaway Manager</h1>
     <h2 id="giveaway_name"></h2>
     <form action="javascript:go()">
@@ -128,8 +130,8 @@
       </div>
       <div class="col-md">
         <figure class="figure">
-          <img src="3CrySAp8G1PfvjrYT4HPQhE8MouBKWd9WB.webp" class="figure-img img-fluid rounded"
-            alt="buy me a coffee" title="3CrySAp8G1PfvjrYT4HPQhE8MouBKWd9WB" width="80" height="80">
+          <img src="3CrySAp8G1PfvjrYT4HPQhE8MouBKWd9WB.webp" class="figure-img img-fluid rounded" alt="buy me a coffee"
+            title="3CrySAp8G1PfvjrYT4HPQhE8MouBKWd9WB" width="80" height="80">
           <figcaption class="figure-caption"><span class="small">3CrySAp8G1PfvjrYT4HPQhE8MouBKWd9WB</span></figcaption>
         </figure>
       </div>
@@ -183,7 +185,7 @@
           let index_number = decimal % competitors.length
           let winner = competitors[index_number];
 
-          document.getElementById("block-output").innerHTML = "<code class='text-primary'>" +blockhash + "</code> <a class='small text-muted' target='_blank' href='https://mempool.space/block/" + block + "'>Verify</a>";
+          document.getElementById("block-output").innerHTML = "<code class='text-primary'>" + blockhash + "</code> <a class='small text-muted' target='_blank' href='https://mempool.space/block/" + block + "'>Verify</a>";
           document.getElementById("rolled-number").innerHTML = decimal;
           document.getElementById("winner").innerHTML = winner
 
@@ -212,10 +214,10 @@
             //   Get time of future block
             $.ajax('https://mempool.space/api/blocks/tip/height')
               .done(function (blockheight) {
-                var blockdelta =  document.getElementById("block").value - blockheight
+                var blockdelta = document.getElementById("block").value - blockheight
                 console.log(blockdelta)
                 var fblocktime = new Date(new Date().getTime() + 10 * 60000 * blockdelta);
-                document.getElementById("block-output").innerHTML = "Block <code>" + document.getElementById("block").value + "</code> not mined yet.<br/> Will probably be mined at <time style='color:var(--bs-code-color);' class='font-monospace'>" + fblocktime+"</time>";
+                document.getElementById("block-output").innerHTML = "Block <code>" + document.getElementById("block").value + "</code> not mined yet.<br/> Will probably be mined at <time style='color:var(--bs-code-color);' class='font-monospace'>" + fblocktime + "</time>";
                 document.getElementById("rolled-number").innerHTML = '';
 
               })
