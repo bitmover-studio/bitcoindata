@@ -19,13 +19,14 @@ let options = {
     },
     legend: {
         show: true,
+        horizontalAlign: 'right', 
         position: 'top',
     },
     theme: {
         mode: localStorage.getItem('theme'),
     },
     stroke: {
-        width: 3,
+        width: [2,3],
         curve: 'smooth',
     },
     dataLabels: {
@@ -76,6 +77,9 @@ let options = {
             },
         },
         logarithmic: true,
+    },
+    fill: {
+       opacity: 0.7,
     },
     markers: {
         size: 0
@@ -191,11 +195,8 @@ function selectButton(event) {
     for (let button of chartButtons) {
         button.classList.remove("link-secondary","border-bottom","border-3");
     }
-    // Adiciona a classe selected ao objeto clicado
     event.target.classList.add("link-secondary","border-bottom","border-3");
   }
-  
-  // Adiciona um evento de click a cada objeto
-  for (let button of chartButtons) {
+    for (let button of chartButtons) {
     button.addEventListener("click", selectButton);
   }

@@ -100,7 +100,7 @@
                </div>
             </div>
             <div class="row g-3">
-               <div class="col-sm-2 pt-3 mt-3 ">
+               <div class="col-sm-2">
                   <h3 class="h5 mt-3 pt-3">Input Area</h3>
                   <div class="mb-3 pt-3">
                      <label for="wrate" class="form-label h6">Annual withdrawal rate</label>
@@ -178,67 +178,84 @@
                   </div>
                </div>
                <div class="col-sm-7">
-                  <h4 class="h6 text-center">Bitcoin 200 Week Moving Average Chart (log scale)</h4>
-                  <div class="row justify-content-between">
-                     <div class="col">
-                        <span class="small border-1 px-2 border-end" onClick="chartPeriod(-30)"><a href=# class="pointer">1M</a></span>
-                        <span class="small border-1 px-2 border-end" onClick="chartPeriod(-180)"><a href=# class="pointer">6M</a></span>
-                        <span class="small border-1 px-2 border-end" onClick="chartPeriod(-365)"><a href=# class="pointer">1Y</a></span>
-                        <span class="small border-1 px-2 border-end" onClick="chartPeriod(-1825)"><a href=# class="pointer">5Y</a></span>
-                        <span class="small border-1 px-2 border-end" onClick="chartPeriod(-3650)"><a href=# class="pointer">10Y</a></span>
-                        <span class="small border-1 px-2" onClick="chartPeriod()"><a href=# class="pointer link-secondary border-bottom border-3">ALL</a></span>
-                     </div>
-                     <div class="col form-check gx-1">
-                        <input class="form-check-input" type="checkbox" checked id="linLog"
-                           onchange='linearLogarithimic();'>
-                        <label class="form-check-label small" for="linLog">
-                           Logarithimic scale
-                        </label>
-                     </div>
-                  </div>
 
-                  <div id="chart" class="px-0 mx-0"></div>
-                  <div id="source" class="small mt-0 pt-0 text-muted text-end">Price data from coingecko</div>
+                  <div class="card border-0 bg-transparent text-center">
+                     <h4 class="card-header bg-transparent">
+                        Bitcoin 200 Week Moving Average Chart
+                     </h4>
+                     <div class="card-body">
+                        <div class="row justify-content-between">
+                           <div class="col-auto">
+                              <span class="small border-1 px-2 border-end" onClick="chartPeriod(-30)"><a
+                                    href="javascript:void(0);" class="pointer">1M</a></span>
+                              <span class="small border-1 px-2 border-end" onClick="chartPeriod(-180)"><a
+                                    href="javascript:void(0);" class="pointer">6M</a></span>
+                              <span class="small border-1 px-2 border-end" onClick="chartPeriod(-365)"><a
+                                    href="javascript:void(0);" class="pointer">1Y</a></span>
+                              <span class="small border-1 px-2 border-end" onClick="chartPeriod(-1825)"><a
+                                    href="javascript:void(0);" class="pointer">5Y</a></span>
+                              <span class="small border-1 px-2 border-end" onClick="chartPeriod(-3650)"><a
+                                    href="javascript:void(0);" class="pointer">10Y</a></span>
+                              <span class="small border-1 px-2" onClick="chartPeriod()"><a href="javascript:void(0);"
+                                    class="pointer link-secondary border-bottom border-3">ALL</a></span>
+                           </div>
+                           <div class="col-auto form-check gx-1">
+                              <input class="form-check-input" type="checkbox" checked id="linLog"
+                                 onchange='linearLogarithimic();'>
+                              <label class="form-check-label small" for="linLog">
+                                 Logarithimic scale
+                              </label>
+                           </div>
+                        </div>
+                        <div id="chart" class="px-0 mx-0"></div>
+                        <div class="card-text text-body-secondary text-end small">
+                           Price data from coingecko
+                        </div>
+                     </div>
+
+                  </div>
                </div>
                <div class="col-sm-3">
-                  <h3 class="h6 mt-3 pt-3">Monthly Authorized Withdrawal</h3>
-                  <h4 class="h6 mt-3 pt-3">Authorized Withdrawal</h4>
-                  <div class="form-floating mb-3">
-                     <input type="number" class="form-control" id="allowed" placeholder="Authorized Withdrawal"
-                        onChange="calculateWithdrawalLimit()" value="0" disabled>
-                     <label for="allowed">Authorized Withdrawal</label>
-                  </div>
-                  <div class="form-floating mb-3">
-                     <input type="number" class="form-control" id="allowedvalue" placeholder="Authorized Withdrawal USD"
-                        onChange="calculateWithdrawalLimit()" value="0" disabled>
-                     <label for="allowed">Authorized Withdrawal USD</label>
-                  </div>
-                  <h4 class="mt-4 h6 pb-0 mb-0">Advanced Withdrawal</h4>
-                  <small class="form-label small fw-semibold">(optional - yet recommend)
-                     <div class="fw-normal">see below description regarding how the number of advance months are reached
+                  <h3 class="h5 mt-3 pt-3">Output Area</h3>
+                  <h4 class="h6 mt-3 pt-3">Monthly Authorized Withdrawal</h3>
+                     <div class="form-floating mb-3">
+                        <input type="number" class="form-control" id="allowed" placeholder="Authorized BTC Withdrawal"
+                           onChange="calculateWithdrawalLimit()" value="0" disabled>
+                        <label for="allowed">Authorized BTC Withdrawal</label>
                      </div>
-                  </small>
-                  <div class="form-floating mb-3">
-                     <input type="number" class="form-control" id="monthAdvance" placeholder="No. Months in Advance"
-                        onChange="calculateWithdrawalLimit()" value="0" min="0" disabled>
-                     <label for="monthAdvance">No. Months in Advance</label>
-                  </div>
-                  <div class="form-floating mb-3">
-                     <input type="number" class="form-control" id="allowedAdv" placeholder="Advanced Withdrawal"
-                        onChange="calculateWithdrawalLimit()" value="0" disabled>
-                     <label for="allowedAdv">Advanced Withdrawal</label>
-                  </div>
-                  <div class="form-floating mb-3">
-                     <input type="number" class="form-control" id="allowedAdvVal" placeholder="Advanced Withdrawal USD"
-                        onChange="calculateWithdrawalLimit()" value="0" disabled>
-                     <label for="allowedAdvVal">Advanced Withdrawal USD</label>
-                  </div>
+                     <div class="form-floating mb-3">
+                        <input type="number" class="form-control" id="allowedvalue"
+                           placeholder="Authorized Withdrawal USD" onChange="calculateWithdrawalLimit()" value="0"
+                           disabled>
+                        <label for="allowed">Authorized Withdrawal USD</label>
+                     </div>
+                     <h4 class="mt-4 h6 pb-0 mb-0">Advanced Withdrawal <small
+                           class="form-label small fw-semibold">(optional - yet recommend)</small></h4>
+                     <a href="#how"
+                        class="link-offset-1 link-underline link-underline-opacity-0 link-underline-opacity-75-hover small fw-normal">
+                        Details below</a>
+                     <div class="form-floating mb-3">
+                        <input type="number" class="form-control" id="monthAdvance" placeholder="No. Months in Advance"
+                           onChange="calculateWithdrawalLimit()" value="0" min="0" disabled>
+                        <label for="monthAdvance">No. Months in Advance</label>
+                     </div>
+                     <div class="form-floating mb-3">
+                        <input type="number" class="form-control" id="allowedAdv" placeholder="Advanced Withdrawal"
+                           onChange="calculateWithdrawalLimit()" value="0" disabled>
+                        <label for="allowedAdv">Advanced BTC Withdrawal</label>
+                     </div>
+                     <div class="form-floating mb-3">
+                        <input type="number" class="form-control" id="allowedAdvVal"
+                           placeholder="Advanced Withdrawal USD" onChange="calculateWithdrawalLimit()" value="0"
+                           disabled>
+                        <label for="allowedAdvVal">Advanced Withdrawal USD</label>
+                     </div>
                </div>
             </div>
          </div>
       </div>
 
-      <article>
+      <article id="how">
          <h4 class="h5">How to use / consider the information provided through this tool:</h4>
 
          <h5 class="h6">Underlying presumptions:</h5>
