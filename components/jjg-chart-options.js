@@ -79,7 +79,7 @@ let options = {
         logarithmic: true,
     },
     fill: {
-       opacity: 0.7,
+       opacity: [0.45,1],
     },
     markers: {
         size: 0
@@ -120,22 +120,17 @@ function checkDate() {
         btcSpotPrice = prices[index][1];
         movingAverage = sma200[index][1];
         percentAboveMovingAverage = (btcSpotPrice - movingAverage) / movingAverage;
-
-        document.getElementById("headerDate").innerText = "As of " + (dateInput.value);
-        document.getElementById("headerAboveMA").innerHTML = percentAboveMovingAverage.toLocaleString("en-US", { style: "percent", minimumFractionDigits: 2, maximumFractionDigits: 2 });
         calculateWithdrawalLimit();
-
+        document.getElementById("currentDate").innerText = new Date(dateInput.value).toLocaleDateString();
         //toast
         const toastBootstrap = bootstrap.Toast.getOrCreateInstance(document.getElementById('checkToast'))
         toastBootstrap.show()
     } else {
-        document.getElementById("headerDate").innerHTML = '&nbsp; ';
-        document.getElementById("headerAboveMA").innerHTML = '&nbsp; ';
-
         btcSpotPrice = defaultSpotPrice;
         movingAverage = sma200[sma200.length - 1][1];
         percentAboveMovingAverage = (btcSpotPrice - movingAverage) / movingAverage;
         calculateWithdrawalLimit();
+        document.getElementById("currentDate").innerText = new Date().toLocaleDateString();
     }
 }
 

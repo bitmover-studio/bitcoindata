@@ -51,7 +51,20 @@ function calculateWithdrawalLimit() {
     let wRateRange = document.getElementById('wRateRange');
     let withdrawalDescription = document.getElementById('withdrawalDescription');
     let wrate = document.getElementById("wrate");
+    document.getElementById("currentDate").innerText = new Date().toLocaleDateString()
 
+    // Header Data
+    let yesterdayPrice = prices[prices.length - 2][1];
+    let priceVar = ((btcSpotPrice - yesterdayPrice) / yesterdayPrice);
+
+    percentAboveMovingAverage = (btcSpotPrice - movingAverage) / movingAverage;
+
+    document.getElementById("pricesma").innerText = percentAboveMovingAverage.toLocaleString("en-US", { style: "percent", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    document.getElementById("sma").innerHTML = movingAverage.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits:2 })+'<small class="h6"> USD</small>';
+    document.getElementById("BTCPrice").innerHTML = btcSpotPrice.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits:2  })+'<small class="h6"> USD</small>';
+    document.getElementById("priceVar").innerText = (((priceVar > 0) ? '+' : '') + priceVar.toLocaleString("en-US", { style: "percent", minimumFractionDigits: 2, maximumFractionDigits: 2 }));
+    (priceVar > 0) ? document.getElementById("priceVar").className = 'text-success-emphasis h5' : document.getElementById("priceVar").className = 'text-danger h5';
+    (percentAboveMovingAverage > 0) ? document.getElementById("pricesma").className = 'text-success-emphasis h5' : document.getElementById("pricesma").className = 'text-danger h5';
     //Withdrawal Rate Description
     if (wrate.value > 17) {
         wRateRange.classList.remove("text-warning");
@@ -78,8 +91,8 @@ function calculateWithdrawalLimit() {
         withdrawalDescription.classList.remove("text-warning");
         withdrawalDescription.innerText = 'Conservative';
     }
-    document.getElementById("stashValue").innerText = (document.getElementById("stash").value * btcSpotPrice).toLocaleString("en-US", { style: "currency", currency: "USD" });
-    document.getElementById("stashWMAValue").innerText = (document.getElementById("stash").value * movingAverage).toLocaleString("en-US", { style: "currency", currency: "USD" });
+    document.getElementById("stashValue").innerHTML = (document.getElementById("stash").value * btcSpotPrice).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits:2  })+'<small class="h6"> USD</small>';
+    document.getElementById("stashWMAValue").innerHTML = (document.getElementById("stash").value * movingAverage).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits:2  })+'<small class="h6"> USD</small>';
 
     //Set Withdrawal Limit
     let withdrawalLimit;
@@ -158,12 +171,10 @@ if (toastTrigger) {
 // Work on data
 fetchUrls(urls).then(([res1, res2, res3]) => {
     btcSpotPrice = res1.price;
-    defaultSpotPrice=btcSpotPrice;
+    defaultSpotPrice = btcSpotPrice;
     let oldprice = res2;
     let newprices = res3.prices;
     prices = oldprice.concat(newprices);
-    let yesterdayPrice = prices[prices.length - 2][1];
-    let priceVar = ((btcSpotPrice - yesterdayPrice) / yesterdayPrice);
     sma200 = calculateSMA(prices, 1400);
     movingAverage = sma200[sma200.length - 1][1];
 
@@ -177,15 +188,6 @@ fetchUrls(urls).then(([res1, res2, res3]) => {
         data: sma200,
         type: "line"
     }]);
-
-    // Load Fixed Data
-    percentAboveMovingAverage = (btcSpotPrice - movingAverage) / movingAverage;
-
-    document.getElementById("pricesma").innerText = percentAboveMovingAverage.toLocaleString("en-US", { style: "percent", minimumFractionDigits: 2, maximumFractionDigits: 2 });
-    document.getElementById("sma").innerText = movingAverage.toLocaleString("en-US", { style: "currency", currency: "USD" });
-    document.getElementById("BTCPrice").innerText = btcSpotPrice.toLocaleString("en-US", { style: "currency", currency: "USD" });
-    document.getElementById("priceVar").innerText = (((priceVar > 0) ? '+' : '') + priceVar.toLocaleString("en-US", { style: "percent", minimumFractionDigits: 2, maximumFractionDigits: 2 }));
-    (priceVar > 0) ? document.getElementById("priceVar").classList.add('text-success-emphasis') : document.getElementById("priceVar").classList.add('text-danger');
 
     // Load Dynamic Data
     calculateWithdrawalLimit();
