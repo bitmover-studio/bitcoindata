@@ -121,7 +121,9 @@ function checkDate() {
         movingAverage = sma200[index][1];
         percentAboveMovingAverage = (btcSpotPrice - movingAverage) / movingAverage;
         calculateWithdrawalLimit();
-        document.getElementById("currentDate").innerText = new Date(dateInput.value).toLocaleDateString();
+        const dateParts = dateInput.value.split('-');
+        const outputDate = `${dateParts[1]}/${dateParts[2]}/${dateParts[0]}`;
+        document.getElementById("currentDate").innerText = outputDate;
         //toast
         const toastBootstrap = bootstrap.Toast.getOrCreateInstance(document.getElementById('checkToast'))
         toastBootstrap.show()
