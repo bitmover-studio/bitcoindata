@@ -60,10 +60,10 @@ function calculateWithdrawalLimit() {
     percentAboveMovingAverage = (btcSpotPrice - movingAverage) / movingAverage;
 
     document.getElementById("pricesma").innerText = percentAboveMovingAverage.toLocaleString("en-US", { style: "percent", minimumFractionDigits: 2, maximumFractionDigits: 2 });
-    document.getElementById("sma").innerHTML = movingAverage.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits:2 })+'<small class="h6"> USD</small>';
-    document.getElementById("BTCPrice").innerHTML = btcSpotPrice.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits:2  })+'<small class="h6"> USD</small>';
-    document.getElementById("priceVar").innerText = (((priceVar > 0) ? '+' : '') + priceVar.toLocaleString("en-US", { style: "percent", minimumFractionDigits: 2, maximumFractionDigits: 2 }));
-    (priceVar > 0) ? document.getElementById("priceVar").className = 'text-success-emphasis h5' : document.getElementById("priceVar").className = 'text-danger h5';
+    document.getElementById("sma").innerHTML = movingAverage.toLocaleString("en-US", { style: "currency", currency: "USD" });
+    document.getElementById("BTCPrice").innerHTML = btcSpotPrice.toLocaleString("en-US", { style: "currency", currency: "USD" });
+    // document.getElementById("priceVar").innerText = (((priceVar > 0) ? '+' : '') + priceVar.toLocaleString("en-US", { style: "percent", minimumFractionDigits: 2, maximumFractionDigits: 2 }));
+    // (priceVar > 0) ? document.getElementById("priceVar").className = 'text-success-emphasis h5' : document.getElementById("priceVar").className = 'text-danger h5';
     (percentAboveMovingAverage > 0) ? document.getElementById("pricesma").className = 'text-success-emphasis h5' : document.getElementById("pricesma").className = 'text-danger h5';
     //Withdrawal Rate Description
     if (wrate.value > 17) {
@@ -91,8 +91,8 @@ function calculateWithdrawalLimit() {
         withdrawalDescription.classList.remove("text-warning");
         withdrawalDescription.innerText = 'Conservative';
     }
-    document.getElementById("stashValue").innerHTML = (document.getElementById("stash").value * btcSpotPrice).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits:2  })+'<small class="h6"> USD</small>';
-    document.getElementById("stashWMAValue").innerHTML = (document.getElementById("stash").value * movingAverage).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits:2  })+'<small class="h6"> USD</small>';
+    document.getElementById("stashValue").innerHTML = (document.getElementById("stash").value * btcSpotPrice).toLocaleString("en-US", { style: "currency", currency: "USD" });
+    document.getElementById("stashWMAValue").innerHTML = (document.getElementById("stash").value * movingAverage).toLocaleString("en-US", { style: "currency", currency: "USD" });
 
     //Set Withdrawal Limit
     let withdrawalLimit;

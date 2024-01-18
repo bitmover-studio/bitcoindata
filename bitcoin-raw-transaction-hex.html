@@ -60,7 +60,7 @@
 <body>
    <!-- Navbar -->
    <header>
-      <navbar-component />
+      <navbar-component></navbar-component>
    </header>
    <!-- Page Content -->
    <main class="container-fluid col-lg-10 col-xl-8">
@@ -74,7 +74,7 @@
          <div class="bg-body-tertiary rounded p-5 border shadow-sm">
             <div class="mb-3">
                <label for="TransactionId" class="form-label">Enter bitcoin Transaction id:</label>
-               <input type="text" class="form-control font-monospace bg-body" id="TransactionId" rows="6"></input>
+               <input type="text" class="form-control font-monospace bg-body" id="TransactionId" rows="6">
             </div>
             <button type="button" id="submit" class="btn btn-warning shadow-sm btn-lg px-5" onclick="handleClick()">Get
                Transaction Hex</button>
@@ -85,7 +85,7 @@
          </div>
       </div>
    </main>
-   <footer-component />
+   <footer-component></footer-component>
    <script>
 
       const outputArea = document.getElementById("hex")

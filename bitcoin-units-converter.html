@@ -64,7 +64,7 @@
 <body>
    <!-- Navbar -->
    <header>
-      <navbar-component />
+      <navbar-component></navbar-component>
    </header>
    <!-- Page Content -->
    <main class="container-fluid col-lg-10 col-xl-8">
@@ -73,7 +73,7 @@
          <h1 class="h1 fw-semibold mb-0">Bitcoin Units Converter</h1>
          <span class="header-line bg-primary rounded mb-2 d-inline-block"> </span>
          <h2 class="lead">Use any of the fields below to convert bitcoin units BTC,mBTC, uBTC, satoshi, finney to
-            USD, EUR or any other fiat currency.<BR></h2>
+            USD, EUR or any other fiat currency.<br></h2>
 
          <div class="accordion my-3" id="accordion">
             <div class="accordion-item">
@@ -186,8 +186,8 @@
                   </div>
                </div>
 
-               <label for="selEbank">Select a fiat currency: <span id='fcurrency' class="conversor"> </span><span
-                     class="small ml-2" id='fdefault'> </span></label>
+               <label for="selEbank">Select a fiat currency: <span id="fcurrency" class="conversor"> </span><span
+                     class="small ml-2" id="fdefault"> </span></label>
                <div class="input-group mb-3 input-group-sm">
                   <select class="custom-select custom-select-sm input-group-text pr-4" id="selEbank"
                      onchange="inputEbank.value=parseFloat(inputUSD.value*rates[fselect]).toFixed(2);unitConverter(inputEbank.id,inputEbank.value)"
@@ -390,9 +390,9 @@
 
       </div>
       <p id="source" class="text-end text-muted small">
-         Exchange rates from European Central Bank using <a href=https://exchangerate.host/ target="_blank"
+         Exchange rates from European Central Bank using <a href="https://exchangerate.host/" target="_blank"
             rel="noreferrer">exchangerate.host</a>, bitcoin price from <a href="https://www.coingecko.com/"
-            target="_blank" rel="noreferrer">coingecko</a> and flags from <a href=https://flagpedia.net target="_blank"
+            target="_blank" rel="noreferrer">coingecko</a> and flags from <a href="https://flagpedia.net" target="_blank"
             rel="noreferrer">flagpedia</a>
       </p>
 
@@ -404,7 +404,7 @@
       <!-- /main page -->
 
    </main>
-   <footer-component />
+   <footer-component></footer-component>
 </body>
 
 </html>

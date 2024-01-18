@@ -138,10 +138,10 @@
                <div class="col-md-5">
                   <div class="form-floating mb-3">
                      <input type="text" class="form-control" id="floatingCoin" placeholder="bitcoin" value="bitcoin"
-                        onKeyup="javascript:setContent(this.value,'coin')">
+                        onkeyup="javascript:setContent(this.value,'coin')">
                      <label for="floatingCoin">coin</label>
                      <small class="text-muted">supported coins: <a
-                           href=https://api.coingecko.com/api/v3/coins/list>https://api.coingecko.com/api/v3/coins/list</a>
+                           href="https://api.coingecko.com/api/v3/coins/list">https://api.coingecko.com/api/v3/coins/list</a>
                      </small>
                   </div>
                   <div class="row">
@@ -384,7 +384,7 @@
          </div>
 
          <!-- Fiat to BTC API -->
-         <div class="my-5" id="local-price">
+         <div class="my-5" id="fiattobtc">
             <a href="#fiattobtc" class="link-danger">
                <h2 class="h2 fw-semibold mb-0">Local Fiat to BTC
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link"
@@ -454,7 +454,7 @@
                      </div>
                      <div class="col">
                         <div class="form-floating">
-                           <select class="form-select" id="floatingSelect1" aria-label="Fiat currency select"
+                           <select class="form-select" id="floatingSelect0" aria-label="Fiat currency select"
                               onChange="javascript:setContent(this.value,'fiattobtc-currency')">
                               <option selected>GBP</option>
                               <option>AFN</option>
@@ -626,7 +626,7 @@
                               <option>ZMW</option>
                               <option>ZWL</option>
                            </select>
-                           <label for="floatingSelect1">Fiat Currency</label>
+                           <label for="floatingSelect0">Fiat Currency</label>
                         </div>
                      </div>
                   </div>
@@ -656,7 +656,7 @@
                      onclick="navigator.clipboard.writeText(document.getElementById('fiattobtc-code').innerText);window.getSelection().selectAllChildren(document.getElementById('fiattobtc-code'));">
 
                      <code lang="bbcode" class="text-primary-emphasis" id="fiattobtc-code">
-                        &#91;url=https://bitcoindata.science/bitcointalk-api.html#fiattobtc&#93;&#91;img height=16&#93;<span id='fiattobtc-src'>https://bitcoindata.science/api/fiattobtc.php?fiatamount=<span class="text-danger-emphasis" id="fiatamount">10</span>&amp;currency=<span class="text-danger-emphasis " id="fiattobtc-currency">GBP</span>&amp;hex=<span class="text-danger-emphasis" id="fiatcolor">000000</span><span class="text-danger-emphasis" id="fiatcheckedbold"></span></span>&#91;/img&#93;&#91;/url&#93;
+                        &#91;url=https://bitcoindata.science/bitcointalk-api.html#fiattobtc&#93;&#91;img height=16&#93;<span id="fiattobtc-src">https://bitcoindata.science/api/fiattobtc.php?fiatamount=<span class="text-danger-emphasis" id="fiatamount">10</span>&amp;currency=<span class="text-danger-emphasis " id="fiattobtc-currency">GBP</span>&amp;hex=<span class="text-danger-emphasis" id="fiatcolor">000000</span><span class="text-danger-emphasis" id="fiatcheckedbold"></span></span>&#91;/img&#93;&#91;/url&#93;
                      </code>
                      <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48" title="Click to Copy"
                         alt="Click to Copy" class="position-absolute top-0 end-0" fill="currentColor"
@@ -747,7 +747,7 @@
                   <div class="form-floating mb-3">
                      <input type="text" class="form-control" id="floatingAddress" placeholder="Bitcoin Address"
                         value="1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa"
-                        onKeyup="javascript:setContent(this.value,'address')">
+                        onkeyup="javascript:setContent(this.value,'address')">
                      <label for="floatingAddress">Bitcoin Address</label>
                   </div>
                   <div class="form-floating">
@@ -1091,7 +1091,7 @@
                   <div class="form-floating mb-3">
                      <input type="text" class="form-control" id="floatingTransaction" placeholder="id"
                         value="bf65241f5379e511bf79f9870253735e484ec0e2e3524a78632e1f73838b1bc2"
-                        onKeyup="javascript:setContent(this.value,'transaction-id')">
+                        onkeyup="javascript:setContent(this.value,'transaction-id')">
                      <label for="floatingTransaction">transaction id</label>
                   </div>
                </div>

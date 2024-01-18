@@ -54,17 +54,17 @@
       crossorigin="anonymous"></script>
    <link href="css/style.css" rel="stylesheet">
    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-   <script src="components/navbar.js" type="text/javascript" defer></script>
-   <script src="components/footer.js" type="text/javascript" defer></script>
-   <script src="components/ad.js" type="text/javascript" defer></script>
-   <script src="components/strategy.js" type="text/javascript" async></script>
-   <script src="components/jjg-chart-options.js" type="text/javascript" async></script>
+   <script src="components/navbar.js" defer></script>
+   <script src="components/footer.js" defer></script>
+   <script src="components/ad.js" defer></script>
+   <script src="components/strategy.js" async></script>
+   <script src="components/jjg-chart-options.js" async></script>
 </head>
 
 <body>
    <!-- Navbar -->
    <header>
-      <navbar-component />
+      <navbar-component></navbar-component>
    </header>
    <!-- Page Content -->
    <main class="container-fluid col-lg-12 col-xl-10">
@@ -74,7 +74,7 @@
          <span class="header-line w-50 bg-primary rounded mb-2 d-inline-block"> </span>
          <p class="lead my-4">Ideas of sustainable withdrawal that calculates monthly budget limits based BTC spot
             price relative to the 200-Week Moving Average (200-WMA). <span class="small"><a
-                  href='https://bitcointalk.org/index.php?topic=5475347.msg63213914#msg63213914'
+                  href="https://bitcointalk.org/index.php?topic=5475347.msg63213914#msg63213914"
                   class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover small fw-semibold"
                   title="Reference">Reference</a> </span></p>
          <div class="row row-cols-1 row-cols-md-3 g-4">
@@ -83,7 +83,6 @@
                   <div class="card-body">
                      <div class="card-text mb-2">BTC Spot Price</div>
                      <h5 class="card-title display-6 fw-semibold" id="BTCPrice">&nbsp; </h5>
-                     <span id="priceVar">&nbsp; </span>
                      <div class="card-text my-2" id="currentDate">&nbsp; </div>
                   </div>
                </div>
@@ -94,7 +93,7 @@
                      <div class="card-text mb-2">200-week MA</div>
                      <h5 class="card-title display-6 fw-semibold" id="sma">&nbsp; </h5>
                      <div class="card-text my-2">Price Above MA (%)</div>
-                     <span class="h5 fw-semibold"  id="pricesma">Loading...</span>
+                     <span class="h5 fw-semibold" id="pricesma">Loading...</span>
                   </div>
                </div>
             </div>
@@ -111,14 +110,14 @@
          </div>
 
          <div class="row my-4 g-3">
-            <div class="col-sm-2">
+            <div class="col-md-2">
                <h3 class="h5 mt-3 pt-3">Input Area</h3>
                <div class="mb-3 pt-3">
                   <label for="wrate" class="form-label h6">Annual withdrawal rate</label>
                   <p class="form-label small" id="withdrawalDescription">Conservative</p>
                   <div class=" text-nowrap">
                      <input value="6" type="range" min="0" max="30" step="0.25" class="form-range" id="wrate"
-                        oninput="calculateWithdrawalLimit()" height="3rem">
+                        oninput="calculateWithdrawalLimit()">
                      <output for="wrate" id="wRateRange" class="fw-semibold align-top">4%</output>
                   </div>
                </div>
@@ -167,7 +166,7 @@
                   </div>
                   <div class=" mb-3 col-6 col-sm-12">
                      <div class="form-check gx-1">
-                        <input class="form-check-input" type="checkbox" value="" id="useDate" onchange='checkDate();'>
+                        <input class="form-check-input" type="checkbox" value="" id="useDate" onchange="checkDate();">
                         <label class="form-check-label small" for="useDate">
                            Use this date
                         </label>
@@ -187,11 +186,11 @@
                   </div>
                </div>
             </div>
-            <div class="col-sm-7">
+            <div class="col-md-7">
 
                <div class="card border-0 bg-transparent text-center">
                   <h4 class="card-header bg-transparent">
-                     Bitcoin 200 Week Moving Average Chart
+                     Bitcoin Price / 200 WMA Chart
                   </h4>
                   <div class="card-body">
                      <div class="row justify-content-between">
@@ -211,7 +210,7 @@
                         </div>
                         <div class="col-auto form-check gx-1">
                            <input class="form-check-input" type="checkbox" checked id="linLog"
-                              onchange='linearLogarithimic();'>
+                              onchange="linearLogarithimic();">
                            <label class="form-check-label small" for="linLog">
                               Logarithimic scale
                            </label>
@@ -225,39 +224,39 @@
 
                </div>
             </div>
-            <div class="col-sm-3">
+            <div class="col-md-3">
                <h3 class="h5 mt-3 pt-3">Output Area</h3>
-               <h4 class="h6 mt-3 pt-3">Monthly Authorized Withdrawal</h3>
-                  <div class="form-floating mb-3">
-                     <input type="number" class="form-control" id="allowed" placeholder="Authorized BTC Withdrawal"
-                        onChange="calculateWithdrawalLimit()" value="0" disabled>
-                     <label for="allowed">Authorized BTC Withdrawal</label>
-                  </div>
-                  <div class="form-floating mb-3">
-                     <input type="number" class="form-control" id="allowedvalue" placeholder="Authorized Withdrawal USD"
-                        onChange="calculateWithdrawalLimit()" value="0" disabled>
-                     <label for="allowed">Authorized Withdrawal USD</label>
-                  </div>
-                  <h4 class="mt-4 h6 pb-0 mb-0">Advanced Withdrawal </h4>
-                  <small class="form-label small fw-normal">(optional - yet recommend)</small>
-                  <a href="#how"
-                     class="link-offset-1 link-underline link-underline-opacity-0 link-underline-opacity-75-hover small fw-normal">
-                     Details below</a>
-                  <div class="form-floating mb-3">
-                     <input type="number" class="form-control" id="monthAdvance" placeholder="No. Months in Advance"
-                        onChange="calculateWithdrawalLimit()" value="0" min="0" disabled>
-                     <label for="monthAdvance">No. Months in Advance</label>
-                  </div>
-                  <div class="form-floating mb-3">
-                     <input type="number" class="form-control" id="allowedAdv" placeholder="Advanced Withdrawal"
-                        onChange="calculateWithdrawalLimit()" value="0" disabled>
-                     <label for="allowedAdv">Advanced BTC Withdrawal</label>
-                  </div>
-                  <div class="form-floating mb-3">
-                     <input type="number" class="form-control" id="allowedAdvVal" placeholder="Advanced Withdrawal USD"
-                        onChange="calculateWithdrawalLimit()" value="0" disabled>
-                     <label for="allowedAdvVal">Advanced Withdrawal USD</label>
-                  </div>
+               <h4 class="h6 mt-3 pt-3">Monthly Authorized Withdrawal</h4>
+               <div class="form-floating mb-3">
+                  <input type="number" class="form-control" id="allowed" placeholder="Authorized BTC Withdrawal"
+                     onChange="calculateWithdrawalLimit()" value="0" disabled>
+                  <label for="allowed">Authorized BTC Withdrawal</label>
+               </div>
+               <div class="form-floating mb-3">
+                  <input type="number" class="form-control" id="allowedvalue" placeholder="Authorized Withdrawal USD"
+                     onChange="calculateWithdrawalLimit()" value="0" disabled>
+                  <label for="allowed">Authorized Withdrawal USD</label>
+               </div>
+               <h4 class="mt-4 h6 pb-0 mb-0">Advanced Withdrawal </h4>
+               <small class="form-label small fw-normal">(optional - yet recommend)</small>
+               <a href="#how"
+                  class="link-offset-1 link-underline link-underline-opacity-0 link-underline-opacity-75-hover small fw-normal">
+                  Details below</a>
+               <div class="form-floating mb-3">
+                  <input type="number" class="form-control" id="monthAdvance" placeholder="No. Months in Advance"
+                     onChange="calculateWithdrawalLimit()" value="0" min="0" disabled>
+                  <label for="monthAdvance">No. Months in Advance</label>
+               </div>
+               <div class="form-floating mb-3">
+                  <input type="number" class="form-control" id="allowedAdv" placeholder="Advanced Withdrawal"
+                     onChange="calculateWithdrawalLimit()" value="0" disabled>
+                  <label for="allowedAdv">Advanced BTC Withdrawal</label>
+               </div>
+               <div class="form-floating mb-3">
+                  <input type="number" class="form-control" id="allowedAdvVal" placeholder="Advanced Withdrawal USD"
+                     onChange="calculateWithdrawalLimit()" value="0" disabled>
+                  <label for="allowedAdvVal">Advanced Withdrawal USD</label>
+               </div>
             </div>
          </div>
       </div>
@@ -291,7 +290,6 @@
             our BTC stash, a sustainable withdrawal rate
             ends up higher than traditional assets that tend to recommend withdrawal rates of 4% or less.
             Accordingly:</p>
-         <p>
          <ol class="list-group">
             <li class="list-group-item border-0">A. 0% to 5%: considered as growth-oriented withdrawal rates, and
                your BTC holdings (budget) will likely
@@ -305,7 +303,6 @@
                rates are likely to sustain the fund
                longer than higher rates</li>
          </ol>
-         </p>
          <p><em class="fw-semibold"> (Authorized) Month Withdrawal limit (BTC):</em> This output is calculated based
             on: </p>
          <div class="bg-dark-subtle p-3 font-monospace rounded">Month Withdrawal limit = BTC stash size * Annual
@@ -367,12 +364,10 @@
             <li class="list-group-item border-0"> H. if the BTC spot price is greater than 1,400% above the 200-week
                moving average, then you will be
                authorized to withdraw for the current month + 59 additional months.</li>
-
+         </ol>
       </article>
-
-      </div>
    </main>
-   <footer-component />
+   <footer-component></footer-component>
 
    <script>
       var callback = function (mutationsList, observer) {
