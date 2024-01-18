@@ -55,16 +55,14 @@ function calculateWithdrawalLimit() {
 
     // Header Data
     let yesterdayPrice = prices[prices.length - 2][1];
-    let priceVar = ((btcSpotPrice - yesterdayPrice) / yesterdayPrice);
 
     percentAboveMovingAverage = (btcSpotPrice - movingAverage) / movingAverage;
 
     document.getElementById("pricesma").innerText = percentAboveMovingAverage.toLocaleString("en-US", { style: "percent", minimumFractionDigits: 2, maximumFractionDigits: 2 });
     document.getElementById("sma").innerHTML = movingAverage.toLocaleString("en-US", { style: "currency", currency: "USD" });
     document.getElementById("BTCPrice").innerHTML = btcSpotPrice.toLocaleString("en-US", { style: "currency", currency: "USD" });
-    // document.getElementById("priceVar").innerText = (((priceVar > 0) ? '+' : '') + priceVar.toLocaleString("en-US", { style: "percent", minimumFractionDigits: 2, maximumFractionDigits: 2 }));
-    // (priceVar > 0) ? document.getElementById("priceVar").className = 'text-success-emphasis h5' : document.getElementById("priceVar").className = 'text-danger h5';
-    (percentAboveMovingAverage > 0) ? document.getElementById("pricesma").className = 'text-success-emphasis h5' : document.getElementById("pricesma").className = 'text-danger h5';
+   (percentAboveMovingAverage > 0) ? document.getElementById("pricesma").className = 'text-success-emphasis h5' : document.getElementById("pricesma").className = 'text-danger h5';
+    
     //Withdrawal Rate Description
     if (wrate.value > 17) {
         wRateRange.classList.remove("text-warning");
