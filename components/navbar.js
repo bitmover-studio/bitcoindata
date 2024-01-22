@@ -37,10 +37,13 @@ class Navbar extends HTMLElement {
                     <a class="nav-link" href="bitcoin-units-converter.html" title="Unit Converter">Unit Converter</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="giveaway-manager/" title="Giveaway Manager">Giveaway Manager</a>
+                    <a class="nav-link" href="bitcointalk-api.html" title="Price API">Bitcointalk API</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="bitcointalk-api.html" title="Price API">Bitcointalk API</a>
+                    <a class="nav-link" href="withdrawal-strategy.html" title="Withdrawal Strategy">Withdrawal Strategy</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="giveaway-manager/" title="Giveaway Manager">Giveaway Manager</a>
                 </li>
             </ul>
         </span>
@@ -84,10 +87,13 @@ class Navbar extends HTMLElement {
                 <a class="nav-link" href="bitcoin-units-converter.html" title="Unit Converter">Unit Converter</a>
             </li>
             <li class="nav-item py-2 pb-4  mt-3 border-1 border-bottom">
-                <a class="nav-link" href="giveaway-manager/"  title="Giveaway Manager">Giveaway Manager</a>
+                <a class="nav-link" href="bitcointalk-api.html" title="Price API">Bitcointalk API</a>
             </li>
             <li class="nav-item py-2 pb-4  mt-3 border-1 border-bottom">
-                <a class="nav-link" href="bitcointalk-api.html" title="Price API">Bitcointalk API</a>
+                <a class="nav-link" href="withdrawal-strategy.html" title="Withdrawal Strategy">Withdrawal Strategy</a>
+            </li>
+            <li class="nav-item py-2 pb-4  mt-3 border-1 border-bottom">
+                <a class="nav-link" href="giveaway-manager/"  title="Giveaway Manager">Giveaway Manager</a>
             </li>
         </ul>
         <div>
@@ -103,63 +109,72 @@ class Navbar extends HTMLElement {
 </div>
       `;
 
-      
-function toggler() {
-    const storedTheme = localStorage.getItem('theme')
+        /* Google tag (gtag.js) --> */
+        (function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-MSMJ4VCD');
 
-    const getPreferredTheme = () => {
-        if (storedTheme) {
-            return storedTheme
-        }
+        function toggler() {
+            const storedTheme = localStorage.getItem('theme')
 
-        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-    }
+            const getPreferredTheme = () => {
+                if (storedTheme) {
+                    return storedTheme
+                }
 
-    const setTheme = function (theme) {
-        if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            document.documentElement.setAttribute('data-bs-theme', 'dark')
-        } else {
-            document.documentElement.setAttribute('data-bs-theme', theme)
-        }
-    }
+                return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+            }
 
-    setTheme(getPreferredTheme())
+            const setTheme = function (theme) {
+                if (theme === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    document.documentElement.setAttribute('data-bs-theme', 'dark')
+                } else {
+                    document.documentElement.setAttribute('data-bs-theme', theme)
+                }
+            }
 
-    const showActiveTheme = theme => {
-        const activeThemeIcon = document.querySelector('.theme-icon-active use')
-        const btnToActive = document.querySelectorAll(`[data-bs-theme-value="${theme}"]`)
-
-        document.querySelectorAll('[data-bs-theme-value]').forEach(element => {
-            element.classList.remove('d-none')
-        })
-
-        btnToActive.forEach(element => {
-            element.classList.add('d-none')
-        })
-    }
-
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-        if (storedTheme !== 'light' || storedTheme !== 'dark') {
             setTheme(getPreferredTheme())
-        }
-    })
 
-    window.addEventListener('DOMContentLoaded', () => {
-        showActiveTheme(getPreferredTheme())
+            const showActiveTheme = theme => {
+                const activeThemeIcon = document.querySelector('.theme-icon-active use')
+                const btnToActive = document.querySelectorAll(`[data-bs-theme-value="${theme}"]`)
 
-        document.querySelectorAll('[data-bs-theme-value]')
-            .forEach(toggle => {
-                toggle.addEventListener('click', () => {
-                    const theme = toggle.getAttribute('data-bs-theme-value')
-                    localStorage.setItem('theme', theme)
-                    setTheme(theme)
-                    showActiveTheme(theme)
+                document.querySelectorAll('[data-bs-theme-value]').forEach(element => {
+                    element.classList.remove('d-none')
                 })
-            })
-    })
-};
 
-toggler();
+                btnToActive.forEach(element => {
+                    element.classList.add('d-none')
+                })
+            }
+
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+                if (storedTheme !== 'light' || storedTheme !== 'dark') {
+                    setTheme(getPreferredTheme())
+                }
+            })
+
+            window.addEventListener('DOMContentLoaded', () => {
+                showActiveTheme(getPreferredTheme())
+
+                document.querySelectorAll('[data-bs-theme-value]')
+                    .forEach(toggle => {
+                        toggle.addEventListener('click', () => {
+                            const theme = toggle.getAttribute('data-bs-theme-value')
+                            localStorage.setItem('theme', theme)
+                            setTheme(theme)
+                            showActiveTheme(theme)
+                        })
+                    })
+            })
+        };
+
+        toggler();
 
         let pathname = window.location.pathname.split("/").slice(-1)[0]
         document.querySelectorAll(`a[href='${pathname}']`).forEach((el) => el.classList.add('active'))
