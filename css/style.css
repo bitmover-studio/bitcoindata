@@ -146,4 +146,8 @@ input[type="range"] {
   width:70%;
   }
 
-.pointer,.pointer:hover{text-decoration: none;}
+.pointer,.pointer:hover{text-decoration: none; font-weight: 600;}
+
+.apexcharts-tooltip-title{
+  text-align: left;
+}

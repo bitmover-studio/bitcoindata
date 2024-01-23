@@ -54,14 +54,12 @@ function calculateWithdrawalLimit() {
     document.getElementById("currentDate").innerText = new Date().toLocaleDateString()
 
     // Header Data
-    let yesterdayPrice = prices[prices.length - 2][1];
-
     percentAboveMovingAverage = (btcSpotPrice - movingAverage) / movingAverage;
 
-    document.getElementById("pricesma").innerText = percentAboveMovingAverage.toLocaleString("en-US", { style: "percent", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    document.getElementById("pricesma").innerHTML = percentAboveMovingAverage.toLocaleString("en-US", { style: "percent", minimumFractionDigits: 2, maximumFractionDigits: 2 });
     document.getElementById("sma").innerHTML = movingAverage.toLocaleString("en-US", { style: "currency", currency: "USD" });
     document.getElementById("BTCPrice").innerHTML = btcSpotPrice.toLocaleString("en-US", { style: "currency", currency: "USD" });
-   (percentAboveMovingAverage > 0) ? document.getElementById("pricesma").className = 'text-success-emphasis h5' : document.getElementById("pricesma").className = 'text-danger h5';
+   (percentAboveMovingAverage > 0) ? document.getElementById("pricesma").className = 'text-success-emphasis card-title display-6 fw-semibold' : document.getElementById("pricesma").className = 'text-danger card-title display-6 fw-semibold';
     
     //Withdrawal Rate Description
     if (wrate.value > 17) {
@@ -94,18 +92,28 @@ function calculateWithdrawalLimit() {
 
     //Set Withdrawal Limit
     let withdrawalLimit;
+    let monthFormula = document.getElementById("monthFormula");
     if (percentAboveMovingAverage >= 0.25) {
         withdrawalLimit = btcStashSize * annualWithdrawalRate / 12;
+        monthFormula.innerText = '(100%)';
     } else if (percentAboveMovingAverage >= 0.1) {
         withdrawalLimit = btcStashSize * annualWithdrawalRate / 12 * 0.9;
+        monthFormula.innerText = '(90%)';
     } else if (percentAboveMovingAverage >= 0) {
         withdrawalLimit = btcStashSize * annualWithdrawalRate / 12 * 0.85;
-    } else if (percentAboveMovingAverage >= -0.1) {
+        monthFormula.innerText = '(85%)';
+    } else if (percentAboveMovingAverage >= -0.2) {
         withdrawalLimit = btcStashSize * annualWithdrawalRate / 12 * 0.7;
-    } else if (percentAboveMovingAverage >= -0.20) {
+        monthFormula.innerText = '(70%)';
+    } else if (percentAboveMovingAverage >= -0.3) {
         withdrawalLimit = btcStashSize * annualWithdrawalRate / 12 * 0.5;
+        monthFormula.innerText = '(50%)';
     } else if (percentAboveMovingAverage >= -0.35) {
         withdrawalLimit = btcStashSize * annualWithdrawalRate / 12 * 0.4;
+        monthFormula.innerText = '(40%)';
+    } else {
+        withdrawalLimit = 0;
+        monthFormula.innerText = '(0%)';
     }
 
     wRateRange.innerHTML = wrate.value + '%';
@@ -173,6 +181,7 @@ fetchUrls(urls).then(([res1, res2, res3]) => {
     let oldprice = res2;
     let newprices = res3.prices;
     prices = oldprice.concat(newprices);
+    prices.push([Date.now(),defaultSpotPrice])
     sma200 = calculateSMA(prices, 1400);
     movingAverage = sma200[sma200.length - 1][1];
 

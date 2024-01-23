@@ -81,27 +81,34 @@
             <div class="col border-end">
                <div class="card bg-transparent border-0">
                   <div class="card-body">
-                     <div class="card-text mb-2">BTC Spot Price</div>
-                     <h5 class="card-title display-6 fw-semibold" id="BTCPrice">&nbsp; </h5>
-                     <div class="card-text my-2" id="currentDate">&nbsp; </div>
+                     <div class="card-text mb-2">Price Above MA (%)</div>
+                     <h5 class="card-title" id="pricesma">
+                        <div class="d-flex justify-content-center fw-normal">
+                           <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                              <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+                     </h5>
+                     <div class="card-text mb-2">Date </div>
+                     <span class="h5 fw-semibold" id="currentDate">&nbsp;</span>
                   </div>
                </div>
             </div>
             <div class="col border-end">
                <div class="card bg-transparent border-0">
                   <div class="card-body">
-                     <div class="card-text mb-2">200-week MA</div>
-                     <h5 class="card-title display-6 fw-semibold" id="sma">&nbsp; </h5>
-                     <div class="card-text my-2">Price Above MA (%)</div>
-                     <span class="h5 fw-semibold" id="pricesma">Loading...</span>
+                     <div class="card-text mb-2">BTC Spot Price</div>
+                     <h5 class="card-title display-6 fw-semibold" id="BTCPrice">&nbsp; </h5>
+                     <div class="card-text mb-2">BTC Stash Value (Spot) </div>
+                     <span class="h5 fw-semibold" id="stashValue">&nbsp;</span>
                   </div>
                </div>
             </div>
             <div class="col">
                <div class="card bg-transparent border-0">
                   <div class="card-body">
-                     <div class="card-text mb-2">BTC Stash Value (Spot) </div>
-                     <h5 class="card-title display-6 fw-semibold" id="stashValue">&nbsp;</h5>
+                     <div class="card-text mb-2">200-week MA</div>
+                     <h5 class="card-title display-6 fw-semibold" id="sma">&nbsp; </h5>
                      <div class="card-text my-2">BTC Stash Value (200-WMA)</div>
                      <span class="h5 fw-semibold" id="stashWMAValue">&nbsp; </span>
                   </div>
@@ -226,7 +233,9 @@
             </div>
             <div class="col-md-3">
                <h3 class="h5 mt-3 pt-3">Output Area</h3>
-               <h4 class="h6 mt-3 pt-3">Monthly Authorized Withdrawal</h4>
+               <h4 class="h6 mt-3 pt-3">Monthly Authorized Withdrawal <a id="monthFormula"
+                     class="fw-semibold align-top text-decoration-none">&nbsp;</a>
+               </h4>
                <div class="form-floating mb-3">
                   <input type="number" class="form-control" id="allowed" placeholder="Authorized BTC Withdrawal"
                      onChange="calculateWithdrawalLimit()" value="0" disabled>
@@ -237,7 +246,9 @@
                      onChange="calculateWithdrawalLimit()" value="0" disabled>
                   <label for="allowed">Authorized Withdrawal USD</label>
                </div>
-               <h4 class="mt-4 h6 pb-0 mb-0">Advanced Withdrawal </h4>
+
+               <h4 class="mt-4 h6 pb-0 mb-0">Advanced Withdrawal (<span id="advMonthFormula"
+                     class="fw-semibold align-top">&nbsp;</span>)</h4>
                <small class="form-label small fw-normal">(optional - yet recommend)</small>
                <a href="#how"
                   class="link-offset-1 link-underline link-underline-opacity-0 link-underline-opacity-75-hover small fw-normal">
@@ -317,7 +328,7 @@
             <li class="list-group-item border-0">B. if the BTC spot price is between 0% and 10% above the 200-week
                moving average, then you will be
                authorized to withdraw for only 85% of the current month's limit.</li>
-            <li class="list-group-item border-0">C. if the BTC spot price is between 10% and 20% below the 200-week
+            <li class="list-group-item border-0">C. if the BTC spot price is between 0% and 20% below the 200-week
                moving average, then you will be
                authorized to withdraw for only 70% of the current month's limit.</li>
             <li class="list-group-item border-0">D. if the BTC spot price is between 20% and 30% below the 200-week
