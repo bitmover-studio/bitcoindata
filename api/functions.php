@@ -64,7 +64,7 @@ function getFiatRates($currency)
     $storedRatesfile = 'rates.json';
 
     if ($currency != 'USD' && $currency != 'BDT') {
-        if (file_exists($storedRatesfile) && (time() - filemtime($storedRatesfile)) < 60 * 60) { //file younger than 60 minutes
+        if (file_exists($storedRatesfile) && (time() - filemtime($storedRatesfile)) < 8 * 60 * 60) { //file younger than 8 hours
             $exchangerate = json_decode(file_get_contents($storedRatesfile));
             $rates = $exchangerate->$usdcurrency;
         } else {
