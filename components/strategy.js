@@ -126,23 +126,33 @@ function calculateWithdrawalLimit() {
 
 // Advanced Withdrawal
 function calculateAdvancedWithdraw() {
+    let advMonthFormula = document.getElementById("advMonthFormula");
     if (percentAboveMovingAverage >= 0.33 && percentAboveMovingAverage < 0.66) {
+        advMonthFormula.innerText = '(33% - 66%)';
         return 1;
     } else if (percentAboveMovingAverage >= 0.66 && percentAboveMovingAverage < 1) {
+        advMonthFormula.innerText = '(66%-100%)';
         return 3;
     } else if (percentAboveMovingAverage >= 1 && percentAboveMovingAverage < 2) {
+        advMonthFormula.innerText = '(100%-200%)';
         return 5;
     } else if (percentAboveMovingAverage >= 2 && percentAboveMovingAverage < 4) {
+        advMonthFormula.innerText = '(200%-400%)';
         return 11;
     } else if (percentAboveMovingAverage >= 4 && percentAboveMovingAverage < 6.5) {
+        advMonthFormula.innerText = '(400%-650%)';
         return 23;
     } else if (percentAboveMovingAverage >= 6.5 && percentAboveMovingAverage < 9) {
+        advMonthFormula.innerText = '(650%-900%)';
         return 35;
     } else if (percentAboveMovingAverage >= 9 && percentAboveMovingAverage < 14) {
+        advMonthFormula.innerText = '(900%-1400%)';
         return 47;
     } else if (percentAboveMovingAverage >= 14) {
+        advMonthFormula.innerText = '(1400+%)';
         return 59;
     } else {
+        advMonthFormula.innerText = 'none';
         return 0;
     }
 }
