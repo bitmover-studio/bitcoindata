@@ -33,6 +33,7 @@ imagecolortransparent($image, $background);
 
 // Set the line and point colors
 $line_color = imagecolorallocate($image, 0,143,251);
+$min_line_color = imagecolorallocate($image, 201,218,232);
 $axis_color = imagecolorallocate($image, 201,201,201);
 $point_color = imagecolorallocate($image, 255, 0, 0);
 
@@ -40,7 +41,7 @@ $point_color = imagecolorallocate($image, 255, 0, 0);
 imagefill($image, 0, 0, $background);
 
 // Draw the x and y axis
-imageline($image, 60, 250, 460, 250, $axis_color);
+imageline($image, 60, 250, 480, 250, $axis_color);
 imageline($image, 60, 250, 60, 50, $axis_color);
 
 // Draw the minimum, and maximum values on the y-axis
@@ -80,6 +81,16 @@ for ($i = 0; $i < count($data); $i++) {
 $x1 =  count($data)/2+60;
 imageline($image, $x1, $y, $x1, $y - 10, imagecolorallocate($image, 201,201,201));
 imageline($image, 460, $y, 460, $y - 10, imagecolorallocate($image, 201,201,201));
+
+// Draw horizontal line on minimum value
+$unique_data = array_unique($data);
+$unique_data = array_filter($unique_data, function ($a) {return ($a !== 0);});
+sort($unique_data);
+$min_fee = $y - ($unique_data[0] - 1) / (max($data) - 1) * 200;
+
+imageline($image, 60, $min_fee, 480, $min_fee, $min_line_color);
+imagettftext($image, $font_size, 0, $x -5, $min_fee +8, $font_color, $fontpath,  number_format($unique_data[0], 0).'sat/vB');
+
 
 // Output the chart as a gif image
 header('Content-Type: image/gif');
