@@ -1,8 +1,8 @@
-# bitcoindata
+# FeeBuddy Bot
 
 ### Start to work ###
 Php container. Just run:
 ```sh
 $ docker-compose build
-$ docker-compose -f docker-compose.yml up -d
+$ docker-compose -f docker-compose.yml --env-file .env up -d
 ```

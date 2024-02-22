@@ -1,0 +1,11 @@
+img/utopia.gif
+api/donationsreceived.php
+.htacess
+components/jjg-withdrawal-chart.js
+api/priceusd.json
+.env
+api/bitcoinfees.gif
+api/localprice.gif
+api/rates.json
+components/historical201013.json
+bot/*
