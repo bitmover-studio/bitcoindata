@@ -131,6 +131,9 @@ opacity: 80%;
 .material-svg{
 transform: scale(0.5); opacity: 0.6;
 }
+.bg-l0tt0 {
+  background-color: #FBE24B;
+}
 
 /* API */
 .terminal{
