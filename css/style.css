@@ -154,3 +154,6 @@ input[type="range"] {
 .apexcharts-tooltip-title{
   text-align: left;
 }
+.progress#priceRange,.progress#price200WRange{
+  height:0.2rem;
+}

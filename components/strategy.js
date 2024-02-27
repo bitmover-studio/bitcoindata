@@ -30,7 +30,8 @@ function calculateSMA(data, period) {
 const urls = [
     'https://bitcoindata.science/api/priceusd.json',
     'https://bitcoindata.science/components/historical201013.json',
-    "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=max&interval=daily&precision=2"
+    "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=max&interval=daily&precision=2",
+    'https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=1&precision=full'
 ];
 
 async function fetchUrls(urls) {
@@ -59,8 +60,8 @@ function calculateWithdrawalLimit() {
     document.getElementById("pricesma").innerHTML = percentAboveMovingAverage.toLocaleString("en-US", { style: "percent", minimumFractionDigits: 2, maximumFractionDigits: 2 });
     document.getElementById("sma").innerHTML = movingAverage.toLocaleString("en-US", { style: "currency", currency: "USD" });
     document.getElementById("BTCPrice").innerHTML = btcSpotPrice.toLocaleString("en-US", { style: "currency", currency: "USD" });
-   (percentAboveMovingAverage > 0) ? document.getElementById("pricesma").className = 'text-success-emphasis card-title display-6 fw-semibold' : document.getElementById("pricesma").className = 'text-danger card-title display-6 fw-semibold';
-    
+    (percentAboveMovingAverage > 0) ? document.getElementById("pricesma").className = 'text-success-emphasis card-title display-6 fw-semibold' : document.getElementById("pricesma").className = 'text-danger card-title display-6 fw-semibold';
+
     //Withdrawal Rate Description
     if (wrate.value > 17) {
         wRateRange.classList.remove("text-warning");
@@ -185,13 +186,13 @@ if (toastTrigger) {
 }
 
 // Work on data
-fetchUrls(urls).then(([res1, res2, res3]) => {
+fetchUrls(urls).then(([res1, res2, res3, res4]) => {
     btcSpotPrice = res1.price;
     defaultSpotPrice = btcSpotPrice;
     let oldprice = res2;
     let newprices = res3.prices;
     prices = oldprice.concat(newprices);
-    prices.push([Date.now(),defaultSpotPrice])
+    prices.push([Date.now(), defaultSpotPrice])
     sma200 = calculateSMA(prices, 1400);
     movingAverage = sma200[sma200.length - 1][1];
 
@@ -205,6 +206,21 @@ fetchUrls(urls).then(([res1, res2, res3]) => {
         data: sma200,
         type: "line"
     }]);
+
+    // Day and 200W Price Range Bar
+    let todayPrices = res4.prices.map(i => i[1]);
+    let todayPriceRange = [Math.min(...todayPrices), Math.max(...todayPrices)];
+    const priceRangeLength = document.getElementById('priceRangeLength');
+    priceRangeLength.style.width = ((defaultSpotPrice - todayPriceRange[0]) / (todayPriceRange[1] - todayPriceRange[0]))*100+'%';
+    document.getElementById('minDayPrice').innerText = todayPriceRange[0].toLocaleString("en-US", { style: "decimal", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    document.getElementById('maxDayPrice').innerText = todayPriceRange[1].toLocaleString("en-US", { style: "decimal", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+    let price200week = prices.slice(-1400).map((i) => i[1]);
+    let price200weekRange = [Math.min(...price200week), Math.max(...price200week)];
+    document.getElementById('min200WPrice').innerText = price200week[0].toLocaleString("en-US", { style: "decimal", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    document.getElementById('max200WPrice').innerText = price200weekRange[1].toLocaleString("en-US", { style: "decimal", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    const price200weekRangeLength = document.getElementById('price200WRangeLength');
+    price200weekRangeLength.style.width = ((defaultSpotPrice - price200weekRange[0]) / (price200weekRange[1] - price200weekRange[0]))*100+'%';
 
     // Load Dynamic Data
     calculateWithdrawalLimit();

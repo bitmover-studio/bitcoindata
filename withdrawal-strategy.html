@@ -77,8 +77,8 @@
                   href="https://bitcointalk.org/index.php?topic=5475347.msg63213914#msg63213914"
                   class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover small fw-semibold"
                   title="Reference">Reference</a> </span></p>
-         <div class="row row-cols-1 row-cols-md-3 g-4">
-            <div class="col border-end">
+         <div class="row row-cols-1 row-cols-lg-4  row-cols-md-3 row-cols-sm-2 g-4">
+            <div class="col">
                <div class="card bg-transparent border-0">
                   <div class="card-body">
                      <div class="card-text mb-2">Price Above 200-WMA(%)</div>
@@ -86,7 +86,7 @@
                         <div class="d-flex justify-content-center fw-normal">
                            <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
                               <span class="visually-hidden">Loading...</span>
-                            </div>
+                           </div>
                         </div>
                      </h5>
                      <div class="card-text mb-2">Date </div>
@@ -94,7 +94,7 @@
                   </div>
                </div>
             </div>
-            <div class="col border-end">
+            <div class="col">
                <div class="card bg-transparent border-0">
                   <div class="card-body">
                      <div class="card-text mb-2">BTC Spot Price</div>
@@ -114,10 +114,36 @@
                   </div>
                </div>
             </div>
+            <div class="col">
+               <div class="card bg-transparent border-0">
+                  <div class="card-body">
+                     <div class="card-text mb-2">Day's Range</div>
+                     <div class="d-flex justify-content-between align-items-center">
+                        <div id="minDayPrice" class="small">&nbsp; </div>
+                        <div class="progress flex-grow-1 mx-2" role="progressbar" aria-label="Day's Range"
+                           id="priceRange">
+                           <div class="progress-bar bg-secondary" id="priceRangeLength"></div>
+                        </div>
+                        <div id="maxDayPrice" class="small">&nbsp; </div>
+                     </div>
+                  </div>
+                  <div class="card-body">
+                     <div class="card-text mb-2">200-Week's Range</div>
+                     <div class="d-flex justify-content-between align-items-center">
+                        <div id="min200WPrice" class="small">&nbsp; </div>
+                        <div class="progress flex-grow-1 mx-2" role="progressbar" aria-label="Day's Range"
+                           id="price200WRange">
+                           <div class="progress-bar bg-secondary" id="price200WRangeLength"></div>
+                        </div>
+                        <div id="max200WPrice" class="small">&nbsp; </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
          </div>
 
          <div class="row my-4 g-3">
-            <div class="col-md-2">
+            <div class="col-md-2 text-end">
                <h3 class="h5 mt-3 pt-3">Input Area</h3>
                <div class="mb-3 pt-3">
                   <label for="wrate" class="form-label h6">Annual withdrawal rate</label>
@@ -172,7 +198,7 @@
                      <label for="date">Choose a date</label>
                   </div>
                   <div class=" mb-3 col-6 col-sm-12">
-                     <div class="form-check gx-1">
+                     <div class="form-check gx-1 float-end">
                         <input class="form-check-input" type="checkbox" value="" id="useDate" onchange="checkDate();">
                         <label class="form-check-label small" for="useDate">
                            Use this date
@@ -248,7 +274,7 @@
                </div>
 
                <h4 class="mt-4 h6 pb-0 mb-0">Advanced Withdrawal <a id="advMonthFormula"
-                  class="fw-semibold align-top text-decoration-none">&nbsp;</a></h4>
+                     class="fw-semibold align-top text-decoration-none">&nbsp;</a></h4>
                <small class="form-label small fw-normal">(optional - yet recommend)</small>
                <a href="#how"
                   class="link-offset-1 link-underline link-underline-opacity-0 link-underline-opacity-75-hover small fw-normal">
