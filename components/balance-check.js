@@ -46,7 +46,7 @@ async function getMultipleAddressBalance(price, balancearray) {
       return {
         address: address,
         balance: data[address].final_balance / 100000000,
-        value: data[address].final_balance / 100000000 * price,
+        value: (data[address].final_balance / 100000000 * price).toFixed(2),
         unconfirmed: 0,
         unconfirmed_value: 0
       };
@@ -65,9 +65,9 @@ async function getAddressBalance(address, price, balancearray) {
       balancearray.push({
         address: address,
         balance: (data.chain_stats.funded_txo_sum - data.chain_stats.spent_txo_sum) / 100000000,
-        value: (data.chain_stats.funded_txo_sum - data.chain_stats.spent_txo_sum) / 100000000 * price,
+        value: ((data.chain_stats.funded_txo_sum - data.chain_stats.spent_txo_sum) / 100000000 * price).toFixed(2),
         unconfirmed: (data.mempool_stats.funded_txo_sum - data.mempool_stats.spent_txo_sum) / 100000000,
-        unconfirmed_value: (data.mempool_stats.funded_txo_sum - data.mempool_stats.spent_txo_sum) / 100000000 * price,
+        unconfirmed_value: ((data.mempool_stats.funded_txo_sum - data.mempool_stats.spent_txo_sum) / 100000000 * price).toFixed(2),
       })
     }
     catch (error) {
@@ -77,9 +77,9 @@ async function getAddressBalance(address, price, balancearray) {
       balancearray.push({
         address: address,
         balance: data.balance / 100000000,
-        value: data.balance / 100000000 * price,
+        value: (data.balance / 100000000 * price).toFixed(2),
         unconfirmed: data.unconfirmed_balance,
-        unconfirmed_value: data.unconfirmed_balance * price,
+        unconfirmed_value: (data.unconfirmed_balance * price).toFixed(2),
       }
       )
     }
@@ -138,7 +138,29 @@ async function getBalances(price) {
        </div>` : ''}
       </div>
    `).join('')}
+    <div class="text-end">
+      <button type="button" id='json' class="btn btn-primary position-relative" title="Download JSON file" onclick="download(JSON.stringify({addresses:balance}, null, 4), 'addresses'+new Date().toISOString().slice(0, 10)+'.json', 'text/plain')"><span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 1280" width="20" height="20"><path d="M463.6 94c-.3 1.7-.6 110-.6 240.5l-.2 237.6c-.2.2-38.2.5-84.4.8l-84 .5 163.2 216 164.3 216c1 0 327.2-430.8 327.2-432 0-.2-37.5-.4-83.3-.4-63.5 0-83.6-.3-84.5-1.2s-1.2-55.8-1.2-241V91H622 464.3l-.7 3zm-248 937.7c-.4.3-.7 28-.7 61.5v60.8h430 430v-61l-1.6-61.5c-2.2-.8-857-.8-857.7.1z" fill="#fff"></path></svg> .json</span></button>
+      <button type="button" class="btn btn-secondary position-relative" title="Download CSV file" onclick="download(jsonToCsv(balance), 'addresses'+new Date().toISOString().slice(0, 10)+'.csv', 'text/csv')"><span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 1280" width="20" height="20"><path d="M463.6 94c-.3 1.7-.6 110-.6 240.5l-.2 237.6c-.2.2-38.2.5-84.4.8l-84 .5 163.2 216 164.3 216c1 0 327.2-430.8 327.2-432 0-.2-37.5-.4-83.3-.4-63.5 0-83.6-.3-84.5-1.2s-1.2-55.8-1.2-241V91H622 464.3l-.7 3zm-248 937.7c-.4.3-.7 28-.7 61.5v60.8h430 430v-61l-1.6-61.5c-2.2-.8-857-.8-857.7.1z" fill="#fff"></path></svg> .csv</span></button>
+    </div>
   `
+}
+
+function download(content, fileName, contentType) {
+  const a = document.createElement("a");
+  const file = new Blob([content], { type: contentType });
+  a.href = URL.createObjectURL(file);
+  a.download = fileName;
+  a.click();
+}
+
+function jsonToCsv(jsonarray) {
+  const headers = Object.keys(jsonarray[0]).join(',');
+  let csvrecord = 'sep=,\r\n' + headers + '\r\n';
+  jsonarray.forEach(function (jsonrecord) {
+    const values = Object.values(jsonrecord).join(',');
+    csvrecord += values + '\r\n';
+  });
+  return csvrecord;
 }
 
 function handleClick() {
@@ -191,7 +213,7 @@ async function compareBalance(price) {
     }
   }
 
-  if (Object.keys(modalText).length > 0  && newBalance.length === balance.length) {
+  if (Object.keys(modalText).length > 0 && newBalance.length === balance.length) {
     document.querySelector('.modal-title').innerHTML = modalText.title;
     document.querySelector('.modal-address').innerHTML = modalText.address;
     document.querySelector('.modal-balance').innerHTML = modalText.balance;
