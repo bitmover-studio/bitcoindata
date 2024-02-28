@@ -46,7 +46,7 @@ async function getMultipleAddressBalance(price, balancearray) {
       return {
         address: address,
         balance: data[address].final_balance / 100000000,
-        value: (data[address].final_balance / 100000000 * price).toFixed(2),
+        value: parseFloat((data[address].final_balance / 100000000 * price).toFixed(2)),
         unconfirmed: 0,
         unconfirmed_value: 0
       };
@@ -65,9 +65,9 @@ async function getAddressBalance(address, price, balancearray) {
       balancearray.push({
         address: address,
         balance: (data.chain_stats.funded_txo_sum - data.chain_stats.spent_txo_sum) / 100000000,
-        value: ((data.chain_stats.funded_txo_sum - data.chain_stats.spent_txo_sum) / 100000000 * price).toFixed(2),
+        value: parseFloat(((data.chain_stats.funded_txo_sum - data.chain_stats.spent_txo_sum) / 100000000 * price).toFixed(2)),
         unconfirmed: (data.mempool_stats.funded_txo_sum - data.mempool_stats.spent_txo_sum) / 100000000,
-        unconfirmed_value: ((data.mempool_stats.funded_txo_sum - data.mempool_stats.spent_txo_sum) / 100000000 * price).toFixed(2),
+        unconfirmed_value: parseFloat(((data.mempool_stats.funded_txo_sum - data.mempool_stats.spent_txo_sum) / 100000000 * price).toFixed(2)),
       })
     }
     catch (error) {
@@ -77,9 +77,9 @@ async function getAddressBalance(address, price, balancearray) {
       balancearray.push({
         address: address,
         balance: data.balance / 100000000,
-        value: (data.balance / 100000000 * price).toFixed(2),
+        value: parseFloat((data.balance / 100000000 * price).toFixed(2)),
         unconfirmed: data.unconfirmed_balance,
-        unconfirmed_value: (data.unconfirmed_balance * price).toFixed(2),
+        unconfirmed_value: parseFloat((data.unconfirmed_balance * price).toFixed(2)),
       }
       )
     }
