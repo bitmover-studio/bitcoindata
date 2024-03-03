@@ -59,6 +59,7 @@
    <script src="components/ad.js" defer></script>
    <script src="components/strategy.js" async></script>
    <script src="components/jjg-chart-options.js" async></script>
+   <script src="components/jjg-stash-chart.js" async></script>
 </head>
 
 <body>
@@ -142,15 +143,15 @@
             </div>
          </div>
 
-         <div class="row my-4 g-3">
+         <div class="row mt-4 mb-1 g-3">
             <div class="col-md-2 text-end">
-               <h3 class="h5 mt-3 pt-3">Input Area</h3>
+               <p class="h5 mt-3 pt-3">Input Area</p>
                <div class="mb-3 pt-3">
                   <label for="wrate" class="form-label h6">Annual withdrawal rate</label>
                   <p class="form-label small" id="withdrawalDescription">Conservative</p>
                   <div class=" text-nowrap">
-                     <input value="6" type="range" min="0" max="30" step="0.25" class="form-range" id="wrate"
-                        oninput="calculateWithdrawalLimit()">
+                     <input value="6" type="range" min="0" max="30" step="0.25" class="form-range float-start"
+                        id="wrate" oninput="calculateWithdrawalLimit()">
                      <output for="wrate" id="wRateRange" class="fw-semibold align-top">4%</output>
                   </div>
                </div>
@@ -159,38 +160,6 @@
                      <input type="number" class="form-control" id="stash" placeholder="BTC Stash" step="0.01" min="0"
                         value="1" onChange="calculateWithdrawalLimit()">
                      <label for="stash">BTC stash size</label>
-                  </div>
-                  <div class="col-6 col-sm-12">
-                     <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                        <div class="btn-group me-1" role="group" aria-label="First group">
-                           <button type="button" id="saveInputs" title="Save inputs"
-                              class="btn btn-sm btn-primary shadow-sm px-3" onclick="saveToLocalStorage()">Save
-                              inputs
-                           </button>
-                        </div>
-                        <div class="btn-group" role="group" aria-label="Second group">
-                           <button type="button" title="refresh" class="btn btn-sm btn-secondary shadow-sm text-white"
-                              onclick="restoreDefaults()">
-                              <svg xmlns="http://www.w3.org/2000/svg" height="24" fill="currentColor"
-                                 viewBox="0 -960 960 960" width="24">
-                                 <path
-                                    d="M480-160q-134 0-227-93t-93-227q0-134 93-227t227-93q69 0 132 28.5T720-690v-110h80v280H520v-80h168q-32-56-87.5-88T480-720q-100 0-170 70t-70 170q0 100 70 170t170 70q77 0 139-44t87-116h84q-28 106-114 173t-196 67Z" />
-                              </svg>
-                           </button>
-                        </div>
-                     </div>
-                     <div class="toast-container position-absolute p-3">
-                        <div class="toast align-items-center text-bg-secondary " role="alert" id="saveInputsToast"
-                           aria-live="assertive" aria-atomic="true">
-                           <div class="d-flex">
-                              <div class="toast-body">
-                                 Inputs stored in your browser for future visits.
-                              </div>
-                              <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"
-                                 aria-label="Close"></button>
-                           </div>
-                        </div>
-                     </div>
                   </div>
                   <div class="form-floating gx-1 col-6 col-sm-12">
                      <input type="date" title="choose a date" class="form-control" id="date" min="2010-08-02"
@@ -220,7 +189,6 @@
                </div>
             </div>
             <div class="col-md-7">
-
                <div class="card border-0 bg-transparent text-center">
                   <h4 class="card-header bg-transparent">
                      Bitcoin Price / 200 WMA Chart
@@ -251,26 +219,56 @@
                      </div>
                      <div id="chart" class="px-0 mx-0"></div>
                      <div class="card-text text-body-secondary text-end small">
-                        Price data from coingecko
+                        <div class="float-start">
+                                 <button type="button" id="saveInputs" title="Save inputs"
+                                    class="btn btn-primary shadow-sm px-3" onclick="saveToLocalStorage()">Save
+                                    inputs
+                                 </button>
+                                 <button type="button" title="refresh" class="btn btn-secondary shadow-sm text-white"
+                                    onclick="restoreDefaults()">
+                                    <svg xmlns="http://www.w3.org/2000/svg" height="24" fill="currentColor"
+                                       viewBox="0 -960 960 960" width="24">
+                                       <path
+                                          d="M480-160q-134 0-227-93t-93-227q0-134 93-227t227-93q69 0 132 28.5T720-690v-110h80v280H520v-80h168q-32-56-87.5-88T480-720q-100 0-170 70t-70 170q0 100 70 170t170 70q77 0 139-44t87-116h84q-28 106-114 173t-196 67Z" />
+                                    </svg>
+                                 </button>
+                                 <button type="button" id="shareInputs" title="Share"
+                                    class="btn btn-secondary shadow-sm px-3" onclick="saveToLocalStorage()">
+                                    Share
+                                 </button>
+                           <div class="toast-container position-absolute p-3">
+                              <div class="toast align-items-center text-bg-secondary " role="alert" id="saveInputsToast"
+                                 aria-live="assertive" aria-atomic="true">
+                                 <div class="d-flex">
+                                    <div class="toast-body">
+                                       Inputs stored in your browser for future visits.
+                                    </div>
+                                    <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"
+                                       aria-label="Close"></button>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <p class="float-end">Price data from coingecko</p>
                      </div>
                   </div>
 
                </div>
             </div>
             <div class="col-md-3">
-               <h3 class="h5 mt-3 pt-3">Output Area</h3>
-               <h4 class="h6 mt-3 pt-3">Monthly Authorized Withdrawal <a id="monthFormula"
+               <p class="h5 mt-3 pt-3">Output Area</p>
+               <h3 class="h6 mt-3 pt-3">Monthly Authorized Withdrawal <a id="monthFormula"
                      class="fw-semibold align-top text-decoration-none">&nbsp;</a>
-               </h4>
+               </h3>
                <div class="form-floating mb-3">
-                  <input type="number" class="form-control" id="allowed" placeholder="Authorized BTC Withdrawal"
+                  <input type="text" class="form-control" id="allowed" placeholder="Authorized BTC Withdrawal"
                      onChange="calculateWithdrawalLimit()" value="0" disabled>
                   <label for="allowed">Authorized BTC Withdrawal</label>
                </div>
                <div class="form-floating mb-3">
-                  <input type="number" class="form-control" id="allowedvalue" placeholder="Authorized Withdrawal USD"
+                  <input type="text" class="form-control" id="allowedvalue" placeholder="Authorized Withdrawal USD"
                      onChange="calculateWithdrawalLimit()" value="0" disabled>
-                  <label for="allowed">Authorized Withdrawal USD</label>
+                  <label for="allowedvalue">Authorized Withdrawal USD</label>
                </div>
 
                <h4 class="mt-4 h6 pb-0 mb-0">Advanced Withdrawal <a id="advMonthFormula"
@@ -285,18 +283,57 @@
                   <label for="monthAdvance">No. Months in Advance</label>
                </div>
                <div class="form-floating mb-3">
-                  <input type="number" class="form-control" id="allowedAdv" placeholder="Advanced Withdrawal"
+                  <input type="text" class="form-control" id="allowedAdv" placeholder="Advanced Withdrawal"
                      onChange="calculateWithdrawalLimit()" value="0" disabled>
                   <label for="allowedAdv">Advanced BTC Withdrawal</label>
                </div>
                <div class="form-floating mb-3">
-                  <input type="number" class="form-control" id="allowedAdvVal" placeholder="Advanced Withdrawal USD"
+                  <input type="text" class="form-control" id="allowedAdvVal" placeholder="Advanced Withdrawal USD"
                      onChange="calculateWithdrawalLimit()" value="0" disabled>
                   <label for="allowedAdvVal">Advanced Withdrawal USD</label>
                </div>
             </div>
          </div>
+         <div class="border-top mt-3">
+            <h4 class="fw-semibold my-3">Simulation</h4>
+            <div class="row">
+               <div class="col-md-3">
+                  <p>You can simulate what your portfolio would be like if you had already started this strategy.</p>
+                  <small>Considering you withdrawal at fixed dates 8th and 22nd each month.</small>
+                  <div class="form-floating g-1 mb-3">
+                     <input type="date" title="choose a date" class="form-control" id="simulationDate" min="2010-08-02" onchange="simulateStrategy(this.value)">
+                     <label for="simulationDate">Start using strategy</label>
+                  </div>
+               </div>
+               <div class="col-md-2">
+                  <div class="form-floating mb-3">
+                     <input type="text" class="form-control" id="currentStash" placeholder="Current Stash"
+                        onChange="calculateWithdrawalLimit()" value="0" disabled>
+                     <label for="allowed">Current Stash</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                     <input type="text" class="form-control" id="amountWithdrawn"
+                        placeholder="Total Amount Withdrawn" onChange="calculateWithdrawalLimit()" value="0"
+                        disabled>
+                     <label for="allowed">Amount Withdrawn (BTC)</label>
+                  </div>
+                  <div class="form-floating mb-3">
+                     <input type="text" class="form-control" id="totalWithdrawnUSD"
+                        placeholder="Total Amount Withdrawn" onChange="calculateWithdrawalLimit()" value="0"
+                        disabled>
+                     <label for="allowed">Amount Withdrawn (USD)</label>
+                  </div>
+               </div>
+               <div class="col-md-4">
+                  <div id="stashChart" class="px-0 mx-0"></div>
+               </div>
+               <div class="col-md-3">
+                  <div id="radialBar" class="px-0 mx-0"></div>
+               </div>
+            </div>
+         </div>
       </div>
+
 
       <article id="how" class="border-top">
          <h4 class="h3 my-5">How to use the information provided through this tool:</h4>
@@ -413,6 +450,8 @@
             // If the `data-bs-theme` attribute was modified
             if (mutation.attributeName === 'data-bs-theme') {
                chart.updateOptions({ theme: { mode: localStorage.getItem('theme') } });
+               stashChart.updateOptions({ theme: { mode: localStorage.getItem('theme') } });
+               radialBarChart.updateOptions({ theme: { mode: localStorage.getItem('theme') } });
             }
          }
       };

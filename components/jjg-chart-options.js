@@ -1,14 +1,10 @@
 "use strict";
-
-// Main Chart
-let options = {
+window.Apex = {
     chart: {
         background: 'transparent',
         zoom: {
             autoScaleYaxis: true,
         },
-        height: 380,
-        id: 'main',
         animations: {
             enabled: false
         },
@@ -25,10 +21,6 @@ let options = {
     theme: {
         mode: localStorage.getItem('theme'),
     },
-    stroke: {
-        width: [2,3],
-        curve: 'smooth',
-    },
     dataLabels: {
         enabled: false
     },
@@ -39,13 +31,6 @@ let options = {
             show: true,
             format: 'yyyy/MM/dd',
         },
-        y: [{
-            formatter: function (value, { series, seriesIndex, dataPointIndex, w }) {
-                let priceAboveMA = (series[0][dataPointIndex] - series[1][dataPointIndex]) / series[1][dataPointIndex]
-                return value.toLocaleString("en-US", { style: "currency", currency: "USD" }) + '<div class="small m-2 position-absolute top-0 end-0 text-center">Above MA: ' + ((priceAboveMA > 0) ? '<span class="text-success-emphasis">' : '<span class="text-danger">') + priceAboveMA.toLocaleString("en-US", { style: "percent", minimumFractionDigits: 2, maximumFractionDigits: 2 })
-                    + "</span></div>"
-            }
-        }]
     },
     grid: {
         show: true,
@@ -61,12 +46,26 @@ let options = {
             }
         },
     },
-    series: [],
     xaxis: {
         type: 'datetime',
     },
     noData: {
         text: 'Loading...'
+    },
+    markers: {
+        size: 0
+    }
+}
+
+// Main Chart
+let options = {
+    chart: {
+        height: 380,
+        id: 'main',
+    },
+    stroke: {
+        width: [2,3],
+        curve: 'smooth',
     },
     yaxis: {
         show: false,
@@ -78,12 +77,19 @@ let options = {
         },
         logarithmic: true,
     },
+    series: [],
     fill: {
        opacity: [0.45,1],
     },
-    markers: {
-        size: 0
-    }
+    tooltip: {
+        y: [{
+            formatter: function (value, { series, seriesIndex, dataPointIndex, w }) {
+                let priceAboveMA = (series[0][dataPointIndex] - series[1][dataPointIndex]) / series[1][dataPointIndex]
+                return value.toLocaleString("en-US", { style: "currency", currency: "USD" }) + '<div class="small m-2 position-absolute top-0 end-0 text-center">Above MA: ' + ((priceAboveMA > 0) ? '<span class="text-success-emphasis">' : '<span class="text-danger">') + priceAboveMA.toLocaleString("en-US", { style: "percent", minimumFractionDigits: 2, maximumFractionDigits: 2 })
+                    + "</span></div>"
+            }
+        }]
+    },
 };
 const chart = new ApexCharts(document.querySelector("#chart"), options);
 chart.render();
@@ -161,7 +167,14 @@ function linearLogarithimic() {
                         return val.toLocaleString("en-US", { style: "currency", currency: "USD" });
                     },
                 }
-            }
+            },
+            grid: {
+                yaxis: {
+                    lines: {
+                        show: false
+                    }
+                },
+            },
         })
     } else {
         chart.updateOptions({
@@ -171,7 +184,14 @@ function linearLogarithimic() {
                         return val.toLocaleString("en-US", { style: "currency", currency: "USD" });
                     },
                 }
-            }
+            },
+            grid: {
+                yaxis: {
+                    lines: {
+                        show: true
+                    }
+                },
+            },
         });
     }
 }

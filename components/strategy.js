@@ -5,6 +5,7 @@ let btcSpotPrice;
 let sma200;
 let prices;
 let movingAverage;
+let stashEvolutionChart = [];
 let defaultSpotPrice; // price that will never change
 
 // Calculate SMA
@@ -118,11 +119,14 @@ function calculateWithdrawalLimit() {
     }
 
     wRateRange.innerHTML = wrate.value + '%';
-    document.getElementById("allowed").value = withdrawalLimit.toFixed(8);
-    document.getElementById("allowedvalue").value = (withdrawalLimit * btcSpotPrice).toFixed(2);
+    document.getElementById("allowed").value = withdrawalLimit.toFixed(8) + " BTC";
+    document.getElementById("allowedvalue").value = (withdrawalLimit * btcSpotPrice).toLocaleString("en-US", { style: "currency", currency: "USD" });
     document.getElementById("monthAdvance").value = calculateAdvancedWithdraw();
-    document.getElementById("allowedAdv").value = (calculateAdvancedWithdraw() * withdrawalLimit).toFixed(8);
-    document.getElementById("allowedAdvVal").value = (calculateAdvancedWithdraw() * withdrawalLimit * btcSpotPrice).toFixed(2);
+    document.getElementById("allowedAdv").value = (calculateAdvancedWithdraw() * withdrawalLimit).toFixed(8) + " BTC";
+    document.getElementById("allowedAdvVal").value = (calculateAdvancedWithdraw() * withdrawalLimit * btcSpotPrice).toLocaleString("en-US", { style: "currency", currency: "USD" });
+
+    // simulation
+    simulateStrategy(document.getElementById('simulationDate').value);
 }
 
 // Advanced Withdrawal
@@ -211,7 +215,7 @@ fetchUrls(urls).then(([res1, res2, res3, res4]) => {
     let todayPrices = res4.prices.map(i => i[1]);
     let todayPriceRange = [Math.min(...todayPrices), Math.max(...todayPrices)];
     const priceRangeLength = document.getElementById('priceRangeLength');
-    priceRangeLength.style.width = ((defaultSpotPrice - todayPriceRange[0]) / (todayPriceRange[1] - todayPriceRange[0]))*100+'%';
+    priceRangeLength.style.width = ((defaultSpotPrice - todayPriceRange[0]) / (todayPriceRange[1] - todayPriceRange[0])) * 100 + '%';
     document.getElementById('minDayPrice').innerText = todayPriceRange[0].toLocaleString("en-US", { style: "decimal", minimumFractionDigits: 2, maximumFractionDigits: 2 });
     document.getElementById('maxDayPrice').innerText = todayPriceRange[1].toLocaleString("en-US", { style: "decimal", minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
@@ -220,7 +224,7 @@ fetchUrls(urls).then(([res1, res2, res3, res4]) => {
     document.getElementById('min200WPrice').innerText = price200week[0].toLocaleString("en-US", { style: "decimal", minimumFractionDigits: 2, maximumFractionDigits: 2 });
     document.getElementById('max200WPrice').innerText = price200weekRange[1].toLocaleString("en-US", { style: "decimal", minimumFractionDigits: 2, maximumFractionDigits: 2 });
     const price200weekRangeLength = document.getElementById('price200WRangeLength');
-    price200weekRangeLength.style.width = ((defaultSpotPrice - price200weekRange[0]) / (price200weekRange[1] - price200weekRange[0]))*100+'%';
+    price200weekRangeLength.style.width = ((defaultSpotPrice - price200weekRange[0]) / (price200weekRange[1] - price200weekRange[0])) * 100 + '%';
 
     // Load Dynamic Data
     calculateWithdrawalLimit();
