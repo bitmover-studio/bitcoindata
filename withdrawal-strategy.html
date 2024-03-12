@@ -52,6 +52,9 @@
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
       crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"
+      integrity="sha512-a+SUDuwNzXDvz4XrIcXHuCf089/iJAoN4lmrXJg18XnduKK6YlDHNRalv4yd1N40OKI80tFidF+rqTFKGPoWFQ=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
    <link href="css/style.css" rel="stylesheet">
    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
    <script src="components/navbar.js" defer></script>
@@ -60,6 +63,7 @@
    <script src="components/strategy.js" async></script>
    <script src="components/jjg-chart-options.js" async></script>
    <script src="components/jjg-stash-chart.js" async></script>
+   <script src="components/jjg-share.js" async></script>
 </head>
 
 <body>
@@ -220,29 +224,39 @@
                      <div id="chart" class="px-0 mx-0"></div>
                      <div class="card-text text-body-secondary text-end small">
                         <div class="float-start">
-                                 <button type="button" id="saveInputs" title="Save inputs"
-                                    class="btn btn-primary shadow-sm px-3" onclick="saveToLocalStorage()">Save
-                                    inputs
-                                 </button>
-                                 <button type="button" title="refresh" class="btn btn-secondary shadow-sm text-white"
-                                    onclick="restoreDefaults()">
-                                    <svg xmlns="http://www.w3.org/2000/svg" height="24" fill="currentColor"
-                                       viewBox="0 -960 960 960" width="24">
-                                       <path
-                                          d="M480-160q-134 0-227-93t-93-227q0-134 93-227t227-93q69 0 132 28.5T720-690v-110h80v280H520v-80h168q-32-56-87.5-88T480-720q-100 0-170 70t-70 170q0 100 70 170t170 70q77 0 139-44t87-116h84q-28 106-114 173t-196 67Z" />
-                                    </svg>
-                                 </button>
-                                 <button type="button" id="shareInputs" title="Share"
-                                    class="btn btn-secondary shadow-sm px-3" onclick="saveToLocalStorage()">
-                                    Share
-                                 </button>
-                           <div class="toast-container position-absolute p-3">
-                              <div class="toast align-items-center text-bg-secondary " role="alert" id="saveInputsToast"
+                           <button type="button" id="saveInputs" title="Save inputs"
+                              class="btn btn-primary shadow-sm px-3" onclick="saveToLocalStorage()">Save
+                              inputs
+                           </button>
+                           <button type="button" title="refresh" class="btn btn-secondary shadow-sm text-white"
+                              onclick="restoreDefaults()">
+                              <svg xmlns="http://www.w3.org/2000/svg" height="24" fill="currentColor"
+                                 viewBox="0 -960 960 960" width="24">
+                                 <path
+                                    d="M480-160q-134 0-227-93t-93-227q0-134 93-227t227-93q69 0 132 28.5T720-690v-110h80v280H520v-80h168q-32-56-87.5-88T480-720q-100 0-170 70t-70 170q0 100 70 170t170 70q77 0 139-44t87-116h84q-28 106-114 173t-196 67Z" />
+                              </svg>
+                           </button>
+                           <button type="button" id="shareInputs" title="Share" class="btn btn-secondary shadow-sm px-3"
+                              onclick="save_share();copyurl('shareURL')">
+                              Share
+                           </button>
+                           <div class="toast-container position-absolute mt-3">
+                              <div class="toast align-items-center text-bg-primary " role="alert" id="saveInputsToast"
                                  aria-live="assertive" aria-atomic="true">
                                  <div class="d-flex">
                                     <div class="toast-body">
                                        Inputs stored in your browser for future visits.
                                     </div>
+                                    <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"
+                                       aria-label="Close"></button>
+                                 </div>
+                              </div>
+                              <div class="toast text-bg-secondary w-100" role="alert" id="shareInputsToast"
+                                 aria-live="assertive" aria-atomic="true">
+                                 <div class="d-flex">
+                                    <small class="toast-body text-start" id="shareURL">
+                                       &nbsp;
+                                    </small>
                                     <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"
                                        aria-label="Close"></button>
                                  </div>
@@ -301,7 +315,8 @@
                   <p>You can simulate what your portfolio would be like if you had already started this strategy.</p>
                   <small>Considering you withdrawal at fixed dates 8th and 22nd each month.</small>
                   <div class="form-floating g-1 mb-3">
-                     <input type="date" title="choose a date" class="form-control" id="simulationDate" min="2010-08-02" onchange="simulateStrategy(this.value)">
+                     <input type="date" title="choose a date" class="form-control" id="simulationDate" min="2010-08-02"
+                        onchange="simulateStrategy(this.value)">
                      <label for="simulationDate">Start using strategy</label>
                   </div>
                </div>
@@ -312,15 +327,13 @@
                      <label for="allowed">Current Stash</label>
                   </div>
                   <div class="form-floating mb-3">
-                     <input type="text" class="form-control" id="amountWithdrawn"
-                        placeholder="Total Amount Withdrawn" onChange="calculateWithdrawalLimit()" value="0"
-                        disabled>
+                     <input type="text" class="form-control" id="amountWithdrawn" placeholder="Total Amount Withdrawn"
+                        onChange="calculateWithdrawalLimit()" value="0" disabled>
                      <label for="allowed">Amount Withdrawn (BTC)</label>
                   </div>
                   <div class="form-floating mb-3">
-                     <input type="text" class="form-control" id="totalWithdrawnUSD"
-                        placeholder="Total Amount Withdrawn" onChange="calculateWithdrawalLimit()" value="0"
-                        disabled>
+                     <input type="text" class="form-control" id="totalWithdrawnUSD" placeholder="Total Amount Withdrawn"
+                        onChange="calculateWithdrawalLimit()" value="0" disabled>
                      <label for="allowed">Amount Withdrawn (USD)</label>
                   </div>
                </div>

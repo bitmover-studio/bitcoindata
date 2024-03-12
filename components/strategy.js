@@ -162,33 +162,6 @@ function calculateAdvancedWithdraw() {
     }
 }
 
-// Save and Load Input area data from past sessions
-//load
-if (window.localStorage["annualWithdrawalRate"] && window.localStorage["btcStashSize"]) {
-    document.getElementById("wrate").value = window.localStorage["annualWithdrawalRate"];
-    document.getElementById("stash").value = window.localStorage["btcStashSize"];
-}
-//save
-function saveToLocalStorage() {
-    window.localStorage['annualWithdrawalRate'] = document.getElementById("wrate").value;
-    window.localStorage['btcStashSize'] = document.getElementById("stash").value;
-}
-function restoreDefaults() {
-    document.getElementById("wrate").value = 6;
-    document.getElementById("stash").value = 1;
-    calculateWithdrawalLimit()
-}
-// Toast
-const toastTrigger = document.getElementById('saveInputs')
-const saveInputsToast = document.getElementById('saveInputsToast')
-
-if (toastTrigger) {
-    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(saveInputsToast)
-    toastTrigger.addEventListener('click', () => {
-        toastBootstrap.show()
-    })
-}
-
 // Work on data
 fetchUrls(urls).then(([res1, res2, res3, res4]) => {
     btcSpotPrice = res1.price;
