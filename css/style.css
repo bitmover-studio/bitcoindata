@@ -1,6 +1,6 @@
-[data-bs-theme=dark] body {
-  background-color: #111316;
-}
+/* [data-bs-theme=dark] body {
+  background-color: #212529;
+} */
 
 body {
   transition: all .2s;
@@ -90,10 +90,6 @@ main {
   margin-top: 90px;
   padding-top: 0.5rem;
   min-height: 69vh;
-}
-
-.card.h-100:hover {
-  transform: translateZ(0) scale(1.02);
 }
 
 /* misc  */
