@@ -15,7 +15,7 @@
    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-   <link rel="manifest" href="/site.webmanifest">
+   <link rel="manifest" href="/manifest.json">
    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#e89800">
    <meta name="apple-mobile-web-app-title" content="bitcoin data.science">
    <meta name="application-name" content="bitcoin data.science">
@@ -65,12 +65,12 @@
    <main class="container-fluid col-lg-10 col-xl-8">
       <div class="mt-3">
          <div class="text-center">
-            <h1 class="text-danger h1"><em><span class="fs-big me-2">404</span> Error</h1></em>
+            <h1 class="text-danger h1"><em><span class="fs-big me-2">404</span></em> Error</h1>
             <p class="lead fw-semibold text-danger">File not found.</p>
          </div>
          <p>Please send me an <a href="mailto:bitmover@proton.ch">e-mail</a> or a <a
                href="https://bitcointalk.org/index.php?action=profile;u=1554927" target="_blank"
-               rel="noreferrer">bitcointalk message</a> if you have found any bug.</p>
+               rel="noreferrer noopener">bitcointalk message</a> if you have found any bug.</p>
 
          <p class="lead">Maybe you are looking for one of those pages?</p>
          <div id="cards" class="row row-cols-1 row-cols-md-2 g-3">

@@ -1,12 +1,10 @@
 {
     "name": "bitcoindata.science",
-    "short_name": "bitcoindata",
-    "theme_color": "#f79836",
-    "background_color": "#111316",
-    "display": "fullscreen",
-    "orientation": "portrait",
-    "scope": "/",
-    "start_url": "/",
+    "short_name": "BitcoinData",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#212529",
+    "description": "Data analysis and tools for anything related to bitcoin.",
     "icons": [
         {
             "src": "img/icons/icon-192x192.png",
@@ -24,6 +22,5 @@
             "type": "image/png",
             "purpose": "any maskable"
         }
-    ],
-    "description": "Data analysis and tools for anything related to bitcoin."
-}
+    ]
+  }
