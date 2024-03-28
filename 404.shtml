@@ -75,15 +75,13 @@
          <p class="lead">Maybe you are looking for one of those pages?</p>
          <div id="cards" class="row row-cols-1 row-cols-md-2 g-3">
             <div class="col">
-               <div class="card h-100 border-3 bg-transparent me-4">
+               <div class="card h-100   border-1 bg-transparent me-4">
                   <div class="card-body">
-                     <h3 class="h4 fw-bolder card-title"><a
-                           href="https://bitcoindata.science/bitcoin-balance-check.html"
-                           class="text-success-emphasis stretched-link">Balance Check</a></h3>
-                     <p class="card-text">See the balance of multiple bitcoin addresses at the same time. All address
-                        formats supported.</p>
+                     <h3 class="h4 fw-bolder card-title"><a href="bitcoin-balance-check.html"
+                           class="link-body-emphasis stretched-link">Balance Check</a></h3>
+                     <p class="card-text">See the balance of multiple bitcoin addresses at the same time. Scanning QRCode supported.</p>
                      <div
-                        class="position-absolute top-0 start-100 translate-middle bg-success-subtle border-success-subtle border rounded-pill p-3 mt-4">
+                        class="position-absolute top-0 start-100 translate-middle bg-success-subtle border-success-subtle rounded p-3 mt-4">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
                            class="bi bi-wallet2  text-success-emphasis" viewBox="0 0 16 16">
                            <path
@@ -94,16 +92,31 @@
                </div>
             </div>
             <div class="col">
-               <div class="card h-100 border-3 bg-transparent me-4">
+               <div class="card h-100   border-1 bg-transparent me-4">
                   <div class="card-body">
-                     <h3 class="h4 fw-bolder card-title"><a
-                           href="https://bitcoindata.science/bitcoin-units-converter.html"
-                           class="text-primary-emphasis stretched-link">Unit Converter</a></h3>
-                     <p class="card-text">Convert bitcoin units BTC, mBTC, uBTC, bitcent, satoshi, finney and more to
-                        USD, EUR or any other fiat currency. </p>
-                     <p class="card-text">168 fiat currencies supported. Prices are updated in real-time.</p>
+                     <h3 class="h4 fw-bolder card-title"><a href="https://bitcoindata.science/giveaway-manager/"
+                           class="link-body-emphasis stretched-link">Giveaway Manager</a></h3>
+                     <p class="card-text"><em>Provably fair</em> giveaway manager. Results easily verified and shareble.</p>
                      <div
-                        class="position-absolute top-0 start-100 translate-middle bg-primary-subtle border-primary-subtle border rounded-pill p-3 mt-4">
+                        class="position-absolute top-0 start-100 translate-middle bg-warning-subtle border-primary-subtle rounded p-3 mt-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+                           class="bi bi-gift text-warning-emphasis" viewBox="0 0 16 16">
+                           <path
+                              d="M3 2.5a2.5 2.5 0 0 1 5 0 2.5 2.5 0 0 1 5 0v.006c0 .07 0 .27-.038.494H15a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 14.5V7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h2.038A2.968 2.968 0 0 1 3 2.506V2.5zm1.068.5H7v-.5a1.5 1.5 0 1 0-3 0c0 .085.002.274.045.43a.522.522 0 0 0 .023.07zM9 3h2.932a.56.56 0 0 0 .023-.07c.043-.156.045-.345.045-.43a1.5 1.5 0 0 0-3 0V3zM1 4v2h6V4H1zm8 0v2h6V4H9zm5 3H9v8h4.5a.5.5 0 0 0 .5-.5V7zm-7 8V7H2v7.5a.5.5 0 0 0 .5.5H7z" />
+                        </svg>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="col">
+               <div class="card h-100   border-1 bg-transparent me-4">
+                  <div class="card-body">
+                     <h3 class="h4 fw-bolder card-title"><a href="bitcoin-units-converter.html"
+                           class="link-body-emphasis stretched-link">Unit Converter</a></h3>
+                     <p class="card-text">Convert bitcoin units BTC, mBTC, uBTC, bitcent, satoshi, finney to
+                        USD, EUR or any other fiat currency. </p>
+                     <div
+                        class="position-absolute top-0 start-100 translate-middle bg-primary-subtle border-primary-subtle rounded p-3 mt-4">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
                            class="bi bi-arrow-left-right text-primary-emphasis" viewBox="0 0 16 16">
                            <path fill-rule="evenodd"
@@ -114,42 +127,36 @@
                </div>
             </div>
             <div class="col">
-               <div class="card h-100 border-3 bg-transparent me-4">
+               <div class="card h-100   border-1 bg-transparent me-4">
                   <div class="card-body">
-                     <h3 class="h4 fw-bolder card-title"><a
-                           href="https://bitcoindata.science/plot-your-transaction-in-mempool.html"
-                           class="text-info stretched-link">Transaction Size</a></h3>
-                     <p class="card-text">Calculate the size of your transaction, based in the number of inputs, outputs
-                        and address format. You can also how much you will spend in Bitcoin transaction fees.</p>
+                     <h3 class="h4 fw-bolder card-title"><a href="bitcointalk-api.html"
+                           class="link-body-emphasis stretched-link">Bitcoin Image API</a></h3>
+                     <p class="card-text"> Share bitcoin data such as address balances and
+                        transactions as an image in bitcointalk.org or any other forum.</p>
                      <div
-                        class="position-absolute top-0 start-100 translate-middle bg-info-subtle border-info-subtle border rounded-pill p-3 mt-4">
+                        class="position-absolute top-0 start-100 translate-middle bg-danger-subtle border-primary-subtle rounded p-3 mt-4">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
-                           class="bi bi-calculator text-info" viewBox="0 0 16 16">
+                           class="bi bi-card-image text-danger-emphasis" viewBox="0 0 16 16">
+                           <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
                            <path
-                              d="M12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h8zM4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4z" />
-                           <path
-                              d="M4 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-2zm0 4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3-6a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm0 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-4z" />
+                              d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54A.505.505 0 0 1 1 12.5v-9a.5.5 0 0 1 .5-.5h13z" />
                         </svg>
                      </div>
                   </div>
                </div>
             </div>
             <div class="col">
-               <div class="card h-100 border-3 bg-transparent me-4">
+               <div class="card h-100   border-1 bg-transparent me-4">
                   <div class="card-body">
-                     <h3 class="h4 fw-bolder card-title"><a
-                           href="https://bitcoindata.science/plot-your-transaction-in-mempool.html"
-                           class="text-warning-emphasis stretched-link">Giveaway Manager</a></h3>
-                     <p class="card-text"><em>Provably fair</em> giveaway manager.</p>
-                     <P class="card-text"> Giveaways can have their results easily verified using only the blockhash
-                        and a simple javascript function.
-                        It is also possible to save and share the results in a unique URL.</P>
+                     <h3 class="h4 fw-bolder card-title"><a href="withdrawal-strategy.html"
+                           class="link-body-emphasis stretched-link">JJG Sustainable Withdrawal Strategy</a></h3>
+                     <p class="card-text"> Ideas of sustainable withdrawal that calculates monthly budget limits.</p>
                      <div
-                        class="position-absolute top-0 start-100 translate-middle bg-warning-subtle border-warning-subtle border rounded-pill p-3 mt-4">
+                        class="position-absolute top-0 start-100 translate-middle bg-info-subtle border-primary-subtle rounded p-3 mt-4">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
-                           class="bi bi-gift text-warning-emphasis" viewBox="0 0 16 16">
+                           class="bi bi-currency-bitcoin text-info-emphasis" viewBox="0 0 16 16">
                            <path
-                              d="M3 2.5a2.5 2.5 0 0 1 5 0 2.5 2.5 0 0 1 5 0v.006c0 .07 0 .27-.038.494H15a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 14.5V7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h2.038A2.968 2.968 0 0 1 3 2.506V2.5zm1.068.5H7v-.5a1.5 1.5 0 1 0-3 0c0 .085.002.274.045.43a.522.522 0 0 0 .023.07zM9 3h2.932a.56.56 0 0 0 .023-.07c.043-.156.045-.345.045-.43a1.5 1.5 0 0 0-3 0V3zM1 4v2h6V4H1zm8 0v2h6V4H9zm5 3H9v8h4.5a.5.5 0 0 0 .5-.5V7zm-7 8V7H2v7.5a.5.5 0 0 0 .5.5H7z" />
+                              d="M5.5 13v1.25c0 .138.112.25.25.25h1a.25.25 0 0 0 .25-.25V13h.5v1.25c0 .138.112.25.25.25h1a.25.25 0 0 0 .25-.25V13h.084c1.992 0 3.416-1.033 3.416-2.82 0-1.502-1.007-2.323-2.186-2.44v-.088c.97-.242 1.683-.974 1.683-2.19C11.997 3.93 10.847 3 9.092 3H9V1.75a.25.25 0 0 0-.25-.25h-1a.25.25 0 0 0-.25.25V3h-.573V1.75a.25.25 0 0 0-.25-.25H5.75a.25.25 0 0 0-.25.25V3l-1.998.011a.25.25 0 0 0-.25.25v.989c0 .137.11.25.248.25l.755-.005a.75.75 0 0 1 .745.75v5.505a.75.75 0 0 1-.75.75l-.748.011a.25.25 0 0 0-.25.25v1c0 .138.112.25.25.25zm1.427-8.513h1.719c.906 0 1.438.498 1.438 1.312 0 .871-.575 1.362-1.877 1.362h-1.28zm0 4.051h1.84c1.137 0 1.756.58 1.756 1.524 0 .953-.626 1.45-2.158 1.45H6.927z" />
                         </svg>
                      </div>
                   </div>

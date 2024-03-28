@@ -5,10 +5,10 @@
    <meta charset="utf-8">
    <title>Bitcoin Balance Checker - bitcoin data.science</title>
    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-   <meta name="description" content="Tool to check the balance of multiple bitcoin addresses at once. Segwit support">
+   <meta name="description" content="Check the balance of multiple bitcoin addresses and wallets. Scan bitcoin address QR Code for balance.">
    <meta name="robots" content="index, follow" />
    <meta name="keywords"
-      content="Bitcoin Address Balance Checker,bitcoin, balance, checker, address,addresses,multiple addresses" />
+      content="Bitcoin Address Balance Checker,bitcoin, balance, checker, address,addresses,multiple addresses, QRCode, QR Code" />
    <link rel="shortcut icon" href="img/favicon.svg">
    <link rel="canonical" href="https://bitcoindata.science/bitcoin-balance-check.html">
    <link rel="alternate" hreflang="x-default" href="https://bitcoindata.science" />
@@ -26,15 +26,15 @@
    <meta property="og:url" content="https://bitcoindata.science/" />
    <meta property="og:image" content="https://bitcoindata.science/img/logo.png" />
    <meta property="og:description"
-      content="Tool to check the balance of multiple bitcoin addresses at once. Segwit support" />
+      content="Check the balance of multiple bitcoin addresses and wallets. Scan bitcoin address for balance." />
    <meta property="og:locale" content="en_US" />
    <meta property="og:site_name" content="bitcoin data.science" />
    <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Organization",
-        "name": "Check the balance of your bitcoin addresses",
-        "description": "Check the balance of multiple bitcoin addresses, from different wallets",
+        "name": "Check the balance of your bitcoin addresses. Scan Bitcoin QR Code.",
+        "description": "Check the balance of multiple bitcoin addresses and wallets. Scan bitcoin address for balance.",
         "alternateName": [
           "bitcoindata.science",
           "Bitcoin Data Science",
@@ -45,7 +45,21 @@
         "sameAs": [
           "https://bitcoindata.science"
         ]
-      }
+      };
+      {
+         "@context": "https://schema.org",
+         "@type": "FAQPage",
+         "mainEntity": [
+           {
+             "@type": "Question",
+             "name": "How to Scan Multiple Addresses from Different Bitcoin Wallets?",
+             "acceptedAnswer": {
+               "@type": "Answer",
+               "text": "The bitcoindata.science balance checker allows you to check up to 465 addresses simultaneously. It supports scanning QR codes. Simply enter your addresses or scan them."
+             }
+           }
+         ]
+       }
    </script>
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -77,9 +91,9 @@
             <ul>
                <li>One address per line.</li>
                <li>Scanning QRCodes supported.</li>
+               <li>This tool can search up to 465 addresses.</li>
                <li>Your last search is stored locally in your browser's cache.</li>
                <li>If you keep this page open, the address balance will be updated every 20 minutes.</li>
-               <li>This tool can search up to 465 addresses.</li>
                <li>If you are searching for more than 20 addresses, there will be no balance updates.</li>
             </ul>
          </div>
