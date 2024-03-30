@@ -20,8 +20,9 @@ function getRawData($url)
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     $data = curl_exec($ch);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     curl_close($ch);
-    if ($data === false) {
+    if ($httpCode != 200 || $data === false) {
         return false;
     }
     return $data;
@@ -118,4 +119,3 @@ function printDate($image, $height, $textcolor)
         imagestring($image, 1.8, 1.8, 1 + ($height / 2), $date, $textcolor);
     }
 }
-?>

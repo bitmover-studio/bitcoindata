@@ -30,8 +30,7 @@ function calculateSMA(data, period) {
 // Fetch All Data
 const urls = [
     'https://bitcoindata.science/api/priceusd.json',
-    'https://bitcoindata.science/components/historical201013.json',
-    "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=max&interval=daily&precision=2",
+    "https://bitcoindata.science/api/marketchart.php",
     'https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=1&precision=full'
 ];
 
@@ -163,12 +162,10 @@ function calculateAdvancedWithdraw() {
 }
 
 // Work on data
-fetchUrls(urls).then(([res1, res2, res3, res4]) => {
-    btcSpotPrice = res1.price;
+fetchUrls(urls).then(([res0, res1, res2]) => {
+    btcSpotPrice = res0.price;
     defaultSpotPrice = btcSpotPrice;
-    let oldprice = res2;
-    let newprices = res3.prices;
-    prices = oldprice.concat(newprices);
+    prices = res1;
     prices.push([Date.now(), defaultSpotPrice])
     sma200 = calculateSMA(prices, 1400);
     movingAverage = sma200[sma200.length - 1][1];
@@ -185,7 +182,7 @@ fetchUrls(urls).then(([res1, res2, res3, res4]) => {
     }]);
 
     // Day and 200W Price Range Bar
-    let todayPrices = res4.prices.map(i => i[1]);
+    let todayPrices = res2.prices.map(i => i[1]);
     let todayPriceRange = [Math.min(...todayPrices), Math.max(...todayPrices)];
     const priceRangeLength = document.getElementById('priceRangeLength');
     priceRangeLength.style.width = ((defaultSpotPrice - todayPriceRange[0]) / (todayPriceRange[1] - todayPriceRange[0])) * 100 + '%';
