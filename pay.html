@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+   <meta charset="utf-8">
+   <title>Request Bitcoin Payment - bitcoin data.science</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <meta name="description" content="Get Bitcoin Raw Transaction in Hex Format">
+   <meta name="robots" content="index, follow" />
+   <meta name="keywords" content="Bitcoin Transaction Hex,Transaction Hex, Tx Hex, Get Bitcoin Transaction Hex" />
+   <link rel="shortcut icon" href="img/favicon.svg">
+   <link rel="canonical" href="https://bitcoindata.science/bitcoin-raw-transaction-hex.html">
+   <link rel="alternate" hreflang="x-default" href="https://bitcoindata.science" />
+   <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+   <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+   <link rel="manifest" href="manifest.json" />
+   <link rel="mask-icon" href="img/safari-pinned-tab.svg" color="#111316">
+   <meta name="apple-mobile-web-app-title" content="bitcoin data.science">
+   <meta name="application-name" content="bitcoin data.science">
+   <meta name="msapplication-TileColor" content="#2b5797">
+   <meta name="theme-color" content="#111316">
+   <meta property="og:title" content="Request Bitcoin Payment - bitcoin data.science" />
+   <meta property="og:type" content="website" />
+   <meta property="og:url" content="https://bitcoindata.science/" />
+   <meta property="og:image" content="https://bitcoindata.science/img/logo.png" />
+   <meta property="og:description"
+      content="Bitcoin Transaction Hex,Transaction Hex, Raw, Tx Hex, Get Bitcoin Transaction Hex" />
+   <meta property="og:locale" content="en_US" />
+   <meta property="og:site_name" content="bitcoin data.science" />
+   <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Get Bitcoin Raw Transaction Hex",
+        "description": "Get Bitcoin Raw Transaction in Hex Format",
+        "alternateName": [
+          "bitcoindata.science",
+          "Bitcoin Data Science",
+          "bitcoin datascience"
+        ],
+        "url": "https://bitcoindata.science",
+        "logo": "https://bitcoindata.science/img/logo.svg",
+        "sameAs": [
+          "https://bitcoindata.science"
+        ]
+      }
+   </script>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"
+      integrity="sha512-a+SUDuwNzXDvz4XrIcXHuCf089/iJAoN4lmrXJg18XnduKK6YlDHNRalv4yd1N40OKI80tFidF+rqTFKGPoWFQ=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+   <link href="css/style.css" rel="stylesheet">
+   <script src="components/navbar.js" type="text/javascript" defer></script>
+   <script src="components/footer.js" type="text/javascript" defer></script>
+   <script src="components/ad.js" type="text/javascript" defer></script>
+   <script src="modules/simple-btc-address-validation.js" type="text/javascript" defer></script>
+</head>
+
+<body>
+   <!-- Navbar -->
+   <header>
+      <navbar-component></navbar-component>
+   </header>
+   <!-- Page Content -->
+   <main class="container-fluid col-lg-10 col-xl-8">
+      <div class="mt-5">
+         <ad-component></ad-component>
+         <h1 class="h1 fw-semibold mb-0">Request Bitcoin Payment</h1>
+         <span class="header-line bg-primary rounded my-3 d-inline-block w-25"> </span>
+
+         <form class="bg-body-tertiary rounded p-5 border shadow-sm" onsubmit="handleClick(event)">
+            <div class="form-floating mb-3">
+               <input type="text" class="form-control" id="address" />
+               <label for="address">Pay to address</label>
+               <span id="elMessage">&nbsp;</span>
+            </div>
+            <div class="row g-2 mb-3">
+               <div class="col-md">
+                  <div class="form-floating">
+                     <input type="number" class="form-control" id="amount" value="0.01" step="0.00000001"
+                        onchange="calculateValue()" oninput="calculateValue()" />
+                     <label for="amount">Amount (BTC)</label>
+                  </div>
+               </div>
+               <div class="col-md">
+                  <div class="form-floating">
+                     <input type="number" class="form-control" id="value" step="0.01" onchange="calculateAmount()"
+                        oninput="calculateAmount()">
+                     <label for="value">Value (USD)</label>
+                  </div>
+               </div>
+            </div>
+            <div class="form-group row gap-2">
+               <div class="col-auto">
+                  <button type="submit" id="btnValidate" class="btn btn-primary shadow-sm">Generate
+                     QRCode</button>
+               </div>
+               <div class="col-auto">
+                  <button type="button" id="share" class="btn btn-secondary shadow-sm"
+                     onclick="save_share()">Share</button>
+               </div>
+               <div class="col-lg">
+                  <label for="share_url" class="visually-hidden">Share URL</label>
+                  <input type="url" class="form-control" id="share_url" readonly="" disabled
+                     onclick="copyurl('share_url')" data-toggle="tooltip" data-placement="top" title=""
+                     data-original-title="Click to copy to clipboard">
+               </div>
+            </div>
+
+            <div class="card mt-4 mb-sm-0">
+               <div class="row g-0">
+                  <div class="col-md-4">
+                     <canvas id="bitcoin-qr" class="img-fluid rounded-start" title="QRCode"
+                        alt="img-fluid rounded-start"></canvas>
+                  </div>
+                  <div class="col-md-8">
+                     <div class="card-body">
+                        <h5 class="card-title" id="paymentTitle"></h5>
+                        <p class="card-text" id="paymentDescription"></p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </form>
+      </div>
+   </main>
+   <footer-component></footer-component>
+   <script>
+      const inputValue = document.getElementById("value");
+      const inputAmount = document.getElementById("amount");
+      const inputAddress = document.getElementById("address");
+      const canvas = document.getElementById("bitcoin-qr");
+      const btnValidate = document.getElementById("btnValidate");
+      const share = document.getElementById("share");
+      const paymentDescription = document.getElementById('paymentDescription')
+      const paymentTitle = document.getElementById('paymentTitle')
+
+      function handleClick(event) {
+         if (event) { event.preventDefault() }
+
+         // Clear the canvas
+         let ctx = canvas.getContext('2d');
+         ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+         // validate address
+         let v = normalize(inpAddress.value);
+         let bitcoinAddress = validate(v);
+         if (bitcoinAddress) {
+            generateQRCode(inpAddress.value, amount.value)
+
+         paymentDescription.innerText = 'Click the share button to share this QRCode with your customer.'
+         paymentTitle.innerText = 'Share your payment request'
+         }
+      }
+
+      // Fetch Price
+      async function fetchPrice(url) {
+         try {
+            let response = await fetch(url);
+            let data = await response.json();
+            price = data.price;
+            calculateValue();
+         } catch (error) {
+            console.error(error);
+         }
+      };
+
+      let price;
+      fetchPrice('https://bitcoindata.science/api/priceusd.json');
+
+      function calculateValue() {
+         inputValue.value = (price * inputAmount.value).toFixed(2);
+      }
+      function calculateAmount() {
+         inputAmount.value = (inputValue.value / price).toFixed(8);
+      }
+
+      // QRCode
+      function generateQRCode(address, amount) {
+         const bitcoinUri = "bitcoin:" + address + "?amount=" + amount + "&label=receiver";
+         const qr = new QRious({
+            element: canvas,
+            value: bitcoinUri,
+            size: 200,
+         });
+      }
+
+      //Share
+      function copyurl(target) {
+         navigator.clipboard.writeText(document.getElementById(target).value)
+      }
+
+      function save_share() {
+         if (validate(normalize(inpAddress.value))) {
+            let encrypted = CryptoJS.AES.encrypt(inpAddress.value + '&' + amount.value, "bitcoin");
+            document.getElementById("share_url").value = 'https://bitcoindata.science/pay?' + encrypted;
+         }
+      }
+
+      //load saved data from shareable URL
+      if (window.location.search) {
+         let decrypted = CryptoJS.AES.decrypt(window.location.search.substring(1), "bitcoin");
+         let saved_data = decrypted.toString(CryptoJS.enc.Utf8);
+         let saved_data_array = saved_data.split("&");
+         inputAddress.value = saved_data_array[0]
+         inputAmount.value = saved_data_array[1]
+
+         // set all input fields and buttons to disabled
+         const inputs = [inputValue, inputAddress, inputAmount, btnValidate, share];
+         inputs.forEach(function (el) {
+            el.disabled = true;
+         });
+
+         generateQRCode(inputAddress.value, inputAmount.value);
+
+         paymentDescription.innerText = 'Complete the payment by scanning the QR code below. Double-check if the address on the screen matches the one in the wallet.'
+         paymentTitle.innerText = 'Complete your payment'
+      }
+   </script>
+</body>
+
+</html>
