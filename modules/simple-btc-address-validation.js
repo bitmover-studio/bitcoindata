@@ -28,7 +28,7 @@ var normalize = (s) => {
   };
   
   var elMessage = getEl('elMessage');
-  var inpAddress = getEl('address');
+  var inpAddress = getEl('bitcoinaddress');
   var amount = getEl('amount');
   
   var setMessage = (txt = '', clss = '') => {

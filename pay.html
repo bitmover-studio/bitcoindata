@@ -5,11 +5,11 @@
    <meta charset="utf-8">
    <title>Request Bitcoin Payment - bitcoin data.science</title>
    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-   <meta name="description" content="Get Bitcoin Raw Transaction in Hex Format">
+   <meta name="description" content="Requests payments in Bitcoin">
    <meta name="robots" content="index, follow" />
-   <meta name="keywords" content="Bitcoin Transaction Hex,Transaction Hex, Tx Hex, Get Bitcoin Transaction Hex" />
+   <meta name="keywords" content="Requests payments in Bitcoin, Request Bitcoin Payment, Bitcoin payment tool" />
    <link rel="shortcut icon" href="img/favicon.svg">
-   <link rel="canonical" href="https://bitcoindata.science/bitcoin-raw-transaction-hex.html">
+   <link rel="canonical" href="https://bitcoindata.science/pay.html">
    <link rel="alternate" hreflang="x-default" href="https://bitcoindata.science" />
    <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
@@ -25,15 +25,15 @@
    <meta property="og:url" content="https://bitcoindata.science/" />
    <meta property="og:image" content="https://bitcoindata.science/img/logo.png" />
    <meta property="og:description"
-      content="Bitcoin Transaction Hex,Transaction Hex, Raw, Tx Hex, Get Bitcoin Transaction Hex" />
+      content="Requests payments in Bitcoin" />
    <meta property="og:locale" content="en_US" />
    <meta property="og:site_name" content="bitcoin data.science" />
    <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@type": "Organization",
-        "name": "Get Bitcoin Raw Transaction Hex",
-        "description": "Get Bitcoin Raw Transaction in Hex Format",
+        "name": "Requests payments in Bitcoin",
+        "description": "Requests payments in Bitcoin",
         "alternateName": [
           "bitcoindata.science",
           "Bitcoin Data Science",
@@ -52,9 +52,6 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"
-      integrity="sha512-a+SUDuwNzXDvz4XrIcXHuCf089/iJAoN4lmrXJg18XnduKK6YlDHNRalv4yd1N40OKI80tFidF+rqTFKGPoWFQ=="
-      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
    <link href="css/style.css" rel="stylesheet">
    <script src="components/navbar.js" type="text/javascript" defer></script>
    <script src="components/footer.js" type="text/javascript" defer></script>
@@ -73,12 +70,27 @@
          <ad-component></ad-component>
          <h1 class="h1 fw-semibold mb-0">Request Bitcoin Payment</h1>
          <span class="header-line bg-primary rounded my-3 d-inline-block w-25"> </span>
-
          <form class="bg-body-tertiary rounded p-5 border shadow-sm" onsubmit="handleClick(event)">
-            <div class="form-floating mb-3">
-               <input type="text" class="form-control" id="address" />
-               <label for="address">Pay to address</label>
-               <span id="elMessage">&nbsp;</span>
+            <div class="row">
+               <div class="col pe-0">
+                  <div class="form-floating mb-3">
+                     <input type="text" class="form-control" id="bitcoinaddress" onfocus="validateAddress()" oninput="validateAddress()" onchange="validateAddress()"/>
+                     <label for="bitcoinaddress">Pay to address</label>
+                     <span id="elMessage">&nbsp;</span>
+                  </div>
+               </div>
+               <div class="col-auto mt-2 pe-1 me-2 ps-0 ms-1">
+                  <a type="button" id="paste" class="link-secondary d-inline-block" onclick="paste('bitcoinaddress')"
+                     title="paste from clipboard">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor"
+                        class="bi bi-clipboard2" viewBox="0 0 16 16">
+                        <path
+                           d="M3.5 2a.5.5 0 0 0-.5.5v12a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-12a.5.5 0 0 0-.5-.5H12a.5.5 0 0 1 0-1h.5A1.5 1.5 0 0 1 14 2.5v12a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-12A1.5 1.5 0 0 1 3.5 1H4a.5.5 0 0 1 0 1z" />
+                        <path
+                           d="M10 .5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5.5.5 0 0 1-.5.5.5.5 0 0 0-.5.5V2a.5.5 0 0 0 .5.5h5A.5.5 0 0 0 11 2v-.5a.5.5 0 0 0-.5-.5.5.5 0 0 1-.5-.5" />
+                     </svg>
+                  </a>
+               </div>
             </div>
             <div class="row g-2 mb-3">
                <div class="col-md">
@@ -96,7 +108,7 @@
                   </div>
                </div>
             </div>
-            <div class="form-group row gap-2">
+            <div class="row gap-2">
                <div class="col-auto">
                   <button type="submit" id="btnValidate" class="btn btn-primary shadow-sm">Generate
                      QRCode</button>
@@ -105,11 +117,21 @@
                   <button type="button" id="share" class="btn btn-secondary shadow-sm"
                      onclick="save_share()">Share</button>
                </div>
-               <div class="col-lg">
-                  <label for="share_url" class="visually-hidden">Share URL</label>
-                  <input type="url" class="form-control" id="share_url" readonly="" disabled
-                     onclick="copyurl('share_url')" data-toggle="tooltip" data-placement="top" title=""
-                     data-original-title="Click to copy to clipboard">
+               <div class="col">
+                  <div class="d-flex flex-nowrap">
+                     <label for="share_url" class="visually-hidden">Share URL</label>
+                     <input type="url" class="form-control d-inline-block" id="share_url" readonly="" disabled
+                        onclick="copyurl('share_url')" data-toggle="tooltip" data-placement="top" title=""
+                        data-original-title="Click to copy to clipboard">
+                     <a type="button" id="copy" class="link-secondary  d-inline-block" onclick="copyurl('share_url')"
+                        title="Copy to clipboard">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentcolor" viewBox="-8 -8 60 60" height="37"
+                           alt="Copy" width="37">
+                           <path
+                              d="M15 37.95q-1.25 0-2.125-.875T12 34.95v-28q0-1.25.875-2.125T15 3.95h22q1.25 0 2.125.875T40 6.95v28q0 1.25-.875 2.125T37 37.95Zm0-3h22v-28H15v28Zm-6 9q-1.25 0-2.125-.875T6 40.95V12.3q0-.65.425-1.075Q6.85 10.8 7.5 10.8q.65 0 1.075.425Q9 11.65 9 12.3v28.65h22.2q.65 0 1.075.425.425.425.425 1.075 0 .65-.425 1.075-.425.425-1.075.425Zm6-37v28-28Z" />
+                        </svg>
+                     </a>
+                  </div>
                </div>
             </div>
 
@@ -128,19 +150,35 @@
                </div>
             </div>
          </form>
-         <p class="small text-warning text-end">This is a free service. We are not responsible for lost funds. Use at your own risk.</p>
+         <p class="small text-warning text-end">This is a free service. We are not responsible for lost funds. Use at
+            your own risk.</p>
       </div>
    </main>
    <footer-component></footer-component>
    <script>
       const inputValue = document.getElementById("value");
       const inputAmount = document.getElementById("amount");
-      const inputAddress = document.getElementById("address");
+      const inputAddress = document.getElementById("bitcoinaddress");
       const canvas = document.getElementById("bitcoin-qr");
       const btnValidate = document.getElementById("btnValidate");
       const share = document.getElementById("share");
       const paymentDescription = document.getElementById('paymentDescription')
       const paymentTitle = document.getElementById('paymentTitle')
+
+      function validateAddress(){
+         let v = normalize(inpAddress.value);
+         let bitcoinAddress = validate(v);
+         if (bitcoinAddress) {
+            inputAddress.classList.remove("is-invalid")
+            inputAddress.classList.add("is-valid")
+            paymentDescription.innerText = 'Click the share button to share this QRCode with your customer.'
+            paymentTitle.innerText = 'Share your payment request'
+         }
+         else if (bitcoinAddress !== true) {
+            inputAddress.classList.remove("is-valid")
+            inputAddress.classList.add("is-invalid")
+         }
+      }
 
       function handleClick(event) {
          if (event) { event.preventDefault() }
@@ -152,11 +190,9 @@
          // validate address
          let v = normalize(inpAddress.value);
          let bitcoinAddress = validate(v);
+         validateAddress()
          if (bitcoinAddress) {
             generateQRCode(inpAddress.value, amount.value)
-
-         paymentDescription.innerText = 'Click the share button to share this QRCode with your customer.'
-         paymentTitle.innerText = 'Share your payment request'
          }
       }
 
@@ -197,18 +233,26 @@
       function copyurl(target) {
          navigator.clipboard.writeText(document.getElementById(target).value)
       }
+      function paste(target) {
+         if (!target.disabled) {
+         navigator.clipboard
+            .readText()
+            .then(
+               (clipText) => (document.getElementById(target).value = clipText),
+            );
+      }
+   }
 
       function save_share() {
          if (validate(normalize(inpAddress.value))) {
-            let encrypted = CryptoJS.AES.encrypt(inpAddress.value + '&' + amount.value, "bitcoin");
-            document.getElementById("share_url").value = 'https://bitcoindata.science/pay?' + encrypted;
+            let sharedata = inpAddress.value + '&' + amount.value;
+            document.getElementById("share_url").value = 'https://bitcoindata.science/pay?' + sharedata;
          }
       }
 
       //load saved data from shareable URL
       if (window.location.search) {
-         let decrypted = CryptoJS.AES.decrypt(window.location.search.substring(1), "bitcoin");
-         let saved_data = decrypted.toString(CryptoJS.enc.Utf8);
+         let saved_data = window.location.search.substring(1);
          let saved_data_array = saved_data.split("&");
          inputAddress.value = saved_data_array[0]
          inputAmount.value = saved_data_array[1]
