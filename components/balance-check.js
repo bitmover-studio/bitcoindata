@@ -120,9 +120,24 @@ async function getBalances(price) {
        <div class="col col-md-3 pe-0">${balance.reduce((a, e) => a + e.value, 0).toLocaleString("en-US", { style: "currency", currency: "USD" })}</div>
     </div>
 
-    <p class="h6">Detailed Results</p>
+      <div class="row">
+        <div class="col p-0">
+          <span class="fw-semibold">Detailed Results</p>
+        </div>
+        <div class="col">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="hideZero" onclick="toggleFilter()">
+            <label class="form-check-label" for="hideZero">Hide zero balance</label>
+          </div>
+        </div>
+        <div class="col p-0 text-end">
+          <button type="button" id='json' class="btn btn-primary position-relative" title="Download JSON file" onclick="download(JSON.stringify({addresses:balance}, null, 4), 'addresses'+new Date().toISOString().slice(0, 10)+'.json', 'text/plain')"><span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 1280" width="20" height="20"><path d="M463.6 94c-.3 1.7-.6 110-.6 240.5l-.2 237.6c-.2.2-38.2.5-84.4.8l-84 .5 163.2 216 164.3 216c1 0 327.2-430.8 327.2-432 0-.2-37.5-.4-83.3-.4-63.5 0-83.6-.3-84.5-1.2s-1.2-55.8-1.2-241V91H622 464.3l-.7 3zm-248 937.7c-.4.3-.7 28-.7 61.5v60.8h430 430v-61l-1.6-61.5c-2.2-.8-857-.8-857.7.1z" fill="#fff"></path></svg> .json</span></button>
+          <button type="button" class="btn btn-secondary position-relative" title="Download CSV file" onclick="download(jsonToCsv(balance), 'addresses'+new Date().toISOString().slice(0, 10)+'.csv', 'text/csv')"><span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 1280" width="20" height="20"><path d="M463.6 94c-.3 1.7-.6 110-.6 240.5l-.2 237.6c-.2.2-38.2.5-84.4.8l-84 .5 163.2 216 164.3 216c1 0 327.2-430.8 327.2-432 0-.2-37.5-.4-83.3-.4-63.5 0-83.6-.3-84.5-1.2s-1.2-55.8-1.2-241V91H622 464.3l-.7 3zm-248 937.7c-.4.3-.7 28-.7 61.5v60.8h430 430v-61l-1.6-61.5c-2.2-.8-857-.8-857.7.1z" fill="#fff"></path></svg> .csv</span></button>
+         </div>
+      </div>
+    
     ${balance.map(i => `
-     <div class="bg-body-tertiary rounded border p-3 my-3 row">
+     <div class="bg-body-tertiary rounded border p-3 my-3 row" id=${i.address}>
       <div class="row">
        <div class="col-md-6"><code><a target="_blank" rel="noreferrer" title="${i.address}" href="https://mempool.space/address/${i.address}">${i.address}</a></code></div>
         <div class="w-100 d-none d-xs-block"></div>
@@ -138,12 +153,9 @@ async function getBalances(price) {
        </div>` : ''}
       </div>
    `).join('')}
-    <div class="text-end">
-      <button type="button" id='json' class="btn btn-primary position-relative" title="Download JSON file" onclick="download(JSON.stringify({addresses:balance}, null, 4), 'addresses'+new Date().toISOString().slice(0, 10)+'.json', 'text/plain')"><span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 1280" width="20" height="20"><path d="M463.6 94c-.3 1.7-.6 110-.6 240.5l-.2 237.6c-.2.2-38.2.5-84.4.8l-84 .5 163.2 216 164.3 216c1 0 327.2-430.8 327.2-432 0-.2-37.5-.4-83.3-.4-63.5 0-83.6-.3-84.5-1.2s-1.2-55.8-1.2-241V91H622 464.3l-.7 3zm-248 937.7c-.4.3-.7 28-.7 61.5v60.8h430 430v-61l-1.6-61.5c-2.2-.8-857-.8-857.7.1z" fill="#fff"></path></svg> .json</span></button>
-      <button type="button" class="btn btn-secondary position-relative" title="Download CSV file" onclick="download(jsonToCsv(balance), 'addresses'+new Date().toISOString().slice(0, 10)+'.csv', 'text/csv')"><span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 1280" width="20" height="20"><path d="M463.6 94c-.3 1.7-.6 110-.6 240.5l-.2 237.6c-.2.2-38.2.5-84.4.8l-84 .5 163.2 216 164.3 216c1 0 327.2-430.8 327.2-432 0-.2-37.5-.4-83.3-.4-63.5 0-83.6-.3-84.5-1.2s-1.2-55.8-1.2-241V91H622 464.3l-.7 3zm-248 937.7c-.4.3-.7 28-.7 61.5v60.8h430 430v-61l-1.6-61.5c-2.2-.8-857-.8-857.7.1z" fill="#fff"></path></svg> .csv</span></button>
-    </div>
   `
 }
+
 
 function download(content, fileName, contentType) {
   const a = document.createElement("a");
@@ -232,3 +244,27 @@ async function compareBalance(price) {
   }
   modalText = {};
 };
+
+// Hide zero balance
+function toggleFilter() {
+  const isChecked = document.getElementById("hideZero").checked
+
+  const filteredList = balance.filter(obj => obj.value === 0 && obj.unconfirmed === 0);
+  var filteredAddresses = filteredList.map(obj => obj.address)
+
+  if (isChecked) {
+    filteredAddresses.forEach(id => {
+      const element = document.getElementById(id);
+      if (element) {
+        element.hidden = true;
+      }
+    });
+  } else {
+    filteredAddresses.forEach(id => {
+      const element = document.getElementById(id);
+      if (element) {
+        element.hidden = false;
+      }
+    });
+  }
+}
