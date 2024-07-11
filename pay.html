@@ -24,8 +24,7 @@
    <meta property="og:type" content="website" />
    <meta property="og:url" content="https://bitcoindata.science/" />
    <meta property="og:image" content="https://bitcoindata.science/img/logo.png" />
-   <meta property="og:description"
-      content="Requests payments in Bitcoin" />
+   <meta property="og:description" content="Requests payments in Bitcoin" />
    <meta property="og:locale" content="en_US" />
    <meta property="og:site_name" content="bitcoin data.science" />
    <script type="application/ld+json">
@@ -56,7 +55,7 @@
    <script src="components/navbar.js" type="text/javascript" defer></script>
    <script src="components/footer.js" type="text/javascript" defer></script>
    <script src="components/ad.js" type="text/javascript" defer></script>
-   <script src="modules/simple-btc-address-validation.js" type="text/javascript" defer></script>
+   <script src="modules/bitcoinjs-lib.js"></script>
 </head>
 
 <body>
@@ -74,7 +73,8 @@
             <div class="row">
                <div class="col pe-0">
                   <div class="form-floating mb-3">
-                     <input type="text" class="form-control" id="bitcoinaddress" onfocus="validateAddress()" oninput="validateAddress()" onchange="validateAddress()"/>
+                     <input type="text" class="form-control" id="bitcoinaddress" onfocus="validateAddress()"
+                        oninput="validateAddress()" onchange="validateAddress()" />
                      <label for="bitcoinaddress">Pay to address</label>
                      <span id="elMessage">&nbsp;</span>
                   </div>
@@ -165,18 +165,20 @@
       const paymentDescription = document.getElementById('paymentDescription')
       const paymentTitle = document.getElementById('paymentTitle')
 
-      function validateAddress(){
-         let v = normalize(inpAddress.value);
-         let bitcoinAddress = validate(v);
-         if (bitcoinAddress) {
+      function validateAddress() {
+         try {
+            const outputScript = bitcoinjs.address.toOutputScript(inputAddress.value)
             inputAddress.classList.remove("is-invalid")
             inputAddress.classList.add("is-valid")
             paymentDescription.innerText = 'Click the share button to share this QRCode with your customer.'
             paymentTitle.innerText = 'Share your payment request'
+            generateQRCode(inputAddress.value, amount.value)
+            return outputScript;
          }
-         else if (bitcoinAddress !== true) {
+         catch (error) {
             inputAddress.classList.remove("is-valid")
             inputAddress.classList.add("is-invalid")
+            return undefined
          }
       }
 
@@ -188,11 +190,8 @@
          ctx.clearRect(0, 0, canvas.width, canvas.height);
 
          // validate address
-         let v = normalize(inpAddress.value);
-         let bitcoinAddress = validate(v);
-         validateAddress()
-         if (bitcoinAddress) {
-            generateQRCode(inpAddress.value, amount.value)
+         if (validateAddress() !== undefined) {
+            generateQRCode(inputAddress.value, amount.value)
          }
       }
 
@@ -235,17 +234,17 @@
       }
       function paste(target) {
          if (!target.disabled) {
-         navigator.clipboard
-            .readText()
-            .then(
-               (clipText) => (document.getElementById(target).value = clipText),
-            );
+            navigator.clipboard
+               .readText()
+               .then(
+                  (clipText) => (document.getElementById(target).value = clipText),
+               );
+         }
       }
-   }
 
       function save_share() {
-         if (validate(normalize(inpAddress.value))) {
-            let sharedata = inpAddress.value + '&' + amount.value;
+         if (validateAddress) {
+            let sharedata = inputAddress.value + '&' + amount.value;
             document.getElementById("share_url").value = 'https://bitcoindata.science/pay?' + sharedata;
          }
       }
@@ -262,11 +261,14 @@
          inputs.forEach(function (el) {
             el.disabled = true;
          });
-
-         generateQRCode(inputAddress.value, inputAmount.value);
+         validateAddress();
 
          paymentDescription.innerText = 'Complete the payment by scanning the QR code below. Double-check if the address on the screen matches the one in the wallet.'
          paymentTitle.innerText = 'Complete your payment'
+         if (validateAddress() === undefined) {
+            paymentDescription.innerText ='do not make the payment'
+            paymentTitle.innerHTML = '<span class="text-danger">Invalid bitcoin address</span>'
+         }
       }
    </script>
 </body>
