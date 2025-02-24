@@ -732,7 +732,7 @@
                      <th scope="row">currency</th>
                      <td>string</td>
                      <td>USD</td>
-                     <td>The Fiat currency you want to see the balance.</td>
+                     <td>The Fiat currency you want to see the balance. Use <code>NOFIAT</code> to exclude fiat value.</td>
                   </tr>
                   <tr>
                      <th scope="row">hex</th>
@@ -768,7 +768,8 @@
                   <div class="form-floating">
                      <select class="form-select" id="floatingSelect2" aria-label="Fiat currency select"
                         onChange="javascript:setContent(this.value,'balance-currency')">
-                        <option selected>EUR</option>
+                        <option>NOFIAT</option>
+                        <option>EUR</option>
                         <option>AFN</option>
                         <option>ALL</option>
                         <option>AMD</option>

@@ -16,7 +16,10 @@ if (isset($_GET["hex"]))
 $btcpriceusd = getBTCPriceUsd('bitcoin');
 
 $currency = strtoupper($currency);
-$rates = getFiatRates($currency);
+if ($currency === "NOFIAT")
+    $rates = 1;
+else
+    $rates = getFiatRates($currency);
 
 $price = $btcpriceusd * $rates;
 
@@ -26,7 +29,10 @@ $explorerjsonArray = getData($dataUrl);
 $addressbalance = ($explorerjsonArray->chain_stats->funded_txo_sum - $explorerjsonArray->chain_stats->spent_txo_sum) / 100000000;
 $addressvalue = number_format($addressbalance * $price, 2);
 
-$string = $address . " " . $addressbalance . " BTC - " . $addressvalue . " " . $currency;
+if ($currency === "NOFIAT")
+    $string = $address . " " . number_format($addressbalance, 8) . " BTC";
+else
+    $string = $address . " " . number_format($addressbalance, 8) . " BTC - " . $addressvalue . " " . $currency;
 
 //create image
 
