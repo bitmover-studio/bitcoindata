@@ -33,6 +33,12 @@ class Footer extends HTMLElement {
                         <p class="font-monospace">Source Code</p>
                       </a>
                   </div>
+                  <div class="col-md">
+                      <a href="https://www.l0tt0.com/?utm_source=bitcoindata.science" target="_blank" alt="Retro Crypto Casino">
+                       <img src="https://bitcoindata.science/img/lotto-logo.svg" title="l0tt0.com - Bitcoin Games Like You've Never Seen!" alt="l0tt0.com" height="35" width="99" class="p-2 bg-l0tt0 rounded" />
+                        <p class="font-monospace">Retro Crypto Casino</p>
+                      </a>
+                  </div>
               </div>
             </div>
           </footer>
