@@ -1,17 +1,32 @@
-/* [data-bs-theme=dark] body {
-  background-color: #212529;
-} */
+ [data-bs-theme=dark] body {
+  background-color: #1B1A1C;
+}
 
 body {
   transition: all .2s;
+  background-color: #eff0f5;
 }
 
 a {
   text-decoration: none;
 }
 
-a:hover {
-  text-decoration: underline;
+a:hover, .footer-link:hover {
+transition: all .3s ease-in-out;
+  text-decoration: none;
+  color:orange;
+}
+
+.footer-link {
+  color: #000;
+}
+
+ [data-bs-theme=dark] .footer-link:hover{
+  color: orange;
+}
+
+ [data-bs-theme=dark] .footer-link{
+  color: #fff;
 }
 
 span.logo {
@@ -30,7 +45,7 @@ span.logo {
 /* Navbar */
 
 #nav-lg-menu li {
-  font-size: 17px;
+  font-size: 15px;
   margin-right: 1rem;
 }
 
@@ -68,28 +83,18 @@ span.logo {
   background-color: transparent;
 }
 
-#nav-lg-menu a::after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  transform: scaleX(0);
-  height: 3px;
-  bottom: 0;
-  left: 0;
-  background-color: gray;
-  transform-origin: center length;
-  transition: transform 0.3s ease-in-out, background-color .3s ease;
-}
-
-#nav-lg-menu a:hover::after {
-  transform: scaleX(1);
-}
-
 /* main */
 main {
-  margin-top: 90px;
   padding-top: 0.5rem;
-  min-height: 69vh;
+  min-height: 60vh;
+}
+
+ [data-bs-theme=dark] .bg-body-tertiary {
+  background-color: #ffffff0a !important;
+}
+
+ [data-bs-theme=dark] .card-home:hover{ 
+background-color: #ffffff1a !important;
 }
 
 /* misc  */

@@ -62,9 +62,9 @@ class Navbar extends HTMLElement {
 
   connectedCallback() {
     this.innerHTML = `
-<nav id="topnav" class="navbar navbar-expand-lg bg-body-tertiary fixed-top border-bottom">
+<nav id="topnav" class="navbar navbar-expand-lg">
     <div class="container-fluid">
-        <div class="m-1 text-nowrap">
+        <div class="m-3 text-nowrap">
             <a title="bitcoin data.science" class="navbar-brand text-decoration-none mx-0" href="./">
                 <img src="img/bitcoin-data-science-logo-web.svg" class="float-start mt-2 me-1"
                     alt="bitcoin data.science" title="bitcoin data.science" height="50" width="50"/>
@@ -77,7 +77,7 @@ class Navbar extends HTMLElement {
             ${menuItems
               .map(
                 (item) => `
-                    <li class="nav-item small">
+                    <li class="nav-item small fw-semibold">
                         <a class="nav-link" href="${item.link}" title="${item.Name}">
                             ${item.Name}
                         </a>
