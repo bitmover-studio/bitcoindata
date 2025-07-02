@@ -29,6 +29,13 @@ transition: all .3s ease-in-out;
   color: #fff;
 }
 
+ [data-bs-theme=dark] .btn{
+  color: black;
+  font-weight: 600;
+}
+.btn{
+  font-weight: 600;
+}
 span.logo {
   color: orange;
 }
