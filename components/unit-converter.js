@@ -1,7 +1,6 @@
 "use strict";
 
 var usdPrice = 0;
-var brlPrice = 0;
 var rates = {};
 var symbols = [];
 var fselect = document.getElementById("selEbank").options[selEbank.selectedIndex].text;
@@ -29,7 +28,6 @@ function unitConverter(source, valNum) {
 		inputsat.value = parseFloat(valNum * 100000000);
 		inputmsat.value = parseFloat(valNum * 100000000000).toFixed(0);
 		inputUSD.value = parseFloat(valNum * usdPrice).toFixed(2);
-		inputBRL.value = parseFloat(valNum * brlPrice).toFixed(2);
 		inputEbank.value = parseFloat(valNum * usdPrice * rates[fselect]).toFixed(2);
 	}
 	if (source == "inputcBTC") {
@@ -40,7 +38,6 @@ function unitConverter(source, valNum) {
 		inputsat.value = parseFloat(valNum * 1000000);
 		inputmsat.value = parseFloat(valNum * 1000000000).toFixed(0);
 		inputUSD.value = parseFloat((valNum * usdPrice / 100).toFixed(2));
-		inputBRL.value = parseFloat((valNum * brlPrice / 100).toFixed(2));
 		inputEbank.value = parseFloat(valNum * usdPrice * rates[fselect] / 100).toFixed(2);
 	}
 	if (source == "inputmBTC") {
@@ -51,7 +48,6 @@ function unitConverter(source, valNum) {
 		inputsat.value = parseFloat(valNum * 100000);
 		inputmsat.value = parseFloat(valNum * 10000000).toFixed(0);
 		inputUSD.value = parseFloat((valNum * usdPrice / 1000).toFixed(2));
-		inputBRL.value = parseFloat((valNum * brlPrice / 1000).toFixed(2));
 		inputEbank.value = parseFloat(valNum * usdPrice * rates[fselect] / 1000).toFixed(2);
 	}
 	if (source == "inputuBTC") {
@@ -62,7 +58,6 @@ function unitConverter(source, valNum) {
 		inputsat.value = parseFloat(valNum * 100);
 		inputmsat.value = parseFloat(valNum * 100000).toFixed(0);
 		inputUSD.value = parseFloat((valNum * usdPrice / 1000000).toFixed(2));
-		inputBRL.value = parseFloat((valNum * brlPrice / 1000000).toFixed(2));
 		inputEbank.value = parseFloat(valNum * usdPrice * rates[fselect] / 1000000).toFixed(2);
 	}
 	if (source == "inputFinney") {
@@ -73,7 +68,6 @@ function unitConverter(source, valNum) {
 		inputsat.value = parseFloat(valNum * 10);
 		inputmsat.value = parseFloat(valNum * 10000).toFixed(0);
 		inputUSD.value = parseFloat((valNum * usdPrice / 10000000).toFixed(3));
-		inputBRL.value = parseFloat((valNum * brlPrice / 10000000).toFixed(3));
 		inputEbank.value = parseFloat(valNum * usdPrice * rates[fselect] / 10000000).toFixed(3);
 	}
 	if (source == "inputsat") {
@@ -84,7 +78,6 @@ function unitConverter(source, valNum) {
 		inputFinney.value = parseFloat(valNum / 10);
 		inputmsat.value = parseFloat(valNum * 1000).toFixed(0);
 		inputUSD.value = parseFloat((valNum * usdPrice / 100000000).toFixed(4));
-		inputBRL.value = parseFloat((valNum * brlPrice / 100000000).toFixed(4));
 		inputEbank.value = parseFloat(valNum * usdPrice * rates[fselect] / 100000000).toFixed(4);
 
 	}
@@ -96,7 +89,6 @@ function unitConverter(source, valNum) {
 		inputFinney.value = parseFloat(valNum / 10000);
 		inputsat.value = parseFloat(valNum / 1000);
 		inputUSD.value = parseFloat((valNum * usdPrice / 1000000000).toFixed(5));
-		inputBRL.value = parseFloat((valNum * brlPrice / 1000000000).toFixed(5));
 		inputEbank.value = parseFloat(valNum * usdPrice * rates[fselect] / 1000000000).toFixed(5);
 	}
 	if (source == "inputUSD") {
@@ -107,19 +99,7 @@ function unitConverter(source, valNum) {
 		inputFinney.value = parseFloat(valNum / usdPrice * 10000000).toFixed(1);
 		inputsat.value = parseFloat(valNum / usdPrice * 100000000).toFixed(0);
 		inputmsat.value = parseFloat(valNum / usdPrice * 100000000000).toFixed(0);
-		inputBRL.value = parseFloat(valNum * brlPrice / usdPrice).toFixed(2);
 		inputEbank.value = parseFloat(valNum * rates[fselect]).toFixed(2);
-	}
-
-	if (source == "inputBRL") {
-		inputBTC.value = parseFloat(valNum / brlPrice).toFixed(8);
-		inputcBTC.value = parseFloat(valNum / brlPrice * 100).toFixed(6);
-		inputmBTC.value = parseFloat(valNum / brlPrice * 1000).toFixed(5);
-		inputuBTC.value = parseFloat(valNum / brlPrice * 1000000).toFixed(2);
-		inputFinney.value = parseFloat(valNum / brlPrice * 10000000).toFixed(1);
-		inputsat.value = parseFloat(valNum / brlPrice * 100000000).toFixed(0);
-		inputmsat.value = parseFloat(valNum / brlPrice * 100000000000).toFixed(0);
-		inputUSD.value = parseFloat(valNum / brlPrice * usdPrice).toFixed(2);
 	}
 
 	if (source == "inputEbank") {
@@ -132,28 +112,25 @@ function unitConverter(source, valNum) {
 		inputmsat.value = parseFloat(valNum / usdPrice / rates[fselect] * 100000000000).toFixed(0);
 		inputUSD.value = parseFloat(valNum / rates[fselect]).toFixed(3);
 	}
-	document.getElementById('fcurrency').innerHTML = "<BR><img alt='country flag' class='mr-2 ml-1' src='https://flagcdn.com/" + document.getElementById("selEbank").options[selEbank.selectedIndex].text.slice(0, -1).toLowerCase() + ".svg' width='26' height='26'>" + "<strong class='m-2 text-primary-emphasis'>" + document.getElementById("selEbank").options[selEbank.selectedIndex].text + " - " + "</strong>";
-	document.getElementById('fdefault').innerHTML = "<a href='bitcoin-units-converter.html?d=" + document.getElementById("selEbank").options[selEbank.selectedIndex].text + "'>Set as default</a>";
+	document.getElementById('fcurrency').innerHTML = "<img alt="+document.getElementById("selEbank").options[selEbank.selectedIndex].text.slice(0, -1).toLowerCase()+" class='mr-2 ml-1' src='https://flagcdn.com/h20/" + document.getElementById("selEbank").options[selEbank.selectedIndex].text.slice(0, -1).toLowerCase() + ".png' width='26' height='20'>" + "<strong class='m-2 text-primary-emphasis'>" + document.getElementById("selEbank").options[selEbank.selectedIndex].text + "</strong>";
 }
 
 async function getBtcPrice() {
 	try {
 		try {
-			const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd,brl');
+			const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd');
 			const data = await response.json();
 			usdPrice = data.bitcoin.usd;
-			brlPrice = data.bitcoin.brl;
 			document.title = usdPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD', currencyDisplay: 'code' }) + " - Bitcoin Units Converter";
 			unitConverter(inputBTC.id, inputBTC.value);
 			return usdPrice
 		}
 		catch (error) {
 			console.warn('Coingecko API failed - ' + error)
-			const response = await fetch("https://api.coindesk.com/v1/bpi/currentprice/BRL.json");
+			const response = await fetch("https://api.binance.com/api/v3/ticker/24hr?symbol=BTCUSDT");
 			const data = await response.json();
 			document.title = usdPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD', currencyDisplay: 'code' }) + " - Bitcoin Units Converter";
-			usdPrice = data.bpi.USD.rate_float;
-			brlPrice = data.bitcoin.BRL.rate_float;
+			usdPrice = data.lastPrice;
 			unitConverter(inputBTC.id, inputBTC.value);
 			return usdPrice;
 		}
@@ -181,13 +158,12 @@ async function getRates() {
 		nFiat.innerText = Object.keys(rates).length;
 		listSymbols.innerHTML = Object.keys(rates).join(", ");
 		symbols =  Object.keys(rates);
-		console.log(symbols)
 
 		// Feeding data to select //
 		let selectOptions = document.getElementById("selEbank");
 		selectOptions.innerHTML = `
 			<option disabled>Choose one..</option>
-			${Object.keys(rates).map(i => `
+			${symbols.map(i => `
 			<option>${i}</option>`).join('')}
 	 	`
 		if (window.location.search) { document.getElementById('selEbank').value = window.location.search.substring(3).toUpperCase(); }

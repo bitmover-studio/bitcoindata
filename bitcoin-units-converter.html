@@ -68,319 +68,137 @@
    </header>
    <!-- Page Content -->
    <main class="container-fluid col-lg-10 col-xl-8">
-         <ad-component></ad-component>
-         <h1 class="h1 display-3 fw-bold">Bitcoin Units Converter</h1>
-         <h2 class="lead">Use any of the fields below to convert bitcoin units BTC,mBTC, uBTC, satoshi, finney to
-            USD, EUR or any other fiat currency.<br></h2>
+      <ad-component></ad-component>
+      <h1 class="h1 display-3 fw-bold">Bitcoin Units Converter</h1>
+      <h2 class="lead">Use any of the fields below to convert bitcoin units BTC,mBTC, uBTC, satoshi, finney to
+         USD, EUR or any other fiat currency.<br></h2>
 
-         <div class="accordion my-3" id="accordion">
-            <div class="accordion-item">
-               <h3 class="accordion-header" id="howMany">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                     data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                     How many fiat currencies are supported?
-                  </button>
-               </h3>
-               <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="howMany">
-                  <div class="accordion-body">
-                     This service supports <em><strong id="nfiat" class="text-primary-emphasis"> </strong></em> fiat
-                     currencies, and their prices are
-                     updated
-                     in real-time.
-                  </div>
+      <div class="accordion my-3 shadow-sm rounded-top-4 " id="accordion">
+         <div class="accordion-item border-0 shadow-sm">
+            <h3 class="accordion-header" id="howMany">
+               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                  How many fiat currencies are supported?
+               </button>
+            </h3>
+            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="howMany">
+               <div class="accordion-body">
+                  This service supports <em><strong id="nfiat" class="text-primary-emphasis"> </strong></em> fiat
+                  currencies, and their prices are
+                  updated
+                  in real-time.
                </div>
             </div>
-            <div class="accordion-item">
-               <h3 class="accordion-header" id="whichCurrencies">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                     data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                     Which currencies are supported?
-                  </button>
-               </h3>
-               <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="whichCurrencies">
-                  <div class="accordion-body small" id="listSymbols">
-                  </div>
+         </div>
+         <div class="accordion-item rounded-bottom-4 border-0 border-top shadow-sm">
+            <h3 class="accordion-header" id="whichCurrencies">
+               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Which currencies are supported?
+               </button>
+            </h3>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="whichCurrencies">
+               <div class="accordion-body small" id="listSymbols">
                </div>
             </div>
          </div>
       </div>
+      </div>
 
-      <div class="bg-body-tertiary rounded p-4 border shadow-sm">
+      <div class="bg-body-tertiary rounded-4 p-4 shadow-sm">
          <div class="row">
-            <div class="col-md-6">
-               <label for="inputBTC">bitcoin</label>
-               <div class="input-group input-group-sm mb-3">
-                  <input id="inputBTC" class="form-control" type="number" min="0" title="BTC"
-                     oninput="unitConverter(this.id,this.value)" onchange="unitConverter(this.id,this.value)"
-                     aria-describedby="basic-addon1" value="1" step="any">
-                  <span class="input-group-text" id="basic-addon1">BTC</span>
-               </div>
+            <div id="unit-container" class="col-md-6"></div>
+            <script>
+               const unitList = [
+                  { id: 'inputBTC', label: 'bitcoin', title: 'BTC', value: 1 },
+                  { id: 'inputcBTC', label: 'bitcent', title: 'cBTC' },
+                  { id: 'inputmBTC', label: 'millibit', title: 'mBTC' },
+                  { id: 'inputuBTC', label: 'bit', title: 'μBTC' },
+                  { id: 'inputFinney', label: 'finney', title: 'finney' },
+                  { id: 'inputsat', label: `<a class="conversor" href="https://en.bitcoin.it/wiki/Satoshi_(unit)" data-bs-toggle="tooltip" data-bs-title="Satoshi Nakamoto" target="_blank" rel="noreferrer noopener">satoshi</a>`, title: 'sat' },
+                  { id: 'inputmsat', label: `millisatoshi (<a class="conversor small" href="https://en.bitcoin.it/wiki/Lightning_Network" data-bs-toggle="tooltip" data-bs-title="Available only in the Lightning Network">Lightning Network</a>)`, title: 'msat' }
+               ];
 
-               <label for="inputcBTC">bitcent</label>
-               <div class="input-group  input-group-sm mb-3">
-                  <input id="inputcBTC" class="form-control" type="number" min="0" title="cBTC"
-                     oninput="unitConverter(this.id,this.value)" onchange="unitConverter(this.id,this.value)"
-                     aria-describedby="basic-addon2" step="any">
-                  <span class="input-group-text" id="basic-addon2">cBTC</span>
-               </div>
-               <label for="inputmBTC">millibit</label>
-               <div class="input-group  input-group-sm mb-3">
-                  <input id="inputmBTC" class="form-control" type="number" min="0" title="mBTC"
-                     oninput="unitConverter(this.id,this.value)" onchange="unitConverter(this.id,this.value)"
-                     aria-describedby="basic-addon3" step="0.01">
-                  <span class="input-group-text" id="basic-addon3">mBTC</span>
-               </div>
-               <label for="inputuBTC">bit</label>
-               <div class="input-group  input-group-sm mb-3">
-                  <input id="inputuBTC" class="form-control" type="number" min="0" title="μBTC"
-                     oninput="unitConverter(this.id,this.value)" onchange="unitConverter(this.id,this.value)"
-                     aria-describedby="basic-addon4" step="any">
-                  <span class="input-group-text" id="basic-addon4">μBTC</span>
-               </div>
-               <label for="inputFinney"> <a class="conversor" href="https://en.bitcoin.it/wiki/Hal_Finney"
-                     data-bs-toggle="tooltip" data-bs-title="After Hal Finney, bitcoin pionner." target="_blank"
-                     rel="noreferrer noopener">finney</a></label>
-               <div class="input-group  input-group-sm mb-3">
-                  <input id="inputFinney" class="form-control" type="number" min="0" title="finney"
-                     oninput="unitConverter(this.id,this.value)" onchange="unitConverter(this.id,this.value)"
-                     aria-describedby="basic-addon5" step="any">
-                  <span class="input-group-text" id="basic-addon5">finney</span>
-               </div>
-               <label for="inputsat"><a class="conversor" href="https://en.bitcoin.it/wiki/Satoshi_(unit)"
-                     data-bs-toggle="tooltip" data-bs-title="Satoshi Nakamoto" target="_blank" rel="noreferrer noopener">
-                     satoshi</a></label>
-               <div class="input-group  input-group-sm mb-3">
-                  <input id="inputsat" class="form-control" type="number" min="0" title="sat"
-                     oninput="unitConverter(this.id,this.value)" onchange="unitConverter(this.id,this.value)"
-                     aria-describedby="basic-addon6" step="any">
-                  <span class="input-group-text" id="basic-addon6">sat</span>
-               </div>
-               <label for="inputmsat">millisatoshi (<a class="conversor small"
-                     href="https://en.bitcoin.it/wiki/Lightning_Network" data-bs-toggle="tooltip"
-                     data-bs-title="Available only in the Lightning Network">Lightning Network</a>)</label>
-               <div class="input-group  input-group-sm mb-3">
-                  <input id="inputmsat" class="form-control" type="number" min="0" title="msat"
-                     oninput="unitConverter(this.id,this.value)" onchange="unitConverter(this.id,this.value)"
-                     aria-describedby="basic-addon7" step="any">
-                  <span class="input-group-text" id="basic-addon7">msat</span>
-               </div>
-            </div>
+               const container = document.getElementById('unit-container');
+               unitList.forEach(unit => {
+                  // Cria o HTML para a unidade atual.
+                  // Usamos `innerHTML` na label para renderizar os links corretamente.
+
+                  const unitHTML = `
+                        <div class="input-group mb-3">
+                           <div class="form-floating ">
+                              <input type="number" class="form-control font-monospace border-0 bg-body-secondary rounded-start-4"
+                                 id="${unit.id}" 
+                                 min="0" 
+                                 oninput="unitConverter(this.id, this.value)" 
+                                 onchange="unitConverter(this.id, this.value)" 
+                                 title="${unit.title}" 
+                                 ${unit.value ? `value="${unit.value}"` : ''}>
+                              <label for="${unit.id}" class="font-monospace">${unit.label}</label>
+                           </div>
+                           <span style="width: 17% !important;" class="text-end input-group-text font-monospace rounded-end-4 bg-body-secondary ms-1 border-0">${unit.title}</span>
+                        </div>
+                     `;
+                  container.innerHTML += unitHTML;
+               });
+
+            </script>
 
             <div class="col-md-6">
-               <label for="inputUSD">United States dollar (USD)</label>
-               <div class="input-group input-group-sm mb-3">
-                  <span class="input-group-text" id="basic-addon9">$</span>
-                  <input id="inputUSD" class="form-control" type="number" min="0" title="United States Dollar"
-                     oninput="unitConverter(this.id,this.value)" onchange="unitConverter(this.id,this.value)"
-                     aria-describedby="basic-addon9" step="0.01">
-               </div>
-               <div class="d-none">
-                  <label for="inputBRL">Real Brasileiro (BRL)</label>
-                  <div class="input-group input-group-sm mb-3">
-                     <span class="input-group-text" id="basic-addon8">R$</span>
-                     <input id="inputBRL" class="form-control" type="number" title="Reais"
-                        oninput="unitConverter(this.id,this.value)" onchange="unitConverter(this.id,this.value)"
-                        aria-describedby="basic-addon8" step="any">
+
+               <div class="input-group mb-3">
+                  <span class="input-group-text font-monospace rounded-start-4 me-1 border-0 bg-body-secondary">$</span>
+                  <div class="form-floating">
+                     <input id="inputUSD" class="form-control font-monospace border-0 bg-body-secondary rounded-end-4"
+                        type="number" min="0" title="United States Dollar" oninput="unitConverter(this.id,this.value)"
+                        onchange="unitConverter(this.id,this.value)" aria-describedby="basic-addon9" step="0.01">
+                     <label for="inputUSD" class="font-monospace">United States Dollar</label>
                   </div>
                </div>
 
-               <label for="selEbank">Select a fiat currency: <span id="fcurrency" class="conversor"> </span><span
-                     class="small ml-2" id="fdefault"> </span></label>
-               <div class="input-group mb-3 input-group-sm">
-                  <select class="custom-select custom-select-sm input-group-text pr-4" id="selEbank"
-                     onchange="inputEbank.value=parseFloat(inputUSD.value*rates[fselect]).toFixed(2);unitConverter(inputEbank.id,inputEbank.value)"
-                     onselect="inputEbank.value=parseFloat(inputUSD.value*rates[fselect]).toFixed(2);unitConverter(inputUSD.id,inputUSD.value)">
-                     <option disabled>Choose one..</option>
-                     <option>BRL</option>
-                     <option>AFN</option>
-                     <option>ALL</option>
-                     <option>AMD</option>
-                     <option>ANG</option>
-                     <option>AOA</option>
-                     <option>ARS</option>
-                     <option>AUD</option>
-                     <option>AWG</option>
-                     <option>AZN</option>
-                     <option>BAM</option>
-                     <option>BBD</option>
-                     <option>BDT</option>
-                     <option>BGN</option>
-                     <option>BHD</option>
-                     <option>BIF</option>
-                     <option>BMD</option>
-                     <option>BND</option>
-                     <option>BOB</option>
-                     <option>BRL</option>
-                     <option>BSD</option>
-                     <option>BTN</option>
-                     <option>BWP</option>
-                     <option>BYN</option>
-                     <option>BZD</option>
-                     <option>CAD</option>
-                     <option>CDF</option>
-                     <option>CHF</option>
-                     <option>CLF</option>
-                     <option>CLP</option>
-                     <option>CNH</option>
-                     <option>CNY</option>
-                     <option>COP</option>
-                     <option>CRC</option>
-                     <option>CUC</option>
-                     <option>CUP</option>
-                     <option>CVE</option>
-                     <option>CZK</option>
-                     <option>DJF</option>
-                     <option>DKK</option>
-                     <option>DOP</option>
-                     <option>DZD</option>
-                     <option>EGP</option>
-                     <option>ERN</option>
-                     <option>ETB</option>
-                     <option>EUR</option>
-                     <option>FJD</option>
-                     <option>FKP</option>
-                     <option>GBP</option>
-                     <option>GEL</option>
-                     <option>GGP</option>
-                     <option>GHS</option>
-                     <option>GIP</option>
-                     <option>GMD</option>
-                     <option>GNF</option>
-                     <option>GTQ</option>
-                     <option>GYD</option>
-                     <option>HKD</option>
-                     <option>HNL</option>
-                     <option>HRK</option>
-                     <option>HTG</option>
-                     <option>HUF</option>
-                     <option>IDR</option>
-                     <option>ILS</option>
-                     <option>IMP</option>
-                     <option>INR</option>
-                     <option>IQD</option>
-                     <option>IRR</option>
-                     <option>ISK</option>
-                     <option>JEP</option>
-                     <option>JMD</option>
-                     <option>JOD</option>
-                     <option>JPY</option>
-                     <option>KES</option>
-                     <option>KGS</option>
-                     <option>KHR</option>
-                     <option>KMF</option>
-                     <option>KPW</option>
-                     <option>KRW</option>
-                     <option>KWD</option>
-                     <option>KYD</option>
-                     <option>KZT</option>
-                     <option>LAK</option>
-                     <option>LBP</option>
-                     <option>LKR</option>
-                     <option>LRD</option>
-                     <option>LSL</option>
-                     <option>LYD</option>
-                     <option>MAD</option>
-                     <option>MDL</option>
-                     <option>MGA</option>
-                     <option>MKD</option>
-                     <option>MMK</option>
-                     <option>MNT</option>
-                     <option>MOP</option>
-                     <option>MRO</option>
-                     <option>MRU</option>
-                     <option>MUR</option>
-                     <option>MVR</option>
-                     <option>MWK</option>
-                     <option>MXN</option>
-                     <option>MYR</option>
-                     <option>MZN</option>
-                     <option>NAD</option>
-                     <option>NGN</option>
-                     <option>NIO</option>
-                     <option>NOK</option>
-                     <option>NPR</option>
-                     <option>NZD</option>
-                     <option>OMR</option>
-                     <option>PAB</option>
-                     <option>PEN</option>
-                     <option>PGK</option>
-                     <option>PHP</option>
-                     <option>PKR</option>
-                     <option>PLN</option>
-                     <option>PYG</option>
-                     <option>QAR</option>
-                     <option>RON</option>
-                     <option>RSD</option>
-                     <option>RUB</option>
-                     <option>RWF</option>
-                     <option>SAR</option>
-                     <option>SBD</option>
-                     <option>SCR</option>
-                     <option>SDG</option>
-                     <option>SEK</option>
-                     <option>SGD</option>
-                     <option>SHP</option>
-                     <option>SLL</option>
-                     <option>SOS</option>
-                     <option>SRD</option>
-                     <option>SSP</option>
-                     <option>STD</option>
-                     <option>STN</option>
-                     <option>SVC</option>
-                     <option>SYP</option>
-                     <option>SZL</option>
-                     <option>THB</option>
-                     <option>TJS</option>
-                     <option>TMT</option>
-                     <option>TND</option>
-                     <option>TOP</option>
-                     <option>TRY</option>
-                     <option>TTD</option>
-                     <option>TWD</option>
-                     <option>TZS</option>
-                     <option>UAH</option>
-                     <option>UGX</option>
-                     <option>USD</option>
-                     <option>UYU</option>
-                     <option>UZS</option>
-                     <option>VES</option>
-                     <option>VND</option>
-                     <option>VUV</option>
-                     <option>WST</option>
-                     <option>XAF</option>
-                     <option>XAG</option>
-                     <option>XAU</option>
-                     <option>XCD</option>
-                     <option>XDR</option>
-                     <option>XOF</option>
-                     <option>XPD</option>
-                     <option>XPF</option>
-                     <option>XPT</option>
-                     <option>YER</option>
-                     <option>ZAR</option>
-                     <option>ZMW</option>
-                     <option>ZWL</option>
-                  </select>
-                  <input id="inputEbank" class="form-control" type="number" min="0" title="Select a Currency"
-                     oninput="unitConverter(this.id,this.value)" onchange="unitConverter(this.id,this.value)"
-                     aria-describedby="basic-addon9" step="any">
+               <div class="row g-1">
+                  <div class="col col-md col-xl-5">
+                     <div class="form-floating font-monospace">
+                        <select class="form-select rounded-start-4 rounded-end-0 border-0 bg-body-secondary "
+                           class="custom-select custom-select-sm input-group-text pr-4" id="selEbank"
+                           onchange="inputEbank.value=parseFloat(inputUSD.value*rates[fselect]).toFixed(2);unitConverter(inputEbank.id,inputEbank.value)"
+                           onselect="inputEbank.value=parseFloat(inputUSD.value*rates[fselect]).toFixed(2);unitConverter(inputUSD.id,inputUSD.value)">
+                           <option disabled>Choose one..</option>
+                           <option>EUR</option>
+                           <option>BRL</option>
+                           <option>ARS</option>
+                        </select>
+                        <label for="selEbank">Fiat Currency:</label>
+                     </div>
+                  </div>
+                  <div class="col col-md">
+                     <div class="form-floating font-monospace">
+                        <input class="form-control rounded-start-0 border-0 bg-body-secondary rounded-end-4"
+                           id="inputEbank" type="number" min="0" title="Select a Currency"
+                           oninput="unitConverter(this.id,this.value)" onchange="unitConverter(this.id,this.value)"
+                           aria-describedby="basic-addon9" step="any">
+                        <label for="inputEbank"><span id="fcurrency">
+                           </span><span class="small ml-2" id="fdefault"> </span></label>
+                     </div>
+                  </div>
                </div>
-               <label for="quickactions">Quick action buttons:</label>
-               <div class="small" id="quickactions" role="group">
+
+               <div class="mt-4" id="quickactions" role="group">
+                  <p class="fw-semibold mb-1">Quick action buttons:</p>
                   <div id="1_btc"
-                     class="btn bg-primary-subtle text-primary-emphasis border-secondary-subtle font-monospace px-3 py-1 mt-1"
+                     class="btn bg-primary  border-0 font-monospace mt-1"
                      onclick="inputBTC.value=1;unitConverter(inputBTC.id,inputBTC.value)">1 BTC</div>
                   <div id="1_mbtc"
-                     class="btn bg-primary-subtle text-primary-emphasis border-secondary-subtle font-monospace px-3 py-1 mt-1"
+                     class="btn bg-primary border-0 font-monospace mt-1"
                      onclick="inputmBTC.value=1;unitConverter(inputmBTC.id,inputmBTC.value)">1 mBTC</div>
                   <div id="1+_mbtc"
-                     class="btn bg-primary-subtle text-primary-emphasis border-secondary-subtle font-monospace px-3 py-1 mt-1"
+                     class="btn bg-primary border-0 font-monospace mt-1"
                      onclick="inputmBTC.stepUp(100);unitConverter(inputmBTC.id,inputmBTC.value)">+1 mBTC</div>
                   <div id="10_usd"
-                     class="btn bg-primary-subtle border-secondary-subtle  text-primary-emphasis font-monospace px-3 py-1 mt-1"
+                     class="btn bg-primary border-0 font-monospace mt-1"
                      onclick="inputUSD.value=10;unitConverter(inputUSD.id,inputUSD.value)">10 USD </div>
                   <div id="10+_usd"
-                     class="btn  bg-primary-subtle text-primary-emphasis border-secondary-subtle font-monospace px-3 py-1 mt-1"
+                     class="btn bg-primary border-0 font-monospace mt-1"
                      onclick="inputUSD.stepUp(1000);unitConverter(inputUSD.id,inputUSD.value)">+10 USD </div>
                </div>
             </div>
@@ -390,8 +208,8 @@
       <p id="source" class="text-end text-muted small">
          Exchange rates from European Central Bank using <a href="https://exchangerate.host/" target="_blank"
             rel="noreferrer noopener">exchangerate.host</a>, bitcoin price from <a href="https://www.coingecko.com/"
-            target="_blank" rel="noreferrer noopener">coingecko</a> and flags from <a href="https://flagpedia.net" target="_blank"
-            rel="noreferrer noopener">flagpedia</a>
+            target="_blank" rel="noreferrer noopener">coingecko</a> and flags from <a href="https://flagpedia.net"
+            target="_blank" rel="noreferrer noopener">flagpedia</a>
       </p>
 
       <div class="mt-3 alert alert-info bd-callout border-info me-4" role="alert">

@@ -113,7 +113,7 @@ async function getBalances(price) {
   document.getElementById("submit").disabled = false;
 
   outputArea.innerHTML = `
-  <div class="bg-body-tertiary rounded-4 p-md-5 p-4 mt-5">
+  <div class="bg-body-tertiary rounded-4 p-md-5 p-4 mt-5  shadow-sm">
     <div class="p-3 mb-3  row fw-semibold">
        <div class="col-md-6 text-primary-emphasis">Total number of addresses: ${balance.length}</div>
        <div class="w-100 d-none d-xs-block"></div>

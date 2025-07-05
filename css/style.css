@@ -138,10 +138,6 @@ background-color: #ffffff1a !important;
   opacity: 80%;
 }
 
-.conversor {
-  text-decoration: none;
-}
-
 /* Balance */
 .spinner-border-sm {
   --bs-spinner-width: 1.4rem;
