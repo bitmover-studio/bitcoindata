@@ -96,12 +96,13 @@
             <li>If you are searching for more than 20 addresses, there will be no balance updates.</li>
          </ul>
 
-         <div class="bg-body-tertiary rounded p-md-5 p-4 shadow-sm mt-5">
-            <div class="mb-3">
-               <label for="BalanceChecker" class="form-label">Enter any bitcoin address below:</label>
-               <textarea class="form-control font-monospace bg-body" id="BalanceChecker" rows="6"
-                  maxlength="16350"></textarea>
+         <div class="bg-body-tertiary rounded-4 p-md-5 p-4 mt-5">
+            <div class="form-floating  mb-3 border-0">
+               <textarea class="form-control border-0 bg-body-secondary rounded-4 lh-base fw-medium" placeholder="Bitcoin Addresses" id="BalanceChecker"
+                  style="height: 130px" maxlength="16350"></textarea>
+               <label for="BalanceChecker" class="fw-medium lh-base fs-6">Your Bitcoin Addresses</label>
             </div>
+
             <div class="d-flex">
                <button title="Get Balance" type="button" id="submit"
                   class="btn btn-success d-inline-block btn-lg px-5 me-3" onclick="handleClick()">Get
@@ -141,7 +142,7 @@
          </div>
          <p id="source" class="small text-muted text-end">Data from mempool.space and Coindesk.</p>
 
-         <div id="balances" class="mt-4 px-3">
+         <div id="balances" class="mt-4">
          </div>
          <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true"
             onBlur="javascript:document.title = 'Bitcoin Balance Checker - bitcoin data.science';">
