@@ -181,6 +181,13 @@ fetchUrls(urls).then(([res0, res1, res2]) => {
         type: "line"
     }]);
 
+    // Load data into Brush Chart
+    brushChart.updateSeries([{
+        name: 'Bitcoin Price',
+        data: prices,
+        type: "area",
+    }]);
+    
     // Day and 200W Price Range Bar
     let todayPrices = res2.prices.map(i => i[1]);
     let todayPriceRange = [Math.min(...todayPrices), Math.max(...todayPrices)];

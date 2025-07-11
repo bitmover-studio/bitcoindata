@@ -15,7 +15,7 @@ window.Apex = {
     },
     legend: {
         show: true,
-        horizontalAlign: 'right', 
+        horizontalAlign: 'right',
         position: 'top',
     },
     theme: {
@@ -60,11 +60,11 @@ window.Apex = {
 // Main Chart
 let options = {
     chart: {
-        height: 380,
+        height: 280,
         id: 'main',
     },
     stroke: {
-        width: [2,3],
+        width: [2, 3],
         curve: 'smooth',
     },
     yaxis: {
@@ -79,7 +79,7 @@ let options = {
     },
     series: [],
     fill: {
-       opacity: [0.45,1],
+        opacity: [0.45, 1],
     },
     tooltip: {
         y: [{
@@ -93,6 +93,57 @@ let options = {
 };
 const chart = new ApexCharts(document.querySelector("#chart"), options);
 chart.render();
+
+var brushChartOptions = {
+    series: [],
+    chart: {
+        height: 130,
+        type: 'area',
+        id: 'brushChart',
+        brush: {
+            target: 'main',
+            enabled: true
+        },
+        selection: {
+            enabled: true,
+            xaxis: {
+                min: new Date('20 Jul 2010').getTime(),
+                max: new Date().getTime()
+            },
+            fill: {
+                color: '#535A6C',
+                opacity: 0.3
+            }
+        },
+        toolbar: {
+            autoSelected: 'selection'
+        },
+        events: {
+            // Corrected event listener
+            selection: async function (chartContext, { xaxis, yaxis }) {
+                // 1. Restore the full series and wait for it to finish
+                await chart.updateSeries([{
+                    name: 'BTC Price',
+                    data: prices
+                }, {
+                    name: '200-Week MA',
+                    data: sma200
+                }]);
+
+                // 2. Then, manually apply the zoom from the brush selection
+                chart.zoomX(xaxis.min, xaxis.max);
+            }
+        }
+    },
+    yaxis: {
+        show: false,
+        logarithmic: true,
+        forceNiceScale: true,
+    }
+};
+
+const brushChart = new ApexCharts(document.querySelector("#brushChart"), brushChartOptions);
+brushChart.render();
 
 // Date and Annotations
 let dateInput = document.getElementById('date');
@@ -179,6 +230,7 @@ function linearLogarithimic() {
     } else {
         chart.updateOptions({
             yaxis: {
+                show: false,
                 logarithmic: false, forceNiceScale: true, labels: {
                     formatter: function (val, index) {
                         return val.toLocaleString("en-US", { style: "currency", currency: "USD" });
@@ -197,6 +249,7 @@ function linearLogarithimic() {
 }
 
 function chartPeriod(period) {
+    // This part updates the main chart's visible data
     chart.updateSeries([{
         name: 'BTC Price',
         data: prices.slice(period),
@@ -205,15 +258,41 @@ function chartPeriod(period) {
         name: '200-Week MA',
         data: sma200.slice(period),
         type: "line"
-    }])
+    }]);
+
+    // Logic to sync the brush chart selection ---
+    const maxDate = prices[prices.length - 1][0];
+    let minDate;
+
+    if (period !== undefined) {
+        //  handles the 1M, 6M, 1Y, 5Y, 10Y buttons
+        const slicedPrices = prices.slice(period);
+        minDate = slicedPrices.length > 0 ? slicedPrices[0][0] : maxDate;
+    } else {
+        //  handles the "ALL" button
+        minDate = prices[0][0];
+    }
+
+    //  updates the brush chart's highlighted selection area
+    brushChart.updateOptions({
+        chart: {
+            selection: {
+                xaxis: {
+                    min: minDate,
+                    max: maxDate
+                }
+            }
+        }
+    });
 }
+
 let chartButtons = document.querySelectorAll(".pointer");
 function selectButton(event) {
     for (let button of chartButtons) {
-        button.classList.remove("link-secondary","border-bottom","border-3");
+        button.classList.remove("link-secondary", "border-bottom", "border-3");
     }
-    event.target.classList.add("link-secondary","border-bottom","border-3");
-  }
-    for (let button of chartButtons) {
+    event.target.classList.add("link-secondary", "border-bottom", "border-3");
+}
+for (let button of chartButtons) {
     button.addEventListener("click", selectButton);
-  }
+}

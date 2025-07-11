@@ -220,6 +220,7 @@
                         </div>
                      </div>
                      <div id="chart" class="px-0 mx-0"></div>
+                     <div id="brushChart" class="px-0 mx-0"></div>
                      <div class="card-text text-body-secondary text-end small">
                         <div class="float-start">
                            <button type="button" id="saveInputs" title="Save inputs"
@@ -467,6 +468,7 @@
             // If the `data-bs-theme` attribute was modified
             if (mutation.attributeName === 'data-bs-theme') {
                chart.updateOptions({ theme: { mode: localStorage.getItem('theme') } });
+               brushChart.updateOptions({ theme: { mode: localStorage.getItem('theme') } });
                stashChart.updateOptions({ theme: { mode: localStorage.getItem('theme') } });
                radialBarChart.updateOptions({ theme: { mode: localStorage.getItem('theme') } });
             }

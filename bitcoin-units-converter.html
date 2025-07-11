@@ -136,7 +136,7 @@
                                  ${unit.value ? `value="${unit.value}"` : ''}>
                               <label for="${unit.id}" class="font-monospace">${unit.label}</label>
                            </div>
-                           <span style="width: 17% !important;" class="text-end input-group-text font-monospace rounded-end-4 bg-body-secondary ms-1 border-0">${unit.title}</span>
+                           <span style="width: 18% !important;" class="text-end input-group-text font-monospace rounded-end-4 bg-body-secondary ms-1 border-0">${unit.title}</span>
                         </div>
                      `;
                   container.innerHTML += unitHTML;
@@ -159,10 +159,10 @@
                <div class="row g-1">
                   <div class="col col-md col-xl-5">
                      <div class="form-floating font-monospace">
-                        <select class="form-select rounded-start-4 rounded-end-0 border-0 bg-body-secondary "
-                           class="custom-select custom-select-sm input-group-text pr-4" id="selEbank"
-                           onchange="inputEbank.value=parseFloat(inputUSD.value*rates[fselect]).toFixed(2);unitConverter(inputEbank.id,inputEbank.value)"
-                           onselect="inputEbank.value=parseFloat(inputUSD.value*rates[fselect]).toFixed(2);unitConverter(inputUSD.id,inputUSD.value)">
+                        <select class="form-select rounded-start-4 rounded-end-0 border-0 bg-body-secondary"
+                           id="selEbank" 
+                           onchange="inputEbank.value = parseFloat(inputUSD.value * rates[this.value]).toFixed(2); unitConverter(inputEbank.id, inputEbank.value);"
+                           >
                            <option disabled>Choose one..</option>
                            <option>EUR</option>
                            <option>BRL</option>
@@ -185,20 +185,15 @@
 
                <div class="mt-4" id="quickactions" role="group">
                   <p class="fw-semibold mb-1">Quick action buttons:</p>
-                  <div id="1_btc"
-                     class="btn bg-primary  border-0 font-monospace mt-1"
+                  <div id="1_btc" class="btn bg-primary btn-lg border-0 font-monospace mt-1"
                      onclick="inputBTC.value=1;unitConverter(inputBTC.id,inputBTC.value)">1 BTC</div>
-                  <div id="1_mbtc"
-                     class="btn bg-primary border-0 font-monospace mt-1"
+                  <div id="1_mbtc" class="btn bg-primary btn-lg border-0 font-monospace mt-1"
                      onclick="inputmBTC.value=1;unitConverter(inputmBTC.id,inputmBTC.value)">1 mBTC</div>
-                  <div id="1+_mbtc"
-                     class="btn bg-primary border-0 font-monospace mt-1"
+                  <div id="1+_mbtc" class="btn bg-primary btn-lg border-0 font-monospace mt-1"
                      onclick="inputmBTC.stepUp(100);unitConverter(inputmBTC.id,inputmBTC.value)">+1 mBTC</div>
-                  <div id="10_usd"
-                     class="btn bg-primary border-0 font-monospace mt-1"
+                  <div id="10_usd" class="btn bg-primary btn-lg border-0 font-monospace mt-1"
                      onclick="inputUSD.value=10;unitConverter(inputUSD.id,inputUSD.value)">10 USD </div>
-                  <div id="10+_usd"
-                     class="btn bg-primary border-0 font-monospace mt-1"
+                  <div id="10+_usd" class="btn bg-primary btn-lg border-0 font-monospace mt-1"
                      onclick="inputUSD.stepUp(1000);unitConverter(inputUSD.id,inputUSD.value)">+10 USD </div>
                </div>
             </div>
