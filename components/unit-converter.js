@@ -7,7 +7,7 @@ var fselect = document.getElementById("selEbank").options[selEbank.selectedIndex
 var inputUSD = document.getElementById("inputUSD");
 var select = document.getElementById('selEbank');
 
-function unitConverter(source, valNum) {
+async function unitConverter(source, valNum) {
 	valNum = parseFloat(valNum);
 	fselect = document.getElementById("selEbank").options[selEbank.selectedIndex].text;
 	var inputBTC = document.getElementById("inputBTC");
@@ -112,7 +112,30 @@ function unitConverter(source, valNum) {
 		inputmsat.value = parseFloat(valNum / usdPrice / rates[fselect] * 100000000000).toFixed(0);
 		inputUSD.value = parseFloat(valNum / rates[fselect]).toFixed(3);
 	}
-	document.getElementById('fcurrency').innerHTML = "<img alt="+document.getElementById("selEbank").options[selEbank.selectedIndex].text.slice(0, -1).toLowerCase()+" class='mr-2 ml-1' src='https://flagcdn.com/h20/" + document.getElementById("selEbank").options[selEbank.selectedIndex].text.slice(0, -1).toLowerCase() + ".png' width='26' height='20'>" + "<strong class='m-2 text-primary-emphasis'>" + document.getElementById("selEbank").options[selEbank.selectedIndex].text + "</strong>";
+
+  try {
+    const response = await fetch('./data/fiat.json');
+    const data = await response.json();
+
+    const selectElement = document.getElementById("selEbank");
+    const currencyCode = selectElement.value;
+
+    // Find the full currency name in the JSON data
+    const currencyName = data.currencies[currencyCode];
+
+    // Get the two-letter country code for the flag URL (e.g., "ARS" -> "ar")
+    const countryCode = currencyCode.slice(0, 2).toLowerCase();
+
+    if (currencyName) {
+      document.getElementById('fcurrency').innerHTML =
+        `<span class='me-2'>${currencyName}</span>
+         <img alt="${currencyName}" class='mr-2 ml-1' src='https://flagcdn.com/h20/${countryCode}.png' width='26' height='20'>`;
+    } 
+	console.log(`Currency: ${currencyName}, Code: ${currencyCode}, Country Code: ${countryCode}`);
+  } catch (error) {
+    console.error("Failed to load currency data:", error);
+  }
+
 }
 
 async function getBtcPrice() {
@@ -157,7 +180,7 @@ async function getRates() {
 		let listSymbols = document.getElementById("listSymbols");
 		nFiat.innerText = Object.keys(rates).length;
 		listSymbols.innerHTML = Object.keys(rates).join(", ");
-		symbols =  Object.keys(rates);
+		symbols = Object.keys(rates);
 
 		// Feeding data to select //
 		let selectOptions = document.getElementById("selEbank");
@@ -168,7 +191,7 @@ async function getRates() {
 	 	`
 		if (window.location.search) { document.getElementById('selEbank').value = window.location.search.substring(3).toUpperCase(); }
 		else { document.getElementById('selEbank').value = "EUR" }
-		
+
 		unitConverter(inputBTC.id, inputBTC.value);
 		return rates;
 	}

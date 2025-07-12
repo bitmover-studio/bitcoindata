@@ -147,28 +147,27 @@
             <div class="col-md-6">
 
                <div class="input-group mb-3">
-                  <span class="input-group-text font-monospace rounded-start-4 me-1 border-0 bg-body-secondary">$</span>
+                  <span class="input-group-text font-monospace rounded-start-4 me-1 border-0 bg-body-secondary" style="width: 25% !important;">USD</span>
                   <div class="form-floating">
                      <input id="inputUSD" class="form-control font-monospace border-0 bg-body-secondary rounded-end-4"
                         type="number" min="0" title="United States Dollar" oninput="unitConverter(this.id,this.value)"
-                        onchange="unitConverter(this.id,this.value)" aria-describedby="basic-addon9" step="0.01">
+                        onchange="unitConverter(this.id,this.value)">
                      <label for="inputUSD" class="font-monospace">United States Dollar</label>
                   </div>
                </div>
 
                <div class="row g-1">
-                  <div class="col col-md col-xl-5">
+                  <div class="col-3">
                      <div class="form-floating font-monospace">
                         <select class="form-select rounded-start-4 rounded-end-0 border-0 bg-body-secondary"
-                           id="selEbank" 
-                           onchange="inputEbank.value = parseFloat(inputUSD.value * rates[this.value]).toFixed(2); unitConverter(inputEbank.id, inputEbank.value);"
-                           >
+                           id="selEbank"
+                           onchange="inputEbank.value = parseFloat(inputUSD.value * rates[this.value]).toFixed(2); unitConverter(inputEbank.id, inputEbank.value);">
                            <option disabled>Choose one..</option>
                            <option>EUR</option>
                            <option>BRL</option>
                            <option>ARS</option>
                         </select>
-                        <label for="selEbank">Fiat Currency:</label>
+                        <label for="selEbank">Fiat:</label>
                      </div>
                   </div>
                   <div class="col col-md">
@@ -190,11 +189,11 @@
                   <div id="1_mbtc" class="btn bg-primary btn-lg border-0 font-monospace mt-1"
                      onclick="inputmBTC.value=1;unitConverter(inputmBTC.id,inputmBTC.value)">1 mBTC</div>
                   <div id="1+_mbtc" class="btn bg-primary btn-lg border-0 font-monospace mt-1"
-                     onclick="inputmBTC.stepUp(100);unitConverter(inputmBTC.id,inputmBTC.value)">+1 mBTC</div>
+                     onclick="inputmBTC.stepUp(1);unitConverter(inputmBTC.id,inputmBTC.value)">+1 mBTC</div>
                   <div id="10_usd" class="btn bg-primary btn-lg border-0 font-monospace mt-1"
                      onclick="inputUSD.value=10;unitConverter(inputUSD.id,inputUSD.value)">10 USD </div>
                   <div id="10+_usd" class="btn bg-primary btn-lg border-0 font-monospace mt-1"
-                     onclick="inputUSD.stepUp(1000);unitConverter(inputUSD.id,inputUSD.value)">+10 USD </div>
+                     onclick="inputUSD.stepUp(10);unitConverter(inputUSD.id,inputUSD.value)">+10 USD </div>
                </div>
             </div>
          </div>
