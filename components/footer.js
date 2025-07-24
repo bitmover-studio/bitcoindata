@@ -25,14 +25,23 @@ class Footer extends HTMLElement {
                     <p class="fw-semibold"><a href="https://www.altcoinstalks.com/index.php?topic=322524.0" class='footer-link' title="altcoinstalks ANN" target="_blank" rel="noreferrer">Altcoinstalks</a></p>
                   </div>
 
-                  <div class="col-md-3">
-                      <p class="text-muted">Sponsor</p>
-                      <a href="https://www.l0tt0.com/?utm_source=bitcoindata.science" target="_blank" alt="Retro Crypto Casino">
-                        <p class="footer-link fw-semibold mb-2">Retro Crypto Casino</p>
-                        <img src="https://bitcoindata.science/img/lotto-logo.svg" title="l0tt0.com - Bitcoin Games Like You've Never Seen!" alt="l0tt0.com" height="35" width="99" class="p-2 bg-l0tt0 rounded" />
-                      </a>
+                  <div class="col-md-4">
+                      <p class="text-muted">Sponsors</p>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <a href="https://www.l0tt0.com/?utm_source=bitcoindata.science" title="l0tt0.com - Bitcoin Games Like You've Never Seen!" target="_blank" alt="Retro Crypto Casino">
+                            <p class="footer-link fw-semibold mb-2">Retro Crypto Casino</p>
+                            <img src="https://bitcoindata.science/img/lotto-logo.svg" title="l0tt0.com - Bitcoin Games Like You've Never Seen!" alt="l0tt0.com" height="35" width="99" class="p-2 bg-l0tt0 rounded" />
+                          </a>
+                        </div>  
+                        <div class="col-md-6">
+                          <a href="https://bitcointalk.org/index.php?topic=5539912.0" target="_blank"  title="CRYPTO ⇄ CRYPTO Secure & Private No-KYC-AML Crypto Swaps (Monero XMR & MWEB)" alt="Crypto ⇄ Crypto">
+                            <p class="footer-link fw-semibold mb-2">Crypto Swaps ⇄ </p>
+                            <img src="https://bitcoindata.science/img/cryptoswaps.png" height="35" title="CRYPTO ⇄ CRYPTO Secure & Private No-KYC-AML Crypto Swaps (Monero XMR & MWEB)" alt="Crypto ⇄ Crypto" class="rounded" />
+                          </a>
+                        </div>
+                      </div>
                   </div>
-              </div>
             </div>
           </footer>
       `;
