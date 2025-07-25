@@ -131,7 +131,6 @@ async function unitConverter(source, valNum) {
         `<span class='me-2'>${currencyName}</span>
          <img alt="${currencyName}" class='mr-2 ml-1' src='https://flagcdn.com/h20/${countryCode}.png' width='26' height='20'>`;
     } 
-	console.log(`Currency: ${currencyName}, Code: ${currencyCode}, Country Code: ${countryCode}`);
   } catch (error) {
     console.error("Failed to load currency data:", error);
   }

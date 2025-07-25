@@ -89,7 +89,9 @@ function calculateWithdrawalLimit() {
         withdrawalDescription.innerText = 'Conservative';
     }
     document.getElementById("stashValue").innerHTML = (document.getElementById("stash").value * btcSpotPrice).toLocaleString("en-US", { style: "currency", currency: "USD" });
-    document.getElementById("stashWMAValue").innerHTML = (document.getElementById("stash").value * movingAverage).toLocaleString("en-US", { style: "currency", currency: "USD" });
+
+    const SMAStashValue = (document.getElementById("stash").value * movingAverage);
+    document.getElementById("stashWMAValue").innerHTML = SMAStashValue.toLocaleString("en-US", { style: "currency", currency: "USD" })
 
     //Set Withdrawal Limit
     let withdrawalLimit;
@@ -123,6 +125,10 @@ function calculateWithdrawalLimit() {
     document.getElementById("monthAdvance").value = calculateAdvancedWithdraw();
     document.getElementById("allowedAdv").value = (calculateAdvancedWithdraw() * withdrawalLimit).toFixed(8) + " BTC";
     document.getElementById("allowedAdvVal").value = (calculateAdvancedWithdraw() * withdrawalLimit * btcSpotPrice).toLocaleString("en-US", { style: "currency", currency: "USD" });
+
+    // SMA patch
+    document.getElementById("allowedSMA").value = ((SMAStashValue * annualWithdrawalRate / 12) / btcSpotPrice).toFixed(8) + " BTC";
+    document.getElementById("allowedvalueSMA").value = (SMAStashValue * annualWithdrawalRate / 12).toLocaleString("en-US", { style: "currency", currency: "USD" });
 
     // simulation
     simulateStrategy(document.getElementById('simulationDate').value);
@@ -187,7 +193,7 @@ fetchUrls(urls).then(([res0, res1, res2]) => {
         data: prices,
         type: "area",
     }]);
-    
+
     // Day and 200W Price Range Bar
     let todayPrices = res2.prices.map(i => i[1]);
     let todayPriceRange = [Math.min(...todayPrices), Math.max(...todayPrices)];
@@ -206,3 +212,37 @@ fetchUrls(urls).then(([res0, res1, res2]) => {
     // Load Dynamic Data
     calculateWithdrawalLimit();
 });
+
+// Toggle Spot price x  200WMA price
+// Helper function to toggle the d-none class
+function toggleVisibility(element, shouldShow) {
+    if (shouldShow) {
+        if (element.classList.contains("d-none")) {
+            element.classList.remove("d-none");
+        }
+    } else {
+        if (!element.classList.contains("d-none")) {
+            element.classList.add("d-none");
+        }
+    }
+}
+
+// Toggle Spot price x 200WMA price
+function useToggleSpotPrice() {
+    const isChecked = document.getElementById("togglePrice").checked;
+
+    // Define the elements
+    const allowedSMAElement = document.getElementById("allowedSMA").parentElement;
+    const allowedValueSMAElement = document.getElementById("allowedvalueSMA").parentElement;
+    const allowedElement = document.getElementById("allowed").parentElement;
+    const allowedValueElement = document.getElementById("allowedvalue").parentElement;
+
+    // Toggle classes based on the checkbox state
+    toggleVisibility(allowedSMAElement, isChecked);
+    toggleVisibility(allowedValueSMAElement, isChecked);
+    toggleVisibility(allowedElement, !isChecked);
+    toggleVisibility(allowedValueElement, !isChecked);
+}
+
+// Call the function to set the initial state
+useToggleSpotPrice();

@@ -73,277 +73,297 @@
    </header>
    <!-- Page Content -->
    <main class="container-fluid col-lg-12 col-xl-10">
-         <ad-component></ad-component>
-         <h1 class="h1 display-4 fw-bold">JJG Sustainable Bitcoin Withdrawal Strategy</h1>
-         <p class="lead my-4">Ideas of sustainable withdrawal that calculates monthly budget limits based BTC spot
-            price relative to the 200-Week Moving Average (200-WMA). <span class="small"><a
-                  href="https://bitcointalk.org/index.php?topic=5475347.msg63213914#msg63213914"
-                  class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover small fw-semibold"
-                  title="Reference">Reference</a> </span></p>
-         <div class="row row-cols-1 row-cols-lg-4  row-cols-md-3 row-cols-sm-2 g-4">
-            <div class="col">
-               <div class="card bg-transparent border-0">
-                  <div class="card-body">
-                     <div class="card-text mb-2">Price Above 200-WMA(%)</div>
-                     <h5 class="card-title" id="pricesma">
-                        <div class="d-flex justify-content-center fw-normal">
-                           <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
-                              <span class="visually-hidden">Loading...</span>
-                           </div>
+      <ad-component></ad-component>
+      <h1 class="h1 display-4 fw-bold">JJG Sustainable Bitcoin Withdrawal Strategy</h1>
+      <p class="lead my-4">Ideas of sustainable withdrawal that calculates monthly budget limits based BTC spot
+         price relative to the 200-Week Moving Average (200-WMA). <span class="small"><a
+               href="https://bitcointalk.org/index.php?topic=5475347.msg63213914#msg63213914"
+               class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover small fw-semibold"
+               title="Reference">Reference</a> </span></p>
+      <div class="row row-cols-1 row-cols-lg-4  row-cols-md-3 row-cols-sm-2 g-4">
+         <div class="col">
+            <div class="card bg-transparent border-0">
+               <div class="card-body">
+                  <div class="card-text mb-2">Price Above 200-WMA(%)</div>
+                  <h5 class="card-title" id="pricesma">
+                     <div class="d-flex justify-content-center fw-normal">
+                        <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                           <span class="visually-hidden">Loading...</span>
                         </div>
-                     </h5>
-                     <div class="card-text mb-2">Date </div>
-                     <span class="h5 fw-semibold" id="currentDate">&nbsp;</span>
+                     </div>
+                  </h5>
+                  <div class="card-text mb-2">Date </div>
+                  <span class="h5 fw-semibold" id="currentDate">&nbsp;</span>
+               </div>
+            </div>
+         </div>
+         <div class="col">
+            <div class="card bg-transparent border-0">
+               <div class="card-body">
+                  <div class="card-text mb-2">BTC Spot Price</div>
+                  <h5 class="card-title display-6 fw-semibold" id="BTCPrice">&nbsp; </h5>
+                  <div class="card-text mb-2">BTC Stash Value (Spot) </div>
+                  <span class="h5 fw-semibold" id="stashValue">&nbsp;</span>
+               </div>
+            </div>
+         </div>
+         <div class="col">
+            <div class="card bg-transparent border-0">
+               <div class="card-body">
+                  <div class="card-text mb-2">200-week MA</div>
+                  <h5 class="card-title display-6 fw-semibold" id="sma">&nbsp; </h5>
+                  <div class="card-text my-2">BTC Stash Value (200-WMA)</div>
+                  <span class="h5 fw-semibold" id="stashWMAValue">&nbsp; </span>
+               </div>
+            </div>
+         </div>
+         <div class="col">
+            <div class="card bg-transparent border-0">
+               <div class="card-body">
+                  <div class="card-text mb-2">Day's Range</div>
+                  <div class="d-flex justify-content-between align-items-center">
+                     <div id="minDayPrice" class="small">&nbsp; </div>
+                     <div class="progress flex-grow-1 mx-2" role="progressbar" aria-label="Day's Range" id="priceRange">
+                        <div class="progress-bar bg-secondary" id="priceRangeLength"></div>
+                     </div>
+                     <div id="maxDayPrice" class="small">&nbsp; </div>
+                  </div>
+               </div>
+               <div class="card-body">
+                  <div class="card-text mb-2">200-Week's Range</div>
+                  <div class="d-flex justify-content-between align-items-center">
+                     <div id="min200WPrice" class="small">&nbsp; </div>
+                     <div class="progress flex-grow-1 mx-2" role="progressbar" aria-label="Day's Range"
+                        id="price200WRange">
+                        <div class="progress-bar bg-secondary" id="price200WRangeLength"></div>
+                     </div>
+                     <div id="max200WPrice" class="small">&nbsp; </div>
                   </div>
                </div>
             </div>
-            <div class="col">
-               <div class="card bg-transparent border-0">
-                  <div class="card-body">
-                     <div class="card-text mb-2">BTC Spot Price</div>
-                     <h5 class="card-title display-6 fw-semibold" id="BTCPrice">&nbsp; </h5>
-                     <div class="card-text mb-2">BTC Stash Value (Spot) </div>
-                     <span class="h5 fw-semibold" id="stashValue">&nbsp;</span>
-                  </div>
+         </div>
+      </div>
+
+      <div class="row mt-4 mb-1 g-3">
+         <div class="col-md-2 text-end">
+            <p class="h5 mt-3 pt-3">Input Area</p>
+            <div class="mb-3 pt-3">
+               <label for="wrate" class="form-label h6">Annual withdrawal rate</label>
+               <p class="form-label small" id="withdrawalDescription">Conservative</p>
+               <div class=" text-nowrap">
+                  <input value="6" type="range" min="0" max="30" step="0.25" class="form-range float-start" id="wrate"
+                     oninput="calculateWithdrawalLimit()">
+                  <output for="wrate" id="wRateRange" class="fw-semibold align-top">4%</output>
                </div>
             </div>
-            <div class="col">
-               <div class="card bg-transparent border-0">
-                  <div class="card-body">
-                     <div class="card-text mb-2">200-week MA</div>
-                     <h5 class="card-title display-6 fw-semibold" id="sma">&nbsp; </h5>
-                     <div class="card-text my-2">BTC Stash Value (200-WMA)</div>
-                     <span class="h5 fw-semibold" id="stashWMAValue">&nbsp; </span>
-                  </div>
+            <div class="row g-3">
+               <div class="form-floating gx-1 mb-3 col-6 col-sm-12">
+                  <input type="number" class="form-control" id="stash" placeholder="BTC Stash" step="0.01" min="0"
+                     value="1" onChange="calculateWithdrawalLimit()">
+                  <label for="stash">BTC stash size</label>
                </div>
-            </div>
-            <div class="col">
-               <div class="card bg-transparent border-0">
-                  <div class="card-body">
-                     <div class="card-text mb-2">Day's Range</div>
-                     <div class="d-flex justify-content-between align-items-center">
-                        <div id="minDayPrice" class="small">&nbsp; </div>
-                        <div class="progress flex-grow-1 mx-2" role="progressbar" aria-label="Day's Range"
-                           id="priceRange">
-                           <div class="progress-bar bg-secondary" id="priceRangeLength"></div>
-                        </div>
-                        <div id="maxDayPrice" class="small">&nbsp; </div>
+               <div class="form-floating gx-1 col-6 col-sm-12">
+                  <input type="date" title="choose a date" class="form-control" id="date" min="2010-08-02"
+                     onChange="drawAnnotation(this.value)">
+                  <label for="date">Choose a date</label>
+               </div>
+               <div class="mb-3 col-6 col-sm-12">
+                  <div class="d-flex justify-content-end align-items-center">
+                     <span class="me-1 text-primary-emphasis fw-semibold">Spot price</span>
+                     <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="togglePrice"
+                           onchange="useToggleSpotPrice();">
+                        <label class="form-check-label  text-primary-emphasis fw-semibold" for="togglePrice">200 WMA Price</label>
                      </div>
                   </div>
-                  <div class="card-body">
-                     <div class="card-text mb-2">200-Week's Range</div>
-                     <div class="d-flex justify-content-between align-items-center">
-                        <div id="min200WPrice" class="small">&nbsp; </div>
-                        <div class="progress flex-grow-1 mx-2" role="progressbar" aria-label="Day's Range"
-                           id="price200WRange">
-                           <div class="progress-bar bg-secondary" id="price200WRangeLength"></div>
+               </div>
+               <div class="mb-3 col-6 col-sm-12">
+                  <div class="form-check gx-1 float-end">
+                     <input class="form-check-input" type="checkbox" value="" id="useDate" onchange="checkDate();">
+                     <label class="form-check-label small" for="useDate">
+                        Use this date
+                     </label>
+                  </div>
+                  <div class="toast-container position-absolute p-3">
+                     <div class="toast align-items-center text-bg-warning border-0" role="alert" id="checkToast"
+                        aria-live="assertive" aria-atomic="true">
+                        <div class="d-flex">
+                           <div class="toast-body">
+                              Warning. Page will recalculate all fields according to this date.
+                           </div>
+                           <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"
+                              aria-label="Close"></button>
                         </div>
-                        <div id="max200WPrice" class="small">&nbsp; </div>
                      </div>
                   </div>
                </div>
             </div>
          </div>
-
-         <div class="row mt-4 mb-1 g-3">
-            <div class="col-md-2 text-end">
-               <p class="h5 mt-3 pt-3">Input Area</p>
-               <div class="mb-3 pt-3">
-                  <label for="wrate" class="form-label h6">Annual withdrawal rate</label>
-                  <p class="form-label small" id="withdrawalDescription">Conservative</p>
-                  <div class=" text-nowrap">
-                     <input value="6" type="range" min="0" max="30" step="0.25" class="form-range float-start"
-                        id="wrate" oninput="calculateWithdrawalLimit()">
-                     <output for="wrate" id="wRateRange" class="fw-semibold align-top">4%</output>
-                  </div>
-               </div>
-               <div class="row g-3">
-                  <div class="form-floating gx-1 mb-3 col-6 col-sm-12">
-                     <input type="number" class="form-control" id="stash" placeholder="BTC Stash" step="0.01" min="0"
-                        value="1" onChange="calculateWithdrawalLimit()">
-                     <label for="stash">BTC stash size</label>
-                  </div>
-                  <div class="form-floating gx-1 col-6 col-sm-12">
-                     <input type="date" title="choose a date" class="form-control" id="date" min="2010-08-02"
-                        onChange="drawAnnotation(this.value)">
-                     <label for="date">Choose a date</label>
-                  </div>
-                  <div class=" mb-3 col-6 col-sm-12">
-                     <div class="form-check gx-1 float-end">
-                        <input class="form-check-input" type="checkbox" value="" id="useDate" onchange="checkDate();">
-                        <label class="form-check-label small" for="useDate">
-                           Use this date
+         <div class="col-md-7">
+            <div class="card border-0 bg-transparent text-center">
+               <h4 class="card-header bg-transparent h3">
+                  Bitcoin Price / 200 WMA Chart
+               </h4>
+               <div class="card-body">
+                  <div class="row justify-content-between">
+                     <div class="col-auto">
+                        <span class="small border-1 px-2 border-end" onClick="chartPeriod(-30)"><a
+                              href="javascript:void(0);" class="pointer">1M</a></span>
+                        <span class="small border-1 px-2 border-end" onClick="chartPeriod(-180)"><a
+                              href="javascript:void(0);" class="pointer">6M</a></span>
+                        <span class="small border-1 px-2 border-end" onClick="chartPeriod(-365)"><a
+                              href="javascript:void(0);" class="pointer">1Y</a></span>
+                        <span class="small border-1 px-2 border-end" onClick="chartPeriod(-1825)"><a
+                              href="javascript:void(0);" class="pointer">5Y</a></span>
+                        <span class="small border-1 px-2 border-end" onClick="chartPeriod(-3650)"><a
+                              href="javascript:void(0);" class="pointer">10Y</a></span>
+                        <span class="small border-1 px-2" onClick="chartPeriod()"><a href="javascript:void(0);"
+                              class="pointer link-secondary border-bottom border-3">ALL</a></span>
+                     </div>
+                     <div class="col-auto form-check gx-1">
+                        <input class="form-check-input" type="checkbox" checked id="linLog"
+                           onchange="linearLogarithimic();">
+                        <label class="form-check-label small" for="linLog">
+                           Logarithimic scale
                         </label>
                      </div>
-                     <div class="toast-container position-absolute p-3">
-                        <div class="toast align-items-center text-bg-warning border-0" role="alert" id="checkToast"
-                           aria-live="assertive" aria-atomic="true">
-                           <div class="d-flex">
-                              <div class="toast-body">
-                                 Warning. Page will recalculate all fields according to this date.
+                  </div>
+                  <div id="chart" class="px-0 mx-0"></div>
+                  <div id="brushChart" class="px-0 mx-0"></div>
+                  <div class="card-text text-body-secondary text-end small">
+                     <div class="float-start">
+                        <button type="button" id="saveInputs" title="Save inputs" class="btn btn-primary shadow-sm px-3"
+                           onclick="saveToLocalStorage()">Save
+                           inputs
+                        </button>
+                        <button type="button" title="refresh" class="btn btn-secondary shadow-sm"
+                           onclick="restoreDefaults()">
+                           <svg xmlns="http://www.w3.org/2000/svg" height="24" fill="currentColor"
+                              viewBox="0 -960 960 960" width="24">
+                              <path
+                                 d="M480-160q-134 0-227-93t-93-227q0-134 93-227t227-93q69 0 132 28.5T720-690v-110h80v280H520v-80h168q-32-56-87.5-88T480-720q-100 0-170 70t-70 170q0 100 70 170t170 70q77 0 139-44t87-116h84q-28 106-114 173t-196 67Z" />
+                           </svg>
+                        </button>
+                        <button type="button" id="shareInputs" title="Share" class="btn btn-secondary shadow-sm px-3"
+                           onclick="save_share();copyurl('shareURL')">
+                           Share
+                        </button>
+                        <div class="toast-container position-absolute mt-3">
+                           <div class="toast align-items-center text-bg-primary " role="alert" id="saveInputsToast"
+                              aria-live="assertive" aria-atomic="true">
+                              <div class="d-flex">
+                                 <div class="toast-body">
+                                    Inputs stored in your browser for future visits.
+                                 </div>
+                                 <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"
+                                    aria-label="Close"></button>
                               </div>
-                              <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"
-                                 aria-label="Close"></button>
+                           </div>
+                           <div class="toast text-bg-secondary w-100" role="alert" id="shareInputsToast"
+                              aria-live="assertive" aria-atomic="true">
+                              <div class="d-flex">
+                                 <small class="toast-body text-start" id="shareURL">
+                                    &nbsp;
+                                 </small>
+                                 <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"
+                                    aria-label="Close"></button>
+                              </div>
                            </div>
                         </div>
                      </div>
+                     <p class="float-end">Price data from coingecko</p>
                   </div>
+               </div>
+
+            </div>
+         </div>
+         <div class="col-md-3">
+            <p class="h5 mt-3 pt-3">Output Area</p>
+            <h3 class="h6 mt-3 pt-3">Monthly Authorized Withdrawal <a id="monthFormula"
+                  class="fw-semibold align-top text-decoration-none">&nbsp;</a>
+            </h3>
+            <div class="form-floating mb-3">
+               <input type="text" class="form-control" id="allowed" placeholder="Authorized BTC Withdrawal"
+                  onChange="calculateWithdrawalLimit()" value="0" disabled>
+               <label for="allowed">Authorized BTC Withdrawal</label>
+            </div>
+            <div class="form-floating mb-3">
+               <input type="text" class="form-control" id="allowedvalue" placeholder="Authorized Withdrawal USD"
+                  onChange="calculateWithdrawalLimit()" value="0" disabled>
+               <label for="allowedvalue">Authorized Withdrawal USD</label>
+            </div>
+
+            <div class="form-floating mb-3">
+               <input type="text" class="form-control" id="allowedSMA" placeholder="Authorized BTC Withdrawal"
+                  onChange="calculateWithdrawalLimit()" value="0" disabled>
+               <label for="allowedSMA">Authorized BTC Withdrawal (SMA)</label>
+            </div>
+            <div class="form-floating mb-3">
+               <input type="text" class="form-control" id="allowedvalueSMA" placeholder="Authorized Withdrawal USD"
+                  onChange="calculateWithdrawalLimit()" value="0" disabled>
+               <label for="allowedvalueSMA">Authorized Withdrawal USD (SMA)</label>
+            </div>
+
+            <h4 class="mt-4 h6 pb-0 mb-0">Advanced Withdrawal <a id="advMonthFormula"
+                  class="fw-semibold align-top text-decoration-none">&nbsp;</a></h4>
+            <small class="form-label small fw-normal">(optional - yet recommend)</small>
+            <a href="#how"
+               class="link-offset-1 link-underline link-underline-opacity-0 link-underline-opacity-75-hover small fw-normal">
+               Details below</a>
+            <div class="form-floating mb-3">
+               <input type="number" class="form-control" id="monthAdvance" placeholder="No. Months in Advance"
+                  onChange="calculateWithdrawalLimit()" value="0" min="0" disabled>
+               <label for="monthAdvance">No. Months in Advance</label>
+            </div>
+            <div class="form-floating mb-3">
+               <input type="text" class="form-control" id="allowedAdv" placeholder="Advanced Withdrawal"
+                  onChange="calculateWithdrawalLimit()" value="0" disabled>
+               <label for="allowedAdv">Advanced BTC Withdrawal</label>
+            </div>
+            <div class="form-floating mb-3">
+               <input type="text" class="form-control" id="allowedAdvVal" placeholder="Advanced Withdrawal USD"
+                  onChange="calculateWithdrawalLimit()" value="0" disabled>
+               <label for="allowedAdvVal">Advanced Withdrawal USD</label>
+            </div>
+         </div>
+      </div>
+      <div class="border-top mt-3">
+         <h4 class="fw-semibold my-3">Simulation</h4>
+         <div class="row">
+            <div class="col-md-3">
+               <p>You can simulate what your portfolio would be like if you had already started this strategy.</p>
+               <small>Considering you withdrawal at fixed dates 8th and 22nd each month.</small>
+               <div class="form-floating g-1 mb-3">
+                  <input type="date" title="choose a date" class="form-control" id="simulationDate" min="2010-08-02"
+                     onchange="simulateStrategy(this.value)">
+                  <label for="simulationDate">Start using strategy</label>
                </div>
             </div>
-            <div class="col-md-7">
-               <div class="card border-0 bg-transparent text-center">
-                  <h4 class="card-header bg-transparent h3">
-                     Bitcoin Price / 200 WMA Chart
-                  </h4>
-                  <div class="card-body">
-                     <div class="row justify-content-between">
-                        <div class="col-auto">
-                           <span class="small border-1 px-2 border-end" onClick="chartPeriod(-30)"><a
-                                 href="javascript:void(0);" class="pointer">1M</a></span>
-                           <span class="small border-1 px-2 border-end" onClick="chartPeriod(-180)"><a
-                                 href="javascript:void(0);" class="pointer">6M</a></span>
-                           <span class="small border-1 px-2 border-end" onClick="chartPeriod(-365)"><a
-                                 href="javascript:void(0);" class="pointer">1Y</a></span>
-                           <span class="small border-1 px-2 border-end" onClick="chartPeriod(-1825)"><a
-                                 href="javascript:void(0);" class="pointer">5Y</a></span>
-                           <span class="small border-1 px-2 border-end" onClick="chartPeriod(-3650)"><a
-                                 href="javascript:void(0);" class="pointer">10Y</a></span>
-                           <span class="small border-1 px-2" onClick="chartPeriod()"><a href="javascript:void(0);"
-                                 class="pointer link-secondary border-bottom border-3">ALL</a></span>
-                        </div>
-                        <div class="col-auto form-check gx-1">
-                           <input class="form-check-input" type="checkbox" checked id="linLog"
-                              onchange="linearLogarithimic();">
-                           <label class="form-check-label small" for="linLog">
-                              Logarithimic scale
-                           </label>
-                        </div>
-                     </div>
-                     <div id="chart" class="px-0 mx-0"></div>
-                     <div id="brushChart" class="px-0 mx-0"></div>
-                     <div class="card-text text-body-secondary text-end small">
-                        <div class="float-start">
-                           <button type="button" id="saveInputs" title="Save inputs"
-                              class="btn btn-primary shadow-sm px-3" onclick="saveToLocalStorage()">Save
-                              inputs
-                           </button>
-                           <button type="button" title="refresh" class="btn btn-secondary shadow-sm"
-                              onclick="restoreDefaults()">
-                              <svg xmlns="http://www.w3.org/2000/svg" height="24" fill="currentColor"
-                                 viewBox="0 -960 960 960" width="24">
-                                 <path
-                                    d="M480-160q-134 0-227-93t-93-227q0-134 93-227t227-93q69 0 132 28.5T720-690v-110h80v280H520v-80h168q-32-56-87.5-88T480-720q-100 0-170 70t-70 170q0 100 70 170t170 70q77 0 139-44t87-116h84q-28 106-114 173t-196 67Z" />
-                              </svg>
-                           </button>
-                           <button type="button" id="shareInputs" title="Share" class="btn btn-secondary shadow-sm px-3"
-                              onclick="save_share();copyurl('shareURL')">
-                              Share
-                           </button>
-                           <div class="toast-container position-absolute mt-3">
-                              <div class="toast align-items-center text-bg-primary " role="alert" id="saveInputsToast"
-                                 aria-live="assertive" aria-atomic="true">
-                                 <div class="d-flex">
-                                    <div class="toast-body">
-                                       Inputs stored in your browser for future visits.
-                                    </div>
-                                    <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"
-                                       aria-label="Close"></button>
-                                 </div>
-                              </div>
-                              <div class="toast text-bg-secondary w-100" role="alert" id="shareInputsToast"
-                                 aria-live="assertive" aria-atomic="true">
-                                 <div class="d-flex">
-                                    <small class="toast-body text-start" id="shareURL">
-                                       &nbsp;
-                                    </small>
-                                    <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"
-                                       aria-label="Close"></button>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                        <p class="float-end">Price data from coingecko</p>
-                     </div>
-                  </div>
-
+            <div class="col-md-2">
+               <div class="form-floating mb-3">
+                  <input type="text" class="form-control" id="currentStash" placeholder="Current Stash"
+                     onChange="calculateWithdrawalLimit()" value="0" disabled>
+                  <label for="allowed">Current Stash</label>
                </div>
+               <div class="form-floating mb-3">
+                  <input type="text" class="form-control" id="amountWithdrawn" placeholder="Total Amount Withdrawn"
+                     onChange="calculateWithdrawalLimit()" value="0" disabled>
+                  <label for="allowed">Amount Withdrawn (BTC)</label>
+               </div>
+               <div class="form-floating mb-3">
+                  <input type="text" class="form-control" id="totalWithdrawnUSD" placeholder="Total Amount Withdrawn"
+                     onChange="calculateWithdrawalLimit()" value="0" disabled>
+                  <label for="allowed">Amount Withdrawn (USD)</label>
+               </div>
+            </div>
+            <div class="col-md-4">
+               <div id="stashChart" class="px-0 mx-0"></div>
             </div>
             <div class="col-md-3">
-               <p class="h5 mt-3 pt-3">Output Area</p>
-               <h3 class="h6 mt-3 pt-3">Monthly Authorized Withdrawal <a id="monthFormula"
-                     class="fw-semibold align-top text-decoration-none">&nbsp;</a>
-               </h3>
-               <div class="form-floating mb-3">
-                  <input type="text" class="form-control" id="allowed" placeholder="Authorized BTC Withdrawal"
-                     onChange="calculateWithdrawalLimit()" value="0" disabled>
-                  <label for="allowed">Authorized BTC Withdrawal</label>
-               </div>
-               <div class="form-floating mb-3">
-                  <input type="text" class="form-control" id="allowedvalue" placeholder="Authorized Withdrawal USD"
-                     onChange="calculateWithdrawalLimit()" value="0" disabled>
-                  <label for="allowedvalue">Authorized Withdrawal USD</label>
-               </div>
-
-               <h4 class="mt-4 h6 pb-0 mb-0">Advanced Withdrawal <a id="advMonthFormula"
-                     class="fw-semibold align-top text-decoration-none">&nbsp;</a></h4>
-               <small class="form-label small fw-normal">(optional - yet recommend)</small>
-               <a href="#how"
-                  class="link-offset-1 link-underline link-underline-opacity-0 link-underline-opacity-75-hover small fw-normal">
-                  Details below</a>
-               <div class="form-floating mb-3">
-                  <input type="number" class="form-control" id="monthAdvance" placeholder="No. Months in Advance"
-                     onChange="calculateWithdrawalLimit()" value="0" min="0" disabled>
-                  <label for="monthAdvance">No. Months in Advance</label>
-               </div>
-               <div class="form-floating mb-3">
-                  <input type="text" class="form-control" id="allowedAdv" placeholder="Advanced Withdrawal"
-                     onChange="calculateWithdrawalLimit()" value="0" disabled>
-                  <label for="allowedAdv">Advanced BTC Withdrawal</label>
-               </div>
-               <div class="form-floating mb-3">
-                  <input type="text" class="form-control" id="allowedAdvVal" placeholder="Advanced Withdrawal USD"
-                     onChange="calculateWithdrawalLimit()" value="0" disabled>
-                  <label for="allowedAdvVal">Advanced Withdrawal USD</label>
-               </div>
+               <div id="radialBar" class="px-0 mx-0"></div>
             </div>
          </div>
-         <div class="border-top mt-3">
-            <h4 class="fw-semibold my-3">Simulation</h4>
-            <div class="row">
-               <div class="col-md-3">
-                  <p>You can simulate what your portfolio would be like if you had already started this strategy.</p>
-                  <small>Considering you withdrawal at fixed dates 8th and 22nd each month.</small>
-                  <div class="form-floating g-1 mb-3">
-                     <input type="date" title="choose a date" class="form-control" id="simulationDate" min="2010-08-02"
-                        onchange="simulateStrategy(this.value)">
-                     <label for="simulationDate">Start using strategy</label>
-                  </div>
-               </div>
-               <div class="col-md-2">
-                  <div class="form-floating mb-3">
-                     <input type="text" class="form-control" id="currentStash" placeholder="Current Stash"
-                        onChange="calculateWithdrawalLimit()" value="0" disabled>
-                     <label for="allowed">Current Stash</label>
-                  </div>
-                  <div class="form-floating mb-3">
-                     <input type="text" class="form-control" id="amountWithdrawn" placeholder="Total Amount Withdrawn"
-                        onChange="calculateWithdrawalLimit()" value="0" disabled>
-                     <label for="allowed">Amount Withdrawn (BTC)</label>
-                  </div>
-                  <div class="form-floating mb-3">
-                     <input type="text" class="form-control" id="totalWithdrawnUSD" placeholder="Total Amount Withdrawn"
-                        onChange="calculateWithdrawalLimit()" value="0" disabled>
-                     <label for="allowed">Amount Withdrawn (USD)</label>
-                  </div>
-               </div>
-               <div class="col-md-4">
-                  <div id="stashChart" class="px-0 mx-0"></div>
-               </div>
-               <div class="col-md-3">
-                  <div id="radialBar" class="px-0 mx-0"></div>
-               </div>
-            </div>
-         </div>
+      </div>
       </div>
 
 
@@ -391,7 +411,8 @@
                rates are likely to sustain the fund
                longer than higher rates</li>
          </ol>
-         <p class="h5"><span class="text-primary me-2">•</span><strong>(Authorized) Month Withdrawal limit (BTC)</strong></p>
+         <p class="h5"><span class="text-primary me-2">•</span><strong>(Authorized) Month Withdrawal limit
+               (BTC)</strong></p>
          <p> This output is calculated based
             on: </p>
          <div class="bg-dark-subtle p-3 font-monospace rounded">Month Withdrawal limit = BTC stash size * Annual
@@ -420,7 +441,8 @@
                authorized to withdraw any BTC from the budget.</li>
          </ol>
 
-         <p class="h5"><span class="text-primary me-2">•</span><strong>(Authorized) Month Withdrawal limit (USD)</strong></p>
+         <p class="h5"><span class="text-primary me-2">•</span><strong>(Authorized) Month Withdrawal limit
+               (USD)</strong></p>
 
          <p> This output is calculated
             based on BTC stash size * Annual withdrawal / 12 (* USD Spot price).
