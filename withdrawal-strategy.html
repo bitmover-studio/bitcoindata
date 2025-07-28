@@ -168,16 +168,6 @@
                   <label for="date">Choose a date</label>
                </div>
                <div class="mb-3 col-6 col-sm-12">
-                  <div class="d-flex justify-content-end align-items-center">
-                     <span class="me-1 text-primary-emphasis fw-semibold">Spot price</span>
-                     <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" id="togglePrice"
-                           onchange="useToggleSpotPrice();">
-                        <label class="form-check-label  text-primary-emphasis fw-semibold" for="togglePrice">200 WMA Price</label>
-                     </div>
-                  </div>
-               </div>
-               <div class="mb-3 col-6 col-sm-12">
                   <div class="form-check gx-1 float-end">
                      <input class="form-check-input" type="checkbox" value="" id="useDate" onchange="checkDate();">
                      <label class="form-check-label small" for="useDate">
@@ -194,6 +184,17 @@
                            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"
                               aria-label="Close"></button>
                         </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="mb-3 col-6 col-sm-12">
+                  <div class="d-flex justify-content-end align-items-center">
+                     <span class="me-1 text-primary-emphasis fw-semibold">Spot price</span>
+                     <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="togglePrice"
+                           onchange="calculateWithdrawalLimit();">
+                        <label class="form-check-label  text-primary-emphasis fw-semibold" for="togglePrice">200 WMA
+                           Price</label>
                      </div>
                   </div>
                </div>
@@ -293,7 +294,7 @@
                <label for="allowedvalue">Authorized Withdrawal USD</label>
             </div>
 
-            <div class="form-floating mb-3">
+            <!-- <div class="form-floating mb-3">
                <input type="text" class="form-control" id="allowedSMA" placeholder="Authorized BTC Withdrawal"
                   onChange="calculateWithdrawalLimit()" value="0" disabled>
                <label for="allowedSMA">Authorized BTC Withdrawal (SMA)</label>
@@ -302,7 +303,7 @@
                <input type="text" class="form-control" id="allowedvalueSMA" placeholder="Authorized Withdrawal USD"
                   onChange="calculateWithdrawalLimit()" value="0" disabled>
                <label for="allowedvalueSMA">Authorized Withdrawal USD (SMA)</label>
-            </div>
+            </div> -->
 
             <h4 class="mt-4 h6 pb-0 mb-0">Advanced Withdrawal <a id="advMonthFormula"
                   class="fw-semibold align-top text-decoration-none">&nbsp;</a></h4>

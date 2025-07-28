@@ -46,20 +46,33 @@ async function fetchUrls(urls) {
 
 
 // Withdrawal Calculations
-function calculateWithdrawalLimit() {
+// wait for fetchUrls to complete before running this function /// HELP HERE
+function calculateWithdrawalLimit(stashsize) {
     let annualWithdrawalRate = (document.getElementById("wrate").value) / 100;
     let btcStashSize = document.getElementById("stash").value;
+    let SMAStashValue = (document.getElementById("stash").value * movingAverage);
     let wRateRange = document.getElementById('wRateRange');
     let withdrawalDescription = document.getElementById('withdrawalDescription');
     let wrate = document.getElementById("wrate");
+
+    const is200WMAPriceChecked = document.getElementById("togglePrice").checked;
+    stashsize = is200WMAPriceChecked ? '200wma' : 'spot'
+    // Check if stashsize is 'spot' or '200wma'
+    if (stashsize === 'spot') {
+        stashsize = btcStashSize;
+    }
+    if (stashsize === '200wma') {
+        stashsize = SMAStashValue/btcSpotPrice;
+    }
+
     document.getElementById("currentDate").innerText = new Date().toLocaleDateString()
 
     // Header Data
     percentAboveMovingAverage = (btcSpotPrice - movingAverage) / movingAverage;
 
     document.getElementById("pricesma").innerHTML = percentAboveMovingAverage.toLocaleString("en-US", { style: "percent", minimumFractionDigits: 2, maximumFractionDigits: 2 });
-    document.getElementById("sma").innerHTML = movingAverage.toLocaleString("en-US", { style: "currency", currency: "USD" });
-    document.getElementById("BTCPrice").innerHTML = btcSpotPrice.toLocaleString("en-US", { style: "currency", currency: "USD" });
+    document.getElementById("sma").innerHTML = movingAverage?.toLocaleString("en-US", { style: "currency", currency: "USD" });
+    document.getElementById("BTCPrice").innerHTML = btcSpotPrice?.toLocaleString("en-US", { style: "currency", currency: "USD" });
     (percentAboveMovingAverage > 0) ? document.getElementById("pricesma").className = 'text-success-emphasis card-title display-6 fw-semibold' : document.getElementById("pricesma").className = 'text-danger card-title display-6 fw-semibold';
 
     //Withdrawal Rate Description
@@ -89,30 +102,28 @@ function calculateWithdrawalLimit() {
         withdrawalDescription.innerText = 'Conservative';
     }
     document.getElementById("stashValue").innerHTML = (document.getElementById("stash").value * btcSpotPrice).toLocaleString("en-US", { style: "currency", currency: "USD" });
-
-    const SMAStashValue = (document.getElementById("stash").value * movingAverage);
     document.getElementById("stashWMAValue").innerHTML = SMAStashValue.toLocaleString("en-US", { style: "currency", currency: "USD" })
 
     //Set Withdrawal Limit
     let withdrawalLimit;
     let monthFormula = document.getElementById("monthFormula");
     if (percentAboveMovingAverage >= 0.25) {
-        withdrawalLimit = btcStashSize * annualWithdrawalRate / 12;
+        withdrawalLimit = stashsize * annualWithdrawalRate / 12;
         monthFormula.innerText = '(100%)';
     } else if (percentAboveMovingAverage >= 0.1) {
-        withdrawalLimit = btcStashSize * annualWithdrawalRate / 12 * 0.9;
+        withdrawalLimit = stashsize * annualWithdrawalRate / 12 * 0.9;
         monthFormula.innerText = '(90%)';
     } else if (percentAboveMovingAverage >= 0) {
-        withdrawalLimit = btcStashSize * annualWithdrawalRate / 12 * 0.85;
+        withdrawalLimit = stashsize * annualWithdrawalRate / 12 * 0.85;
         monthFormula.innerText = '(85%)';
     } else if (percentAboveMovingAverage >= -0.2) {
-        withdrawalLimit = btcStashSize * annualWithdrawalRate / 12 * 0.7;
+        withdrawalLimit = stashsize * annualWithdrawalRate / 12 * 0.7;
         monthFormula.innerText = '(70%)';
     } else if (percentAboveMovingAverage >= -0.3) {
-        withdrawalLimit = btcStashSize * annualWithdrawalRate / 12 * 0.5;
+        withdrawalLimit = stashsize * annualWithdrawalRate / 12 * 0.5;
         monthFormula.innerText = '(50%)';
     } else if (percentAboveMovingAverage >= -0.35) {
-        withdrawalLimit = btcStashSize * annualWithdrawalRate / 12 * 0.4;
+        withdrawalLimit = stashsize * annualWithdrawalRate / 12 * 0.4;
         monthFormula.innerText = '(40%)';
     } else {
         withdrawalLimit = 0;
@@ -125,10 +136,6 @@ function calculateWithdrawalLimit() {
     document.getElementById("monthAdvance").value = calculateAdvancedWithdraw();
     document.getElementById("allowedAdv").value = (calculateAdvancedWithdraw() * withdrawalLimit).toFixed(8) + " BTC";
     document.getElementById("allowedAdvVal").value = (calculateAdvancedWithdraw() * withdrawalLimit * btcSpotPrice).toLocaleString("en-US", { style: "currency", currency: "USD" });
-
-    // SMA patch
-    document.getElementById("allowedSMA").value = ((SMAStashValue * annualWithdrawalRate / 12) / btcSpotPrice).toFixed(8) + " BTC";
-    document.getElementById("allowedvalueSMA").value = (SMAStashValue * annualWithdrawalRate / 12).toLocaleString("en-US", { style: "currency", currency: "USD" });
 
     // simulation
     simulateStrategy(document.getElementById('simulationDate').value);
@@ -226,23 +233,3 @@ function toggleVisibility(element, shouldShow) {
         }
     }
 }
-
-// Toggle Spot price x 200WMA price
-function useToggleSpotPrice() {
-    const isChecked = document.getElementById("togglePrice").checked;
-
-    // Define the elements
-    const allowedSMAElement = document.getElementById("allowedSMA").parentElement;
-    const allowedValueSMAElement = document.getElementById("allowedvalueSMA").parentElement;
-    const allowedElement = document.getElementById("allowed").parentElement;
-    const allowedValueElement = document.getElementById("allowedvalue").parentElement;
-
-    // Toggle classes based on the checkbox state
-    toggleVisibility(allowedSMAElement, isChecked);
-    toggleVisibility(allowedValueSMAElement, isChecked);
-    toggleVisibility(allowedElement, !isChecked);
-    toggleVisibility(allowedValueElement, !isChecked);
-}
-
-// Call the function to set the initial state
-useToggleSpotPrice();
