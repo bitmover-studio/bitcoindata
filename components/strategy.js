@@ -44,6 +44,10 @@ async function fetchUrls(urls) {
     }
 }
 
+    function updateRangeInput(value) {
+        const numericValue = parseFloat(value.replace('%', ''));
+        document.getElementById('wrate').value = numericValue;
+    }
 
 // Withdrawal Calculations
 // wait for fetchUrls to complete before running this function /// HELP HERE
@@ -51,7 +55,7 @@ function calculateWithdrawalLimit(stashsize) {
     let annualWithdrawalRate = (document.getElementById("wrate").value) / 100;
     let btcStashSize = document.getElementById("stash").value;
     let SMAStashValue = (document.getElementById("stash").value * movingAverage);
-    let wRateRange = document.getElementById('wRateRange');
+    let withdrawalRateInput = document.getElementById('withdrawalRateInput');
     let withdrawalDescription = document.getElementById('withdrawalDescription');
     let wrate = document.getElementById("wrate");
 
@@ -77,26 +81,26 @@ function calculateWithdrawalLimit(stashsize) {
 
     //Withdrawal Rate Description
     if (wrate.value > 17) {
-        wRateRange.classList.remove("text-warning");
-        wRateRange.classList.add("text-danger");
+        withdrawalRateInput.classList.remove("text-warning");
+        withdrawalRateInput.classList.add("text-danger");
         withdrawalDescription.classList.add("text-danger");
         withdrawalDescription.classList.remove("text-warning");
         withdrawalDescription.innerText = 'Extremely Agressive';
     } else if (wrate.value > 10) {
-        wRateRange.classList.remove("text-warning");
-        wRateRange.classList.add("text-danger");
+        withdrawalRateInput.classList.remove("text-warning");
+        withdrawalRateInput.classList.add("text-danger");
         withdrawalDescription.classList.add("text-danger");
         withdrawalDescription.classList.remove("text-warning");
         withdrawalDescription.innerText = 'Aggressive';
     } else if (wrate.value > 6) {
-        wRateRange.classList.remove("text-danger");
-        wRateRange.classList.add("text-warning");
+        withdrawalRateInput.classList.remove("text-danger");
+        withdrawalRateInput.classList.add("text-warning");
         withdrawalDescription.classList.remove("text-danger");
         withdrawalDescription.classList.add("text-warning");
         withdrawalDescription.innerText = 'Moderate';
     } else {
-        wRateRange.classList.remove("text-danger");
-        wRateRange.classList.remove("text-warning");
+        withdrawalRateInput.classList.remove("text-danger");
+        withdrawalRateInput.classList.remove("text-warning");
         withdrawalDescription.classList.remove("text-danger");
         withdrawalDescription.classList.remove("text-warning");
         withdrawalDescription.innerText = 'Conservative';
@@ -130,7 +134,8 @@ function calculateWithdrawalLimit(stashsize) {
         monthFormula.innerText = '(0%)';
     }
 
-    wRateRange.innerHTML = wrate.value + '%';
+    withdrawalRateInput.value = wrate.value + '%';
+    withdrawalRateInput.value = wrate.value + '%';
     document.getElementById("allowed").value = withdrawalLimit.toFixed(8) + " BTC";
     document.getElementById("allowedvalue").value = (withdrawalLimit * btcSpotPrice).toLocaleString("en-US", { style: "currency", currency: "USD" });
     document.getElementById("monthAdvance").value = calculateAdvancedWithdraw();

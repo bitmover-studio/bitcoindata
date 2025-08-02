@@ -68,7 +68,7 @@ class Navbar extends HTMLElement {
             <a title="bitcoin data.science" class="navbar-brand text-decoration-none mx-0" href="./">
                 <img src="img/bitcoin-data-science-logo-web.svg" class="float-start mt-2 me-1"
                     alt="bitcoin data.science" title="bitcoin data.science" height="50" width="50"/>
-                <h1 class="navbar-text h5">bitcoindata<br /><span class="text-warning">.science</span></h1>
+                <h1 class="navbar-text h5">bitcoindata<br /><span class="logo">.science</span></h1>
             </a>
         </div>
 

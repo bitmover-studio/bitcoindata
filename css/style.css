@@ -14,7 +14,7 @@ a {
 a:hover, .footer-link:hover {
 transition: all .3s ease-in-out;
   text-decoration: none;
-  color:orange;
+  color: #ad8305;
 }
 
 .footer-link {
@@ -22,7 +22,7 @@ transition: all .3s ease-in-out;
 }
 
  [data-bs-theme=dark] .footer-link:hover{
-  color: orange;
+  color: #ad8305;
 }
 
  [data-bs-theme=dark] .footer-link{
@@ -37,7 +37,7 @@ transition: all .3s ease-in-out;
   font-weight: 600;
 }
 span.logo {
-  color: orange;
+  color: #ad8305;
 }
 
 .fs-big {
@@ -58,13 +58,13 @@ span.logo {
 
 #nav-lg-menu a.active,
 #offcanvasNavbar a:hover.active {
-  color: orange;
+  color: #ad8305;
   text-decoration: none;
 }
 
 #nav-lg-menu a:hover,
 #offcanvasNavbar a:hover {
-  color: orange;
+  color: #ad8305;
   text-decoration: none;
 
 }
@@ -166,14 +166,13 @@ background-color: #ffffff1a !important;
 }
 
 /* JJG strategy */
-input[type="range"] {
-  width: 70%;
-}
-
 .pointer,
 .pointer:hover {
   text-decoration: none;
   font-weight: 600;
+}
+ [data-bs-theme=light]  .form-floating .text-warning {
+color:#ad8305!important;
 }
 
 .apexcharts-tooltip-title {

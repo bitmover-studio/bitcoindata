@@ -144,37 +144,41 @@
          </div>
       </div>
 
-      <div class="row mt-4 mb-1 g-3">
+      <div class="row mt-4 mb-1 g-3 bg-body-tertiary rounded-top-4 p-4 shadow-sm">
          <div class="col-md-2 text-end">
             <p class="h5 mt-3 pt-3">Input Area</p>
-            <div class="mb-3 pt-3">
-               <label for="wrate" class="form-label h6">Annual withdrawal rate</label>
-               <p class="form-label small" id="withdrawalDescription">Conservative</p>
-               <div class=" text-nowrap">
-                  <input value="6" type="range" min="0" max="30" step="0.25" class="form-range float-start" id="wrate"
-                     oninput="calculateWithdrawalLimit()">
-                  <output for="wrate" id="wRateRange" class="fw-semibold align-top">4%</output>
+            <div class="row g-3 mb-4 pt-3">
+               <label for="wrate" class="form-label h6">Annual Withdrawal Rate</label>
+               <input value="6" type="range" min="0" max="30" step="0.25" class="form-range float-start" id="wrate"
+                  oninput="calculateWithdrawalLimit()">
+               <div class="form-floating gx-1 col-6 col-sm-12 ">
+                  <input type="text" class="form-control  font-monospace border-0 bg-body-secondary rounded-4"
+                     id="withdrawalRateInput" value="4%"
+                     onChange="updateRangeInput(this.value);calculateWithdrawalLimit()">
+                  <label for="withdrawalRateInput" id="withdrawalDescription">Conservative</label>
                </div>
             </div>
             <div class="row g-3">
                <div class="form-floating gx-1 mb-3 col-6 col-sm-12">
-                  <input type="number" class="form-control" id="stash" placeholder="BTC Stash" step="0.01" min="0"
-                     value="1" onChange="calculateWithdrawalLimit()">
+                  <input type="number" class="form-control font-monospace border-0 bg-body-secondary rounded-4"
+                     id="stash" placeholder="BTC Stash" step="0.01" min="0" value="1"
+                     onChange="calculateWithdrawalLimit()">
                   <label for="stash">BTC stash size</label>
                </div>
                <div class="form-floating gx-1 col-6 col-sm-12">
-                  <input type="date" title="choose a date" class="form-control" id="date" min="2010-08-02"
-                     onChange="drawAnnotation(this.value)">
+                  <input type="date" title="choose a date"
+                     class="form-control  font-monospace border-0 bg-body-secondary rounded-4" id="date"
+                     min="2010-08-02" onChange="drawAnnotation(this.value)">
                   <label for="date">Choose a date</label>
                </div>
-               <div class="mb-3 col-6 col-sm-12">
+               <div class="col-6 col-sm-12">
                   <div class="form-check gx-1 float-end">
                      <input class="form-check-input" type="checkbox" value="" id="useDate" onchange="checkDate();">
                      <label class="form-check-label small" for="useDate">
                         Use this date
                      </label>
                   </div>
-                  <div class="toast-container position-absolute p-3">
+                  <div class="toast-container position-absolute p-3 mt-5">
                      <div class="toast align-items-center text-bg-warning border-0" role="alert" id="checkToast"
                         aria-live="assertive" aria-atomic="true">
                         <div class="d-flex">
@@ -187,7 +191,7 @@
                      </div>
                   </div>
                </div>
-               <div class="mb-3 col-6 col-sm-12">
+               <div class="col-6 col-sm-12">
                   <div class="d-flex justify-content-end align-items-center">
                      <span class="me-1 text-primary-emphasis fw-semibold">Spot price</span>
                      <div class="form-check form-switch">
@@ -284,26 +288,16 @@
                   class="fw-semibold align-top text-decoration-none">&nbsp;</a>
             </h3>
             <div class="form-floating mb-3">
-               <input type="text" class="form-control" id="allowed" placeholder="Authorized BTC Withdrawal"
-                  onChange="calculateWithdrawalLimit()" value="0" disabled>
+               <input type="text" class="form-control font-monospace border-0 bg-body-secondary rounded-4" id="allowed"
+                  placeholder="Authorized BTC Withdrawal" onChange="calculateWithdrawalLimit()" value="0" disabled>
                <label for="allowed">Authorized BTC Withdrawal</label>
             </div>
             <div class="form-floating mb-3">
-               <input type="text" class="form-control" id="allowedvalue" placeholder="Authorized Withdrawal USD"
-                  onChange="calculateWithdrawalLimit()" value="0" disabled>
+               <input type="text" class="form-control font-monospace border-0 bg-body-secondary rounded-4"
+                  id="allowedvalue" placeholder="Authorized Withdrawal USD" onChange="calculateWithdrawalLimit()"
+                  value="0" disabled>
                <label for="allowedvalue">Authorized Withdrawal USD</label>
             </div>
-
-            <!-- <div class="form-floating mb-3">
-               <input type="text" class="form-control" id="allowedSMA" placeholder="Authorized BTC Withdrawal"
-                  onChange="calculateWithdrawalLimit()" value="0" disabled>
-               <label for="allowedSMA">Authorized BTC Withdrawal (SMA)</label>
-            </div>
-            <div class="form-floating mb-3">
-               <input type="text" class="form-control" id="allowedvalueSMA" placeholder="Authorized Withdrawal USD"
-                  onChange="calculateWithdrawalLimit()" value="0" disabled>
-               <label for="allowedvalueSMA">Authorized Withdrawal USD (SMA)</label>
-            </div> -->
 
             <h4 class="mt-4 h6 pb-0 mb-0">Advanced Withdrawal <a id="advMonthFormula"
                   class="fw-semibold align-top text-decoration-none">&nbsp;</a></h4>
@@ -312,63 +306,68 @@
                class="link-offset-1 link-underline link-underline-opacity-0 link-underline-opacity-75-hover small fw-normal">
                Details below</a>
             <div class="form-floating mb-3">
-               <input type="number" class="form-control" id="monthAdvance" placeholder="No. Months in Advance"
-                  onChange="calculateWithdrawalLimit()" value="0" min="0" disabled>
+               <input type="number" class="form-control font-monospace border-0 bg-body-secondary rounded-4"
+                  id="monthAdvance" placeholder="No. Months in Advance" onChange="calculateWithdrawalLimit()" value="0"
+                  min="0" disabled>
                <label for="monthAdvance">No. Months in Advance</label>
             </div>
             <div class="form-floating mb-3">
-               <input type="text" class="form-control" id="allowedAdv" placeholder="Advanced Withdrawal"
-                  onChange="calculateWithdrawalLimit()" value="0" disabled>
+               <input type="text" class="form-control font-monospace border-0 bg-body-secondary rounded-4"
+                  id="allowedAdv" placeholder="Advanced Withdrawal" onChange="calculateWithdrawalLimit()" value="0"
+                  disabled>
                <label for="allowedAdv">Advanced BTC Withdrawal</label>
             </div>
             <div class="form-floating mb-3">
-               <input type="text" class="form-control" id="allowedAdvVal" placeholder="Advanced Withdrawal USD"
-                  onChange="calculateWithdrawalLimit()" value="0" disabled>
+               <input type="text" class="form-control font-monospace border-0 bg-body-secondary rounded-4"
+                  id="allowedAdvVal" placeholder="Advanced Withdrawal USD" onChange="calculateWithdrawalLimit()"
+                  value="0" disabled>
                <label for="allowedAdvVal">Advanced Withdrawal USD</label>
             </div>
          </div>
       </div>
-      <div class="border-top mt-3">
+      <div class="row g-3 bg-body-tertiary rounded-bottom-4 p-4 shadow-sm mt-2">
          <h4 class="fw-semibold my-3">Simulation</h4>
-         <div class="row">
-            <div class="col-md-3">
-               <p>You can simulate what your portfolio would be like if you had already started this strategy.</p>
-               <small>Considering you withdrawal at fixed dates 8th and 22nd each month.</small>
-               <div class="form-floating g-1 mb-3">
-                  <input type="date" title="choose a date" class="form-control" id="simulationDate" min="2010-08-02"
-                     onchange="simulateStrategy(this.value)">
-                  <label for="simulationDate">Start using strategy</label>
-               </div>
+         <div class="col-md-6 col-lg-3">
+            <p>You can simulate what your portfolio would be like if you had already started this strategy.</p>
+            <small>Considering you withdrawal at fixed dates 8th and 22nd each month.</small>
+            <div class="form-floating mt-4">
+               <input type="date" title="choose a date"
+                  class="form-control font-monospace border-0 bg-body-secondary rounded-4" id="simulationDate"
+                  min="2010-08-02" onchange="simulateStrategy(this.value)">
+               <label for="simulationDate">Start using strategy</label>
             </div>
-            <div class="col-md-2">
-               <div class="form-floating mb-3">
-                  <input type="text" class="form-control" id="currentStash" placeholder="Current Stash"
-                     onChange="calculateWithdrawalLimit()" value="0" disabled>
-                  <label for="allowed">Current Stash</label>
-               </div>
-               <div class="form-floating mb-3">
-                  <input type="text" class="form-control" id="amountWithdrawn" placeholder="Total Amount Withdrawn"
-                     onChange="calculateWithdrawalLimit()" value="0" disabled>
-                  <label for="allowed">Amount Withdrawn (BTC)</label>
-               </div>
-               <div class="form-floating mb-3">
-                  <input type="text" class="form-control" id="totalWithdrawnUSD" placeholder="Total Amount Withdrawn"
-                     onChange="calculateWithdrawalLimit()" value="0" disabled>
-                  <label for="allowed">Amount Withdrawn (USD)</label>
-               </div>
+         </div>
+         <div class="col-md-6 col-lg-2">
+            <div class="form-floating mb-3">
+               <input type="text" class="form-control font-monospace border-0 bg-body-secondary rounded-4"
+                  id="currentStash" placeholder="Current Stash" onChange="calculateWithdrawalLimit()" value="0"
+                  disabled>
+               <label for="allowed">Current Stash</label>
             </div>
-            <div class="col-md-4">
-               <div id="stashChart" class="px-0 mx-0"></div>
+            <div class="form-floating mb-3">
+               <input type="text" class="form-control font-monospace border-0 bg-body-secondary rounded-4"
+                  id="amountWithdrawn" placeholder="Total Amount Withdrawn" onChange="calculateWithdrawalLimit()"
+                  value="0" disabled>
+               <label for="allowed">Amount Withdrawn (BTC)</label>
             </div>
-            <div class="col-md-3">
-               <div id="radialBar" class="px-0 mx-0"></div>
+            <div class="form-floating mb-3">
+               <input type="text" class="form-control font-monospace border-0 bg-body-secondary rounded-4"
+                  id="totalWithdrawnUSD" placeholder="Total Amount Withdrawn" onChange="calculateWithdrawalLimit()"
+                  value="0" disabled>
+               <label for="allowed">Amount Withdrawn (USD)</label>
             </div>
+         </div>
+         <div class="col-md-6 col-lg-4 mt-0">
+            <div id="stashChart" class="px-0 mx-0 mt-0"></div>
+         </div>
+         <div class="col-md-6 col-lg-3">
+            <div id="radialBar" class="px-0 mx-0"></div>
          </div>
       </div>
       </div>
 
 
-      <article id="how" class="border-top">
+      <article id="how">
          <h4 class="h1 fw-bold my-5">How to use the information provided through this tool:</h4>
 
          <h5 class="h3 my-4">Underlying presumptions:</h5>
