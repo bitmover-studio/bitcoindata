@@ -10,12 +10,34 @@ window.Apex = {
         },
         toolbar: {
             autoSelected: "pan",
-            show: false
+            show: true,
+            tools: {
+                download: true,
+                zoom: false,
+                zoomin: false,
+                zoomout: false,
+                pan: false,
+                reset: false,
+            },
+            export: {
+                csv: {
+                    columnDelimiter: ';',
+                    headerCategory: 'Date',
+                    headerValue: 'Price',
+                    categoryFormatter(x) {
+                        return new Date(x).toLocaleDateString('en-US', {
+                            year: 'numeric',
+                            month: '2-digit',
+                            day: '2-digit',
+                        });
+                    }
+                },
+            },
         },
     },
     legend: {
         show: true,
-        horizontalAlign: 'right',
+        horizontalAlign: 'left',
         position: 'top',
     },
     theme: {

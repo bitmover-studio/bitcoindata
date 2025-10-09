@@ -187,3 +187,13 @@ color:#ad8305!important;
 .form-floating>.form-control-plaintext~label::after, .form-floating>.form-control:focus~label::after, .form-floating>.form-control:not(:placeholder-shown)~label::after, .form-floating>.form-select~label::after {
 background-color: transparent !important;
 }
+
+/* This targets the menu item for SVG and hides it */
+.apexcharts-menu-item.exportSVG {
+    display: none !important;
+}
+
+/* This targets the menu item for PNG and hides it */
+.apexcharts-menu-item.exportPNG {
+    display: none !important;
+}
