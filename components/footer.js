@@ -29,7 +29,7 @@ class Footer extends HTMLElement {
                       <p class="text-muted">Sponsor</p>
                       <a href="https://www.l0tt0.com/?utm_source=bitcoindata.science" target="_blank" alt="Retro Crypto Casino">
                         <p class="footer-link fw-semibold mb-2">Retro Crypto Casino</p>
-                        <img src="https://bitcoindata.science/img/lotto-logo.svg" title="Retro Crypto Casino" alt="l0tt0.com" height="35" width="99" class="p-2 bg-l0tt0 rounded" />
+                        <img src="https://bitcoindata.science/img/lotto-logo.svg" title="Retro Crypto Casino" alt="l0tt0.com" height="35" width="99" class="p-2 bg-l0tt0 rounded" style="background-color: #FBE24B;" />
                       </a>
                   </div>
               </div>
