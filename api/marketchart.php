@@ -2,14 +2,27 @@
 require_once 'functions.php';
 function updateHistoricalDB()
 {
-    $coinGeckoApi = 'https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=10&interval=daily&precision=2';
+    $coinGeckoApi = 'https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=10&interval=daily&precision=2&x_cg_demo_api_key=' . getenv('COINGECKO_API_KEY');
     $storedPricefile = 'historical_prices.json';
 
-    if (file_exists($storedPricefile) && (time() - filemtime($storedPricefile)) < 1) { //file younger than 8 hours
+    if (file_exists($storedPricefile) && (time() - filemtime($storedPricefile)) < 8 * 60 * 60) { //file younger than 8 hours
         $existingData = json_decode(file_get_contents($storedPricefile));
         return json_encode($existingData); // Return the file contents as JSON
+
     } else {
         $response = getData($coinGeckoApi);
+
+        if (is_string($response)) {
+            $response = json_decode($response);
+        }
+
+        if ($response === null || !is_object($response) || !isset($response->prices)) {
+            // Error handling message
+            return json_encode([
+                'error' => 'Error fetching data from API CoinGecko'
+            ]);
+        }
+
         $apiRawData = $response->prices;
         $apiData = array_slice($apiRawData, 0, -1); // remove last record from API response, because it is not exactly 24h newer
         $existingData = json_decode(file_get_contents($storedPricefile));
