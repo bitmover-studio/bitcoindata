@@ -12,12 +12,12 @@ if (isset($_GET['user'])) {
   <title>
     <?php if (isset($_GET['user'])) {
       echo $user . '-';
-    } ?> Altcoinstalk Notification Bot - bitcoin data.science
+    } ?> Altcoinstalks Notification Bot - bitcoin data.science
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Altcoinstalk Notification Bot">
+  <meta name="description" content="Altcoinstalks Notification Bot">
   <meta name="robots" content="index, follow" />
-  <meta name="keywords" content="Altcoinstalk Notification Bot" />
+  <meta name="keywords" content="Altcoinstalks Notification Bot" />
   <link rel="shortcut icon" href="https://bitcoindata.science/img/favicon.svg">
   <link rel="canonical" href="https://bitcoindata.science/bot/altcoinstalk/notification">
   <link rel="alternate" hreflang="x-default" href="https://bitcoindata.science" />
@@ -30,21 +30,25 @@ if (isset($_GET['user'])) {
   <meta name="application-name" content="bitcoin data.science">
   <meta name="msapplication-TileColor" content="#2b5797">
   <meta name="theme-color" content="#111316">
-  <meta property="og:title" content="Altcoinstalk Notification Bot - bitcoin data.science" />
+  <meta property="og:title" content="Altcoinstalks Notification Bot - bitcoin data.science" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://bitcoindata.science/" />
   <meta property="og:image" content="https://bitcoindata.science/img/logo.png" />
   <meta property="og:description"
     content="Altcoinstalks, Notification, forum notification, notification bot, bot, altcoins, bitcoin" />
   <meta property="og:locale" content="en_US" />
-  <meta property="og:site_name" content="Altcoinstalk Notification Bot" />
+  <meta property="og:site_name" content="Altcoinstalks Notification Bot" />
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"></script>
+   <link href="/css/style.css" rel="stylesheet">
 </head>
-<script src="https://bitcoindata.science/components/ad.js" defer></script>
-<script src="https://bitcoindata.science/components/footer.js" type="text/javascript" defer></script>
-<script src="https://bitcoindata.science/components/navbar.js" type="text/javascript" defer></script>
+<script src="/components/ad.js" defer></script>
+<script src="/components/footer.js" type="text/javascript" defer></script>
+<script src="/components/navbar.js" type="text/javascript" defer></script>
 <script>
   /* Google tag (gtag.js) */
   (function (w, d, s, l, i) {
@@ -84,11 +88,11 @@ img {
 <body>
   <header>
     <base href="/" />
-    <navbar-component/>
-    <ad-component/>
+    <navbar-component></navbar-component>
   </header>
-  <main class="container-fluid px-4">
-    <h1 class="h2 fw-bold container-fluid my-3 px-0">Altcoinstalk Notification Bot</h1>
+   <main class="container-fluid col-lg-12 col-xl-10">
+      <ad-component></ad-component>
+    <h1 class="h1 display-3 fw-bold">Altcoinstalks Notification Bot</h1>
     <?php
     if (isset($_GET['user'])) {
       $notification_data = loginAndSearch($user);
@@ -139,14 +143,14 @@ img {
       <?php
     } else {
       ?>
-      <p class="lead">Use this tool to know when you were quoted or mentioned in altcoinstalk posts.</p>
+      <p class="lead">Use this tool to know when you were quoted or mentioned in altcoinstalks posts.</p>
       <h2 class="h3 alert-heading mt-5">Instructions:</h2>
       <p>To use this tool you must specify a valid <code>username</code> in the URL parameter. Example below</p>
 
       <div
         class="p-4 bg-secondary-subtle border border-1 rounded font-monospace border-secondary-subtle col-lg-10 col-xl-7">
         <a class="link-secondary" href="https://bitcoindata.science/altcoinstalk/notification.php?user=bitmover">
-          https://bitcoindata.science/altcoinstalk/notification.php<span class="text-primary">?user=bitmover</span>
+          https://bitcoindata.science/altcoinstalk/notification.php<span class="link-primary">?user=bitmover</span>
         </a>
       </div>
 
@@ -158,14 +162,14 @@ img {
         class="p-4 bg-secondary-subtle border border-1 rounded font-monospace border-secondary-subtle col-lg-10 col-xl-7">
         <a class="link-secondary" href="https://bitcoindata.science/altcoinstalk/notification.php?user=Crypto%20Library">
           https://bitcoindata.science/altcoinstalk/notification.php<span
-            class="text-primary">?user=Crypto%20Library</span>
+            class="link-primary">?user=Crypto%20Library</span>
         </a>
       </div>
       <?php
     }
     ?>
   </main>
-   <footer-component/>
+   <footer-component><footer-component>/>
 
 </body>
 <script>
