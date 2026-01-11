@@ -31,7 +31,7 @@ function updateHistoricalDB()
     $coinGeckoApi = 'https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=10&interval=daily&precision=2&x_cg_demo_api_key=' . getenv('COINGECKO_API_KEY');
     $storedPricefile = 'historical_prices.json';
 
-    if (file_exists($storedPricefile) && (time() - filemtime($storedPricefile)) < 8 * 60 * 60) { // 8 hours
+    if (file_exists($storedPricefile) && (time() - filemtime($storedPricefile)) < 24 * 60 * 60) { // 24 hours
         $existingData = json_decode(file_get_contents($storedPricefile));
         return json_encode($existingData);
     } else {
@@ -45,7 +45,7 @@ function updateHistoricalDB()
             // FALLBACK: Binance
             $apiData = getBinanceBackup();
             if (!$apiData) {
-                return json_encode(['error' => 'CoinGecko e Binance falharam']);
+                return json_encode(['error' => 'CoinGecko and Binance failed']);
             }
 
         } else {
