@@ -31,7 +31,7 @@ function getRawData($url)
 function getBTCPriceUsd($coin)
 {
     if ($coin === 'bitcoin') {
-        $priceUrl = "https://api.coingecko.com/api/v3/simple/price?ids=" . $coin . '&vs_currencies=usd';
+        $priceUrl = "https://api.coingecko.com/api/v3/simple/price?ids=" . $coin . '&vs_currencies=usd&x_cg_demo_api_key=' . getenv('COINGECKO_API_KEY');
         $backupPriceUrl = 'https://api.binance.com/api/v3/ticker/24hr?symbol=BTCUSDT';
         $storedPricefile = 'priceusd.json';
 
