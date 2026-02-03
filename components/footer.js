@@ -6,6 +6,7 @@ class Footer extends HTMLElement {
 
   connectedCallback() {
     this.innerHTML = `
+        <div>
           <footer class="container-fluid  justify-content-evenly py-4 py-md-5 mt-5 bg-body-tertiary border-0">
             <div class="container">
               <div class="row grid gap-3">
@@ -35,6 +36,9 @@ class Footer extends HTMLElement {
               </div>
             </div>
           </footer>
+          <!-- 100% privacy-first analytics -->
+          <script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+        </div>
       `;
   }
 }
