@@ -2,35 +2,35 @@
 <html lang="en">
 
 <head>
-   <meta charset="utf-8">
-   <title>Giveaway Manager - bitcoin data.science</title>
-   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-   <meta name="description"
-      content="Manage your giveaways easily. Pick winners using provably fair method based on bitcoin blockhash.">
-   <meta name="robots" content="index, follow" />
-   <meta name="keywords"
-      content="Giveaway Manager,bitcointalk giveaway, giveaways, Raffle, Raffle Manager, blockhash giveaway, blockhash raffle" />
-   <link rel="shortcut icon" href="img/favicon.svg">
-   <link rel="canonical" href="https://bitcoindata.science/bitcoin-balance-check.html">
-   <link rel="alternate" hreflang="x-default" href="https://bitcoindata.science" />
-   <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
-   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
-   <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
-   <link rel="manifest" href="manifest.json" />
-   <link rel="mask-icon" href="img/safari-pinned-tab.svg" color="#111316">
-   <meta name="apple-mobile-web-app-title" content="bitcoin data.science">
-   <meta name="application-name" content="bitcoin data.science">
-   <meta name="msapplication-TileColor" content="#2b5797">
-   <meta name="theme-color" content="#111316">
-   <meta property="og:title" content="Giveaway Manager - bitcoin data.science" />
-   <meta property="og:type" content="website" />
-   <meta property="og:url" content="https://bitcoindata.science/" />
-   <meta property="og:image" content="https://bitcoindata.science/img/logo.png" />
-   <meta property="og:description"
-      content="Manage your giveaways easily. Pick winners using provably fair method based on bitcoin blockhash." />
-   <meta property="og:locale" content="en_US" />
-   <meta property="og:site_name" content="bitcoin data.science" />
-   <script type="application/ld+json">
+  <meta charset="utf-8">
+  <title>Giveaway Manager - bitcoin data.science</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description"
+    content="Manage your giveaways easily. Pick winners using provably fair method based on bitcoin blockhash.">
+  <meta name="robots" content="index, follow" />
+  <meta name="keywords"
+    content="Giveaway Manager,bitcointalk giveaway, giveaways, Raffle, Raffle Manager, blockhash giveaway, blockhash raffle" />
+  <link rel="shortcut icon" href="img/favicon.svg">
+  <link rel="canonical" href="https://bitcoindata.science/bitcoin-balance-check.html">
+  <link rel="alternate" hreflang="x-default" href="https://bitcoindata.science" />
+  <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+  <link rel="manifest" href="manifest.json" />
+  <link rel="mask-icon" href="img/safari-pinned-tab.svg" color="#111316">
+  <meta name="apple-mobile-web-app-title" content="bitcoin data.science">
+  <meta name="application-name" content="bitcoin data.science">
+  <meta name="msapplication-TileColor" content="#2b5797">
+  <meta name="theme-color" content="#111316">
+  <meta property="og:title" content="Giveaway Manager - bitcoin data.science" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://bitcoindata.science/" />
+  <meta property="og:image" content="https://bitcoindata.science/img/logo.png" />
+  <meta property="og:description"
+    content="Manage your giveaways easily. Pick winners using provably fair method based on bitcoin blockhash." />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:site_name" content="bitcoin data.science" />
+  <script type="application/ld+json">
       {
          "@context": "https://schema.org",
          "@graph": [{
@@ -79,28 +79,40 @@
     <ad-component></ad-component>
     <h1 class="h1 display-3 fw-bold">Bitcointalk Giveaway Manager</h1>
 
-    <h2 id="giveaway_name"></h2>
     <form action="javascript:go()" class="bg-body-tertiary rounded-top-4 p-md-5 p-4 mt-5">
       <div class="mb-3">
-        <label for="manually" class="form-label">Add competitors in order</label>
-        <div class="small text-muted mb-2">One competitor per line
+        <h2 class="h4">Giveaway Details</h2>
+
+        <div class="form-floating my-3 border-0">
+          <textarea class="form-control text-body-emphasis border-0 bg-body-secondary rounded-2 lh-base fw-medium"
+            id="manually" rows="6" style="height: 180px">satoshi&#10;Finney</textarea>
+          <label for="BalanceChecker" class="fw-medium lh-base fs-6">Add competitors in order</label>
+          <div class="small text-muted mb-2">One competitor per line</div>
         </div>
-        <textarea class="form-control border-0 bg-body-secondary rounded-2 lh-base fw-medium" id="manually" rows="6">satoshi&#10;Finney</textarea>
+
       </div>
 
       <div class="mb-3">
-        <label for="block" class="form-label">How many winners?</label>
-        <div class="small text-muted mb-2">max: 30</div>
-        <input type="number" min="1" step="1" max="30"
-          onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
-          class="form-control border-0 bg-body-secondary rounded-2 lh-base fw-medium" id="n_winners" value="1">
+        <div class="form-floating border-0">
+          <input type="number" min="1" step="1" max="30"
+            onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+            class="form-control border-0 bg-body-secondary rounded-2 text-body-emphasis fw-medium" id="n_winners"
+            value="1">
+          <label for="n_winners" class="fw-medium lh-base fs-6">How many winners?</label>
+
+          <div class="small text-muted mb-2">max: 30</div>
+        </div>
       </div>
 
       <div class="mb-3">
-        <label for="block" class="form-label">Target Block</label>
-        <input type="number" min="0" step="1"
-          onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
-          class="form-control border-0 bg-body-secondary rounded-2 lh-base fw-medium" id="block" value="0">
+        <div class="form-floating border-0">
+
+          <input type="number" min="0" step="1"
+            onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+            class="form-control border-0 bg-body-secondary rounded-2 lh-base fw-medium text-body-emphasis" id="block"
+            value="0">
+          <label for="block" class="form-label">Target Block</label>
+        </div>
       </div>
 
       <div class="form-group row gap-1 mt-4">
@@ -108,12 +120,15 @@
           <button type="submit" class="btn btn-primary d-inline-block btn-lg px-5" id="submitbutton">Submit</button>
         </div>
         <div class="col-auto">
-          <button type="button" class="btn btn-secondary d-inline-block btn-lg px-4" onclick="save_share()">Share</button>
+          <button type="button" class="btn btn-secondary d-inline-block btn-lg px-4"
+            onclick="save_share()">Share</button>
         </div>
         <div class="col-lg">
           <label for="url" class="visually-hidden">Share URL</label>
-          <input type="url" class="form-control-lg border-0 bg-body-secondary rounded-2 lh-base fw-normal fs-6 h-100 font-monospace w-100" id="url" readonly onclick="copyurl()" data-toggle="tooltip"
-            data-placement="top" title="Click to copy to clipboard">
+          <input type="url"
+            class="form-control-lg border-0 bg-body-secondary rounded-2 lh-base fw-normal fs-6 h-100 font-monospace w-100 text-body"
+            id="url" readonly onclick="copyurl()" data-toggle="tooltip" data-placement="top"
+            title="Click to copy to clipboard">
         </div>
 
       </div>
@@ -124,7 +139,7 @@
       <p>Block hash: <output id="block-output"></output></p>
       <div id="verify"></div>
       <p>Decimal number: <code class="text-primary" id="rolled-number"></code></p>
-      <p><strong>Winner: </strong><span class="h4"><span id="winner" class="badge text-bg-success "></span></span></p>
+      <p class="mb-0 pb-0"><strong>Winner: </strong><span class="h4"><span id="winner" class="badge text-bg-success "></span></span></p>
       <output id="n_winner_div"></output>
     </div>
 
@@ -159,7 +174,7 @@
 
     </article>
   </main>
-   <footer-component></footer-component>
+  <footer-component></footer-component>
 
   <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
@@ -175,7 +190,7 @@
     })
 
     function go() {
-      document.getElementById('submitbutton').innerText = "Loading...";
+      document.getElementById('submitbutton').innerHTML = '<div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div>"';
       document.getElementById("winner").innerHTML = "";
 
       //clear n_winner_div without page reload
