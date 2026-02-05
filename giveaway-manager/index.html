@@ -2,48 +2,90 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <title>Bitcointalk Giveaway Manager</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <!-- Bootstrap core CSS -->
+   <meta charset="utf-8">
+   <title>Giveaway Manager - bitcoin data.science</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <meta name="description"
+      content="Manage your giveaways easily. Pick winners using provably fair method based on bitcoin blockhash.">
+   <meta name="robots" content="index, follow" />
+   <meta name="keywords"
+      content="Giveaway Manager,bitcointalk giveaway, giveaways, Raffle, Raffle Manager, blockhash giveaway, blockhash raffle" />
+   <link rel="shortcut icon" href="img/favicon.svg">
+   <link rel="canonical" href="https://bitcoindata.science/bitcoin-balance-check.html">
+   <link rel="alternate" hreflang="x-default" href="https://bitcoindata.science" />
+   <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+   <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+   <link rel="manifest" href="manifest.json" />
+   <link rel="mask-icon" href="img/safari-pinned-tab.svg" color="#111316">
+   <meta name="apple-mobile-web-app-title" content="bitcoin data.science">
+   <meta name="application-name" content="bitcoin data.science">
+   <meta name="msapplication-TileColor" content="#2b5797">
+   <meta name="theme-color" content="#111316">
+   <meta property="og:title" content="Giveaway Manager - bitcoin data.science" />
+   <meta property="og:type" content="website" />
+   <meta property="og:url" content="https://bitcoindata.science/" />
+   <meta property="og:image" content="https://bitcoindata.science/img/logo.png" />
+   <meta property="og:description"
+      content="Manage your giveaways easily. Pick winners using provably fair method based on bitcoin blockhash." />
+   <meta property="og:locale" content="en_US" />
+   <meta property="og:site_name" content="bitcoin data.science" />
+   <script type="application/ld+json">
+      {
+         "@context": "https://schema.org",
+         "@graph": [{
+            "@type": "WebPage",
+            "name": "Giveaway Manager - Provably Fair Raffle Tool",
+            "description": "Manage your giveaways easily. Pick winners using provably fair method based on bitcoin blockhash.",
+            "alternateName": [
+              "bitcoindata.science",
+              "Bitcoin Data Science",
+              "bitcoin datascience"
+            ],
+            "url": "https://bitcoindata.science",
+            "sameAs": [
+              "https://bitcoindata.science"
+            ]
+            } , {
+               "@type": "FAQPage",
+               "mainEntity": [
+                 {
+                   "@type": "Question",
+                   "name": "How to run a Provably Fair Giveaway using Bitcoin Blockhash?",
+                   "acceptedAnswer": {
+                     "@type": "Answer",
+                     "text": "To run a provably fair giveaway, enter the list of competitors, specify the target Bitcoin block number, and the number of winners. The tool will use the blockhash of the specified block to randomly select winners from the list of competitors."
+                   }
+                 }
+               ]
+             }
+             ]
+       }
+   </script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-  <style>
-    a {
-      color: #653b9c;
-      text-decoration: none;
-    }
-
-    a:hover {
-      color: #3c1f61;
-      text-decoration: underline;
-    }
-
-    a img:hover,
-    a svg:hover {
-      opacity: 60%;
-    }
-
-    body {
-      background-color: #E5E5E8;
-    }
-  </style>
-  <script src="../components/ad.js" type="text/javascript" defer></script>
+  <link href="../css/style.css" rel="stylesheet">
+  <script src="../components/navbar.js" defer></script>
+  <script src="../components/footer.js" defer></script>
+  <script src="../components/ad.js" defer></script>
 </head>
 
 <body>
-
-  <main class="container pt-5 mb-5">
+  <header>
+    <base href="/" />
+    <navbar-component></navbar-component>
+  </header>
+  <main class="container-fluid col-lg-10 col-xl-8">
     <ad-component></ad-component>
-    <h1 class=" pb-2 mb-4 text-dark border-dark">Bitcointalk Giveaway Manager</h1>
+    <h1 class="h1 display-3 fw-bold">Bitcointalk Giveaway Manager</h1>
+
     <h2 id="giveaway_name"></h2>
-    <form action="javascript:go()">
+    <form action="javascript:go()" class="bg-body-tertiary rounded-top-4 p-md-5 p-4 mt-5">
       <div class="mb-3">
         <label for="manually" class="form-label">Add competitors in order</label>
         <div class="small text-muted mb-2">One competitor per line
         </div>
-        <textarea class="form-control" id="manually" rows="6">satoshi&#10;Finney</textarea>
+        <textarea class="form-control border-0 bg-body-secondary rounded-2 lh-base fw-medium" id="manually" rows="6">satoshi&#10;Finney</textarea>
       </div>
 
       <div class="mb-3">
@@ -51,38 +93,34 @@
         <div class="small text-muted mb-2">max: 30</div>
         <input type="number" min="1" step="1" max="30"
           onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
-          class="form-control" id="n_winners" value="1">
+          class="form-control border-0 bg-body-secondary rounded-2 lh-base fw-medium" id="n_winners" value="1">
       </div>
 
       <div class="mb-3">
         <label for="block" class="form-label">Target Block</label>
         <input type="number" min="0" step="1"
           onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
-          class="form-control" id="block" value="0">
+          class="form-control border-0 bg-body-secondary rounded-2 lh-base fw-medium" id="block" value="0">
       </div>
 
-      <div class="form-group row">
+      <div class="form-group row gap-1 mt-4">
         <div class="col-auto">
-          <button type="submit" class="btn btn-primary" id="submitbutton">Submit</button>
-
-          <div id="spinbutton" style="display:none"><button class="btn btn-outline-dark" type="button" disabled>
-              <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-              &nbsp;Loading...</button></div>
+          <button type="submit" class="btn btn-primary d-inline-block btn-lg px-5" id="submitbutton">Submit</button>
         </div>
         <div class="col-auto">
-          <button type="button" class="btn btn-secondary mb-3" onclick="save_share()">Save and Share</button>
+          <button type="button" class="btn btn-secondary d-inline-block btn-lg px-4" onclick="save_share()">Share</button>
         </div>
         <div class="col-lg">
           <label for="url" class="visually-hidden">Share URL</label>
-          <input type="url" class="form-control" id="url" readonly onclick="copyurl()" data-toggle="tooltip"
+          <input type="url" class="form-control-lg border-0 bg-body-secondary rounded-2 lh-base fw-normal fs-6 h-100 font-monospace w-100" id="url" readonly onclick="copyurl()" data-toggle="tooltip"
             data-placement="top" title="Click to copy to clipboard">
         </div>
 
       </div>
     </form>
 
-    <div class="my-4 border-top border-dark py-4">
-      <h5 class="mb-4">Results</h5>
+    <div class="bg-body-tertiary rounded-0 p-md-5 p-4 mt-2">
+      <h3 class="mb-4">Results</h3>
       <p>Block hash: <output id="block-output"></output></p>
       <div id="verify"></div>
       <p>Decimal number: <code class="text-primary" id="rolled-number"></code></p>
@@ -90,8 +128,8 @@
       <output id="n_winner_div"></output>
     </div>
 
-    <article class="mt-5">
-      <h2 class="h4 pb-2 mb-4 text-dark border-dark">Provably fair giveaway manager</h2>
+    <article class="bg-body-tertiary rounded-bottom-4 p-md-5 p-4 mt-2">
+      <h3 class="h4 pb-2 mb-4">Provably fair giveaway manager</h3>
       <p>
         As the <code>blockhash</code> is just a number, its last 6 digits is converted to <code>decimal</code> using
         this function:</p>
@@ -121,39 +159,7 @@
 
     </article>
   </main>
-
-  <footer class="text-center border-top border-dark mt-5 pt-5 container font-monospace">
-    <div class="row">
-      <div class="col-md">
-        <p>Created by <a href="mailto:bitmover@protonmail.ch">bitmover</a></p>
-        <p>blockchain data from <a href="https://mempool.space" target="_blank" rel="noreferrer">mempool.space</a></p>
-      </div>
-      <div class="col-md">
-        <figure class="figure">
-          <img src="3CrySAp8G1PfvjrYT4HPQhE8MouBKWd9WB.webp" class="figure-img img-fluid rounded" alt="buy me a coffee"
-            title="3CrySAp8G1PfvjrYT4HPQhE8MouBKWd9WB" width="80" height="80">
-          <figcaption class="figure-caption"><span class="small">3CrySAp8G1PfvjrYT4HPQhE8MouBKWd9WB</span></figcaption>
-        </figure>
-      </div>
-      <div class="col-md">
-        <a href="https://github.com/bitmover-studio/bitcoin-giveaway-manager" target="_blank" rel="noreferrer">
-          <p><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24">
-              <path
-                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-            </svg>
-          </p>
-          <p>Source code</p>
-        </a>
-      </div>
-      <div class="col-md">
-        <a href="https://bitcointalk.org/index.php?topic=5436655.new#new" target="_blank" rel="noreferrer">
-          <p><img src="BitcoinTalk-logo.webp" width="40" height="40"></p>
-          <p>Bitcointalk ANN</p>
-        </a>
-      </div>
-    </div>
-  </footer>
-
+   <footer-component></footer-component>
 
   <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
@@ -169,8 +175,8 @@
     })
 
     function go() {
-      document.getElementById('spinbutton').style.display = '';
-      document.getElementById('submitbutton').style.display = 'none';
+      document.getElementById('submitbutton').innerText = "Loading...";
+      document.getElementById("winner").innerHTML = "";
 
       //clear n_winner_div without page reload
       document.getElementById("n_winner_div").innerHTML = '';
@@ -224,8 +230,7 @@
           }
         })
         .always(function () {
-          document.getElementById('submitbutton').style.display = '';
-          document.getElementById('spinbutton').style.display = 'none';
+          document.getElementById('submitbutton').innerText = "Submit";
         });
     }
 
