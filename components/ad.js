@@ -26,11 +26,11 @@ class Ad extends HTMLElement {
     const selectedBanner = this.banners[Math.floor(Math.random() * this.banners.length)];
 
     this.innerHTML = `
-      <div class="container text-center my-3 mb-4" id="l0tt0">
+      <div class="container text-center my-3 mb-4" id="sp-content">
         <a href="${selectedBanner.link}" 
            title="${selectedBanner.title}" 
            target="_blank" 
-           rel="noreferrer">
+           rel="noopener">
           <img class="border-1 border-dark img-fluid d-none d-md-inline-block" 
                alt='${selectedBanner.alt}' 
                src="${selectedBanner.desktop}" 
