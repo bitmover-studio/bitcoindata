@@ -49,9 +49,8 @@ class Ad extends HTMLElement {
       </div>
     `;
 
-    // Add event listener for close button
     this.querySelector('.btn-close').addEventListener('click', () => {
-      this.querySelector('#l0tt0').style.display = 'none';
+    this.querySelector('#sp-content').style.display = 'none';
     });
   }
 }
