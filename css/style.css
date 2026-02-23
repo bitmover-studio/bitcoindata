@@ -184,8 +184,25 @@ color:#ad8305!important;
 }
 
 /* form floating */
-.form-floating>.form-control-plaintext~label::after, .form-floating>.form-control:focus~label::after, .form-floating>.form-control:not(:placeholder-shown)~label::after, .form-floating>.form-select~label::after {
-background-color: transparent !important;
+.form-floating>.form-control-plaintext~label::after, .form-floating>.form-control:focus~label::after, .form-floating>.form-control:not(:placeholder-shown)~label::after, .form-floating>.form-select~label::after, #manually {    background-color: var(--bs-secondary-bg) !important;
+}
+
+/* withdrawal strategy error
+.form-floating input:focus + label,
+.form-floating textarea:focus + label,
+.form-floating select:focus + label {
+  color: var(--bs-primary-text-emphasis) !important;
+  transition: color .15s ease-in-out;
+} 
+label#withdrawalDescription:focus{
+  color: inherit !important;
+}  
+*/
+
+.form-floating input + label,
+.form-floating textarea + label,
+.form-floating select + label {
+  font-weight: 600
 }
 
 /* This targets the menu item for SVG and hides it */
@@ -197,3 +214,4 @@ background-color: transparent !important;
 .apexcharts-menu-item.exportPNG {
     display: none !important;
 }
+

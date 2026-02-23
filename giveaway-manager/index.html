@@ -62,8 +62,6 @@
              ]
        }
    </script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   <link href="../css/style.css" rel="stylesheet">
   <script src="../components/navbar.js" defer></script>
   <script src="../components/footer.js" defer></script>
@@ -85,52 +83,52 @@
 
         <div class="form-floating my-3 border-0">
           <textarea class="form-control text-body-emphasis border-0 bg-body-secondary rounded-2 lh-base fw-medium"
-            id="manually" rows="6" style="height: 180px">satoshi&#10;Finney</textarea>
-          <label for="BalanceChecker" class="fw-medium lh-base fs-6">Add competitors in order</label>
-          <div class="small text-muted mb-2">One competitor per line</div>
+            placeholder="Competitors" id="manually" rows="6" style="height: 180px">satoshi&#10;Finney</textarea>
+
+          <label for="manually" class="fw-medium lh-base fs-6">One competitor per line</label>
+
         </div>
 
-      </div>
 
-      <div class="mb-3">
-        <div class="form-floating border-0">
-          <input type="number" min="1" step="1" max="30"
-            onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
-            class="form-control border-0 bg-body-secondary rounded-2 text-body-emphasis fw-medium" id="n_winners"
-            value="1">
-          <label for="n_winners" class="fw-medium lh-base fs-6">How many winners?</label>
+        <div class="mb-3">
+          <div class="form-floating border-0">
+            <input type="number" min="1" step="1" max="30"
+              onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+              class="form-control border-0 bg-body-secondary rounded-2 text-body-emphasis fw-medium" id="n_winners"
+              value="1">
+            <label for="n_winners" class="fw-medium lh-base fs-6">How many winners?</label>
 
-          <div class="small text-muted mb-2">max: 30</div>
-        </div>
-      </div>
-
-      <div class="mb-3">
-        <div class="form-floating border-0">
-
-          <input type="number" min="0" step="1"
-            onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
-            class="form-control border-0 bg-body-secondary rounded-2 lh-base fw-medium text-body-emphasis" id="block"
-            value="0">
-          <label for="block" class="form-label">Target Block</label>
-        </div>
-      </div>
-
-      <div class="form-group row gap-1 mt-4">
-        <div class="col-auto">
-          <button type="submit" class="btn btn-primary d-inline-block btn-lg px-5" id="submitbutton">Submit</button>
-        </div>
-        <div class="col-auto">
-          <button type="button" class="btn btn-secondary d-inline-block btn-lg px-4"
-            onclick="save_share()">Share</button>
-        </div>
-        <div class="col-lg">
-          <label for="url" class="visually-hidden">Share URL</label>
-          <input type="url"
-            class="form-control-lg border-0 bg-body-secondary rounded-2 lh-base fw-normal fs-6 h-100 font-monospace w-100 text-body"
-            id="url" readonly onclick="copyurl()" data-toggle="tooltip" data-placement="top"
-            title="Click to copy to clipboard">
+            <div class="small text-muted mb-2">max: 30</div>
+          </div>
         </div>
 
+        <div class="mb-3">
+          <div class="form-floating border-0">
+
+            <input type="number" min="0" step="1"
+              onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
+              class="form-control border-0 bg-body-secondary rounded-2 lh-base fw-medium text-body-emphasis" id="block"
+              value="0">
+            <label for="block" class="form-label">Target Block</label>
+          </div>
+        </div>
+
+        <div class="form-group row gap-1 mt-4">
+          <div class="col-auto">
+            <button type="submit" class="btn btn-primary d-inline-block btn-lg px-5" id="submitbutton">Submit</button>
+          </div>
+          <div class="col-auto">
+            <button type="button" class="btn btn-secondary d-inline-block btn-lg px-4"
+              onclick="save_share()">Share</button>
+          </div>
+          <div class="col-12">
+            <label for="url" class="visually-hidden">Share URL</label>
+            <input type="url"
+              class="form-control-lg border-0 bg-body-secondary rounded-2 lh-base fw-normal fs-6 h-100 font-monospace w-100 text-body"
+              id="url" readonly="" onclick="copyurl()" data-toggle="tooltip" data-placement="top" title=""
+              data-original-title="Click to copy to clipboard">
+          </div>
+        </div>
       </div>
     </form>
 
@@ -138,8 +136,9 @@
       <h3 class="mb-4">Results</h3>
       <p>Block hash: <output id="block-output"></output></p>
       <div id="verify"></div>
-      <p>Decimal number: <code class="text-primary" id="rolled-number"></code></p>
-      <p class="mb-0 pb-0"><strong>Winner: </strong><span class="h4"><span id="winner" class="badge text-bg-success "></span></span></p>
+      <p>Decimal number: <code class="text-primary text-break" id="rolled-number"></code></p>
+      <p class="mb-0 pb-0"><strong>Winner: </strong><span class="h4"><span id="winner"
+            class="badge text-bg-success "></span></span></p>
       <output id="n_winner_div"></output>
     </div>
 
@@ -175,10 +174,11 @@
     </article>
   </main>
   <footer-component></footer-component>
-
   <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"
     integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA=="
@@ -189,64 +189,76 @@
       $('[data-toggle="tooltip"]').tooltip()
     })
 
-    function go() {
-      document.getElementById('submitbutton').innerHTML = '<div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div>"';
-      document.getElementById("winner").innerHTML = "";
+    async function go() {
+      const submitBtn = document.getElementById('submitbutton');
+      const winnerDiv = document.getElementById("winner");
+      const nWinnerDiv = document.getElementById("n_winner_div");
+      const blockInput = document.getElementById("block").value;
+      const nWinnersInput = parseInt(document.getElementById("n_winners").value);
+      const competitorsInput = document.getElementById("manually").value;
 
-      //clear n_winner_div without page reload
-      document.getElementById("n_winner_div").innerHTML = '';
-      var competitors = document.getElementById("manually").value.split("\n")
-      competitors = competitors.filter(n => n)
+      // Winners Reset
+      submitBtn.innerHTML = '<div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div>';
+      winnerDiv.innerHTML = "";
+      nWinnerDiv.innerHTML = '';
+      document.getElementById("rolled-number").innerHTML = '';
 
-      var blockdata = $.ajax('https://mempool.space/api/block-height/' + document.getElementById("block").value)
-        .done(function (blockhash) {
-          let block = document.getElementById("block").value
-          var n_winners = document.getElementById("n_winners").value
-          let decimal = parseInt(blockhash.slice(-6), 16)
-          let index_number = decimal % competitors.length
-          let winner = competitors[index_number];
+      const competitors = competitorsInput.split("\n").filter(n => n.trim());
 
-          document.getElementById("block-output").innerHTML = "<code class='text-primary'>" + blockhash + "</code> <a class='small text-muted' target='_blank' href='https://mempool.space/block/" + block + "'>Verify</a>";
-          document.getElementById("rolled-number").innerHTML = decimal;
-          document.getElementById("winner").innerHTML = winner
+      try {
+        // Fetch the block hash
+        const response = await fetch(`https://mempool.space/api/block-height/${blockInput}`);
 
-          competitors.splice(index_number, 1)
-        })
-        .done(function (blockhash) {
-          if (document.getElementById("n_winners").value > 1 && document.getElementById("n_winners").value < 31) {
-            for (let step = 1; step < document.getElementById("n_winners").value; step++) {
-              // As suggested by PowerGlove
-              let n_winner_decimal = parseInt(blockhash.slice(-(6 + step), blockhash.length - step), 16)
+        if (!response.ok) throw new Error('Block not found');
 
-              let n_winner_index_number = n_winner_decimal % competitors.length
-              let n_winner = competitors[n_winner_index_number];
-              competitors.splice(n_winner_index_number, 1)
-              n_winner !== undefined ?
-                document.getElementById("n_winner_div").innerHTML +=
-                '<p><strong>Winner ' + (step + 1) + ': </strong><span class="h4"><span class="badge text-bg-success ">' + n_winner + '</span></span></p>'
-                : ''
+        const blockhash = await response.text();
+
+        // Logic for the First Winner
+        let decimal = parseInt(blockhash.slice(-6), 16);
+        let index_number = decimal % competitors.length;
+        let winner = competitors[index_number];
+
+        document.getElementById("block-output").innerHTML = `<code class='text-primary'>${blockhash}</code> <a class='small text-muted' target='_blank' href='https://mempool.space/block/${blockInput}'>Verify</a>`;
+        document.getElementById("rolled-number").innerHTML = decimal;
+        winnerDiv.innerHTML = winner;
+
+        // Remove the first winner from pool
+        competitors.splice(index_number, 1);
+
+        // Logic for Additional Winners
+        if (nWinnersInput > 1 && nWinnersInput < 31) {
+          for (let step = 1; step < nWinnersInput; step++) {
+            let n_winner_decimal = parseInt(blockhash.slice(-(6 + step), blockhash.length - step), 16);
+            let n_winner_index_number = n_winner_decimal % competitors.length;
+            let n_winner = competitors[n_winner_index_number];
+
+            if (n_winner !== undefined) {
+              nWinnerDiv.innerHTML += `
+            <p><strong>Winner ${step + 1}: </strong>
+            <span class="h4"><span class="badge text-bg-success">${n_winner}</span></span></p>`;
+              competitors.splice(n_winner_index_number, 1);
             }
           }
         }
-        )
-        .fail(function (XMLHttpRequest, textStatus, errorData) {
-          if (XMLHttpRequest.readyState == 4) {
 
-            //   Get time of future block
-            $.ajax('https://mempool.space/api/blocks/tip/height')
-              .done(function (blockheight) {
-                var blockdelta = document.getElementById("block").value - blockheight
-                console.log(blockdelta)
-                var fblocktime = new Date(new Date().getTime() + 10 * 60000 * blockdelta);
-                document.getElementById("block-output").innerHTML = "Block <code>" + document.getElementById("block").value + "</code> not mined yet.<br/> Will probably be mined at <time style='color:var(--bs-code-color);' class='font-monospace'>" + fblocktime + "</time>";
-                document.getElementById("rolled-number").innerHTML = '';
+      } catch (error) {
+        // Error Handling (Block not mined yet)
+        try {
+          const tipResponse = await fetch('https://mempool.space/api/blocks/tip/height');
+          const currentTip = await tipResponse.text();
 
-              })
-          }
-        })
-        .always(function () {
-          document.getElementById('submitbutton').innerText = "Submit";
-        });
+          const blockdelta = blockInput - parseInt(currentTip);
+          const fblocktime = new Date(new Date().getTime() + 10 * 60000 * blockdelta);
+
+          document.getElementById("block-output").innerHTML = `
+        Block <code>${blockInput}</code> not mined yet.<br/> 
+        Will probably be mined at <time style='color:var(--bs-code-color);' class='font-monospace'>${fblocktime.toLocaleString()}</time>`;
+        } catch (innerError) {
+          document.getElementById("block-output").innerHTML = "Error fetching block data.";
+        }
+      } finally {
+        submitBtn.innerText = "Submit";
+      }
     }
 
     // saved and share
@@ -274,10 +286,19 @@
     }
     else {
       // get last block height
-      $.ajax('https://mempool.space/api/blocks/tip/height')
-        .done(function (blockheight) {
-          document.getElementById("block").value = blockheight
+      fetch('https://mempool.space/api/blocks/tip/height')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.text();
         })
+        .then(blockHeight => {
+          document.getElementById("block").value = blockHeight;
+        })
+        .catch(error => {
+          console.error('Fetch error: ', error);
+        });
     }
 
   </script>
