@@ -47,7 +47,7 @@ class Footer extends HTMLElement {
         </footer>
         `;
 
-        const proxyBase = "https://bitcoindata.science/api/s_analytics.php";
+        const proxyBase = "https://bitcoindata.science/api/simple.php";
 
 // --- SCRIPT 1: Base Analytics (The Proxy) ---
     if (!document.getElementById('sa-proxy')) {
