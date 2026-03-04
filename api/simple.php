@@ -5,10 +5,10 @@ $myDomain = 'bitcoindata.science';
 
 // The web-accessible path to this specific PHP file. 
 // Do not include query parameters (?) here.
-$scriptPath = '/api/s_analytics.php'; 
+$scriptPath = '/api/simple.php'; 
 
 // 2. Determine the "route" using PATH_INFO
-// If you access .../s_analytics.php/events, this will be '/events'
+// If you access .../simple.php/events, this will be '/events'
 $route = $_SERVER['PATH_INFO'] ?? '/proxy.js';
 
 // 3. Define Upstream Endpoints
