@@ -9,7 +9,7 @@ class Ad extends HTMLElement {
         mobile: "https://bitcoindata.science/img/bitlist-mobile.gif",
         link: "https://bitlist.co/",
         title: "Bilist, list of bitcoin mixers and exchanges",
-        alt: "Bilist"
+        alt: "Bitlist"
       },
       {
         desktop: "https://bitcoindata.science/img/mixtum-desktop.gif",
