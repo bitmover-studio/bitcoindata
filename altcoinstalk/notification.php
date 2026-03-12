@@ -124,6 +124,10 @@ img {
                 <input class="form-check-input" type="checkbox" role="switch" id="<?php echo $i['post_link']; ?>label"
                   data-post-link="<?php echo $i['post_link']; ?>">
                 <label class="form-check-label" for="<?php echo $i['post_link']; ?>label">Mark as read</label>
+                <a href="<?php echo $i['post_link']; ?>" onClick='javascript:markAsRead("<?php echo $i['post_link']; ?>")'
+                  target="_blank" rel="noreferrer" class="btn btn-sm btn-primary float-end me-4">
+                  Go to post
+                </a>
               </div>
             </div>
           </div>
