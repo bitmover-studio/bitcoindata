@@ -12,7 +12,7 @@ class Footer extends HTMLElement {
                 <div class="row grid gap-3">
                     <div class="col-md">
                         <p class="text-muted">Are these tools useful to you? Consider supporting.</p>
-                        <a href="donate.html" class="btn btn-danger btn-lg mt-3 px-5 text-decoration-none">
+                        <a href="donate" class="btn btn-danger btn-lg mt-3 px-5 text-decoration-none">
                             <svg xmlns="www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                                 class="bi bi-currency-bitcoin mb-1" viewBox="0 0 16 16">
                                 <path

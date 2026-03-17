@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /cdn-cgi/
+Disallow: /cgi-bin/
+Disallow: /scripts/
+Disallow: /tmp/
+Disallow: /api/
+Disallow: /backend/
+
+Sitemap: https://bitcoindata.science/sitemap.xml

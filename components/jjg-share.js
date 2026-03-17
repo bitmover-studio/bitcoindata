@@ -1,4 +1,10 @@
 "use strict";
+// fix legacy url (with ?) for sharing
+if (window.location.search && !window.location.hash) {
+    const payload = window.location.search.substring(1);
+    window.location.replace(window.location.pathname + "#" + payload);
+}
+
 
 function save_share() {
     let btcStashSize = document.getElementById("stash").value;
@@ -12,7 +18,15 @@ function save_share() {
 }
 
 // Load saved data from shareable URL
-if (window.location.search) {
+let payload = null;
+
+if (window.location.hash) {
+    payload = window.location.hash.substring(1);
+} else if (window.location.search) {
+    payload = window.location.search.substring(1);
+}
+
+if (payload) {
     let decrypted = CryptoJS.AES.decrypt(window.location.search.substring(1), "bitcoin");
     let saved_data = decrypted.toString(CryptoJS.enc.Utf8);
     let saved_data_array = saved_data.split("&");
@@ -20,15 +34,15 @@ if (window.location.search) {
     document.getElementById("stash").value = saved_data_array[0];
     document.getElementById("wrate").value = saved_data_array[1];
     document.getElementById("date").value = saved_data_array[2];
-    document.getElementById("useDate").checked = saved_data_array[3] === 'true'; 
+    document.getElementById("useDate").checked = saved_data_array[3] === 'true';
     document.getElementById("simulationDate").value = saved_data_array[4];
-    document.getElementById("togglePrice").checked = saved_data_array[5] === 'true'; 
+    document.getElementById("togglePrice").checked = saved_data_array[5] === 'true';
 
 // Load data from past local sessions
 } else if (window.localStorage["annualWithdrawalRate"] && window.localStorage["btcStashSize"]) {
     document.getElementById("wrate").value = window.localStorage["annualWithdrawalRate"];
     document.getElementById("stash").value = window.localStorage["btcStashSize"];
-    document.getElementById("togglePrice").checked = window.localStorage.getItem("togglePrice") === 'true'; 
+    document.getElementById("togglePrice").checked = window.localStorage.getItem("togglePrice") === 'true';
 }
 
 function copyurl(target) {

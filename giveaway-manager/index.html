@@ -7,11 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description"
     content="Manage your giveaways easily. Pick winners using provably fair method based on bitcoin blockhash.">
-  <meta name="robots" content="index, follow" />
   <meta name="keywords"
     content="Giveaway Manager,bitcointalk giveaway, giveaways, Raffle, Raffle Manager, blockhash giveaway, blockhash raffle" />
   <link rel="shortcut icon" href="img/favicon.svg">
-  <link rel="canonical" href="https://bitcoindata.science/bitcoin-balance-check.html">
+  <link rel="canonical" href="https://bitcoindata.science/giveaway-manager">
   <link rel="alternate" hreflang="x-default" href="https://bitcoindata.science" />
   <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
@@ -24,7 +23,7 @@
   <meta name="theme-color" content="#111316">
   <meta property="og:title" content="Giveaway Manager - bitcoin data.science" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://bitcoindata.science/" />
+  <meta property="og:url" content="https://bitcoindata.science/giveaway-manager/" />
   <meta property="og:image" content="https://bitcoindata.science/img/logo.png" />
   <meta property="og:description"
     content="Manage your giveaways easily. Pick winners using provably fair method based on bitcoin blockhash." />
@@ -62,6 +61,14 @@
              ]
        }
    </script>
+  <script>
+    if (window.location.search.length > 0) {
+      const meta = document.createElement("meta");
+      meta.name = "robots";
+      meta.content = "noindex, follow";
+      document.head.appendChild(meta);
+    }
+  </script>
   <link href="../css/style.css" rel="stylesheet">
   <script src="../components/navbar.js" defer></script>
   <script src="../components/footer.js" defer></script>
@@ -261,6 +268,12 @@
       }
     }
 
+    // fix legacy url (with ?) for sharing
+    if (window.location.search && !window.location.hash) {
+      const payload = window.location.search.substring(1);
+      window.location.replace(window.location.pathname + "#" + payload);
+    }
+
     // saved and share
     function copyurl() {
       navigator.clipboard.writeText(document.getElementById('url').value)
@@ -271,18 +284,27 @@
       let share_block = document.getElementById("block").value
       let share_n_winners = document.getElementById("n_winners").value
       let encrypted = CryptoJS.AES.encrypt(share_block + '&' + share_n_winners + '&' + competitors_for_share, "bitcoin");
-      document.getElementById("url").value = 'https://bitcoindata.science/giveaway-manager/?' + encrypted;
+      document.getElementById("url").value = 'https://bitcoindata.science/giveaway-manager/#' + encrypted;
     }
 
     //load saved data
-    if (window.location.search) {
-      var decrypted = CryptoJS.AES.decrypt(window.location.search.substring(1), "bitcoin");
+    let payload = null;
+
+    if (window.location.hash) {
+      payload = window.location.hash.substring(1);
+    } else if (window.location.search) {
+      payload = window.location.search.substring(1);
+    }
+
+    if (payload) {
+      var decrypted = CryptoJS.AES.decrypt(payload, "bitcoin");
       var saved_data = decrypted.toString(CryptoJS.enc.Utf8);
       var saved_data_array = saved_data.split("&");
 
       document.getElementById("block").value = saved_data_array[0]
       document.getElementById("n_winners").value = saved_data_array[1]
       document.getElementById("manually").value = saved_data_array[2]
+      go();
     }
     else {
       // get last block height
