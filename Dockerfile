@@ -1,4 +1,4 @@
-FROM php:7.4-apache
+FROM php:8.2-apache
 WORKDIR /var/www/html
 EXPOSE 80
 RUN apt-get update && apt-get install -y \
@@ -7,5 +7,6 @@ RUN apt-get update && apt-get install -y \
     libpng-dev \
     libcurl4-openssl-dev \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install -j$(nproc) gd curl
+    && docker-php-ext-install -j$(nproc) gd curl \
+    && a2enmod env rewrite headers
 COPY . /var/www/html

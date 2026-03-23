@@ -2,33 +2,13 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <title>Giveaway Manager - bitcoin data.science</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description"
-    content="Manage your giveaways easily. Pick winners using provably fair method based on bitcoin blockhash.">
-  <meta name="keywords"
-    content="Giveaway Manager,bitcointalk giveaway, giveaways, Raffle, Raffle Manager, blockhash giveaway, blockhash raffle" />
-  <link rel="shortcut icon" href="img/favicon.svg">
-  <link rel="canonical" href="https://bitcoindata.science/giveaway-manager">
-  <link rel="alternate" hreflang="x-default" href="https://bitcoindata.science" />
-  <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
-  <link rel="manifest" href="manifest.json" />
-  <link rel="mask-icon" href="img/safari-pinned-tab.svg" color="#111316">
-  <meta name="apple-mobile-web-app-title" content="bitcoin data.science">
-  <meta name="application-name" content="bitcoin data.science">
-  <meta name="msapplication-TileColor" content="#2b5797">
-  <meta name="theme-color" content="#111316">
-  <meta property="og:title" content="Giveaway Manager - bitcoin data.science" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://bitcoindata.science/giveaway-manager/" />
-  <meta property="og:image" content="https://bitcoindata.science/img/logo.png" />
-  <meta property="og:description"
-    content="Manage your giveaways easily. Pick winners using provably fair method based on bitcoin blockhash." />
-  <meta property="og:locale" content="en_US" />
-  <meta property="og:site_name" content="bitcoin data.science" />
+   <?php 
+   $title = "Giveaway Manager - Provably Fair Raffle Tool - bitcoin data.science";
+   $description = "Manage your giveaways easily. Pick winners using provably fair method based on bitcoin blockhash.";
+   $keywords = "Giveaway Manager,bitcointalk giveaway, giveaways, Raffle, Raffle Manager, blockhash giveaway, blockhash raffle";
+   $canonical = "https://bitcoindata.science/giveaway-manager";
+   include_once $_SERVER['DOCUMENT_ROOT'] . '/components/head.php';
+   ?>
   <script type="application/ld+json">
       {
          "@context": "https://schema.org",
@@ -80,9 +60,11 @@
     <base href="/" />
     <navbar-component></navbar-component>
   </header>
-  <main class="container-fluid col-lg-10 col-xl-8">
-    <ad-component></ad-component>
-    <h1 class="h1 display-3 fw-bold">Bitcointalk Giveaway Manager</h1>
+   <?php
+   $h1 = 'Bitcoin Giveaway Manager';
+   $h2 = 'Manage your giveaways easily. Pick winners using provably fair method based on bitcoin blockhash.';
+   include_once $_SERVER['DOCUMENT_ROOT'] . '/components/page-header.php';
+   ?>
 
     <form action="javascript:go()" class="bg-body-tertiary rounded-top-4 p-md-5 p-4 mt-5">
       <div class="mb-3">

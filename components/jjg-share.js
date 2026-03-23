@@ -14,7 +14,7 @@ function save_share() {
     let simulationDate = document.getElementById("simulationDate").value;
     let checkedPrice = document.getElementById("togglePrice").checked;
     let encrypted = CryptoJS.AES.encrypt(btcStashSize + '&' + annualWithdrawalRate + '&' + inputDate + '&' + checkedDate + '&' + simulationDate + '&' + checkedPrice, "bitcoin");
-    document.getElementById("shareURL").innerText = 'https://bitcoindata.science/withdrawal-strategy?' + encrypted;
+    document.getElementById("shareURL").innerText = 'https://bitcoindata.science/withdrawal-strategy#' + encrypted;
 }
 
 // Load saved data from shareable URL
@@ -27,7 +27,7 @@ if (window.location.hash) {
 }
 
 if (payload) {
-    let decrypted = CryptoJS.AES.decrypt(window.location.search.substring(1), "bitcoin");
+    let decrypted = CryptoJS.AES.decrypt(payload, "bitcoin");  // Use 'payload' instead
     let saved_data = decrypted.toString(CryptoJS.enc.Utf8);
     let saved_data_array = saved_data.split("&");
 

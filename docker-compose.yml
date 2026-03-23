@@ -1,15 +1,9 @@
-version: '3'
 services:
   php:
     build: .
-    image: php:7.4-apache
     ports:
-      - 80:80
+      - "8000:80"
     volumes:
       - .:/var/www/html
     working_dir: /var/www/html/
-    user: "1001:1010"
     restart: always
-    environment:
-      - BUDDYPASSWORD=${BUDDYPASSWORD}
-      - TALKIMG_API_KEY=${TALKIMG_API_KEY}

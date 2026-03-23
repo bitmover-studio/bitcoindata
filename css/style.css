@@ -1,11 +1,28 @@
+/* Modern CSS Variables for Theming (Replaces SCSS) */
+:root, [data-bs-theme="light"] {
+  --theme-orange: #d97706; /* Refined Bitcoin Orange */
+  --theme-purple: #6e2bf2; /* Cyber Purple */
+  --theme-blue: #2b5797; /* Sleek Tech Blue */
+  --theme-blue-alpha: #2b5797cc; /* Sleek Tech Blue (80% Opacity) */
+  --nav-hover-bg: var(--theme-blue-alpha);
+  --nav-hover-text: #ffffff;
+}
+
+[data-bs-theme="dark"] {
+  --theme-orange: #fbbf24;
+  --theme-purple: #9d67f7;
+  --theme-blue: #6ea8fe;
+  --theme-blue-alpha: #6ea8fecc; /* 80% Opacity */
+  --nav-hover-bg: #ffffff5d; /* Translucent gray/white for dark mode */
+  --nav-hover-text: #ffffff;
+}
+
  [data-bs-theme=dark] body {
   background-color: #1B1A1C;
 }
-
 body {
-  transition: all .2s;
+  background-color: #fff;
 }
-
 a {
   text-decoration: none;
 }
@@ -13,7 +30,7 @@ a {
 a:hover, .footer-link:hover {
 transition: all .3s ease-in-out;
   text-decoration: none;
-  color: #ad8305;
+  color: var(--theme-blue);
 }
 
 .footer-link {
@@ -21,7 +38,7 @@ transition: all .3s ease-in-out;
 }
 
  [data-bs-theme=dark] .footer-link:hover{
-  color: #ad8305;
+  color: var(--theme-blue);
 }
 
  [data-bs-theme=dark] .footer-link{
@@ -36,7 +53,7 @@ transition: all .3s ease-in-out;
   font-weight: 600;
 }
 span.logo {
-  color: #ad8305;
+  color: var(--theme-blue);
 }
 
 .fs-big {
@@ -49,23 +66,56 @@ span.logo {
 }
 
 /* Navbar */
+#nav-lg-menu, #nav-theme-toggler,#navbar-toggler {
+  opacity: 0.85!important;
+  backdrop-filter: blur(5px);
+}
 
 #nav-lg-menu li {
   font-size: 15px;
   margin-right: 1rem;
 }
 
-#nav-lg-menu a.active,
-#offcanvasNavbar a:hover.active {
-  color: #ad8305;
-  text-decoration: none;
+ [data-bs-theme=dark] .bg-body-tertiary {
+  background-color: #232224 !important;
 }
 
-#nav-lg-menu a:hover,
-#offcanvasNavbar a:hover {
-  color: #ad8305;
-  text-decoration: none;
+ [data-bs-theme=dark] .card-home:hover{ 
+background-color: #ffffff1a !important;
+}
 
+/* Add smooth transitions to base states */
+#nav-lg-menu li,
+.nav-icon-btn {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Change background on the li pill */
+#nav-lg-menu li:hover,
+#nav-lg-menu li:has(a.active),
+#nav-theme-toggler:hover,
+#navbar-toggler:hover,
+.nav-icon-btn:hover {
+  background-color: var(--nav-hover-bg) !important;
+}
+
+#offcanvasNavbar li.nav-item:hover,
+#offcanvasNavbar li.nav-item:has(a.active) {
+  background-color: var(--nav-hover-bg);
+  border-radius: 0.5rem;
+}
+
+#nav-lg-menu li:hover a,
+#nav-lg-menu li:has(a.active) a,
+#offcanvasNavbar li.nav-item:hover a,
+#offcanvasNavbar li.nav-item:has(a.active) a,
+.nav-icon-btn:hover *,
+.nav-icon-btn:hover span {
+  color: var(--nav-hover-text) !important;
+}
+
+.nav-icon-btn:hover .navbar-toggler-icon {
+  filter: brightness(0) invert(1);
 }
 
 #offcanvasNavbar {
@@ -79,10 +129,6 @@ span.logo {
 }
 
 
-#topnav .rounded-circle:hover {
-  background-color: rgba(0, 0, 0, 0.2);
-}
-
 #nav-lg-menu a {
   display: inline-block;
   position: relative;
@@ -93,14 +139,6 @@ span.logo {
 main {
   padding-top: 0.5rem;
   min-height: 60vh;
-}
-
- [data-bs-theme=dark] .bg-body-tertiary {
-  background-color: #ffffff0a !important;
-}
-
- [data-bs-theme=dark] .card-home:hover{ 
-background-color: #ffffff1a !important;
 }
 
 /* misc  */
@@ -125,7 +163,15 @@ background-color: #ffffff1a !important;
 }
 
 .bg-purple {
-  background-color: #6e2bf2;
+  background-color: var(--theme-purple) !important;
+  color: #ffffff !important;
+}
+[data-bs-theme="dark"] .bg-purple {
+  color: #000000 !important;
+}
+
+.text-purple {
+  color: var(--theme-purple) !important;
 }
 
 /* Converter */
@@ -170,8 +216,47 @@ background-color: #ffffff1a !important;
   text-decoration: none;
   font-weight: 600;
 }
- [data-bs-theme=light]  .form-floating .text-warning {
-color:#ad8305!important;
+
+/* Override Bootstrap Warning to Refined Bitcoin Orange */
+.text-warning,
+.text-warning-emphasis,
+.form-floating .text-warning {
+  color: var(--theme-orange) !important;
+}
+
+.bg-warning {
+  background-color: var(--theme-orange) !important;
+  color: #ffffff !important;
+}
+[data-bs-theme="dark"] .bg-warning {
+  color: #000000 !important;
+}
+
+/* Override Bootstrap Primary to Sleek Tech Blue */
+.text-primary,
+.text-primary-emphasis {
+  color: var(--theme-blue) !important;
+}
+
+.bg-primary {
+  background-color: var(--theme-blue) !important;
+  color: #ffffff !important;
+}
+
+.btn-primary {
+  background-color: var(--theme-blue) !important;
+  border-color: var(--theme-blue) !important;
+  color: #ffffff !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+  opacity: 0.85;
+}
+[data-bs-theme="dark"] .bg-primary,
+[data-bs-theme="dark"] .btn-primary {
+  color: #000000 !important;
 }
 
 .apexcharts-tooltip-title {
@@ -225,3 +310,9 @@ input[type=number]::-webkit-inner-spin-button {
 input[type=number] {
     -moz-appearance: textfield;
 }
+
+.mt-6 { margin-top: 6rem !important; } 
+
+.mb-6 { margin-bottom: 6rem !important; } 
+
+.my-6 { margin-top: 6rem !important; margin-bottom: 6rem !important; } 

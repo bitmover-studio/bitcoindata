@@ -2,31 +2,13 @@
 <html lang="en">
 
 <head>
-   <meta charset="utf-8">
-   <title>Bitcoin Units Converter - bitcoin data.science</title>
-   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-   <meta name="description"
-      content="Easily convert Bitcoin units — BTC, mBTC, μBTC, satoshi, and finney — to USD, EUR, RUB, BRL, TRY and other 168 fiat currencies with our fast and accurate Bitcoin Units Converter. Perfect for traders & crypto enthusiasts.">
-   <meta name="robots" content="index, follow" />
-   <meta name="keywords" content="Bitcoin,Units,Converter,BTC,mBTC,satoshi,EUR,USD,RUB,TRY,BRL,finney,μBTC,uBTC,cBTC" />
-   <link rel="shortcut icon" href="img/favicon.svg">
-   <link rel="canonical" href="https://bitcoindata.science/bitcoin-unit-converter">
-   <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
-   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
-   <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
-   <link rel="manifest" href="manifest.json" />
-   <link rel="mask-icon" href="img/safari-pinned-tab.svg" color="#111316">
-   <meta name="apple-mobile-web-app-title" content="bitcoin data.science">
-   <meta name="application-name" content="bitcoin data.science">
-   <meta name="msapplication-TileColor" content="#2b5797">
-   <meta name="theme-color" content="#111316">
-   <meta property="og:title" content="Bitcoin Units Converter - bitcoin data.science" />
-   <meta property="og:type" content="website" />
-   <meta property="og:url" content="https://bitcoindata.science/" />
-   <meta property="og:image" content="https://bitcoindata.science/img/datascience-logo.png" />
-   <meta property="og:description" content="Easily convert Bitcoin units — BTC, mBTC, μBTC, satoshi, and finney — to USD, EUR, RUB, BRL, TRY and other 168 fiat currencies with our fast and accurate Bitcoin Units Converter. Perfect for traders & crypto enthusiasts" />
-   <meta property="og:locale" content="en_US" />
-   <meta property="og:site_name" content="bitcoin data.science" />
+   <?php 
+   $title = "Bitcoin Units Converter - bitcoin data.science";
+   $description = "Easily convert Bitcoin units — BTC, mBTC, μBTC, satoshi, and finney — to USD, EUR, RUB, BRL, TRY and other 168 fiat currencies with our fast and accurate Bitcoin Units Converter. Perfect for traders & crypto enthusiasts.";
+   $keywords = "Bitcoin,Units,Converter,BTC,mBTC,satoshi,EUR,USD,RUB,TRY,BRL,finney,μBTC,uBTC,cBTC";
+   $canonical = "https://bitcoindata.science/bitcoin-unit-converter";
+   include_once $_SERVER['DOCUMENT_ROOT'] . '/components/head.php';
+   ?>
    <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -45,15 +27,6 @@
         ]
       }
    </script>
-   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-      crossorigin="anonymous"></script>
-   <link href="css/style.css" rel="stylesheet">
-   <script src="components/navbar.js" type="text/javascript" defer></script>
-   <script src="components/footer.js" type="text/javascript" defer></script>
-   <script src="components/ad.js" type="text/javascript" defer></script>
    <script src="components/unit-converter.js" type="text/javascript" defer></script>
 
 </head>
@@ -65,10 +38,13 @@
       <navbar-component></navbar-component>
    </header>
    <!-- Page Content -->
-   <main class="container-fluid col-lg-10 col-xl-8">
-      <ad-component></ad-component>
-      <h1 class="h1 display-3 fw-bold">Bitcoin Units Converter</h1>
-      <h2 class="lead">Use any of the fields below to convert bitcoin units BTC,mBTC, uBTC, satoshi, finney to
+   <?php
+   $h1 = 'Bitcoin Units Converter';
+   $h2 = 'Convert between different Bitcoin units and fiat currencies.';
+   include_once $_SERVER['DOCUMENT_ROOT'] . '/components/page-header.php';
+   ?>
+
+      <h3 class="lead">Use any of the fields below to convert bitcoin units BTC,mBTC, uBTC, satoshi, finney to
          USD, EUR or any other fiat currency.<br></h2>
 
       <div class="accordion my-3 shadow-sm rounded-top-4 " id="accordion">

@@ -86,6 +86,9 @@ let stashOptions = {
     chart: {
         height: 250,
         id: 'stash',
+        zoom: {
+            autoScaleYaxis: false
+        }
     },
     stroke: {
         width: 2,
@@ -103,6 +106,8 @@ let stashOptions = {
     },
     yaxis: {
         show: true,
+        // min: 0,
+        // forceNiceScale: false,
         labels: {
             formatter: function (val, index) {
                 return val.toLocaleString("en-US", { style: "currency", currency: "BTC" });

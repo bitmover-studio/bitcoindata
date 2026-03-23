@@ -2,33 +2,13 @@
 <html lang="en">
 
 <head>
-   <meta charset="utf-8">
-   <title>Withdrawal Strategy - bitcoin data.science</title>
-   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-   <meta name="description"
-      content="Ideas of sustainable withdrawal that attempts to measure monthly budget limits based spot price relative to the 200-week moving average">
-   <meta name="robots" content="index, follow" />
-   <meta name="keywords" content="Withdrawal, profit, Strategy,bitcoin, moving average, 200 weeks" />
-   <link rel="shortcut icon" href="img/favicon.svg">
-   <link rel="canonical" href="https://bitcoindata.science/withdrawal-strategy">
-   <link rel="alternate" hreflang="x-default" href="https://bitcoindata.science" />
-   <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
-   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
-   <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
-   <link rel="manifest" href="manifest.json" />
-   <link rel="mask-icon" href="img/safari-pinned-tab.svg" color="#111316">
-   <meta name="apple-mobile-web-app-title" content="bitcoin data.science">
-   <meta name="application-name" content="bitcoin data.science">
-   <meta name="msapplication-TileColor" content="#2b5797">
-   <meta name="theme-color" content="#111316">
-   <meta property="og:title" content="Withdrawal Strategy - bitcoin data.science" />
-   <meta property="og:type" content="website" />
-   <meta property="og:url" content="https://bitcoindata.science/withdrawal-strategy" />
-   <meta property="og:image" content="https://bitcoindata.science/img/logo.png" />
-   <meta property="og:description"
-      content="Ideas of sustainable withdrawal that attempts to measure monthly budget limits based spot price relative to the 200-week moving average" />
-   <meta property="og:locale" content="en_US" />
-   <meta property="og:site_name" content="bitcoin data.science" />
+   <?php 
+   $title = "Withdrawal Strategy - bitcoin data.science";
+   $description = "Ideas of sustainable withdrawal that attempts to measure monthly budget limits based spot price relative to the 200-week moving average";
+   $keywords = "Withdrawal, profit, Strategy, bitcoin, moving average, 200 weeks";
+   $canonical = "https://bitcoindata.science/withdrawal-strategy";
+   include_once $_SERVER['DOCUMENT_ROOT'] . '/components/head.php';
+   ?>
    <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -55,19 +35,10 @@
       document.head.appendChild(meta);
     }
   </script>
-   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-      crossorigin="anonymous"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"
       integrity="sha512-a+SUDuwNzXDvz4XrIcXHuCf089/iJAoN4lmrXJg18XnduKK6YlDHNRalv4yd1N40OKI80tFidF+rqTFKGPoWFQ=="
       crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-   <link href="css/style.css" rel="stylesheet">
    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-   <script src="components/navbar.js" defer></script>
-   <script src="components/footer.js" defer></script>
-   <script src="components/ad.js" defer></script>
    <script src="components/strategy.js" async></script>
    <script src="components/jjg-chart-options.js" async></script>
    <script src="components/jjg-stash-chart.js" async></script>
@@ -80,10 +51,13 @@
       <navbar-component></navbar-component>
    </header>
    <!-- Page Content -->
-   <main class="container-fluid col-lg-12 col-xl-10">
-      <ad-component></ad-component>
-      <h1 class="h1 display-4 fw-bold">JJG Sustainable Bitcoin Withdrawal Strategy</h1>
-      <p class="lead my-4">Ideas of sustainable withdrawal that calculates monthly budget limits based BTC spot
+   <?php
+   $h1 = 'Sustainable Withdrawal Strategy';
+   $h2 = 'Ideas of a sustainable withdrawal strategy considering 200-week moving averages.';
+   include_once $_SERVER['DOCUMENT_ROOT'] . '/components/page-header.php';
+   ?>
+
+      <p class="">Ideas of sustainable withdrawal that calculates monthly budget limits based BTC spot
          price relative to the 200-Week Moving Average (200-WMA). <span class="small"><a
                href="https://bitcointalk.org/index.php?topic=5475347.msg63213914#msg63213914"
                class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover small fw-semibold"
@@ -338,7 +312,7 @@
          <div class="col-md-6 col-lg-3">
             <p>You can simulate what your portfolio would be like if you had already started this strategy.</p>
             <small>Considering you withdrawal at fixed dates 8th and 22nd each month.</small>
-            <div class="form-floating mt-4">
+            <div class="form-floating mt-3">
                <input type="date" title="choose a date"
                   class="form-control font-monospace border-0 bg-body-secondary rounded-4" id="simulationDate"
                   min="2010-08-02" onchange="simulateStrategy(this.value)">
@@ -368,8 +342,8 @@
          <div class="col-md-6 col-lg-4 mt-0">
             <div id="stashChart" class="px-0 mx-0 mt-0"></div>
          </div>
-         <div class="col-md-6 col-lg-3">
-            <div id="radialBar" class="px-0 mx-0"></div>
+         <div class="col-md-6 col-lg-3  mt-0">
+            <div id="radialBar" class="px-0 mx-0 mt-0"></div>
          </div>
       </div>
       </div>
