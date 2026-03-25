@@ -76,7 +76,7 @@
                class="btn btn-success d-inline-block btn-lg px-5 me-3 rounded-pill" onclick="handleClick()">Get
                Balance</button>
             <button type="button" class="btn btn-primary d-inline-block btn-lg rounded-pill" title="Scan Address" id="startButton" data-bs-toggle="modal" data-bs-target="#readerModal">
-               Scan
+               <span class="d-none d-md-inline">Scan</span>
                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-qr-code my-1" viewBox="0 0 16 16">
                   <path d="M2 2h2v2H2z" />
                   <path d="M6 0v6H0V0zM5 1H1v4h4zM4 12H2v2h2z" />

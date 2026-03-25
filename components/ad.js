@@ -31,12 +31,12 @@ class Ad extends HTMLElement {
            title="${selectedBanner.title}" 
            target="_blank" 
            rel="noopener">
-          <img class="border-1 border-dark img-fluid d-none d-md-inline-block" 
+          <img class="border-1 border-dark img-fluid d-none d-md-inline-block rounded-3" 
                alt='${selectedBanner.alt}' 
                src="${selectedBanner.desktop}" 
                width='1000' 
                height='75'/>
-          <img class="border-1 border-dark img-fluid d-md-none" 
+          <img class="border-1 border-dark img-fluid d-md-none rounded-3" 
                alt="${selectedBanner.alt}" 
                src="${selectedBanner.mobile}" 
                width='320' 

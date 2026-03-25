@@ -46,30 +46,40 @@ const menuItems = [
   },
 ];
 
+const HomeMenuItem = {
+    Name: "Home",
+    link: "/",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" height=23 viewBox="0 0 24 24" fill="currentColor" >
+    <path d="M11.47 3.841a.75.75 0 0 1 1.06 0l8.69 8.69a.75.75 0 1 0 1.06-1.061l-8.689-8.69a2.25 2.25 0 0 0-3.182 0l-8.69 8.69a.75.75 0 1 0 1.061 1.06l8.69-8.689Z" />
+    <path d="m12 5.432 8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 0 1-.75-.75v-4.5a.75.75 0 0 0-.75-.75h-3a.75.75 0 0 0-.75.75V21a.75.75 0 0 1-.75.75H5.625a1.875 1.875 0 0 1-1.875-1.875v-6.198a2.29 2.29 0 0 0 .091-.086L12 5.432Z" />
+  </svg>
+  `,
+  };
+
 const navbarTemplate = document.createElement('template');
 navbarTemplate.innerHTML = `
 <nav id="topnav" class="navbar navbar-expand-lg">
-    <div class="container-fluid col-xl-9 px-0">
+    <div class="container-fluid col-xl-9 px-2">
         <div class="my-3 text-nowrap">
             <a title="bitcoin data.science" class="navbar-brand text-decoration-none mx-0" href="./">
                 <img src="/img/bitcoin-data-science-logo-web.svg" class="float-start mt-2 me-1"
                     alt="bitcoin data.science" title="bitcoin data.science" height="50" width="50"/>
-                <p class="navbar-text h5">bitcoindata<br /><span class="text-warning">.science</span></p>
+                <p class="navbar-text h5  d-none d-xl-block">bitcoindata<br /><span class="text-warning">.science</span></p>
             </a>
         </div>
 
         <span class="d-none d-xl-flex ">
             <ul class="navbar-nav me-auto mb-2 bg-body-tertiary rounded-pill border-0 py-2 px-4 opacity-100" id="nav-lg-menu">
             ${menuItems
-              .map(
-                (item) => `
+    .map(
+      (item) => `
                     <li class="nav-item small fw-semibold rounded-pill p-1 text-center">
                         <a class="nav-link me-1" href="${item.link}" title="${item.Name}">
                             ${item.Name}
                         </a>
                     </li>`
-              )
-              .join("")}
+    )
+    .join("")}
             </ul>
         </span>
         <span class="d-flex align-items-center d-xl-flex">
@@ -89,39 +99,33 @@ navbarTemplate.innerHTML = `
                     </svg>
                 </button>
             </div>
-             <button class="navbar-toggler d-xl-none d-block border-0 m-2 p-0 rounded-circle bg-body-tertiary nav-icon-btn d-flex justify-content-center align-items-center" style="width: 60px; height: 60px;" type="button" data-bs-toggle="offcanvas"
-                title="open-offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" id="navbar-toggler">
+              <button type="button" class="navbar-toggler d-xl-none d-block border-0 m-2 p-0 rounded-circle bg-body-tertiary nav-icon-btn d-flex justify-content-center align-items-center" style="width: 60px; height: 60px;" type="button" data-bs-toggle="modal" data-bs-target="#MenuMobile">
                 <span class="navbar-toggler-icon"></span>
               </button>
         </span>
     </div>
 </nav>
 
-<div class="offcanvas offcanvas-end w-100" data-bs-scroll="false" data-bs-backdrop="false" tabindex="-1"
-    id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-    <div class="offcanvas-body">
+<div class="modal fade mt-5" id="MenuMobile" tabindex="-1" aria-labelledby="MenuMobileLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content mt-4 border-0 rounded-5">
+      <div class="modal-body">
+        <button type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Close"></button>
         <ul class="navbar-nav me-auto mb-2 d-flex">
-        ${menuItems
-          .map(
-            (item) => `
+        ${menuItems.map(
+      (item) => `
                     <li class="nav-item pt-2 pb-3 mt-3">
-                        <a class="nav-link" href="${item.link}" title="${item.Name}">
+                        <a class="nav-link px-3" href="${item.link}" title="${item.Name}">
                         <span class="align-self-middle mb-1 me-3">${item.icon}</span>
                         ${item.Name}
                         </a>
                     </li>`
-          )
-          .join("")}
+    )
+    .join("")}
         </ul>
-        <div>
-            <a href="donate" class="btn btn-danger btn-lg mt-3 px-5 fw-bold text-decoration-none">
-                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-currency-bitcoin mb-1" viewBox="0 0 16 16">
-                    <path d="M5.5 13v1.25c0 .138.112.25.25.25h1a.25.25 0 0 0 .25-.25V13h.5v1.25c0 .138.112.25.25.25h1a.25.25 0 0 0 .25-.25V13h.084c1.992 0 3.416-1.033 3.416-2.82 0-1.502-1.007-2.323-2.186-2.44v-.088c.97-.242 1.683-.974 1.683-2.19C11.997 3.93 10.847 3 9.092 3H9V1.75a.25.25 0 0 0-.25-.25h-1a.25.25 0 0 0-.25-.25V3h-.573V1.75a.25.25 0 0 0-.25-.25H5.75a.25.25 0 0 0-.25-.25V3l-1.998.011a.25.25 0 0 0-.25-.25v.989c0 .137.11.25.248.25l.755-.005a.75.75 0 0 1 .745.75v5.505a.75.75 0 0 1-.75.75l-.748.011a.25.25 0 0 0-.25.25v1c0 .138.112.25.25.25L5.5 13zm1.427-8.513h1.719c.906 0 1.438.498 1.438 1.312 0 .871-.575 1.362-1.877 1.362h-1.28V4.487zm0 4.051h1.84c1.137 0 1.756.58 1.756 1.524 0 .953-.626 1.45-2.158 1.45H6.927V8.539z"/>
-                </svg>    
-                Donate
-            </a>
-        </div>
+      </div>
     </div>
+  </div>
 </div>
 `;
 
@@ -138,6 +142,12 @@ class Navbar extends HTMLElement {
 
     if (this.parentElement && this.parentElement.tagName === 'HEADER') {
       this.parentElement.classList.add("sticky-top");
+    }
+
+    // Move modal to the body to avoid z-index/stacking context issues with sticky-top
+    const modal = this.querySelector('#MenuMobile');
+    if (modal) {
+      document.body.appendChild(modal);
     }
 
     let pathname = window.location.pathname.split("/").slice(-1)[0];
@@ -158,7 +168,7 @@ class Navbar extends HTMLElement {
 
   disconnectedCallback() {
     this.mediaQuery.removeEventListener("change", this.handleThemeChange);
-    
+
     if (this.themeToggles) {
       this.themeToggles.forEach((toggle) => {
         toggle.removeEventListener("click", this.handleThemeToggleClick);
