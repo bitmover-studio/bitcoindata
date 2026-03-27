@@ -73,9 +73,9 @@
 
          <div class="d-flex">
             <button title="Get Balance" type="button" id="submit"
-               class="btn btn-success d-inline-block btn-lg px-5 me-3 rounded-pill" onclick="handleClick()">Get
+               class="btn btn-success d-inline-block px-5 me-3" onclick="handleClick()">Get
                Balance</button>
-            <button type="button" class="btn btn-primary d-inline-block btn-lg rounded-pill" title="Scan Address" id="startButton" data-bs-toggle="modal" data-bs-target="#readerModal">
+            <button type="button" class="btn btn-primary d-inline-block" title="Scan Address" id="startButton" data-bs-toggle="modal" data-bs-target="#readerModal">
                <span class="d-none d-md-inline">Scan</span>
                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-qr-code my-1" viewBox="0 0 16 16">
                   <path d="M2 2h2v2H2z" />
