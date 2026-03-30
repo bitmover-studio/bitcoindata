@@ -4,20 +4,21 @@ on:
   push:
     branches:
       - main
-
+      
 jobs:
-  deploy:
+  web-deploy:
+    name: Deploy to DirectAdmin via FTP
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Deploy via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4
-        with:
+    - name: Get latest code
+      uses: actions/checkout@v4
+    
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+      with:
           server: ${{ secrets.FTP_SERVER }}
+          port: 21
+          protocol: ftp
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftp
           server-dir: /public_html/
