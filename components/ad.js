@@ -23,8 +23,11 @@ class Ad extends HTMLElement {
 
   connectedCallback() {
     // Randomly select a banner
-    const selectedBanner = this.banners[Math.floor(Math.random() * this.banners.length)];
+    //const selectedBanner = this.banners[Math.floor(Math.random() * this.banners.length)];
 
+    //Just banner 1
+    const selectedBanner = this.banners[1];
+    
     this.innerHTML = `
       <div class="container text-center my-3 mb-4" id="sp-content">
         <a href="${selectedBanner.link}" 
