@@ -69,11 +69,11 @@ navbarTemplate.innerHTML = `
         </div>
 
         <span class="d-none d-xl-flex ">
-            <ul class="navbar-nav me-auto mb-2 bg-body-tertiary rounded-pill border-0 py-2 px-4 opacity-100" id="nav-lg-menu">
+            <ul class="navbar-nav me-auto mb-2 bg-body-tertiary rounded-4 border-0 py-2 px-4 opacity-100" id="nav-lg-menu">
             ${menuItems
     .map(
       (item) => `
-                    <li class="nav-item small fw-semibold rounded-pill p-1 text-center">
+                    <li class="nav-item small fw-semibold rounded-4 p-1 text-center">
                         <a class="nav-link me-1" href="${item.link}" title="${item.Name}">
                             ${item.Name}
                         </a>

@@ -13,7 +13,7 @@
   --theme-purple: #9d67f7;
   --theme-blue: #6ea8fe;
   --theme-blue-alpha: #6ea8fecc; /* 80% Opacity */
-  --nav-hover-bg: #ffffff5d; /* Translucent gray/white for dark mode */
+  --nav-hover-bg: #343a40; /* Translucent gray/white for dark mode */
   --nav-hover-text: #ffffff;
 }
 

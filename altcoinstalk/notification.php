@@ -34,7 +34,7 @@ $canonical = "https://bitcoindata.science/bot/altcoinstalk/notification";
     padding: 0 0.3em;
 }
 
-img {
+.class-text img {
     max-width: 100%;
     height: auto;
 }

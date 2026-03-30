@@ -68,7 +68,7 @@
             description: "<em>Provably fair</em> giveaway manager. Results easily verified and shareable.",
             link: "https://bitcoindata.science/giveaway-manager",
             action: "Go to giveaway manager",
-            icon: ' <path d="M8 7.982C9.664 6.309 13.825 9.236 8 13 2.175 9.236 6.336 6.31 8 7.982"/><path d="M3.75 0a1 1 0 0 0-.8.4L.1 4.2a.5.5 0 0 0-.1.3V15a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V4.5a.5.5 0 0 0-.1-.3L13.05.4a1 1 0 0 0-.8-.4zm0 1H7.5v3h-6zM8.5 4V1h3.75l2.25 3zM15 5v10H1V5z"/>',
+            icon: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M21 11.25v8.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 1 0 9.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1 1 14.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z" /></svg>',
          },
          {
             title: "Altcoinstalks Notification",
@@ -96,19 +96,19 @@
          cardCol.innerHTML = `
          <div class="card h-100 border-0 bg-body-tertiary p-3 rounded-4 card-home">
             <div class="card-body m-4">
-               <div class="icon-content">
+               <div class="icon-content float-end">
                   <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="text-primary text-bold" viewBox="0 0 16 16">${card.icon}
                </div>
 
                <div class="text-content">
-                  <h3 class="h3 fw-bold card-title my-5">
+                  <h3 class="h3 fw-bold card-title my-2">
                         ${card.title}
                   </h3>
                   <p class="card-text text-body-secondary">${card.description}</p>
                </div>
            </div>
-           <div class="card-footer bg-transparent border-0 m-4 ">
-               <a href="${card.link}" class="btn rounded-pill btn-primary btn-lg text-normal fs-6 stretched-link py-3 px-4" style="font-weight:500" title="${card.action}">${card.action}</a>
+           <div class="card-footer bg-transparent border-0 mx-4 pt-0 mt-0">
+               <a href="${card.link}" class="btn btn-primary btn-lg text-normal fs-6 stretched-link py-3 px-4" style="font-weight:500" title="${card.action}">${card.action}</a>
             </div>
          </div>
     `;
