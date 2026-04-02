@@ -18,14 +18,14 @@ $canonical = "https://bitcoindata.science/bot/altcoinstalk/notification";
   blockquote {
     font-size: small;
     line-height: 1.4em;
-    border-top: 1px solid #99A;
-    border-bottom: 1px solid #99A;
+    border-top: 0px solid #99A;
+    border-bottom: 0px solid #99A;
     padding: 1.1em 1.4em;
     margin: 0.1em 0 0.3em 0;
     overflow: auto;
     background-color: var(--bs-secondary-bg-subtle);;
     color: var(--bs-secondary-text-emphasis);
-    border-radius: 4px;
+    border-radius: 1rem;
   }
   .codeheader, .quoteheader {
     color: #666;
@@ -37,6 +37,10 @@ $canonical = "https://bitcoindata.science/bot/altcoinstalk/notification";
 .class-text img {
     max-width: 100%;
     height: auto;
+}
+
+[data-bs-theme=light] .card:not(.bg-body-secondary) {
+  background-color: #f4f6f9cc;
 }
 </style>
 <body>
@@ -65,7 +69,7 @@ $canonical = "https://bitcoindata.science/bot/altcoinstalk/notification";
       </p>
       <div class="mt-2">
         <?php foreach ($notification_data as $i) { ?>
-          <div class="card my-4">
+          <div class="card my-4 border-0 rounded-4">
             <div class="card-body">
               <h6 class="card-title">
                 <a href="<?php echo $i['board_link']; ?>" target="_blank" rel="noreferrer">
