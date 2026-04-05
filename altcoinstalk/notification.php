@@ -18,8 +18,7 @@ $canonical = "https://bitcoindata.science/bot/altcoinstalk/notification";
   blockquote {
     font-size: small;
     line-height: 1.4em;
-    border-top: 0px solid #99A;
-    border-bottom: 0px solid #99A;
+    border: 1px solid #99A99a22;
     padding: 1.1em 1.4em;
     margin: 0.1em 0 0.3em 0;
     overflow: auto;
