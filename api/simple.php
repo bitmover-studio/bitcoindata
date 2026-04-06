@@ -10,6 +10,18 @@ $scriptPath = '/api/simple.php';
 // 2. Determine the "route" using PATH_INFO
 // If you access .../simple.php/events, this will be '/events'
 $route = $_SERVER['PATH_INFO'] ?? '/proxy.js';
+$route = $_SERVER['PATH_INFO'] ?? '';
+
+if (empty($route)) {
+    $requestUri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    $scriptName = $_SERVER['SCRIPT_NAME'];
+    if (strpos($requestUri, $scriptName) === 0) {
+        $route = substr($requestUri, strlen($scriptName));
+    }
+}
+if (empty($route) || $route === '/') {
+    $route = '/proxy.js';
+}
 
 // 3. Define Upstream Endpoints
 $endpoints = [

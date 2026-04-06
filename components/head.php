@@ -51,3 +51,6 @@ $base = '/';
 <script src="<?= $base ?>components/navbar.js" defer></script>
 <script src="<?= $base ?>components/footer.js" defer></script>
 <script src="<?= $base ?>components/ad.js" defer></script>
+<!-- Simple Analytics -->
+<script async defer src="https://bitcoindata.science/api/simple.php/proxy.js" data-collect-dnt="true"></script>
+<script async src="https://bitcoindata.science/api/simple.php/auto-events.js" data-collect="outbound,emails" data-use-title="true" data-full-urls="true"></script>

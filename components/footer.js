@@ -44,34 +44,6 @@ class Footer extends HTMLElement {
 
     connectedCallback() {
         this.appendChild(footerTemplate.content.cloneNode(true));
-        this.injectSimple();
-    }
-
-    injectSimple() {
-        const proxyBase = "https://bitcoindata.science/api/simple.php";
-
-        if (!document.getElementById('sa-proxy')) {
-            const scriptBase = document.createElement('script');
-            scriptBase.id = 'sa-proxy';
-            scriptBase.async = true;
-            scriptBase.src = `${proxyBase}/proxy.js`;
-
-            scriptBase.setAttribute('data-collect-dnt', 'true');
-            document.head.appendChild(scriptBase);
-        }
-
-        // --- SCRIPT 2: Auto Events ---
-        if (!document.getElementById('sa-auto-events')) {
-            const scriptEvents = document.createElement('script');
-            scriptEvents.id = 'sa-auto-events';
-            scriptEvents.async = true;
-
-            scriptEvents.src = `${proxyBase}/auto-events.js`;
-            scriptEvents.setAttribute('data-collect', 'outbound,emails');
-            scriptEvents.setAttribute('data-use-title', 'true');
-            scriptEvents.setAttribute('data-full-urls', 'true');
-            document.head.appendChild(scriptEvents);
-        }
     }
 }
 
