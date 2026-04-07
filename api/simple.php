@@ -1,5 +1,4 @@
 <?php
-
 // 1. Configuration
 $myDomain = 'bitcoindata.science'; 
 
@@ -8,24 +7,30 @@ $myDomain = 'bitcoindata.science';
 $scriptPath = '/api/simple.php'; 
 
 // 2. Determine the "route" using PATH_INFO
-// If you access .../simple.php/events, this will be '/events'
-$route = $_SERVER['PATH_INFO'] ?? '/proxy.js';
 $route = $_SERVER['PATH_INFO'] ?? '';
 
+// Fallback: if PATH_INFO is empty, try REQUEST_URI
 if (empty($route)) {
     $requestUri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     $scriptName = $_SERVER['SCRIPT_NAME'];
+    
+    // Remove the script name prefix to get the path after simple.php
     if (strpos($requestUri, $scriptName) === 0) {
         $route = substr($requestUri, strlen($scriptName));
     }
 }
+
+// Default to /proxy.js if still empty
 if (empty($route) || $route === '/') {
     $route = '/proxy.js';
 }
 
+// Clean up any leading/trailing slashes for matching
+$route = '/' . trim($route, '/');
+
 // 3. Define Upstream Endpoints
 $endpoints = [
-    'proxy.js'       => 'https://simpleanalyticsexternal.com/proxy.js',
+    'proxy.js'       => 'https://scripts.simpleanalyticscdn.com/latest.js',
     'auto-events.js' => 'https://scripts.simpleanalyticscdn.com/auto-events.js',
     '/events'        => 'https://queue.simpleanalyticscdn.com/events',
     '/simple.gif'    => 'https://queue.simpleanalyticscdn.com/simple.gif'
