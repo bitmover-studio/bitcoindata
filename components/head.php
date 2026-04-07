@@ -1,4 +1,8 @@
 <?php
+// Security Headers
+header("X-Frame-Options: SAMEORIGIN");
+header("Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://bitcoindata.science https://scripts.simpleanalyticscdn.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; img-src 'self' data: blob: https://flagcdn.com https://bitcoindata.science https://queue.simpleanalyticscdn.com; connect-src 'self' https://api.coingecko.com https://api.binance.com https://bitcoindata.science https://mempool.space https://api.blockcypher.com https://api.coindesk.com https://blockchain.info https://queue.simpleanalyticscdn.com; media-src 'self' blob:; worker-src 'self' blob:; frame-ancestors 'self';");
+
 // Title and description defaults, can be overridden by setting $title and $description before including this file
 $title = $title ?? 'bitcoin data.science - Data Analysis and bitcoin';
 $description = $description ?? 'Data analysis and tools for anything related to bitcoin.';
