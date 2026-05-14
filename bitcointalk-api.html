@@ -81,1057 +81,8 @@
                  >Greasy Fork</a>
          </div>
 
-         <!-- Local Price API -->
-         <div class="my-5" id="local-price">
-            <a href="#local-price" class="link-danger">
-               <h2 class="h2 fw-semibold mb-0">Price Image in any local currency
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link"
-                     viewBox="0 0 16 16">
-                     <path
-                        d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z" />
-                     <path
-                        d="M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z" />
-                  </svg>
-               </h2>
-            </a>
-
-            <p class="h6 my-3 pt-3">Parameters</p>
-            <table class="table table-striped">
-               <thead>
-                  <tr>
-                     <th scope="col">Name</th>
-                     <th scope="col">Type</th>
-                     <th scope="col">Default</th>
-                     <th scope="col">description</th>
-                  </tr>
-               </thead>
-               <tbody class="table-group-divider">
-                  <tr>
-                     <th scope="row">coin</th>
-                     <td>string</td>
-                     <td>bitcoin</td>
-                     <td>Any cryptocurrency supported by Coingecko</td>
-                  </tr>
-                  <tr>
-                     <th scope="row">amount</th>
-                     <td>float</td>
-                     <td>1</td>
-                     <td>The amount of cryptocurrency. Use '.' as decimal separator.</td>
-                  </tr>
-                  <tr>
-                     <th scope="row">currency</th>
-                     <td>string</td>
-                     <td>USD</td>
-                     <td>The Fiat currency you want to see the price.</td>
-                  </tr>
-                  <tr>
-                     <th scope="row">hex</th>
-                     <td>string</td>
-                     <td>000000</td>
-                     <td>Hexadecimal color code.</td>
-                  </tr>
-                  <tr>
-                     <th scope="row">bold</th>
-                     <td></td>
-                     <td><i>null</i></td>
-                     <td>Display font in bold when not <i>null</i>.</td>
-                  </tr>
-               </tbody>
-            </table>
-
-            <p class="h6 mt-4 mb-2"> Usage:</p>
-            <p>Requesting the price of 0.1 bitcoin in BRL.</p>
-            <code
-               class="bg-body-secondary p-1 rounded">GET https://bitcoindata.science/api/localprice.php?coin=bitcoin&amp;amount=0.1&amp;currency=BRL</code>
-
-            <p class="h6 my-3 pt-3">Embed in bitcointalk post:</p>
-
-            <div class="row g-4">
-               <div class="col-md-5">
-                  <div class="form-floating mb-3">
-                     <input type="text" class="form-control" id="floatingCoin" placeholder="bitcoin" value="bitcoin"
-                        onkeyup="javascript:setContent(this.value,'coin')">
-                     <label for="floatingCoin">coin</label>
-                     <small class="text-muted">supported coins: <a
-                           href="https://api.coingecko.com/api/v3/coins/list">https://api.coingecko.com/api/v3/coins/list</a>
-                     </small>
-                  </div>
-                  <div class="row">
-                     <div class="col">
-                        <div class="form-floating">
-                           <input type="number" class="form-control" id="floatingInput" placeholder="Enter a number"
-                              value="1" onChange="javascript:setContent(this.value,'amount')">
-                           <label for="floatingInput">amount</label>
-                        </div>
-                     </div>
-                     <div class="col">
-                        <div class="form-floating">
-                           <select class="form-select" id="floatingSelect1" aria-label="Fiat currency select"
-                              onChange="javascript:setContent(this.value,'currency')">
-                              <option selected>BRL</option>
-                              <option>AFN</option>
-                              <option>ALL</option>
-                              <option>AMD</option>
-                              <option>ANG</option>
-                              <option>AOA</option>
-                              <option>ARS</option>
-                              <option>AUD</option>
-                              <option>AWG</option>
-                              <option>AZN</option>
-                              <option>BAM</option>
-                              <option>BBD</option>
-                              <option>BDT</option>
-                              <option>BGN</option>
-                              <option>BHD</option>
-                              <option>BIF</option>
-                              <option>BMD</option>
-                              <option>BND</option>
-                              <option>BOB</option>
-                              <option>BRL</option>
-                              <option>BSD</option>
-                              <option>BTN</option>
-                              <option>BWP</option>
-                              <option>BYN</option>
-                              <option>BZD</option>
-                              <option>CAD</option>
-                              <option>CDF</option>
-                              <option>CHF</option>
-                              <option>CLF</option>
-                              <option>CLP</option>
-                              <option>CNH</option>
-                              <option>CNY</option>
-                              <option>COP</option>
-                              <option>CRC</option>
-                              <option>CUC</option>
-                              <option>CUP</option>
-                              <option>CVE</option>
-                              <option>CZK</option>
-                              <option>DJF</option>
-                              <option>DKK</option>
-                              <option>DOP</option>
-                              <option>DZD</option>
-                              <option>EGP</option>
-                              <option>ERN</option>
-                              <option>ETB</option>
-                              <option>EUR</option>
-                              <option>FJD</option>
-                              <option>FKP</option>
-                              <option>GBP</option>
-                              <option>GEL</option>
-                              <option>GGP</option>
-                              <option>GHS</option>
-                              <option>GIP</option>
-                              <option>GMD</option>
-                              <option>GNF</option>
-                              <option>GTQ</option>
-                              <option>GYD</option>
-                              <option>HKD</option>
-                              <option>HNL</option>
-                              <option>HRK</option>
-                              <option>HTG</option>
-                              <option>HUF</option>
-                              <option>IDR</option>
-                              <option>ILS</option>
-                              <option>IMP</option>
-                              <option>INR</option>
-                              <option>IQD</option>
-                              <option>IRR</option>
-                              <option>ISK</option>
-                              <option>JEP</option>
-                              <option>JMD</option>
-                              <option>JOD</option>
-                              <option>JPY</option>
-                              <option>KES</option>
-                              <option>KGS</option>
-                              <option>KHR</option>
-                              <option>KMF</option>
-                              <option>KPW</option>
-                              <option>KRW</option>
-                              <option>KWD</option>
-                              <option>KYD</option>
-                              <option>KZT</option>
-                              <option>LAK</option>
-                              <option>LBP</option>
-                              <option>LKR</option>
-                              <option>LRD</option>
-                              <option>LSL</option>
-                              <option>LYD</option>
-                              <option>MAD</option>
-                              <option>MDL</option>
-                              <option>MGA</option>
-                              <option>MKD</option>
-                              <option>MMK</option>
-                              <option>MNT</option>
-                              <option>MOP</option>
-                              <option>MRO</option>
-                              <option>MRU</option>
-                              <option>MUR</option>
-                              <option>MVR</option>
-                              <option>MWK</option>
-                              <option>MXN</option>
-                              <option>MYR</option>
-                              <option>MZN</option>
-                              <option>NAD</option>
-                              <option>NGN</option>
-                              <option>NIO</option>
-                              <option>NOK</option>
-                              <option>NPR</option>
-                              <option>NZD</option>
-                              <option>OMR</option>
-                              <option>PAB</option>
-                              <option>PEN</option>
-                              <option>PGK</option>
-                              <option>PHP</option>
-                              <option>PKR</option>
-                              <option>PLN</option>
-                              <option>PYG</option>
-                              <option>QAR</option>
-                              <option>RON</option>
-                              <option>RSD</option>
-                              <option>RUB</option>
-                              <option>RWF</option>
-                              <option>SAR</option>
-                              <option>SBD</option>
-                              <option>SCR</option>
-                              <option>SDG</option>
-                              <option>SEK</option>
-                              <option>SGD</option>
-                              <option>SHP</option>
-                              <option>SLL</option>
-                              <option>SOS</option>
-                              <option>SRD</option>
-                              <option>SSP</option>
-                              <option>STD</option>
-                              <option>STN</option>
-                              <option>SVC</option>
-                              <option>SYP</option>
-                              <option>SZL</option>
-                              <option>THB</option>
-                              <option>TJS</option>
-                              <option>TMT</option>
-                              <option>TND</option>
-                              <option>TOP</option>
-                              <option>TRY</option>
-                              <option>TTD</option>
-                              <option>TWD</option>
-                              <option>TZS</option>
-                              <option>UAH</option>
-                              <option>UGX</option>
-                              <option>USD</option>
-                              <option>UYU</option>
-                              <option>UZS</option>
-                              <option>VES</option>
-                              <option>VND</option>
-                              <option>VUV</option>
-                              <option>WST</option>
-                              <option>XAF</option>
-                              <option>XAG</option>
-                              <option>XAU</option>
-                              <option>XCD</option>
-                              <option>XDR</option>
-                              <option>XOF</option>
-                              <option>XPD</option>
-                              <option>XPF</option>
-                              <option>XPT</option>
-                              <option>YER</option>
-                              <option>ZAR</option>
-                              <option>ZMW</option>
-                              <option>ZWL</option>
-                           </select>
-                           <label for="floatingSelect1">Fiat Currency</label>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="row ">
-                     <div class="col g-4">
-                        <input type="color" class="form-control form-control-color d-inline-block" id="localpriceColor"
-                           value="#000000" title="Choose your color"
-                           onChange="javascript:setContent(this.value.substring(1),'localpricecolor')">
-                        <label for="localpriceColor" class="form-check-label">Hex</label>
-                     </div>
-                     <div class="col g-4">
-                        <div class="form-check">
-                           <input class="form-check-input" type="checkbox" value="" id="boldlocalprice"
-                              onClick="javascript:displayChecked(this.checked,'localpricecheckedbold')">
-                           <label class="form-check-label" for="boldlocalprice">
-                              Bold
-                           </label>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-md-7 ">
-                  <div class=" rounded px-4 py-2 bg-body-tertiary border shadow-sm position-relative"
-                     style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-title="Copied!"
-                     data-bs-delay="{'show':0,'hide':150}" data-bs-placement="top" data-bs-animation="true"
-                     data-bs-trigger="click"
-                     onclick="navigator.clipboard.writeText(document.getElementById('local-price-code').innerText);window.getSelection().selectAllChildren(document.getElementById('local-price-code'));">
-
-                     <code class="text-primary-emphasis" id="local-price-code">
-                        &#91;url=https://bitcoindata.science/bitcointalk-api.html#local-price&#93;&#91;img height=16&#93;<span id="localprice-src">https://bitcoindata.science/api/localprice.php?coin=<span class="text-danger-emphasis" id="coin">bitcoin</span>&amount=<span class="text-danger-emphasis" id="amount">1</span>&amp;currency=<span class="text-danger-emphasis " id="currency">BRL</span>&amp;hex=<span class="text-danger-emphasis" id="localpricecolor">000000</span><span class="text-danger-emphasis" id="localpricecheckedbold"></span></span>&#91;/img&#93;&#91;/url&#93;
-                     </code>
-                     <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48" title="Click to Copy"
-                        alt="Click to Copy" class="position-absolute top-0 end-0" fill="currentColor"
-                        style="transform: scale(0.5); opacity: 0.6;" data-bs-toggle="tooltip"
-                        data-bs-title="Click to Copy" data-bs-delay="{'show':0,'hide':100}" data-bs-placement="top"
-                        data-bs-animation="true" data-bs-trigger="hover">
-                        <path
-                           d="M9 43.95q-1.2 0-2.1-.9-.9-.9-.9-2.1V10.8h3v30.15h23.7v3Zm6-6q-1.2 0-2.1-.9-.9-.9-.9-2.1v-28q0-1.2.9-2.1.9-.9 2.1-.9h22q1.2 0 2.1.9.9.9.9 2.1v28q0 1.2-.9 2.1-.9.9-2.1.9Zm0-3h22v-28H15v28Zm0 0v-28 28Z">
-                        </path>
-                     </svg>
-                  </div>
-                  <div class="row mt-3 col-5 mx-auto">
-                     <button class="btn btn-success" type="button"
-                        onclick="javascript:reloadImage('localprice-src','localprice-response')">Reload Image</button>
-                  </div>
-               </div>
-            </div>
-
-            <p class="h6 my-3 pt-3">Response:</p>
-            <div class="rounded border-1 border-light bg-bitcointalk p-4 col-md">
-               <img alt="Bitcoin Local Price API" title="Bitcoin Local Price API" width="115" height="16"
-                  id="localprice-response"
-                  src="https://bitcoindata.science/api/localprice.php?coin=bitcoin&amount=0.1&currency=BRL" />
-            </div>
-         </div>
-
-         <!-- Fiat to BTC API -->
-         <div class="my-5" id="fiattobtc">
-            <a href="#fiattobtc" class="link-danger">
-               <h2 class="h2 fw-semibold mb-0">Local Fiat to BTC
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link"
-                     viewBox="0 0 16 16">
-                     <path
-                        d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z" />
-                     <path
-                        d="M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z" />
-                  </svg>
-               </h2>
-            </a>
-
-            <p class="h6 my-3 pt-3">Parameters</p>
-            <table class="table table-striped">
-               <thead>
-                  <tr>
-                     <th scope="col">Name</th>
-                     <th scope="col">Type</th>
-                     <th scope="col">Default</th>
-                     <th scope="col">description</th>
-                  </tr>
-               </thead>
-               <tbody class="table-group-divider">
-                  <tr>
-                     <th scope="row">fiatamount</th>
-                     <td>float</td>
-                     <td>1</td>
-                     <td>The amount of your fiat currency to convert to btc.</td>
-                  </tr>
-                  <tr>
-                     <th scope="row">currency</th>
-                     <td>string</td>
-                     <td>USD</td>
-                     <td>The Fiat currency you want to see the price.</td>
-                  </tr>
-                  <tr>
-                     <th scope="row">hex</th>
-                     <td>string</td>
-                     <td>000000</td>
-                     <td>Hexadecimal color code.</td>
-                  </tr>
-                  <tr>
-                     <th scope="row">bold</th>
-                     <td></td>
-                     <td><i>null</i></td>
-                     <td>Display font in bold when not <i>null</i>.</td>
-                  </tr>
-               </tbody>
-            </table>
-
-            <p class="h6 mt-4 mb-2"> Usage:</p>
-            <p>Requesting how much bitcoin is 10 GBP.</p>
-            <code
-               class="bg-body-secondary p-1 rounded">GET https://bitcoindata.science/api/fiattobtc.php?fiatamount=10&amp;currency=GBP</code>
-
-            <p class="h6 my-3 pt-3">Embed in bitcointalk post:</p>
-
-            <div class="row g-4">
-               <div class="col-md-5">
-                  <div class="row">
-                     <div class="col">
-                        <div class="form-floating">
-                           <input type="number" class="form-control" id="floatingFiatInput" placeholder="Enter a number"
-                              value="10" onChange="javascript:setContent(this.value,'fiatamount')">
-                           <label for="floatingFiatInput">fiatamount</label>
-                        </div>
-                     </div>
-                     <div class="col">
-                        <div class="form-floating">
-                           <select class="form-select" id="floatingSelect0" aria-label="Fiat currency select"
-                              onChange="javascript:setContent(this.value,'fiattobtc-currency')">
-                              <option selected>GBP</option>
-                              <option>AFN</option>
-                              <option>ALL</option>
-                              <option>AMD</option>
-                              <option>ANG</option>
-                              <option>AOA</option>
-                              <option>ARS</option>
-                              <option>AUD</option>
-                              <option>AWG</option>
-                              <option>AZN</option>
-                              <option>BAM</option>
-                              <option>BBD</option>
-                              <option>BDT</option>
-                              <option>BGN</option>
-                              <option>BHD</option>
-                              <option>BIF</option>
-                              <option>BMD</option>
-                              <option>BND</option>
-                              <option>BOB</option>
-                              <option>BRL</option>
-                              <option>BSD</option>
-                              <option>BTN</option>
-                              <option>BWP</option>
-                              <option>BYN</option>
-                              <option>BZD</option>
-                              <option>CAD</option>
-                              <option>CDF</option>
-                              <option>CHF</option>
-                              <option>CLF</option>
-                              <option>CLP</option>
-                              <option>CNH</option>
-                              <option>CNY</option>
-                              <option>COP</option>
-                              <option>CRC</option>
-                              <option>CUC</option>
-                              <option>CUP</option>
-                              <option>CVE</option>
-                              <option>CZK</option>
-                              <option>DJF</option>
-                              <option>DKK</option>
-                              <option>DOP</option>
-                              <option>DZD</option>
-                              <option>EGP</option>
-                              <option>ERN</option>
-                              <option>ETB</option>
-                              <option>EUR</option>
-                              <option>FJD</option>
-                              <option>FKP</option>
-                              <option>GBP</option>
-                              <option>GEL</option>
-                              <option>GGP</option>
-                              <option>GHS</option>
-                              <option>GIP</option>
-                              <option>GMD</option>
-                              <option>GNF</option>
-                              <option>GTQ</option>
-                              <option>GYD</option>
-                              <option>HKD</option>
-                              <option>HNL</option>
-                              <option>HRK</option>
-                              <option>HTG</option>
-                              <option>HUF</option>
-                              <option>IDR</option>
-                              <option>ILS</option>
-                              <option>IMP</option>
-                              <option>INR</option>
-                              <option>IQD</option>
-                              <option>IRR</option>
-                              <option>ISK</option>
-                              <option>JEP</option>
-                              <option>JMD</option>
-                              <option>JOD</option>
-                              <option>JPY</option>
-                              <option>KES</option>
-                              <option>KGS</option>
-                              <option>KHR</option>
-                              <option>KMF</option>
-                              <option>KPW</option>
-                              <option>KRW</option>
-                              <option>KWD</option>
-                              <option>KYD</option>
-                              <option>KZT</option>
-                              <option>LAK</option>
-                              <option>LBP</option>
-                              <option>LKR</option>
-                              <option>LRD</option>
-                              <option>LSL</option>
-                              <option>LYD</option>
-                              <option>MAD</option>
-                              <option>MDL</option>
-                              <option>MGA</option>
-                              <option>MKD</option>
-                              <option>MMK</option>
-                              <option>MNT</option>
-                              <option>MOP</option>
-                              <option>MRO</option>
-                              <option>MRU</option>
-                              <option>MUR</option>
-                              <option>MVR</option>
-                              <option>MWK</option>
-                              <option>MXN</option>
-                              <option>MYR</option>
-                              <option>MZN</option>
-                              <option>NAD</option>
-                              <option>NGN</option>
-                              <option>NIO</option>
-                              <option>NOK</option>
-                              <option>NPR</option>
-                              <option>NZD</option>
-                              <option>OMR</option>
-                              <option>PAB</option>
-                              <option>PEN</option>
-                              <option>PGK</option>
-                              <option>PHP</option>
-                              <option>PKR</option>
-                              <option>PLN</option>
-                              <option>PYG</option>
-                              <option>QAR</option>
-                              <option>RON</option>
-                              <option>RSD</option>
-                              <option>RUB</option>
-                              <option>RWF</option>
-                              <option>SAR</option>
-                              <option>SBD</option>
-                              <option>SCR</option>
-                              <option>SDG</option>
-                              <option>SEK</option>
-                              <option>SGD</option>
-                              <option>SHP</option>
-                              <option>SLL</option>
-                              <option>SOS</option>
-                              <option>SRD</option>
-                              <option>SSP</option>
-                              <option>STD</option>
-                              <option>STN</option>
-                              <option>SVC</option>
-                              <option>SYP</option>
-                              <option>SZL</option>
-                              <option>THB</option>
-                              <option>TJS</option>
-                              <option>TMT</option>
-                              <option>TND</option>
-                              <option>TOP</option>
-                              <option>TRY</option>
-                              <option>TTD</option>
-                              <option>TWD</option>
-                              <option>TZS</option>
-                              <option>UAH</option>
-                              <option>UGX</option>
-                              <option>USD</option>
-                              <option>UYU</option>
-                              <option>UZS</option>
-                              <option>VES</option>
-                              <option>VND</option>
-                              <option>VUV</option>
-                              <option>WST</option>
-                              <option>XAF</option>
-                              <option>XAG</option>
-                              <option>XAU</option>
-                              <option>XCD</option>
-                              <option>XDR</option>
-                              <option>XOF</option>
-                              <option>XPD</option>
-                              <option>XPF</option>
-                              <option>XPT</option>
-                              <option>YER</option>
-                              <option>ZAR</option>
-                              <option>ZMW</option>
-                              <option>ZWL</option>
-                           </select>
-                           <label for="floatingSelect0">Fiat Currency</label>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="row ">
-                     <div class="col g-4">
-                        <input type="color" class="form-control form-control-color d-inline-block" id="fiattobtcColor"
-                           value="#000000" title="Choose your color"
-                           onChange="javascript:setContent(this.value.substring(1),'fiatcolor')">
-                        <label for="fiattobtcColor" class="form-check-label">Hex</label>
-                     </div>
-                     <div class="col g-4">
-                        <div class="form-check">
-                           <input class="form-check-input" type="checkbox" value="" id="boldfiattobtc"
-                              onClick="javascript:displayChecked(this.checked,'fiatcheckedbold')">
-                           <label class="form-check-label" for="boldfiattobtc">
-                              Bold
-                           </label>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-md-7">
-                  <div class="rounded px-4 py-2 bg-body-tertiary border shadow-sm position-relative"
-                     style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-title="Copied!"
-                     data-bs-delay="{'show':0,'hide':150}" data-bs-placement="top" data-bs-animation="true"
-                     data-bs-trigger="click"
-                     onclick="navigator.clipboard.writeText(document.getElementById('fiattobtc-code').innerText);window.getSelection().selectAllChildren(document.getElementById('fiattobtc-code'));">
-
-                     <code class="text-primary-emphasis" id="fiattobtc-code">
-                        &#91;url=https://bitcoindata.science/bitcointalk-api.html#fiattobtc&#93;&#91;img height=16&#93;<span id="fiattobtc-src">https://bitcoindata.science/api/fiattobtc.php?fiatamount=<span class="text-danger-emphasis" id="fiatamount">10</span>&amp;currency=<span class="text-danger-emphasis " id="fiattobtc-currency">GBP</span>&amp;hex=<span class="text-danger-emphasis" id="fiatcolor">000000</span><span class="text-danger-emphasis" id="fiatcheckedbold"></span></span>&#91;/img&#93;&#91;/url&#93;
-                     </code>
-                     <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48" title="Click to Copy"
-                        alt="Click to Copy" class="position-absolute top-0 end-0" fill="currentColor"
-                        style="transform: scale(0.5); opacity: 0.6;" data-bs-toggle="tooltip"
-                        data-bs-title="Click to Copy" data-bs-delay="{'show':0,'hide':100}" data-bs-placement="top"
-                        data-bs-animation="true" data-bs-trigger="hover">
-                        <path
-                           d="M9 43.95q-1.2 0-2.1-.9-.9-.9-.9-2.1V10.8h3v30.15h23.7v3Zm6-6q-1.2 0-2.1-.9-.9-.9-.9-2.1v-28q0-1.2.9-2.1.9-.9 2.1-.9h22q1.2 0 2.1.9.9.9.9 2.1v28q0 1.2-.9 2.1-.9.9-2.1.9Zm0-3h22v-28H15v28Zm0 0v-28 28Z">
-                        </path>
-                     </svg>
-                  </div>
-                  <div class="row mt-3 col-5 mx-auto">
-                     <button class="btn btn-success" type="button"
-                        onclick="javascript:reloadImage('fiattobtc-src','fiattobtc-response')">Reload Image</button>
-                  </div>
-               </div>
-            </div>
-
-            <p class="h6 my-3 pt-3">Response:</p>
-            <div class="rounded border-1 border-light bg-bitcointalk p-4 col-md">
-               <img alt="Local Fiat to BTC" title="Local Fiat to BTC" width="115" height="16" id="fiattobtc-response"
-                  src="https://bitcoindata.science/api/fiattobtc.php?fiatamount=10&currency=GBP" />
-            </div>
-         </div>
-
-         <!-- Address Balance API -->
-         <div class="my-5" id="address-balance">
-            <a href="#address-balance" class="link-danger">
-               <h2 class="h2 fw-semibold mb-0">Address Balance Image
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link"
-                     viewBox="0 0 16 16">
-                     <path
-                        d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z" />
-                     <path
-                        d="M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z" />
-                  </svg>
-               </h2>
-            </a>
-
-            <p class="h6 my-3 pt-3">Parameters</p>
-            <table class="table table-striped">
-               <thead>
-                  <tr>
-                     <th scope="col">Name</th>
-                     <th scope="col">Type</th>
-                     <th scope="col">Default</th>
-                     <th scope="col">description</th>
-                  </tr>
-               </thead>
-               <tbody class="table-group-divider">
-                  <tr>
-                     <th scope="row">address</th>
-                     <td>string</td>
-                     <td>-</td>
-                     <td>Bitcoin address.</td>
-                  </tr>
-                  <tr>
-                     <th scope="row">currency</th>
-                     <td>string</td>
-                     <td>USD</td>
-                     <td>The Fiat currency you want to see the balance. Use <code>NOFIAT</code> to exclude fiat value.</td>
-                  </tr>
-                  <tr>
-                     <th scope="row">hex</th>
-                     <td>string</td>
-                     <td>000000</td>
-                     <td>Hexadecimal color code.</td>
-                  </tr>
-                  <tr>
-                     <th scope="row">bold</th>
-                     <td></td>
-                     <td><i>null</i></td>
-                     <td>Display font in bold when not <i>null</i>.</td>
-                  </tr>
-               </tbody>
-            </table>
-
-            <p class="h6 mt-4 mb-2"> Usage:</p>
-            <p>Requesting the balance of address <samp class="text-break">1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa</samp>
-               in EUR.</p>
-            <code
-               class="bg-body-secondary p-1 rounded">GET https://bitcoindata.science/api/addressbalance.php?address=1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa&amp;currency=EUR</code>
-
-            <p class="h6 my-3 pt-3">Embed in bitcointalk post:</p>
-
-            <div class="row g-4">
-               <div class="col-md-5">
-                  <div class="form-floating mb-3">
-                     <input type="text" class="form-control" id="floatingAddress" placeholder="Bitcoin Address"
-                        value="1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa"
-                        onkeyup="javascript:setContent(this.value,'address')">
-                     <label for="floatingAddress">Bitcoin Address</label>
-                  </div>
-                  <div class="form-floating">
-                     <select class="form-select" id="floatingSelect2" aria-label="Fiat currency select"
-                        onChange="javascript:setContent(this.value,'balance-currency')">
-                        <option>NOFIAT</option>
-                        <option>EUR</option>
-                        <option>AFN</option>
-                        <option>ALL</option>
-                        <option>AMD</option>
-                        <option>ANG</option>
-                        <option>AOA</option>
-                        <option>ARS</option>
-                        <option>AUD</option>
-                        <option>AWG</option>
-                        <option>AZN</option>
-                        <option>BAM</option>
-                        <option>BBD</option>
-                        <option>BDT</option>
-                        <option>BGN</option>
-                        <option>BHD</option>
-                        <option>BIF</option>
-                        <option>BMD</option>
-                        <option>BND</option>
-                        <option>BOB</option>
-                        <option>BRL</option>
-                        <option>BSD</option>
-                        <option>BTN</option>
-                        <option>BWP</option>
-                        <option>BYN</option>
-                        <option>BZD</option>
-                        <option>CAD</option>
-                        <option>CDF</option>
-                        <option>CHF</option>
-                        <option>CLF</option>
-                        <option>CLP</option>
-                        <option>CNH</option>
-                        <option>CNY</option>
-                        <option>COP</option>
-                        <option>CRC</option>
-                        <option>CUC</option>
-                        <option>CUP</option>
-                        <option>CVE</option>
-                        <option>CZK</option>
-                        <option>DJF</option>
-                        <option>DKK</option>
-                        <option>DOP</option>
-                        <option>DZD</option>
-                        <option>EGP</option>
-                        <option>ERN</option>
-                        <option>ETB</option>
-                        <option>EUR</option>
-                        <option>FJD</option>
-                        <option>FKP</option>
-                        <option>GBP</option>
-                        <option>GEL</option>
-                        <option>GGP</option>
-                        <option>GHS</option>
-                        <option>GIP</option>
-                        <option>GMD</option>
-                        <option>GNF</option>
-                        <option>GTQ</option>
-                        <option>GYD</option>
-                        <option>HKD</option>
-                        <option>HNL</option>
-                        <option>HRK</option>
-                        <option>HTG</option>
-                        <option>HUF</option>
-                        <option>IDR</option>
-                        <option>ILS</option>
-                        <option>IMP</option>
-                        <option>INR</option>
-                        <option>IQD</option>
-                        <option>IRR</option>
-                        <option>ISK</option>
-                        <option>JEP</option>
-                        <option>JMD</option>
-                        <option>JOD</option>
-                        <option>JPY</option>
-                        <option>KES</option>
-                        <option>KGS</option>
-                        <option>KHR</option>
-                        <option>KMF</option>
-                        <option>KPW</option>
-                        <option>KRW</option>
-                        <option>KWD</option>
-                        <option>KYD</option>
-                        <option>KZT</option>
-                        <option>LAK</option>
-                        <option>LBP</option>
-                        <option>LKR</option>
-                        <option>LRD</option>
-                        <option>LSL</option>
-                        <option>LYD</option>
-                        <option>MAD</option>
-                        <option>MDL</option>
-                        <option>MGA</option>
-                        <option>MKD</option>
-                        <option>MMK</option>
-                        <option>MNT</option>
-                        <option>MOP</option>
-                        <option>MRO</option>
-                        <option>MRU</option>
-                        <option>MUR</option>
-                        <option>MVR</option>
-                        <option>MWK</option>
-                        <option>MXN</option>
-                        <option>MYR</option>
-                        <option>MZN</option>
-                        <option>NAD</option>
-                        <option>NGN</option>
-                        <option>NIO</option>
-                        <option>NOK</option>
-                        <option>NPR</option>
-                        <option>NZD</option>
-                        <option>OMR</option>
-                        <option>PAB</option>
-                        <option>PEN</option>
-                        <option>PGK</option>
-                        <option>PHP</option>
-                        <option>PKR</option>
-                        <option>PLN</option>
-                        <option>PYG</option>
-                        <option>QAR</option>
-                        <option>RON</option>
-                        <option>RSD</option>
-                        <option>RUB</option>
-                        <option>RWF</option>
-                        <option>SAR</option>
-                        <option>SBD</option>
-                        <option>SCR</option>
-                        <option>SDG</option>
-                        <option>SEK</option>
-                        <option>SGD</option>
-                        <option>SHP</option>
-                        <option>SLL</option>
-                        <option>SOS</option>
-                        <option>SRD</option>
-                        <option>SSP</option>
-                        <option>STD</option>
-                        <option>STN</option>
-                        <option>SVC</option>
-                        <option>SYP</option>
-                        <option>SZL</option>
-                        <option>THB</option>
-                        <option>TJS</option>
-                        <option>TMT</option>
-                        <option>TND</option>
-                        <option>TOP</option>
-                        <option>TRY</option>
-                        <option>TTD</option>
-                        <option>TWD</option>
-                        <option>TZS</option>
-                        <option>UAH</option>
-                        <option>UGX</option>
-                        <option>USD</option>
-                        <option>UYU</option>
-                        <option>UZS</option>
-                        <option>VES</option>
-                        <option>VND</option>
-                        <option>VUV</option>
-                        <option>WST</option>
-                        <option>XAF</option>
-                        <option>XAG</option>
-                        <option>XAU</option>
-                        <option>XCD</option>
-                        <option>XDR</option>
-                        <option>XOF</option>
-                        <option>XPD</option>
-                        <option>XPF</option>
-                        <option>XPT</option>
-                        <option>YER</option>
-                        <option>ZAR</option>
-                        <option>ZMW</option>
-                        <option>ZWL</option>
-                     </select>
-                     <label for="floatingSelect2">Fiat Currency</label>
-                  </div>
-                  <div class="row ">
-                     <div class="col g-4">
-                        <input type="color" class="form-control form-control-color d-inline-block" id="addressColor"
-                           value="#000000" title="Choose your color"
-                           onChange="javascript:setContent(this.value.substring(1),'addresscolor')">
-                        <label for="addressColor" class="form-check-label">Hex</label>
-                     </div>
-                     <div class="col g-4">
-                        <div class="form-check">
-                           <input class="form-check-input" type="checkbox" value="" id="boldaddress"
-                              onClick="javascript:displayChecked(this.checked,'addresscheckedbold')">
-                           <label class="form-check-label" for="boldaddress">
-                              Bold
-                           </label>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-md-7">
-                  <div class="rounded p-4 bg-body-tertiary border shadow-sm position-relative" title="click to copy"
-                     data-bs-toggle="tooltip" data-bs-title="Copied!" data-bs-delay="{'show':0,'hide':150}"
-                     data-bs-placement="top" data-bs-animation="true" data-bs-trigger="click" style="cursor:pointer"
-                     onclick="navigator.clipboard.writeText(document.getElementById('address-balance-code').innerText);window.getSelection().selectAllChildren(document.getElementById('address-balance-code'));">
-
-                     <code class="text-primary-emphasis" id="address-balance-code">
-                        &#91;url=https://bitcoindata.science/bitcointalk-api.html#address-balance&#93;&#91;img height=16&#93;<span id="addressbalance-src">https://bitcoindata.science/api/addressbalance.php?address=<span class="text-danger-emphasis" id="address">1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa</span>&amp;currency=<span class="text-danger-emphasis " id="balance-currency">EUR</span>&amp;hex=<span class="text-danger-emphasis" id="addresscolor">000000</span><span class="text-danger-emphasis" id="addresscheckedbold"></span></span>&#91;/img&#93;&#91;/url&#93;
-                     </code>
-                     <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48" title="Click to Copy"
-                        alt="Click to Copy" class="position-absolute top-0 end-0" fill="currentColor"
-                        style="transform: scale(0.5); opacity: 0.6;" data-bs-toggle="tooltip"
-                        data-bs-title="Click to Copy" data-bs-delay="{'show':0,'hide':100}" data-bs-placement="top"
-                        data-bs-animation="true" data-bs-trigger="hover">
-                        <path
-                           d="M9 43.95q-1.2 0-2.1-.9-.9-.9-.9-2.1V10.8h3v30.15h23.7v3Zm6-6q-1.2 0-2.1-.9-.9-.9-.9-2.1v-28q0-1.2.9-2.1.9-.9 2.1-.9h22q1.2 0 2.1.9.9.9.9 2.1v28q0 1.2-.9 2.1-.9.9-2.1.9Zm0-3h22v-28H15v28Zm0 0v-28 28Z">
-                        </path>
-                     </svg>
-                  </div>
-                  <div class="row mt-3 col-5 mx-auto">
-                     <button class="btn btn-success" type="button"
-                        onclick="javascript:reloadImage('addressbalance-src','addressbalance-response')">Reload
-                        Image</button>
-                  </div>
-               </div>
-            </div>
-            <p class="h6 my-3 pt-3">Response:</p>
-            <div class="rounded border-1 border-light bg-bitcointalk p-4 col-md">
-               <img alt="Bitcoin balance address API" title="Bitcoin balance address API" class="img-fluid" height="16"
-                  id="addressbalance-response"
-                  src="https://bitcoindata.science/api/addressbalance.php?address=1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa&currency=EUR" />
-            </div>
-         </div>
-
-         <!-- Bitcoin Fees API -->
-         <div class="my-5" id="bitcoin-fees">
-            <a href="#bitcoin-fees" class="link-danger">
-               <h2 class="h2 fw-semibold mb-0">Bitcoin Mempool Fees
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link"
-                     viewBox="0 0 16 16">
-                     <path
-                        d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z" />
-                     <path
-                        d="M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z" />
-                  </svg>
-               </h2>
-            </a>
-
-            <p class="h6 mt-4 mb-2"> Usage:</p>
-            <p>Requesting the recommend fees (data from mempool.space).</p>
-            <code class="bg-body-secondary p-1 rounded">GET https://bitcoindata.science/api/bitcoinfees.php</code>
-
-            <p class="h6 my-3 pt-3">Response:</p>
-            <div class="rounded border-1 border-light bg-bitcointalk p-4 col-md">
-               <img alt="Bitcoin Fees" title="Bitcoin Mempool Fees" width="210" height="94"
-                  src="https://bitcoindata.science/api/bitcoinfees.php" />
-            </div>
-            <p class="h6 my-3 pt-3">Embed in bitcointalk post:</p>
-
-            <div class="row g-4">
-               <div class="">
-                  <div class="h-100 rounded p-4 bg-body-tertiary border shadow-sm position-relative"
-                     title="click to copy" data-bs-toggle="tooltip" data-bs-title="Copied!"
-                     data-bs-delay="{'show':0,'hide':150}" data-bs-placement="top" data-bs-animation="true"
-                     data-bs-trigger="click" style="cursor:pointer"
-                     onclick="navigator.clipboard.writeText(document.getElementById('bitcoin-fees-code').innerText);window.getSelection().selectAllChildren(document.getElementById('address-balance-code'));">
-                     <code class="text-primary-emphasis" id="bitcoin-fees-code">
-                     &#91;url=https://bitcoindata.science/bitcointalk-api.html#bitcoin-fees&#93;&#91;img height=100&#93; https://bitcoindata.science/api/bitcoinfees.php&#91;/img&#93;&#91;/url&#93;
-                  </code>
-                     <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48" title="Click to Copy"
-                        alt="Click to Copy" class="position-absolute top-0 end-0" fill="currentColor"
-                        style="transform: scale(0.5); opacity: 0.6;" data-bs-toggle="tooltip"
-                        data-bs-title="Click to Copy" data-bs-delay="{'show':0,'hide':100}" data-bs-placement="top"
-                        data-bs-animation="true" data-bs-trigger="hover">
-                        <path
-                           d="M9 43.95q-1.2 0-2.1-.9-.9-.9-.9-2.1V10.8h3v30.15h23.7v3Zm6-6q-1.2 0-2.1-.9-.9-.9-.9-2.1v-28q0-1.2.9-2.1.9-.9 2.1-.9h22q1.2 0 2.1.9.9.9.9 2.1v28q0 1.2-.9 2.1-.9.9-2.1.9Zm0-3h22v-28H15v28Zm0 0v-28 28Z">
-                        </path>
-                     </svg>
-                  </div>
-               </div>
-            </div>
-         </div>
-
-         <!-- Transaction API -->
-         <div class="my-5" id="transaction">
-            <a href="#transaction" class="link-danger">
-               <h2 class="h2 fw-semibold mb-0">Transaction API
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link"
-                     viewBox="0 0 16 16">
-                     <path
-                        d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z" />
-                     <path
-                        d="M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z" />
-                  </svg>
-               </h2>
-            </a>
-
-            <p class="h6 my-3 pt-3">Parameters</p>
-            <table class="table table-striped">
-               <thead>
-                  <tr>
-                     <th scope="col">Name</th>
-                     <th scope="col">Type</th>
-                     <th scope="col">Default</th>
-                     <th scope="col">description</th>
-                  </tr>
-               </thead>
-               <tbody class="table-group-divider">
-                  <tr>
-                     <th scope="row">id</th>
-                     <td>string</td>
-                     <td>-</td>
-                     <td>Transaction ID</td>
-                  </tr>
-                  <tr>
-                     <th scope="row">hex</th>
-                     <td>string</td>
-                     <td>000000</td>
-                     <td>Hexadecimal color code.</td>
-                  </tr>
-                  <tr>
-                     <th scope="row">bold</th>
-                     <td></td>
-                     <td><i>null</i></td>
-                     <td>Display font in bold when not <i>null</i>.</td>
-                  </tr>
-               </tbody>
-            </table>
-
-            <p class="h6 mt-4 mb-2"> Usage:</p>
-            <p>Requesting data from Transaction ID <samp
-                  class="text-break">bf65241f5379e511bf79f9870253735e484ec0e2e3524a78632e1f73838b1bc2.</samp></p>
-            <code
-               class="bg-body-secondary p-1 rounded">GET https://bitcoindata.science/api/transaction.php?id=bf65241f5379e511bf79f9870253735e484ec0e2e3524a78632e1f73838b1bc2</code>
-
-
-            <p class="h6 my-3 pt-3">Response:</p>
-            <div class="rounded border-1 border-light bg-bitcointalk p-4 col-md">
-               <img alt="Bitcoin Transaction API" title="Bitcoin Transaction API" class="img-fluid" height="230"
-                  src="https://bitcoindata.science/api/transaction.php?id=bf65241f5379e511bf79f9870253735e484ec0e2e3524a78632e1f73838b1bc2" />
-            </div>
-            <p class="h6 my-3 pt-3">Embed in bitcointalk post:</p>
-
-            <div class="row g-4">
-               <div class="col-md-5">
-                  <div class="form-floating mb-3">
-                     <input type="text" class="form-control" id="floatingTransaction" placeholder="id"
-                        value="bf65241f5379e511bf79f9870253735e484ec0e2e3524a78632e1f73838b1bc2"
-                        onkeyup="javascript:setContent(this.value,'transaction-id')">
-                     <label for="floatingTransaction">transaction id</label>
-                  </div>
-               </div>
-               <div class="col-md-7">
-                  <div class="h-100 rounded p-4 bg-body-tertiary border shadow-sm position-relative"
-                     style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-title="Copied!"
-                     data-bs-delay="{'show':0,'hide':150}" data-bs-placement="top" data-bs-animation="true"
-                     data-bs-trigger="click"
-                     onclick="navigator.clipboard.writeText(document.getElementById('transaction-api').innerText);window.getSelection().selectAllChildren(document.getElementById('transaction-api'));">
-
-                     <code class="text-primary-emphasis" id="transaction-api">
-                  &#91;url=https://bitcoindata.science/bitcointalk-api.html#transaction&#93;&#91;img&#93;https://bitcoindata.science/api/transaction.php?id=<span class="text-danger-emphasis" id="transaction-id">bf65241f5379e511bf79f9870253735e484ec0e2e3524a78632e1f73838b1bc2</span>&#91;/img&#93;&#91;/url&#93;
-               </code>
-                     <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48" title="Click to Copy"
-                        alt="Click to Copy" class="position-absolute top-0 end-0" fill="currentColor"
-                        style="transform: scale(0.5); opacity: 0.6;" data-bs-toggle="tooltip"
-                        data-bs-title="Click to Copy" data-bs-delay="{'show':0,'hide':100}" data-bs-placement="top"
-                        data-bs-animation="true" data-bs-trigger="hover">
-                        <path
-                           d="M9 43.95q-1.2 0-2.1-.9-.9-.9-.9-2.1V10.8h3v30.15h23.7v3Zm6-6q-1.2 0-2.1-.9-.9-.9-.9-2.1v-28q0-1.2.9-2.1.9-.9 2.1-.9h22q1.2 0 2.1.9.9.9.9 2.1v28q0 1.2-.9 2.1-.9.9-2.1.9Zm0-3h22v-28H15v28Zm0 0v-28 28Z">
-                        </path>
-                     </svg>
-                  </div>
-               </div>
-            </div>
-         </div>
-
+         <!-- API Endpoints Generated Here -->
+         <div id="api-endpoints"></div>
       </div>
       <!-- /main page -->
    </main>
@@ -1141,24 +92,272 @@
       integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
       crossorigin="anonymous"></script>
    <script>
-      function setContent(value, content) {
-         document.getElementById(content).innerHTML = value;
-      }
+      const currencies = ["NOFIAT", "USD", "EUR", "GBP", "BRL", "AFN", "ALL", "AMD", "ANG", "AOA", "ARS", "AUD", "AWG", "AZN", "BAM", "BBD", "BDT", "BGN", "BHD", "BIF", "BMD", "BND", "BOB", "BSD", "BTN", "BWP", "BYN", "BZD", "CAD", "CDF", "CHF", "CLF", "CLP", "CNH", "CNY", "COP", "CRC", "CUC", "CUP", "CVE", "CZK", "DJF", "DKK", "DOP", "DZD", "EGP", "ERN", "ETB", "FJD", "FKP", "GEL", "GGP", "GHS", "GIP", "GMD", "GNF", "GTQ", "GYD", "HKD", "HNL", "HRK", "HTG", "HUF", "IDR", "ILS", "IMP", "INR", "IQD", "IRR", "ISK", "JEP", "JMD", "JOD", "JPY", "KES", "KGS", "KHR", "KMF", "KPW", "KRW", "KWD", "KYD", "KZT", "LAK", "LBP", "LKR", "LRD", "LSL", "LYD", "MAD", "MDL", "MGA", "MKD", "MMK", "MNT", "MOP", "MRO", "MRU", "MUR", "MVR", "MWK", "MXN", "MYR", "MZN", "NAD", "NGN", "NIO", "NOK", "NPR", "NZD", "OMR", "PAB", "PEN", "PGK", "PHP", "PKR", "PLN", "PYG", "QAR", "RON", "RSD", "RUB", "RWF", "SAR", "SBD", "SCR", "SDG", "SEK", "SGD", "SHP", "SLL", "SOS", "SRD", "SSP", "STD", "STN", "SVC", "SYP", "SZL", "THB", "TJS", "TMT", "TND", "TOP", "TRY", "TTD", "TWD", "TZS", "UAH", "UGX", "UYU", "UZS", "VES", "VND", "VUV", "WST", "XAF", "XAG", "XAU", "XCD", "XDR", "XOF", "XPD", "XPF", "XPT", "YER", "ZAR", "ZMW", "ZWL"];
 
-      function displayChecked(element, target) {
-         if (element == true) {
-            document.getElementById(target).textContent = '&bold';
-         } else {
-            document.getElementById(target).textContent = ('');
+      const endpoints = [
+         {
+            id: "local-price",
+            title: "Price Image in any local currency",
+            description: "Requesting the price of 0.1 bitcoin in BRL.",
+            url: "https://bitcoindata.science/api/localprice.php",
+            imageHeight: 16,
+            defaultParams: { coin: "bitcoin", amount: 0.1, currency: "BRL" },
+            params: [
+               { name: "coin", type: "string", default: "bitcoin", description: "Any cryptocurrency supported by Coingecko", inputType: "text", smallText: "supported coins: <a href='https://api.coingecko.com/api/v3/coins/list' target='_blank'>CoinGecko API</a>" },
+               { name: "amount", type: "float", default: "1", description: "The amount of cryptocurrency. Use '.' as decimal separator.", inputType: "number" },
+               { name: "currency", type: "string", default: "USD", description: "The Fiat currency you want to see the price.", inputType: "select", options: currencies },
+               { name: "hex", type: "string", default: "000000", description: "Hexadecimal color code.", inputType: "color" },
+               { name: "bold", type: "boolean", default: "false", description: "Display font in bold when true.", inputType: "checkbox" },
+               { name: "date", type: "boolean", default: "false", description: "Display date when true.", inputType: "checkbox" },
+               { name: "nocurrency", type: "boolean", default: "false", description: "Hide currency.", inputType: "checkbox" }
+            ]
+         },
+         {
+            id: "fiattobtc",
+            title: "Local Fiat to BTC",
+            description: "Requesting how much bitcoin is 10 GBP.",
+            url: "https://bitcoindata.science/api/fiattobtc.php",
+            imageHeight: 16,
+            defaultParams: { fiatamount: 10, currency: "GBP" },
+            params: [
+               { name: "fiatamount", type: "float", default: "1", description: "The amount of your fiat currency to convert to btc.", inputType: "number" },
+               { name: "currency", type: "string", default: "USD", description: "The Fiat currency you want to convert.", inputType: "select", options: currencies },
+               { name: "hex", type: "string", default: "000000", description: "Hexadecimal color code.", inputType: "color" },
+               { name: "bold", type: "boolean", default: "false", description: "Display font in bold when true.", inputType: "checkbox" },
+               { name: "date", type: "boolean", default: "false", description: "Display date when true.", inputType: "checkbox" }
+            ]
+         },
+         {
+            id: "address-balance",
+            title: "Address Balance Image",
+            description: "Requesting the balance of address 1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa in EUR.",
+            url: "https://bitcoindata.science/api/addressbalance.php",
+            imageHeight: 16,
+            defaultParams: { address: "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa", currency: "EUR" },
+            params: [
+               { name: "address", type: "string", default: "", description: "Bitcoin address.", inputType: "text" },
+               { name: "currency", type: "string", default: "USD", description: "The Fiat currency you want to see the balance. Use NOFIAT to exclude fiat value.", inputType: "select", options: currencies },
+               { name: "hex", type: "string", default: "000000", description: "Hexadecimal color code.", inputType: "color" },
+               { name: "bold", type: "boolean", default: "false", description: "Display font in bold when true.", inputType: "checkbox" },
+               { name: "date", type: "boolean", default: "false", description: "Display date when true.", inputType: "checkbox" }
+            ]
+         },
+         {
+            id: "bitcoin-fees",
+            title: "Bitcoin Mempool Fees",
+            description: "Requesting the recommend fees (data from mempool.space).",
+            url: "https://bitcoindata.science/api/bitcoinfees.php",
+            imageHeight: 110,
+            defaultParams: {},
+            params: [
+               { name: "hex", type: "string", default: "000000", description: "Hexadecimal color code.", inputType: "color" },
+               { name: "bold", type: "boolean", default: "false", description: "Display font in bold when true.", inputType: "checkbox" },
+               { name: "date", type: "boolean", default: "false", description: "Display date when true.", inputType: "checkbox" }
+            ]
+         },
+         {
+            id: "transaction",
+            title: "Transaction API",
+            description: "Requesting data from Transaction ID bf65241f5379e511bf79f9870253735e484ec0e2e3524a78632e1f73838b1bc2.",
+            url: "https://bitcoindata.science/api/transaction.php",
+            imageHeight: 230,
+            defaultParams: { id: "bf65241f5379e511bf79f9870253735e484ec0e2e3524a78632e1f73838b1bc2" },
+            params: [
+               { name: "id", type: "string", default: "", description: "Transaction ID", inputType: "text" },
+               { name: "hex", type: "string", default: "000000", description: "Hexadecimal color code.", inputType: "color" },
+               { name: "bold", type: "boolean", default: "false", description: "Display font in bold when true.", inputType: "checkbox" },
+               { name: "date", type: "boolean", default: "false", description: "Display date when true.", inputType: "checkbox" }
+            ]
          }
+      ];
+
+      function updateEndpoint(epId) {
+         const ep = endpoints.find(e => e.id === epId);
+         let queryParts = [];
+
+         ep.params.forEach(p => {
+            const el = document.getElementById(`${epId}-${p.name}`);
+            if (!el) return;
+
+            if (p.inputType === 'checkbox') {
+               if (el.checked) {
+                  queryParts.push(`${p.name}=true`);
+               }
+            } else if (p.inputType === 'color') {
+               let val = el.value.substring(1).toLowerCase();
+               if (val && val !== '000000') {
+                  queryParts.push(`${p.name}=${val}`);
+               }
+            } else {
+               let val = el.value;
+               if (val !== '') {
+                  queryParts.push(`${p.name}=${encodeURIComponent(val)}`);
+               }
+            }
+         });
+
+         let url = ep.url;
+         if (queryParts.length > 0) {
+            url += '?' + queryParts.join('&');
+         }
+
+         const codeEl = document.getElementById(`${epId}-code`);
+         const bbcode = `[url=https://bitcoindata.science/bitcointalk-api.html#${epId}][img height=${ep.imageHeight}]${url}[/img][/url]`;
+         codeEl.innerText = bbcode;
+
+         const imgEl = document.getElementById(`${epId}-response`);
+         imgEl.src = url;
       }
 
-      function reloadImage(src, target) {
-         document.getElementById(target).src = document.getElementById(src).textContent
+      function reloadImage(epId) {
+         updateEndpoint(epId);
+         const imgEl = document.getElementById(`${epId}-response`);
+         const src = new URL(imgEl.src);
+         src.searchParams.set('_t', Date.now());
+         imgEl.src = src.toString();
       }
-      // Tooltips
-      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+      document.addEventListener("DOMContentLoaded", () => {
+         const container = document.getElementById("api-endpoints");
+         let html = '';
+
+         endpoints.forEach(ep => {
+            const queryParamsStr = Object.entries(ep.defaultParams).map(([k, v]) => `${k}=${v}`).join('&');
+            const usageUrl = `${ep.url}${queryParamsStr ? '?' + queryParamsStr : ''}`;
+
+            let paramsRows = ep.params.map(p => `
+                  <tr>
+                     <th scope="row">${p.name}</th>
+                     <td>${p.type || ''}</td>
+                     <td>${p.type === 'boolean' ? '<i>null</i>' : p.default}</td>
+                     <td>${p.description}</td>
+                  </tr>
+            `).join('');
+
+            let inputsHtml = '';
+            let checksHtml = '';
+
+            ep.params.forEach(p => {
+               let inputId = `${ep.id}-${p.name}`;
+               let val = ep.defaultParams[p.name] !== undefined ? ep.defaultParams[p.name] : p.default;
+
+               if (p.inputType === 'text' || p.inputType === 'number') {
+                  inputsHtml += `
+                  <div class="col-md-6 mb-3">
+                     <div class="form-floating">
+                        <input type="${p.inputType}" class="form-control" id="${inputId}" placeholder="${p.name}" value="${val}" oninput="updateEndpoint('${ep.id}')">
+                        <label for="${inputId}">${p.name}</label>
+                     </div>
+                     ${p.smallText ? `<small class="text-muted">${p.smallText}</small>` : ''}
+                  </div>`;
+               } else if (p.inputType === 'select') {
+                  let options = p.options.map(opt => `<option ${opt === val ? 'selected' : ''}>${opt}</option>`).join('');
+                  inputsHtml += `
+                  <div class="col-md-6 mb-3">
+                     <div class="form-floating">
+                        <select class="form-select" id="${inputId}" onchange="updateEndpoint('${ep.id}')">
+                           ${options}
+                        </select>
+                        <label for="${inputId}">${p.name}</label>
+                     </div>
+                  </div>`;
+               } else if (p.inputType === 'color') {
+                  checksHtml += `
+                  <div class="col-auto mb-3">
+                     <input type="color" class="form-control form-control-color d-inline-block" id="${inputId}" value="#${val === '000000' || val === '000' || !val ? '000000' : val}" oninput="updateEndpoint('${ep.id}')" title="Choose color">
+                     <label for="${inputId}" class="form-check-label ms-1">Hex</label>
+                  </div>`;
+               } else if (p.inputType === 'checkbox') {
+                  checksHtml += `
+                  <div class="col-auto mb-3">
+                     <div class="form-check mt-2">
+                        <input class="form-check-input" type="checkbox" id="${inputId}" onchange="updateEndpoint('${ep.id}')" ${val === true ? 'checked' : ''}>
+                        <label class="form-check-label" for="${inputId}">${p.name}</label>
+                     </div>
+                  </div>`;
+               }
+            });
+
+            html += `
+               <div class="my-5" id="${ep.id}">
+                  <a href="#${ep.id}" class="link-danger">
+                     <h2 class="h2 fw-semibold mb-0">${ep.title}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link" viewBox="0 0 16 16">
+                           <path d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z" />
+                           <path d="M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z" />
+                        </svg>
+                     </h2>
+                  </a>
+
+                  <p class="h6 my-3 pt-3">Parameters</p>
+                  <table class="table table-striped">
+                     <thead>
+                        <tr>
+                           <th scope="col">Name</th>
+                           <th scope="col">Type</th>
+                           <th scope="col">Default</th>
+                           <th scope="col">description</th>
+                        </tr>
+                     </thead>
+                     <tbody class="table-group-divider">
+                        ${paramsRows}
+                     </tbody>
+                  </table>
+
+                  <p class="h6 mt-4 mb-2"> Usage:</p>
+                  <p>${ep.description}</p>
+                  <code class="bg-body-secondary p-1 rounded">GET ${usageUrl}</code>
+
+                  <p class="h6 my-3 pt-3">Embed in bitcointalk post:</p>
+
+                  <div class="row g-4">
+                     <div class="col-md-5">
+                        <div class="row">
+                           ${inputsHtml}
+                        </div>
+                        <div class="row align-items-center">
+                           ${checksHtml}
+                        </div>
+                     </div>
+                     <div class="col-md-7">
+                        <div class="rounded px-4 py-2 bg-body-tertiary border shadow-sm position-relative text-break"
+                           style="cursor: pointer;" data-bs-toggle="tooltip" data-bs-title="Copied!"
+                           data-bs-delay='{"show":0,"hide":150}' data-bs-placement="top" data-bs-animation="true"
+                           data-bs-trigger="click"
+                           onclick="navigator.clipboard.writeText(document.getElementById('${ep.id}-code').innerText);window.getSelection().selectAllChildren(document.getElementById('${ep.id}-code'));">
+
+                           <code class="text-primary-emphasis" id="${ep.id}-code"></code>
+                           <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48" title="Click to Copy"
+                              class="position-absolute top-0 end-0" fill="currentColor"
+                              style="transform: scale(0.5); opacity: 0.6;" data-bs-toggle="tooltip"
+                              data-bs-title="Click to Copy" data-bs-delay='{"show":0,"hide":100}' data-bs-placement="top"
+                              data-bs-animation="true" data-bs-trigger="hover">
+                              <path d="M9 43.95q-1.2 0-2.1-.9-.9-.9-.9-2.1V10.8h3v30.15h23.7v3Zm6-6q-1.2 0-2.1-.9-.9-.9-.9-2.1v-28q0-1.2.9-2.1.9-.9 2.1-.9h22q1.2 0 2.1.9.9.9.9 2.1v28q0 1.2-.9 2.1-.9.9-2.1.9Zm0-3h22v-28H15v28Zm0 0v-28 28Z"></path>
+                           </svg>
+                        </div>
+                        <div class="row mt-3 col-5 mx-auto">
+                           <button class="btn btn-success" type="button" onclick="reloadImage('${ep.id}')">Reload Image</button>
+                        </div>
+                     </div>
+                  </div>
+
+                  <p class="h6 my-3 pt-3">Response:</p>
+                  <div class="rounded border-1 border-light bg-bitcointalk p-4 col-md overflow-x-auto">
+                     <img alt="${ep.title}" title="${ep.title}" height="${ep.imageHeight}" id="${ep.id}-response" />
+                  </div>
+               </div>
+            `;
+         });
+
+         container.innerHTML = html;
+
+         // Initialize all endpoints
+         endpoints.forEach(ep => updateEndpoint(ep.id));
+
+         // Initialize tooltips
+         const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+         [...tooltipTriggerList].forEach(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+      });
    </script>
 </body>
 

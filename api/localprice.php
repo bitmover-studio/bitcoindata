@@ -7,6 +7,7 @@ $currency = "usd";
 $amount = 1;
 $rates = 1;
 $hex = "000";
+$nocurrency = false;
 
 if (isset($_GET["currency"]))
     $currency = strtolower($_GET["currency"]);
@@ -17,6 +18,8 @@ if (isset($_GET["coin"]))
     $coin = $_GET["coin"];
 if (isset($_GET["hex"]))
     $hex = strtolower($_GET["hex"]);
+if (isset($_GET["nocurrency"]))
+    $nocurrency = filter_var($_GET["nocurrency"], FILTER_VALIDATE_BOOLEAN);
 
 $btcpriceusd = getBTCPriceUsd($coin);
 
@@ -26,8 +29,8 @@ $rates = getFiatRates($currency);
 
 $str = $amount * $btcpriceusd * $rates;
 $string = number_format($str, 2);
-$string = $string . " " . $currency;
-
+if (!$nocurrency) { $string = $string . " " . $currency;}
+if ($nocurrency == true) { $string = $string . "";}
 header('Content-type: image/gif'); // filetype
 
 $font = 4;
