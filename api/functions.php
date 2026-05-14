@@ -30,33 +30,59 @@ function getRawData($url)
 
 function getBTCPriceUsd($coin)
 {
-    if ($coin === 'bitcoin') {
-        $priceUrl = "https://api.coingecko.com/api/v3/simple/price?ids=" . $coin . '&vs_currencies=usd&x_cg_demo_api_key=' . getenv('COINGECKO_API_KEY');
-        $backupPriceUrl = 'https://api.binance.com/api/v3/ticker/24hr?symbol=BTCUSDT';
-        $storedPricefile = 'priceusd.json';
+    $storedPricefile = 'price_' . $coin . '_usd.json';
 
-        if (file_exists($storedPricefile) && (time() - filemtime($storedPricefile)) < 3 * 60) { //file younger than 3 minutes
-            $data = json_decode(file_get_contents($storedPricefile));
-            $btcpriceusd = $data->price;
-        } else {
-            $data = getData($priceUrl);
-            if ($data === false) {
-                $data = getData($backupPriceUrl);
-                $btcpriceusd = (float) $data->lastPrice;
-            } else {
-                $btcpriceusd = $data->$coin->usd;
-            }
-            $data = ['price' => $btcpriceusd];
-            $json = json_encode($data, JSON_PRETTY_PRINT);
-            file_put_contents('priceusd.json', $json);
+    // 1. Check for fresh cache file
+    if (file_exists($storedPricefile) && (time() - filemtime($storedPricefile)) < 3 * 60) { //younger than 3 minutes
+        $data = json_decode(file_get_contents($storedPricefile));
+        if (isset($data->price)) {
+            return $data->price;
         }
-        return $btcpriceusd;
-    } else {
-        $priceUrl = "https://api.coingecko.com/api/v3/simple/price?ids=" . $coin . '&vs_currencies=usd';
-        $data = getData($priceUrl);
-        $altcoinpriceusd = $data->$coin->usd;
-        return $altcoinpriceusd;
     }
+
+    // 2. Fetch from primary source (CoinGecko)
+    $price = null;
+    $priceUrl = "https://api.coingecko.com/api/v3/simple/price?ids=" . $coin . '&vs_currencies=usd&x_cg_demo_api_key=' . getenv('COINGECKO_API_KEY');
+    $data = getData($priceUrl);
+
+    if ($data !== false && isset($data->$coin) && isset($data->$coin->usd)) {
+        $price = $data->$coin->usd;
+    } else {
+        // 3. Fetch from backup source (Binance) if primary fails
+        $symbolMap = [
+            'bitcoin' => 'BTCUSDT',
+            'monero' => 'XMRUSDT',
+            'ethereum' => 'ETHUSDT',
+            // Add other coin mappings from CoinGecko ID to Binance Symbol here
+        ];
+
+        if (isset($symbolMap[$coin])) {
+            $symbol = $symbolMap[$coin];
+            $backupPriceUrl = 'https://api.binance.com/api/v3/ticker/24hr?symbol=' . $symbol;
+            $backupData = getData($backupPriceUrl);
+            if ($backupData !== false && isset($backupData->lastPrice)) {
+                $price = (float) $backupData->lastPrice;
+            }
+        }
+    }
+
+    // 4. If a price was found from any source, cache it and return.
+    if ($price !== null) {
+        $cacheData = ['price' => $price];
+        $json = json_encode($cacheData, JSON_PRETTY_PRINT);
+        file_put_contents($storedPricefile, $json);
+        return $price;
+    }
+
+    // 5. If all API calls fail, as a last resort, use a stale cache file if it exists.
+    if (file_exists($storedPricefile)) {
+        $data = json_decode(file_get_contents($storedPricefile));
+        if (isset($data->price)) {
+            return $data->price;
+        }
+    }
+
+    return false; // Indicate failure if no price could be determined
 }
 
 function getFiatRates($currency)
