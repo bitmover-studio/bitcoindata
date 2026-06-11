@@ -27,6 +27,9 @@ $dataUrl = "https://mempool.space/api/address/" . $address;
 $explorerjsonArray = getData($dataUrl);
 
 $addressbalance = ($explorerjsonArray->chain_stats->funded_txo_sum - $explorerjsonArray->chain_stats->spent_txo_sum) / 100000000;
+if (isset($_GET["totalreceived"])) {
+    $addressbalance = $explorerjsonArray->chain_stats->funded_txo_sum / 100000000;
+}
 $addressvalue = number_format($addressbalance * $price, 2);
 
 if ($currency === "NOFIAT")
