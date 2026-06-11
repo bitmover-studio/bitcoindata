@@ -23,6 +23,19 @@ else
 
 $price = $btcpriceusd * $rates;
 
+if (isset($_GET["receivedfromothers"])) {
+    $dataUrl = "https://mempool.space/api/address/" . $address . "/txs";
+    $explorerjsonArray = getData($dataUrl);
+    $addressbalance = 0;
+    foreach ($explorerjsonArray as $transaction) {
+        foreach ($transaction->vin as $input) {
+            if (isset($input->prevout->scriptpubkey_address) && $input->prevout->scriptpubkey_address === $address) {
+                $addressbalance += $input->prevout->value;
+            }
+        }
+    }
+    $addressbalance = $addressbalance / 100000000;
+} else {
 $dataUrl = "https://mempool.space/api/address/" . $address;
 $explorerjsonArray = getData($dataUrl);
 
@@ -30,6 +43,8 @@ $addressbalance = ($explorerjsonArray->chain_stats->funded_txo_sum - $explorerjs
 if (isset($_GET["totalreceived"])) {
     $addressbalance = $explorerjsonArray->chain_stats->funded_txo_sum / 100000000;
 }
+}
+
 $addressvalue = number_format($addressbalance * $price, 2);
 
 if ($currency === "NOFIAT")
