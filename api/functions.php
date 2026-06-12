@@ -145,3 +145,14 @@ function printDate($image, $height, $textcolor)
         imagestring($image, 1.8, 1.8, 1 + ($height / 2), $date, $textcolor);
     }
 }
+
+// Clean up .gif files older than 1 hour (3600 seconds)
+$files = glob('*.gif');
+$now = time();
+foreach ($files as $file) {
+    if (is_file($file)) {
+        if ($now - filemtime($file) >= 3600) {
+            unlink($file);
+        }
+    }
+}

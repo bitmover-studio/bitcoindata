@@ -62,9 +62,18 @@ printDate($image, $height, $textcolor);
 
 header('Content-type: image/gif');
 
-imagegif($image, 'fiattobtc.gif');
+$filenameParts = ['fiattobtc'];
+if (isset($coin)) $filenameParts[] = $coin;
+if (isset($currency)) $filenameParts[] = $currency;
+if (isset($fiatamount)) $filenameParts[] = $fiatamount;
+if (isset($hex)) $filenameParts[] = $hex;
+if (isset($_GET['date'])) $filenameParts[] = 'date';
+if (isset($_GET['bold'])) $filenameParts[] = 'bold';
+$filename = implode('_', $filenameParts) . '.gif';
 
-readfile('fiattobtc.gif');
+imagegif($image, $filename);
+
+readfile($filename);
 imagedestroy($image); // free up memory
 exit;
 

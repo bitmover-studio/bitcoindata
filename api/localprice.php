@@ -61,9 +61,19 @@ printDate($image,$height,$textcolor);
 
 header('Content-type: image/gif');
 
-imagegif($image, 'localprice.gif');
+$filenameParts = ['localprice'];
+if (isset($coin)) $filenameParts[] = $coin;
+if (isset($currency)) $filenameParts[] = $currency;
+if (isset($amount)) $filenameParts[] = $amount;
+if (isset($hex)) $filenameParts[] = $hex;
+if (isset($_GET['nocurrency']) && $_GET['nocurrency'] !== 'false') $filenameParts[] = 'nocurrency';
+if (isset($_GET['date'])) $filenameParts[] = 'date';
+if (isset($_GET['bold'])) $filenameParts[] = 'bold';
+$filename = implode('_', $filenameParts) . '.gif';
 
-readfile('localprice.gif');
+imagegif($image, $filename);
+
+readfile($filename);
 imagedestroy($image); // free up memory
 exit;
 

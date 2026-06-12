@@ -88,8 +88,16 @@ if (isset($_GET["bold"])) {
 
 header('Content-type: image/gif');
 
-imagegif($image, 'addressbalance.gif');
+$filenameParts = ['addressbalance'];
+if (isset($address)) $filenameParts[] = $address;
+if (isset($hex)) $filenameParts[] = $hex;
+if (isset($_GET['totalreceived'])) $filenameParts[] = 'totalreceived';
+if (isset($_GET['receivedfromothers'])) $filenameParts[] = 'receivedfromothers';
+if (isset($_GET['bold'])) $filenameParts[] = 'bold';
+$filename = implode('_', $filenameParts) . '.gif';
 
-readfile('addressbalance.gif');
+imagegif($image, $filename);
+
+readfile($filename);
 imagedestroy($image); // free up memory
 exit;
