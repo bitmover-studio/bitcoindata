@@ -28,9 +28,20 @@ if (isset($_GET["receivedfromothers"])) {
     $explorerjsonArray = getData($dataUrl);
     $addressbalance = 0;
     foreach ($explorerjsonArray as $transaction) {
+        $isFromSelf = false;
+        // Check if the address is in any of the transaction's inputs.
         foreach ($transaction->vin as $input) {
             if (isset($input->prevout->scriptpubkey_address) && $input->prevout->scriptpubkey_address === $address) {
-                $addressbalance += $input->prevout->value;
+                $isFromSelf = true;
+                break; // Found the address in inputs
+            }
+        }
+        // Sum the values of all outputs sent to this address that are not from the address itself.
+        if (!$isFromSelf) {
+            foreach ($transaction->vout as $output) {
+                if (isset($output->scriptpubkey_address) && $output->scriptpubkey_address === $address) {
+                    $addressbalance += $output->value;
+                }
             }
         }
     }
