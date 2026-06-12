@@ -307,7 +307,7 @@
 
                   <p class="h6 mt-4 mb-2"> Usage:</p>
                   <p>${ep.description}</p>
-                  <code class="bg-body-secondary p-1 rounded">GET ${usageUrl}</code>
+                  <code class="bg-body-secondary p-1 rounded">GET ${usageUrl.replace(/&/g, '&amp;')}</code>
 
                   <p class="h6 my-3 pt-3">Embed in bitcointalk post:</p>
 
