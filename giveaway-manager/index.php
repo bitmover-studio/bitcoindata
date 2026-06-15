@@ -81,13 +81,12 @@
 
         <div class="mb-3">
           <div class="form-floating border-0">
-            <input type="number" min="1" step="1" max="30"
+            <input type="number" min="1" step="1"
               onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
               class="form-control border-0 bg-body-secondary rounded-2 text-body-emphasis fw-medium" id="n_winners"
               value="1">
             <label for="n_winners" class="fw-medium lh-base fs-6">How many winners?</label>
 
-            <div class="small text-muted mb-2">max: 30</div>
           </div>
         </div>
 
@@ -158,9 +157,26 @@
       <p></p>
 
       <p>For additional winners, the past winners are removed from the list and one more digit is added from the
-        blockhash. A maximum 30 was added to avoid working with big numbers.</p>
+        blockhash.</p>
 
     </article>
+
+    <!-- Winner Modal -->
+    <div class="modal fade" id="winnerModal" tabindex="-1" aria-labelledby="winnerModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+          <div class="modal-header border-0">
+            <h1 class="modal-title fs-5" id="winnerModalLabel">Giveaway Results</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body text-center" id="modal-winners-list">
+          </div>
+          <div class="modal-footer justify-content-center border-0">
+            <button type="button" class="btn btn-primary px-5" data-bs-dismiss="modal">Awesome!</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
   <footer-component></footer-component>
   <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
@@ -211,11 +227,13 @@
         document.getElementById("rolled-number").innerHTML = decimal;
         winnerDiv.innerHTML = winner;
 
+        let modalWinnersHtml = `<p><strong>Winner: </strong><br><span class="h4"><span class="badge text-bg-success mt-2">${winner}</span></span></p>`;
+
         // Remove the first winner from pool
         competitors.splice(index_number, 1);
 
         // Logic for Additional Winners
-        if (nWinnersInput > 1 && nWinnersInput < 31) {
+        if (nWinnersInput) {
           for (let step = 1; step < nWinnersInput; step++) {
             let n_winner_decimal = parseInt(blockhash.slice(-(6 + step), blockhash.length - step), 16);
             let n_winner_index_number = n_winner_decimal % competitors.length;
@@ -225,9 +243,23 @@
               nWinnerDiv.innerHTML += `
             <p><strong>Winner ${step + 1}: </strong>
             <span class="h4"><span class="badge text-bg-success">${n_winner}</span></span></p>`;
+              modalWinnersHtml += `<p><strong>Winner ${step + 1}: </strong><br><span class="h4"><span class="badge text-bg-success mt-2">${n_winner}</span></span></p>`;
               competitors.splice(n_winner_index_number, 1);
             }
           }
+        }
+
+        document.getElementById('modal-winners-list').innerHTML = modalWinnersHtml;
+        let winnerModalEl = document.getElementById('winnerModal');
+        let winnerModal = bootstrap.Modal.getInstance(winnerModalEl) || new bootstrap.Modal(winnerModalEl);
+        winnerModal.show();
+
+        if (typeof confetti === 'function') {
+          confetti({
+            particleCount: 150,
+            spread: 70,
+            origin: { y: 0.6 }
+          });
         }
 
       } catch (error) {
@@ -306,6 +338,7 @@
     }
 
   </script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
 </body>
 
 </html>
