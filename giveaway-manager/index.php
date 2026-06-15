@@ -212,9 +212,16 @@
 
       try {
         // Fetch the block hash
-        const response = await fetch(`https://mempool.space/api/block-height/${blockInput}`);
+        let response;
+        try {
+          response = await fetch(`https://mempool.space/api/block-height/${blockInput}`);
+          if (!response.ok) throw new Error('Primary API error');
+        } catch (e) {
+          // Fallback to proxy
+          response = await fetch(`/api/block-height.php?block=${blockInput}`);
+        }
 
-        if (!response.ok) throw new Error('Block not found');
+        if (!response || !response.ok) throw new Error('Block not found');
 
         const blockhash = await response.text();
 
