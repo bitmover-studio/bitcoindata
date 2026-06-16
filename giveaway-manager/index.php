@@ -103,7 +103,7 @@
 
         <div class="form-group row mt-4">
           <div class="col-auto">
-            <button type="submit" class="btn btn-primary d-inline-flex align-items-center justify-content-center btn-lg px-5" id="submitbutton" style="position: relative; overflow: hidden; transition: background-color 0.3s ease;">
+            <button type="submit" class="btn btn-primary btn-lg d-inline-flex align-items-center justify-content-center px-4" id="submitbutton" style="position: relative; overflow: hidden; transition: background-color 0.3s ease;">
               <span id="submit-label" style="transition: opacity 0.2s, transform 0.2s;">Submit</span>
               <div id="submit-spinner" class="spinner-border spinner-border-sm" role="status" style="opacity: 0; transform: scale(0.5); position: absolute; transition: opacity 0.2s, transform 0.2s; pointer-events: none;">
                 <span class="visually-hidden">Loading...</span>
@@ -132,7 +132,7 @@
 
     <div class="bg-body-tertiary rounded-0 p-md-5 p-4 mt-2">
       <h3 class="mb-4">Results</h3>
-      <p>Block hash: <output id="block-output"></output></p>
+      <p>Block hash: <output id="block-output" class="text-break"></output></p>
       <div id="verify"></div>
       <p>Decimal number: <code class="text-primary text-break" id="rolled-number"></code></p>
       <p class="mb-0 pb-0"><strong>Winner: </strong><span class="h4"><span id="winner"
