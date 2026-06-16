@@ -91,7 +91,7 @@ function getFiatRates($currency)
     $storedRatesfile = 'rates.json';
 
     if ($currency != 'USD' && $currency != 'BDT') {
-        if (file_exists($storedRatesfile) && (time() - filemtime($storedRatesfile)) < 10 * 60 * 60) { //file younger than 10 hours
+        if (file_exists($storedRatesfile) && (time() - filemtime($storedRatesfile)) < 20 * 60 * 60) { //file younger than 20 hours
             $exchangerate = json_decode(file_get_contents($storedRatesfile));
             $rates = $exchangerate->$usdcurrency;
         } else {
@@ -99,8 +99,10 @@ function getFiatRates($currency)
             $exchangeratejson = getData($exchangerate);
             $data = $exchangeratejson->quotes;
             $json = json_encode($data, JSON_PRETTY_PRINT);
+            if ($exchangeratejson->success == true) {
             file_put_contents('rates.json', $json);
             $rates = $exchangeratejson->quotes->$usdcurrency;
+            }
         }
     } else if ($currency == 'BDT') {
         $url = 'https://p2p.binance.com/bapi/c2c/v2/public/c2c/adv/quoted-price';

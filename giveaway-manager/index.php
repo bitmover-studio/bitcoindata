@@ -103,7 +103,17 @@
 
         <div class="form-group row mt-4">
           <div class="col-auto">
-            <button type="submit" class="btn btn-primary d-inline-block btn-lg px-5" id="submitbutton">Submit</button>
+            <button type="submit" class="btn btn-primary d-inline-flex align-items-center justify-content-center btn-lg px-5" id="submitbutton" style="position: relative; overflow: hidden; transition: background-color 0.3s ease;">
+              <span id="submit-label" style="transition: opacity 0.2s, transform 0.2s;">Submit</span>
+              <div id="submit-spinner" class="spinner-border spinner-border-sm" role="status" style="opacity: 0; transform: scale(0.5); position: absolute; transition: opacity 0.2s, transform 0.2s; pointer-events: none;">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+              <div id="submit-success" style="opacity: 0; transform: scale(0.5); position: absolute; transition: opacity 0.2s, transform 0.2s; pointer-events: none;">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 6L9 17l-5-5" />
+                </svg>
+              </div>
+            </button>
           </div>
           <div class="col-auto">
             <button type="button" class="btn btn-secondary d-inline-block btn-lg px-4"
@@ -196,6 +206,10 @@
 
     async function go() {
       const submitBtn = document.getElementById('submitbutton');
+      const submitLabel = document.getElementById('submit-label');
+      const submitSpinner = document.getElementById('submit-spinner');
+      const submitSuccess = document.getElementById('submit-success');
+
       const winnerDiv = document.getElementById("winner");
       const nWinnerDiv = document.getElementById("n_winner_div");
       const blockInput = document.getElementById("block").value;
@@ -203,12 +217,22 @@
       const competitorsInput = document.getElementById("manually").value;
 
       // Winners Reset
-      submitBtn.innerHTML = '<div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div>';
+      if (submitLabel) {
+        submitBtn.style.pointerEvents = 'none';
+        submitLabel.style.opacity = '0';
+        submitLabel.style.transform = 'translateY(-10px)';
+        submitSpinner.style.opacity = '1';
+        submitSpinner.style.transform = 'scale(1)';
+      } else {
+        submitBtn.innerHTML = '<div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div>';
+      }
       winnerDiv.innerHTML = "";
       nWinnerDiv.innerHTML = '';
       document.getElementById("rolled-number").innerHTML = '';
 
       const competitors = competitorsInput.split("\n").filter(n => n.trim());
+
+      let isSuccess = false;
 
       try {
         // Fetch the block hash
@@ -268,6 +292,7 @@
             origin: { y: 0.6 }
           });
         }
+        isSuccess = true;
 
       } catch (error) {
         // Error Handling (Block not mined yet)
@@ -285,7 +310,34 @@
           document.getElementById("block-output").innerHTML = "Error fetching block data.";
         }
       } finally {
-        submitBtn.innerText = "Submit";
+        if (submitLabel) {
+          if (isSuccess) {
+            submitSpinner.style.opacity = '0';
+            submitSpinner.style.transform = 'scale(0.5)';
+            submitSuccess.style.opacity = '1';
+            submitSuccess.style.transform = 'scale(1)';
+            submitBtn.classList.remove('btn-primary');
+            submitBtn.classList.add('btn-success');
+            
+            setTimeout(() => {
+              submitSuccess.style.opacity = '0';
+              submitSuccess.style.transform = 'scale(0.5)';
+              submitLabel.style.opacity = '1';
+              submitLabel.style.transform = 'translateY(0)';
+              submitBtn.classList.remove('btn-success');
+              submitBtn.classList.add('btn-primary');
+              submitBtn.style.pointerEvents = 'auto';
+            }, 3000);
+          } else {
+            submitSpinner.style.opacity = '0';
+            submitSpinner.style.transform = 'scale(0.5)';
+            submitLabel.style.opacity = '1';
+            submitLabel.style.transform = 'translateY(0)';
+            submitBtn.style.pointerEvents = 'auto';
+          }
+        } else {
+          submitBtn.innerText = "Submit";
+        }
       }
     }
 
