@@ -71,11 +71,19 @@
             <label for="BalanceChecker" class="fw-medium lh-base fs-6">Your Bitcoin Addresses</label>
          </div>
 
-         <div class="d-flex">
-            <button title="Get Balance" type="button" id="submit"
-               class="btn btn-success d-inline-block px-5 me-3" onclick="handleClick()">Get
-               Balance</button>
-            <button type="button" class="btn btn-primary d-inline-block" title="Scan Address" id="startButton" data-bs-toggle="modal" data-bs-target="#readerModal">
+         <div class="d-flex justify-content-start gap-2 gap-md-3">
+            <button type="submit" class="btn btn-primary btn-lg d-inline-flex align-items-center justify-content-center px-4" id="submitbutton" style="position: relative; overflow: hidden; transition: background-color 0.3s ease;">
+              <span id="submit-label" style="transition: opacity 0.2s, transform 0.2s;">Get Balance</span>
+              <div id="submit-spinner" class="spinner-border spinner-border-sm position-absolute" role="status" style="opacity:0; transition: opacity 0.2s, transform 0.2s; pointer-events: none;">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+              <div id="submit-success" style="opacity: 0; transform: scale(0.5); position: absolute; transition: opacity 0.2s, transform 0.2s; pointer-events: none;">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 6L9 17l-5-5" />
+                </svg>
+              </div>
+            </button>
+            <button type="button" class="btn btn-primary btn-lg d-inline-block" title="Scan Address" id="startButton" data-bs-toggle="modal" data-bs-target="#readerModal">
                <span class="d-none d-md-inline">Scan</span>
                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-qr-code my-1" viewBox="0 0 16 16">
                   <path d="M2 2h2v2H2z" />

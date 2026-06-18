@@ -105,7 +105,7 @@
           <div class="col-auto">
             <button type="submit" class="btn btn-primary btn-lg d-inline-flex align-items-center justify-content-center px-4" id="submitbutton" style="position: relative; overflow: hidden; transition: background-color 0.3s ease;">
               <span id="submit-label" style="transition: opacity 0.2s, transform 0.2s;">Submit</span>
-              <div id="submit-spinner" class="spinner-border spinner-border-sm" role="status" style="opacity: 0; transform: scale(0.5); position: absolute; transition: opacity 0.2s, transform 0.2s; pointer-events: none;">
+              <div id="submit-spinner" class="spinner-border spinner-border-sm position-absolute" role="status" style="opacity: 0; transition: opacity 0.2s, transform 0.2s; pointer-events: none;">
                 <span class="visually-hidden">Loading...</span>
               </div>
               <div id="submit-success" style="opacity: 0; transform: scale(0.5); position: absolute; transition: opacity 0.2s, transform 0.2s; pointer-events: none;">
@@ -222,7 +222,6 @@
         submitLabel.style.opacity = '0';
         submitLabel.style.transform = 'translateY(-10px)';
         submitSpinner.style.opacity = '1';
-        submitSpinner.style.transform = 'scale(1)';
       } else {
         submitBtn.innerHTML = '<div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div>';
       }
@@ -313,7 +312,6 @@
         if (submitLabel) {
           if (isSuccess) {
             submitSpinner.style.opacity = '0';
-            submitSpinner.style.transform = 'scale(0.5)';
             submitSuccess.style.opacity = '1';
             submitSuccess.style.transform = 'scale(1)';
             submitBtn.classList.remove('btn-primary');
@@ -330,7 +328,6 @@
             }, 3000);
           } else {
             submitSpinner.style.opacity = '0';
-            submitSpinner.style.transform = 'scale(0.5)';
             submitLabel.style.opacity = '1';
             submitLabel.style.transform = 'translateY(0)';
             submitBtn.style.pointerEvents = 'auto';

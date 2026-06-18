@@ -109,8 +109,29 @@ async function getBalances(price) {
   } else {
     await getMultipleAddressBalance(price, addressesList)
   }
-  document.getElementById("submit").innerHTML = 'Get Balance!'
-  document.getElementById("submit").disabled = false;
+
+  const submitBtn = document.getElementById("submitbutton");
+  if (submitBtn) {
+    const submitLabel = document.getElementById("submit-label");
+    const submitSpinner = document.getElementById("submit-spinner");
+    const submitSuccess = document.getElementById("submit-success");
+
+    submitSpinner.style.opacity = '0';
+    submitSuccess.style.opacity = '1';
+    submitSuccess.style.transform = 'scale(1)';
+    submitBtn.classList.remove('btn-primary');
+    submitBtn.classList.add('btn-success');
+
+    setTimeout(() => {
+      submitSuccess.style.opacity = '0';
+      submitSuccess.style.transform = 'scale(0.5)';
+      submitLabel.style.opacity = '1';
+      submitLabel.style.transform = 'scale(1)';
+      submitBtn.classList.remove('btn-success');
+      submitBtn.classList.add('btn-primary');
+      submitBtn.disabled = false;
+    }, 2000);
+  }
 
   outputArea.innerHTML = `
 <div class="bg-body-tertiary rounded-4 p-md-5 p-4 mt-5 shadow-sm">
@@ -178,10 +199,25 @@ function jsonToCsv(jsonarray) {
   return csvrecord;
 }
 
+let timerCompareBalance;
+
 function handleClick() {
-  clearInterval(timerCompareBalance);
-  document.getElementById("submit").innerHTML = '<span class="spinner-border spinner-border-sm me-3" role="status" aria-hidden="true"></span>Loading...'
-  document.getElementById("submit").disabled = true;
+  if (timerCompareBalance) clearInterval(timerCompareBalance);
+
+  const submitBtn = document.getElementById("submitbutton");
+  if (submitBtn) {
+    const submitLabel = document.getElementById("submit-label");
+    const submitSpinner = document.getElementById("submit-spinner");
+    const submitSuccess = document.getElementById("submit-success");
+
+    submitBtn.disabled = true;
+    submitLabel.style.opacity = '0';
+    submitLabel.style.transform = 'scale(0.5)';
+    submitSpinner.style.opacity = '1';
+    submitSuccess.style.opacity = '0';
+    submitSuccess.style.transform = 'scale(0.5)';
+  }
+
   balance = [];
   addressesList = [];
   textArea = document.getElementById('BalanceChecker');
@@ -189,7 +225,7 @@ function handleClick() {
   addressesList = addressesList.filter(n => n);
   getBtcPrice().then(price => getBalances(price))
 
-  var timerCompareBalance = setInterval(() => {
+  timerCompareBalance = setInterval(() => {
     getBtcPrice().then(price => compareBalance(price));
   }, 300000)
 }
@@ -270,4 +306,9 @@ function toggleFilter() {
       }
     });
   }
+}
+
+const submitBtn = document.getElementById("submitbutton");
+if (submitBtn) {
+  submitBtn.addEventListener("click", handleClick);
 }
