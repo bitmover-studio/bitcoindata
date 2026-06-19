@@ -78,7 +78,7 @@
       Added this website to his server.</div>
 
    <p class="my-4 h4">Overview Stats and Traffic</p>
-   Website has an average traffic of over 17000 unique visitors last month.
+   <p>Website had an average traffic of over 20,000 unique visitors last month.</p>
    <img src="img/traffic-stats.png" class="img-fluid rounded mt-3" width="768" height="212"
       title="Website Traffic" alt="Cloudflare Website Traffic">
 
