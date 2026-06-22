@@ -244,7 +244,7 @@ function handleClick() {
   addressesList = [];
   textArea = document.getElementById('BalanceChecker');
   addressesList = textArea.value.split("\n");
-  addressesList = addressesList.filter(n => n);
+  addressesList = addressesList.filter(n => n.startsWith('b') || (n.startsWith('3') || n.startsWith('1')));
   getBtcPrice().then(price => getBalances(price))
 
   timerCompareBalance = setInterval(() => {
