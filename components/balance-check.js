@@ -38,7 +38,6 @@ let balance = [];
 const outputArea = document.getElementById("balances")
 async function getMultipleAddressBalance(price, balancearray) {
   var list = balancearray.join("|")
-  console.log(list)
   try {
     const response = await fetch('https://blockchain.info/balance?active=' + balancearray);
     const data = await response.json();
@@ -95,6 +94,10 @@ function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+function sortBalanceDescending(array) {
+  return array.sort((a, b) => b.balance - a.balance);
+}
+
 // Declare an async function that waits for a delay and then calls another async function
 async function getBalances(price) {
   balance = [];
@@ -109,6 +112,11 @@ async function getBalances(price) {
   } else {
     await getMultipleAddressBalance(price, addressesList)
   }
+
+  sortBalanceDescending(balance);
+
+  // 1. Calculate the total wallet balance
+  const totalWalletBalance = balance.reduce((a, e) => a + e.balance, 0) || 1;
 
   const submitBtn = document.getElementById("submitbutton");
   if (submitBtn) {
@@ -137,7 +145,7 @@ async function getBalances(price) {
 <div class="bg-body-tertiary rounded-4 p-md-5 p-4 mt-5 shadow-sm">
   <div class="row p-3 mb-3 fw-semibold">
     <div class="col-md-6 text-primary-emphasis">Total number of addresses: ${balance.length}</div>
-    <div class="col-md-3 text-start text-md-end pe-0">${balance.reduce((a, e) => a + e.balance, 0).toLocaleString(undefined, { minimumFractionDigits: 8, maximumFractionDigits: 8 })} BTC</div>
+    <div class="col-md-3 text-start text-md-end pe-0">${totalWalletBalance.toLocaleString(undefined, { minimumFractionDigits: 8, maximumFractionDigits: 8 })} BTC</div>
     <div class="col-md-3 text-start text-md-end pe-0">${balance.reduce((a, e) => a + e.value, 0).toLocaleString("en-US", { style: "currency", currency: "USD" })}</div>
   </div>
 
@@ -161,25 +169,39 @@ async function getBalances(price) {
     </div>
   </div>
 
-  ${balance.map(i => `
-    <div class="p-3 my-3 fw-semibold border-0 rounded" id=${i.address}>
-      <div class="row">
-        <div class="col-md-6"><code><a target="_blank" rel="noreferrer" title="${i.address}" href="https://mempool.space/address/${i.address}">${i.address}</a></code></div>
+  ${balance.map(i => {
+    // 2. Calculate share percentage of the total pool
+    const sharePercentage = (i.balance / totalWalletBalance) * 100;
+    
+    return `
+    <div class="p-3 my-3 fw-semibold border-0 rounded" onMouseOver="this.classList.add('bg-primary-subtle')" onMouseOut="this.classList.remove('bg-primary-subtle')" id=${i.address}>
+      <div class="row align-items-center">
+        <div class="col-md-5"><code><a target="_blank" rel="noreferrer" title="${i.address}" href="https://mempool.space/address/${i.address}">${i.address}</a></code></div>
         <div class="col-md-3 text-start text-md-end pe-0">${i.balance.toLocaleString(undefined, { minimumFractionDigits: 8, maximumFractionDigits: 8 })} BTC</div>
         <div class="col-md-3 text-start text-md-end pe-0">${i.value.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</div>
+        <div class="col-md-1 text-start text-md-end text-muted small">${sharePercentage.toFixed(2)}%</div>
       </div>
+      
+      <div class="row mt-2">
+        <div class="col-12">
+          <div class="progress" style="height: 6px; background-color: rgba(0,0,0,0.05);">
+            <div class="progress-bar bg-primary" role="progressbar" style="width: ${sharePercentage}%; transition: width 0.6s ease;" aria-valuenow="${sharePercentage}" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div>
+      </div>
+
       ${i.unconfirmed !== 0 ? `
-        <div class="row text-warning-emphasis">
-          <div class="col-md-6"><code>unconfirmed</code></div>
+        <div class="row text-warning-emphasis mt-1">
+          <div class="col-md-5"><code>unconfirmed</code></div>
           <div class="col-md-3 text-start text-md-end pe-0">${i.unconfirmed.toLocaleString(undefined, { minimumFractionDigits: 8, maximumFractionDigits: 8 })} BTC</div>
           <div class="col-md-3 text-start text-md-end pe-0">${i.unconfirmed_value.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</div>
+          <div class="col-md-1"></div>
         </div>` : ''}
     </div>
-  `).join('')}
+  `}).join('')}
 
 </div>`
-  }
-
+}
 
 function download(content, fileName, contentType) {
   const a = document.createElement("a");
@@ -241,26 +263,36 @@ async function compareBalance(price) {
     await delay(500);
     await getAddressBalance(i, price, newBalance)
   };
-  for (let i in balance) {
-    if (balance[i].balance !== newBalance[i].balance) {
+
+  const oldBalanceByAddress = Object.fromEntries(balance.map(item => [item.address, item]));
+  const newBalanceByAddress = Object.fromEntries(newBalance.map(item => [item.address, item]));
+
+  for (const address of Object.keys(newBalanceByAddress)) {
+    const oldEntry = oldBalanceByAddress[address];
+    const newEntry = newBalanceByAddress[address];
+    if (!oldEntry || !newEntry) continue;
+
+    if (oldEntry.balance !== newEntry.balance) {
       modalText = {
-        address: newBalance[i].address,
-        balance: newBalance[i].balance,
-        value: newBalance[i].value,
+        address: newEntry.address,
+        balance: newEntry.balance,
+        value: newEntry.value,
         color: "",
         title: "New transaction",
         body: "confirmed"
       };
+      break;
     }
-    else if (balance[i].unconfirmed !== newBalance[i].unconfirmed) {
+    else if (oldEntry.unconfirmed !== newEntry.unconfirmed) {
       modalText = {
-        address: newBalance[i].address,
-        balance: newBalance[i].unconfirmed,
-        value: newBalance[i].unconfirmed_value,
+        address: newEntry.address,
+        balance: newEntry.unconfirmed,
+        value: newEntry.unconfirmed_value,
         color: "text-warning-emphasis",
         title: "Incoming transaction",
         body: "unconfirmed"
       };
+      break;
     }
   }
 
