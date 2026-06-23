@@ -24,6 +24,9 @@ $currency = strtoupper($currency);
 
 $rates = getFiatRates($currency);
 
+if ($rates == 0 || $rates == null || $rates == false) {
+    $rates = 1;
+}
 $str = $fiatamount / ($btcpriceusd * $rates);
 $string = number_format($str, 8);
 if (strtolower($coin) === 'bitcoin') {

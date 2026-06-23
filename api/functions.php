@@ -30,8 +30,11 @@ function getRawData($url)
 
 function getBTCPriceUsd($coin)
 {
-    $storedPricefile = 'price_' . $coin . '_usd.json';
-
+    if (strtolower($coin) == 'bitcoin') {
+        $storedPricefile = 'priceusd.json';
+    } else {
+        $storedPricefile = 'price_' . $coin . '_usd.json';
+    }
     // 1. Check for fresh cache file
     if (file_exists($storedPricefile) && (time() - filemtime($storedPricefile)) < 3 * 60) { //younger than 3 minutes
         $data = json_decode(file_get_contents($storedPricefile));
@@ -97,11 +100,11 @@ function getFiatRates($currency)
         } else {
             $exchangerate = "http://api.exchangerate.host/live?access_key=" . getenv("API_KEY");
             $exchangeratejson = getData($exchangerate);
-            $data = $exchangeratejson->quotes;
-            $json = json_encode($data, JSON_PRETTY_PRINT);
-            if ($exchangeratejson->success == true) {
-            file_put_contents('rates.json', $json);
-            $rates = $exchangeratejson->quotes->$usdcurrency;
+            // if exchangeratejson->success exists and is true, set rates to exchangeratejson->quotes->$usdcurrency
+            if (isset($exchangeratejson->success) && $exchangeratejson->success == true) {
+                $rates = $exchangeratejson->quotes->$usdcurrency;
+            } else {
+                $rates = 1;
             }
         }
     } else if ($currency == 'BDT') {

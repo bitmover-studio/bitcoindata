@@ -3,7 +3,7 @@
 
 <head>
    <?php 
-   $title = "Withdrawal Strategy - bitcoin data.science";
+   $title = "JJG Withdrawal Strategy - bitcoin data.science";
    $description = "Ideas of sustainable withdrawal that attempts to measure monthly budget limits based spot price relative to the 200-week moving average";
    $keywords = "Withdrawal, profit, Strategy, bitcoin, moving average, 200 weeks";
    $canonical = "https://bitcoindata.science/withdrawal-strategy";
@@ -52,7 +52,7 @@
    </header>
    <!-- Page Content -->
    <?php
-   $h1 = 'Sustainable Withdrawal Strategy';
+   $h1 = 'JJG Sustainable Withdrawal Strategy';
    $h2 = 'Ideas of a sustainable withdrawal strategy considering 200-week moving averages.';
    include_once $_SERVER['DOCUMENT_ROOT'] . '/components/page-header.php';
    ?>
@@ -61,7 +61,7 @@
          price relative to the 200-Week Moving Average (200-WMA). <span class="small"><a
                href="https://bitcointalk.org/index.php?topic=5475347.msg63213914#msg63213914"
                class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover small fw-semibold"
-               title="Reference">Reference</a> </span></p>
+               title="Reference">by JayJuanGee (JJG)</a> </span></p>
       <div class="row row-cols-1 row-cols-lg-4  row-cols-md-3 row-cols-sm-2 g-4">
          <div class="col">
             <div class="card bg-transparent border-0">
