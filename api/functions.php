@@ -92,22 +92,12 @@ function getFiatRates($currency)
 {
     $usdcurrency = "USD" . $currency;
     $storedRatesfile = 'rates.json';
+    $rates = null;
 
-    if ($currency != 'USD' && $currency != 'BDT') {
-        if (file_exists($storedRatesfile) && (time() - filemtime($storedRatesfile)) < 20 * 60 * 60) { //file younger than 20 hours
-            $exchangerate = json_decode(file_get_contents($storedRatesfile));
-            $rates = $exchangerate->$usdcurrency;
-        } else {
-            $exchangerate = "http://api.exchangerate.host/live?access_key=" . getenv("API_KEY");
-            $exchangeratejson = getData($exchangerate);
-            // if exchangeratejson->success exists and is true, set rates to exchangeratejson->quotes->$usdcurrency
-            if (isset($exchangeratejson->success) && $exchangeratejson->success == true) {
-                $rates = $exchangeratejson->quotes->$usdcurrency;
-            } else {
-                $rates = 1;
-            }
-        }
-    } else if ($currency == 'BDT') {
+    if ($currency == 'USD') {
+        return 1;
+    }
+    if ($currency == 'BDT') {
         $url = 'https://p2p.binance.com/bapi/c2c/v2/public/c2c/adv/quoted-price';
         $postFields = array(
             'assets' => array('USDT'),
@@ -128,11 +118,59 @@ function getFiatRates($currency)
         $context = stream_context_create($options);
         $result = file_get_contents($url, false, $context);
         $exratejsonArray = json_decode($result);
-        $rates = $exratejsonArray->data[0]->referencePrice;
-    } else {
-        $rates = 1;
+        if ($exratejsonArray && isset($exratejsonArray->data[0]->referencePrice)) {
+            return $exratejsonArray->data[0]->referencePrice;
+        }
     }
-    return $rates;
+
+    // 1. Check for fresh cache file
+    if (file_exists($storedRatesfile) && (time() - filemtime($storedRatesfile)) < 20 * 60 * 60) { //file younger than 20 hours
+        $rateData = json_decode(file_get_contents($storedRatesfile));
+        if (isset($rateData->{$usdcurrency})) {
+            return $rateData->{$usdcurrency};
+        }
+    }
+
+    // 2. Fetch from primary source (exchangerate.host)
+    $exchangerate = "http://api.exchangerate.host/live?access_key=" . getenv("API_KEY");
+    $responseJson = getData($exchangerate);
+
+    if (isset($responseJson->success) && $responseJson->success == true) {
+        $rateData = $responseJson->quotes;
+        // Cache the successful response
+        $json = json_encode($rateData, JSON_PRETTY_PRINT);
+        file_put_contents($storedRatesfile, $json);
+        if (isset($rateData->{$usdcurrency})) {
+            return $rateData->{$usdcurrency};
+        }
+    } else {
+        // 3. Fetch from backup source (forexrateapi.com)
+        $forexrate = "https://api.forexrateapi.com/v1/latest?api_key=" . getenv("FOREX_API_KEY");
+        $backupResponseJson = getData($forexrate);
+        if (isset($backupResponseJson->success) && $backupResponseJson->success == true) {
+            $rateData = new stdClass();
+            foreach ($backupResponseJson->rates as $key => $value) {
+                $rateData->{'USD' . $key} = $value;
+            }
+            $rateData->USDUSD = 1.0; // Add USD base rate
+            // Cache the transformed data
+            $json = json_encode($rateData, JSON_PRETTY_PRINT);
+            file_put_contents($storedRatesfile, $json);
+            if (isset($rateData->{$usdcurrency})) {
+                return $rateData->{$usdcurrency};
+            }
+        }
+    }
+
+    // 4. If all API calls fail, as a last resort, use a stale cache file if it exists.
+    if (file_exists($storedRatesfile)) {
+        $rateData = json_decode(file_get_contents($storedRatesfile));
+        if (isset($rateData->{$usdcurrency})) {
+            return $rateData->{$usdcurrency};
+        }
+    }
+
+    return 0; // Indicate failure
 }
 
 function allocateHexColor($image, $hex)

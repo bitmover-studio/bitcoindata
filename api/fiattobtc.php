@@ -24,8 +24,12 @@ $currency = strtoupper($currency);
 
 $rates = getFiatRates($currency);
 
-if ($rates == 0 || $rates == null || $rates == false) {
-    $rates = 1;
+if ($rates === 0 || $rates === null || $rates === false) {
+    $string = "Error fetching rate";
+} else {
+    $str = $amount * $btcpriceusd * $rates;
+    $string = number_format($str, 2);
+    if (!$nocurrency) { $string = $string . " " . $currency;}
 }
 $str = $fiatamount / ($btcpriceusd * $rates);
 $string = number_format($str, 8);

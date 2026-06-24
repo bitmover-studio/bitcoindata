@@ -26,13 +26,14 @@ $btcpriceusd = getBTCPriceUsd($coin);
 $currency = strtoupper($currency);
 
 $rates = getFiatRates($currency);
-if ($rates == 0 || $rates == null || $rates == false) {
-    $rates = 1;
+
+if ($rates === 0 || $rates === null || $rates === false) {
+    $string = "Error fetching rate";
+} else {
+    $str = $amount * $btcpriceusd * $rates;
+    $string = number_format($str, 2);
+    if (!$nocurrency) { $string = $string . " " . $currency;}
 }
-$str = $amount * $btcpriceusd * $rates;
-$string = number_format($str, 2);
-if (!$nocurrency) { $string = $string . " " . $currency;}
-if ($nocurrency == true) { $string = $string . "";}
 header('Content-type: image/gif'); // filetype
 
 $font = 4;

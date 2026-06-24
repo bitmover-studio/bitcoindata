@@ -62,72 +62,72 @@
                href="https://bitcointalk.org/index.php?topic=5475347.msg63213914#msg63213914"
                class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover small fw-semibold"
                title="Reference">by JayJuanGee (JJG)</a> </span></p>
-      <div class="row row-cols-1 row-cols-lg-4  row-cols-md-3 row-cols-sm-2 g-4">
-         <div class="col">
-            <div class="card bg-transparent border-0">
-               <div class="card-body">
-                  <div class="card-text mb-2">Price Above 200-WMA(%)</div>
-                  <h5 class="card-title" id="pricesma">
-                     <div class="d-flex justify-content-center fw-normal">
-                        <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
-                           <span class="visually-hidden">Loading...</span>
-                        </div>
+   <?php
+   $cards = [
+       [
+           'body' => '<div class="card-text mb-2">Price Above 200-WMA(%)</div>
+               <h5 class="card-title" id="pricesma">
+                  <div class="d-flex justify-content-center fw-normal">
+                     <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+                        <span class="visually-hidden">Loading...</span>
                      </div>
-                  </h5>
-                  <div class="card-text mb-2">Date </div>
-                  <span class="h5 fw-semibold" id="currentDate">&nbsp;</span>
-               </div>
-            </div>
-         </div>
-         <div class="col">
-            <div class="card bg-transparent border-0">
-               <div class="card-body">
-                  <div class="card-text mb-2">BTC Spot Price</div>
-                  <h5 class="card-title display-6 fw-semibold" id="BTCPrice">&nbsp; </h5>
-                  <div class="card-text mb-2">BTC Stash Value (Spot) </div>
-                  <span class="h5 fw-semibold" id="stashValue">&nbsp;</span>
-               </div>
-            </div>
-         </div>
-         <div class="col">
-            <div class="card bg-transparent border-0">
-               <div class="card-body">
-                  <div class="card-text mb-2">200-week MA</div>
-                  <h5 class="card-title display-6 fw-semibold" id="sma">&nbsp; </h5>
-                  <div class="card-text my-2">BTC Stash Value (200-WMA)</div>
-                  <span class="h5 fw-semibold" id="stashWMAValue">&nbsp; </span>
-               </div>
-            </div>
-         </div>
-         <div class="col">
-            <div class="card bg-transparent border-0">
-               <div class="card-body">
-                  <div class="card-text mb-2">Day's Range</div>
-                  <div class="d-flex justify-content-between align-items-center">
-                     <div id="minDayPrice" class="small">&nbsp; </div>
-                     <div class="progress flex-grow-1 mx-2" role="progressbar" aria-label="Day's Range" id="priceRange">
-                        <div class="progress-bar bg-secondary" id="priceRangeLength"></div>
-                     </div>
-                     <div id="maxDayPrice" class="small">&nbsp; </div>
                   </div>
-               </div>
-               <div class="card-body">
-                  <div class="card-text mb-2">200-Week's Range</div>
-                  <div class="d-flex justify-content-between align-items-center">
-                     <div id="min200WPrice" class="small">&nbsp; </div>
-                     <div class="progress flex-grow-1 mx-2" role="progressbar" aria-label="Day's Range"
-                        id="price200WRange">
-                        <div class="progress-bar bg-secondary" id="price200WRangeLength"></div>
-                     </div>
-                     <div id="max200WPrice" class="small">&nbsp; </div>
+               </h5>
+               <div class="card-text mb-2">Date </div>
+               <span class="h5 fw-semibold" id="currentDate">&nbsp;</span>'
+       ],
+       [
+           'body' => '<div class="card-text mb-2">BTC Spot Price</div>
+               <h5 class="card-title display-6 fw-semibold" id="BTCPrice">&nbsp; </h5>
+               <div class="card-text mb-2">BTC Stash Value (Spot) </div>
+               <span class="h5 fw-semibold" id="stashValue">&nbsp;</span>'
+       ],
+       [
+           'body' => '<div class="card-text mb-2">200-week MA</div>
+               <h5 class="card-title display-6 fw-semibold" id="sma">&nbsp; </h5>
+               <div class="card-text my-2">BTC Stash Value (200-WMA)</div>
+               <span class="h5 fw-semibold" id="stashWMAValue">&nbsp; </span>'
+       ],
+       [
+           'body' => '<div class="card-text mb-2">Day\'s Range</div>
+               <div class="d-flex justify-content-between align-items-center">
+                  <div id="minDayPrice" class="small">&nbsp; </div>
+                  <div class="progress flex-grow-1 mx-2" role="progressbar" aria-label="Day\'s Range" id="priceRange">
+                     <div class="progress-bar bg-secondary" id="priceRangeLength"></div>
                   </div>
+                  <div id="maxDayPrice" class="small">&nbsp; </div>
+               </div>',
+           'body2' => '<div class="card-text mb-2">200-Week\'s Range</div>
+               <div class="d-flex justify-content-between align-items-center">
+                  <div id="min200WPrice" class="small">&nbsp; </div>
+                  <div class="progress flex-grow-1 mx-2" role="progressbar" aria-label="Day\'s Range"
+                     id="price200WRange">
+                     <div class="progress-bar bg-secondary" id="price200WRangeLength"></div>
+                  </div>
+                  <div id="max200WPrice" class="small">&nbsp; </div>
+               </div>'
+       ]
+   ];
+   ?>
+   <div class="row row-cols-1 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 g-4 mt-1">
+       <?php foreach ($cards as $card): ?>
+           <div class="col px-1">
+               <div class="card bg-body-tertiary border-0 shadow-sm h-100 rounded-4">
+                   <div class="card-body">
+                       <?= $card['body'] ?>
+                   </div>
+                   <?php if (isset($card['body2'])): ?>
+                       <div class="card-body">
+                           <?= $card['body2'] ?>
+                       </div>
+                   <?php endif; ?>
                </div>
-            </div>
-         </div>
-      </div>
+           </div>
+       <?php endforeach; ?>
+   </div>
 
       <div class="row mt-4 mb-1 g-3 bg-body-tertiary rounded-top-4 p-4 shadow-sm">
-         <div class="col-md-2 text-end">
+         <div class="col-md-3 text-end">
             <p class="h5 mt-3 pt-3">Input Area</p>
             <div class="row g-3 mb-4 pt-3">
                <label for="wrate" class="form-label h6">Annual Withdrawal Rate</label>
@@ -186,7 +186,7 @@
                </div>
             </div>
          </div>
-         <div class="col-md-7">
+         <div class="col-md-6">
             <div class="card border-0 bg-transparent text-center">
                <h4 class="card-header bg-transparent h3">
                   Bitcoin Price / 200 WMA Chart
