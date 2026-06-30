@@ -47,21 +47,28 @@ if (isset($_GET["receivedfromothers"])) {
     }
     $addressbalance = $addressbalance / 100000000;
 } else {
-$dataUrl = "https://mempool.space/api/address/" . $address;
-$explorerjsonArray = getData($dataUrl);
+    $dataUrl = "https://mempool.space/api/address/" . $address;
+    $explorerjsonArray = getData($dataUrl);
 
-$addressbalance = ($explorerjsonArray->chain_stats->funded_txo_sum - $explorerjsonArray->chain_stats->spent_txo_sum) / 100000000;
-if (isset($_GET["totalreceived"])) {
-    $addressbalance = $explorerjsonArray->chain_stats->funded_txo_sum / 100000000;
-}
+    $addressbalance = ($explorerjsonArray->chain_stats->funded_txo_sum - $explorerjsonArray->chain_stats->spent_txo_sum) / 100000000;
+    if (isset($_GET["totalreceived"])) {
+        $addressbalance = $explorerjsonArray->chain_stats->funded_txo_sum / 100000000;
+    }
 }
 
 $addressvalue = number_format($addressbalance * $price, 2);
 
+// Handle the abbreviation if the 'short' parameter is passed
+$displayAddress = $address;
+if (isset($_GET["short"]) && strlen($address) > 10) {
+    // Takes the first 5 and last 5 characters. Adjust numbers if you prefer a different length.
+    $displayAddress = substr($address, 0, 5) . "..." . substr($address, -5);
+}
+
 if ($currency === "NOFIAT")
-    $string = $address . " " . number_format($addressbalance, 8) . " BTC";
+    $string = $displayAddress . " " . number_format($addressbalance, 8) . " BTC";
 else
-    $string = $address . " " . number_format($addressbalance, 8) . " BTC - " . $addressvalue . " " . $currency;
+    $string = $displayAddress . " " . number_format($addressbalance, 8) . " BTC - " . $addressvalue . " " . $currency;
 
 //create image
 
@@ -86,7 +93,7 @@ if (isset($_GET["bold"])) {
     $height = (imagefontheight($font)+1);
 }
 
-header('Content-type: image/gif');
+// Note: header('Content-type: image/gif'); was called twice in your original code, removed the duplicate here.
 
 $filenameParts = ['addressbalance'];
 if (isset($address)) $filenameParts[] = $address;
@@ -94,6 +101,8 @@ if (isset($hex)) $filenameParts[] = $hex;
 if (isset($_GET['totalreceived'])) $filenameParts[] = 'totalreceived';
 if (isset($_GET['receivedfromothers'])) $filenameParts[] = 'receivedfromothers';
 if (isset($_GET['bold'])) $filenameParts[] = 'bold';
+if (isset($_GET['short'])) $filenameParts[] = 'short'; // Added parameter to filename
+
 $filename = implode('_', $filenameParts) . '.gif';
 
 imagegif($image, $filename);
