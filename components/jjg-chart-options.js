@@ -39,6 +39,10 @@ window.Apex = {
         show: true,
         horizontalAlign: 'left',
         position: 'top',
+        markers: {
+            strokeWidth: 0,
+            offsetX: -2
+        }
     },
     theme: {
         mode: localStorage.getItem('theme'),

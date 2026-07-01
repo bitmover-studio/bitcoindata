@@ -62,68 +62,89 @@
                href="https://bitcointalk.org/index.php?topic=5475347.msg63213914#msg63213914"
                class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover small fw-semibold"
                title="Reference">by JayJuanGee (JJG)</a> </span></p>
-   <?php
-   $cards = [
-       [
-           'body' => '<div class="card-text mb-2">Price Above 200-WMA(%)</div>
-               <h5 class="card-title" id="pricesma">
-                  <div class="d-flex justify-content-center fw-normal">
-                     <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
-                        <span class="visually-hidden">Loading...</span>
-                     </div>
-                  </div>
-               </h5>
-               <div class="card-text mb-2">Date </div>
-               <span class="h5 fw-semibold" id="currentDate">&nbsp;</span>'
-       ],
-       [
-           'body' => '<div class="card-text mb-2">BTC Spot Price</div>
-               <h5 class="card-title display-6 fw-semibold" id="BTCPrice">&nbsp; </h5>
-               <div class="card-text mb-2">BTC Stash Value (Spot) </div>
-               <span class="h5 fw-semibold" id="stashValue">&nbsp;</span>'
-       ],
-       [
-           'body' => '<div class="card-text mb-2">200-week MA</div>
-               <h5 class="card-title display-6 fw-semibold" id="sma">&nbsp; </h5>
-               <div class="card-text my-2">BTC Stash Value (200-WMA)</div>
-               <span class="h5 fw-semibold" id="stashWMAValue">&nbsp; </span>'
-       ],
-       [
-           'body' => '<div class="card-text mb-2">Day\'s Range</div>
-               <div class="d-flex justify-content-between align-items-center">
-                  <div id="minDayPrice" class="small">&nbsp; </div>
-                  <div class="progress flex-grow-1 mx-2" role="progressbar" aria-label="Day\'s Range" id="priceRange">
-                     <div class="progress-bar bg-secondary" id="priceRangeLength"></div>
-                  </div>
-                  <div id="maxDayPrice" class="small">&nbsp; </div>
-               </div>',
-           'body2' => '<div class="card-text mb-2">200-Week\'s Range</div>
-               <div class="d-flex justify-content-between align-items-center">
-                  <div id="min200WPrice" class="small">&nbsp; </div>
-                  <div class="progress flex-grow-1 mx-2" role="progressbar" aria-label="Day\'s Range"
-                     id="price200WRange">
-                     <div class="progress-bar bg-secondary" id="price200WRangeLength"></div>
-                  </div>
-                  <div id="max200WPrice" class="small">&nbsp; </div>
-               </div>'
-       ]
-   ];
-   ?>
-   <div class="row row-cols-1 row-cols-lg-4 row-cols-md-3 row-cols-sm-2 g-4 mt-1">
-       <?php foreach ($cards as $card): ?>
-           <div class="col px-1">
-               <div class="card bg-body-tertiary border-0 shadow-sm h-100 rounded-4">
-                   <div class="card-body">
-                       <?= $card['body'] ?>
-                   </div>
-                   <?php if (isset($card['body2'])): ?>
-                       <div class="card-body">
-                           <?= $card['body2'] ?>
-                       </div>
-                   <?php endif; ?>
+
+   <div class="row row-cols-1 row-cols-lg-4 row-cols-md-2 g-4 mt-2">
+      <!-- Card 1: Price Above 200-WMA (%) -->
+      <div class="col px-2">
+         <div class="card bg-body-tertiary border-0 shadow-sm h-100 rounded-4">
+            <div class="card-body d-flex flex-column justify-content-between">
+               <div>
+                  <div class="card-text text-muted mb-2 small text-uppercase fw-bold">Price Above 200-WMA (%)</div>
+                  <h5 class="card-title display-6 fw-semibold" id="pricesma">
+                     <span class="spinner-border spinner-border-sm" role="status"></span>
+                  </h5>
                </div>
-           </div>
-       <?php endforeach; ?>
+               <div class="mt-3 pt-3 border-top">
+                  <div class="card-text text-muted mb-1 small">Date</div>
+                  <span class="h5 fw-bold text-body-emphasis" id="currentDate">&nbsp;</span>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- Card 2: BTC Spot Price -->
+      <div class="col px-2">
+         <div class="card bg-body-tertiary border-0 shadow-sm h-100 rounded-4">
+            <div class="card-body d-flex flex-column justify-content-between">
+               <div>
+                  <div class="card-text text-muted mb-2 small text-uppercase fw-bold">BTC Spot Price</div>
+                  <h5 class="card-title display-6 fw-semibold text-body" id="BTCPrice">
+                     <span class="spinner-border spinner-border-sm" role="status"></span>
+                  </h5>
+               </div>
+               <div class="mt-3 pt-3 border-top">
+                  <div class="card-text text-muted mb-1 small">BTC Stash Value (Spot)</div>
+                  <span class="h5 fw-bold text-body-emphasis" id="stashValue">&nbsp;</span>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- Card 3: 200-Week MA -->
+      <div class="col px-2">
+         <div class="card bg-body-tertiary border-0 shadow-sm h-100 rounded-4">
+            <div class="card-body d-flex flex-column justify-content-between">
+               <div>
+                  <div class="card-text text-muted mb-2 small text-uppercase fw-bold">200-Week MA</div>
+                  <h5 class="card-title display-6 fw-semibold text-body" id="sma">
+                     <span class="spinner-border spinner-border-sm" role="status"></span>
+                  </h5>
+               </div>
+               <div class="mt-3 pt-3 border-top">
+                  <div class="card-text text-muted mb-1 small">BTC Stash Value (200-WMA)</div>
+                  <span class="h5 fw-bold text-body-emphasis" id="stashWMAValue">&nbsp;</span>
+               </div>
+            </div>
+         </div>
+      </div>
+
+      <!-- Card 4: Ranges -->
+      <div class="col px-2">
+         <div class="card bg-body-tertiary border-0 shadow-sm h-100 rounded-4">
+            <div class="card-body d-flex flex-column justify-content-between">
+               <div>
+                  <div class="card-text text-muted mb-2 small text-uppercase fw-bold">Day's Range</div>
+                  <div class="d-flex justify-content-between align-items-center mb-1">
+                     <span id="minDayPrice" class="small text-secondary">&nbsp;</span>
+                     <span id="maxDayPrice" class="small text-secondary">&nbsp;</span>
+                  </div>
+                  <div class="progress mb-2" role="progressbar" aria-label="Day's Range" id="priceRange" style="height: 0.3rem;">
+                     <div class="progress-bar bg-secondary" id="priceRangeLength" style="width: 0%;"></div>
+                  </div>
+               </div>
+               <div class="mt-3 pt-3 border-top">
+                  <div class="card-text text-muted mb-2 small text-uppercase fw-bold">200-Week's Range</div>
+                  <div class="d-flex justify-content-between align-items-center mb-1">
+                     <span id="min200WPrice" class="small text-secondary">&nbsp;</span>
+                     <span id="max200WPrice" class="small text-secondary">&nbsp;</span>
+                  </div>
+                  <div class="progress" role="progressbar" aria-label="200-Week's Range" id="price200WRange" style="height: 0.3rem;">
+                     <div class="progress-bar bg-secondary" id="price200WRangeLength" style="width: 0%;"></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
    </div>
 
       <div class="row mt-4 mb-1 g-3 bg-body-tertiary rounded-top-4 p-4 shadow-sm">
@@ -349,118 +370,162 @@
       </div>
 
 
-      <article id="how">
-         <h4 class="h1 fw-bold my-5">How to use the information provided through this tool:</h4>
+      <article id="how" class="my-6">
+         <h3 class="display-5 fw-bold text-center mb-5">How to use the information provided through this tool:
+</h3>
 
-         <h5 class="h3 my-4">Underlying presumptions:</h5>
-         <p>This tool is meant to help a person/institution/government to manage his bitcoin holdings and to employ
-            sustainable BTC withdrawal methods.</p>
-         <p>This is not considered as a BTC trading tool, even though it presumes abilities to withdraw higher levels
-            of BTC withdrawal based on BTC's spot price (including authorizations to withdraw more than one bitcoin
-            in
-            advance, as long as the BTC spot price is over certain price thresholds.</p>
+         <!-- Presumptions Callout -->
+         <div class="bg-body-tertiary p-4 rounded-4 shadow-sm mb-5">
+            <h4 class="h5 fw-bold text-primary mb-3">Underlying Presumptions</h4>
+            <p class="mb-2">This tool is designed to help individuals, institutions, or developer funds manage their Bitcoin holdings and employ sustainable, volatility-adjusted withdrawal methods.</p>
+            <p class="mb-0 text-muted small">Note: This is not a short-term trading tool; it is a long-term capital preservation and budgeting strategy that dynamically adjusts your cash flow based on the 200-week moving average (200-WMA).</p>
+         </div>
 
-         <h5 class="h3 my-4">How the calculator works:</h5>
-         <p class="h5"><span class="text-primary me-2">•</span><strong>BTC stash size</strong></p>
-         <p>Of course, this inputted data could be the total of your
-            BTC stash or it could be a part
-            of your BTC stash that is set into such a separate budget. This also could be part or all of a budget of
-            an institution, government or some
-            organization that might be authorized to spend
-            within such limits. I had personally been considering it as a way to set aside funds to fund developers.
-            So,
-            for example, a starting amount might
-            be 21 BTC for a developer fund and 21 BTC in order to pay for expenses to administer such fund.</p>
+         <!-- Two Column Layout for Calculator Details -->
+         <div class="row g-4">
+            <!-- Left Column: BTC Stash Size -->
+            <div class="col-lg-6">
+               <div class="card bg-body-tertiary border-0 shadow-sm rounded-4 p-4 h-100">
+                  <h4 class="h5 fw-bold mb-3"><span class="text-primary me-2">•</span>BTC Stash Size</h4>
+                  <p class="text-muted">
+                     This represents the total size of your Bitcoin portfolio allocated to this specific withdrawal budget (e.g., a starting amount of 21 BTC for developer grants or personal retirement). 
+                     You can allocate all or just a segment of your holdings to this strategy to ensure capital longevity.
+                  </p>
+               </div>
+            </div>
 
-         <p class="h5"><span class="text-primary me-2">•</span><strong>Annual Withdrawal rate</strong></p>
-         <p> Of course, for the authorized monthly withdrawal,
-            this inputted rate ends up getting
-            divided by 12, but at the same time, since
-            we are using the 200-week moving average (which mostly tends to be a bottom price) to valuate the size of
-            our BTC stash, a sustainable withdrawal rate
-            ends up higher than traditional assets that tend to recommend withdrawal rates of 4% or less.
-            Accordingly:</p>
-         <ol class="list-group mb-3">
-            <li class="list-group-item border-0">A. 0% to 5%: considered as growth-oriented withdrawal rates, and
-               your BTC holdings (budget) will likely
-               continue to grow in value if you use such withdrawal rates</li>
-            <li class="list-group-item border-0">B. 6 to 10% presumptively sustainable withdrawal rates, and each
-               person using such tool would need to decide
-               for himself how conservative or
-               aggressive to be regarding the employment of such withdrawal rates</li>
-            <li class="list-group-item border-0">C. 11% to 16% - not as likely to be sustainable</li>
-            <li class="list-group-item border-0">D. 17% and higher - likely to deplete the fund, and of course, lower
-               rates are likely to sustain the fund
-               longer than higher rates</li>
-         </ol>
-         <p class="h5"><span class="text-primary me-2">•</span><strong>(Authorized) Month Withdrawal limit
-               (BTC)</strong></p>
-         <p> This output is calculated based
-            on: </p>
-         <div class="bg-dark-subtle p-3 font-monospace rounded">Month Withdrawal limit = BTC stash size * Annual
-            withdrawal / 12.</div>
-         <p>When the BTC spot price is at least 25% above the 200-week
-            moving average, then at least
-            1 month's withdrawal will be authorized; however,</p>
-         <ol class="list-group mb-3">
-            <li class="list-group-item border-0">
-               A) if the BTC spot price is between 10% and 25% above the 200-week moving average, then you will be
-               authorized to withdraw for only 90% of the current month's limit.</li>
-            <li class="list-group-item border-0">B. if the BTC spot price is between 0% and 10% above the 200-week
-               moving average, then you will be
-               authorized to withdraw for only 85% of the current month's limit.</li>
-            <li class="list-group-item border-0">C. if the BTC spot price is between 0% and 20% below the 200-week
-               moving average, then you will be
-               authorized to withdraw for only 70% of the current month's limit.</li>
-            <li class="list-group-item border-0">D. if the BTC spot price is between 20% and 30% below the 200-week
-               moving average, then you will be
-               authorized to withdraw for only 50% of the current month's limit.</li>
-            <li class="list-group-item border-0">E. if the BTC spot price is greater than 30% and 35% below the
-               200-week moving average, then you will be
-               authorized to withdraw for only 40% of the current month's limit.</li>
-            <li class="list-group-item border-0">F. if the BTC spot price is greater than 35% below the 200-week
-               moving average, then you will be not be
-               authorized to withdraw any BTC from the budget.</li>
-         </ol>
+            <!-- Right Column: Annual Withdrawal Rate -->
+            <div class="col-lg-6">
+               <div class="card bg-body-tertiary border-0 shadow-sm rounded-4 p-4 h-100">
+                  <h4 class="h5 fw-bold mb-3"><span class="text-primary me-2">•</span>Annual Withdrawal Rate</h4>
+                  <p class="text-muted mb-3">
+                     Because the strategy values your stash at the 200-WMA (which is historically close to Bitcoin's macro bottoms), the sustainable rate can be higher than the traditional 4% rule.
+                  </p>
+                  <ul class="list-group list-group-flush bg-transparent">
+                     <li class="list-group-item bg-transparent border-0 px-0 py-2 d-flex align-items-start">
+                        <span class="badge bg-success me-2 mt-1">0% - 5%</span>
+                        <div class="text-muted"><strong>Growth-Oriented:</strong> Stash size will likely continue to grow rapidly in value.</div>
+                     </li>
+                     <li class="list-group-item bg-transparent border-0 px-0 py-2 d-flex align-items-start">
+                        <span class="badge bg-info me-2 mt-1">6% - 10%</span>
+                        <div class="text-muted"><strong>Sustainable:</strong> Standard target ranges. </div>
+                     </li>
+                     <li class="list-group-item bg-transparent border-0 px-0 py-2 d-flex align-items-start">
+                        <span class="badge bg-warning me-2 mt-1">11% - 16%</span>
+                        <div class="text-muted"><strong>Aggressive:</strong> Less likely to be sustainable over multi-decade cycles.</div>
+                     </li>
+                     <li class="list-group-item bg-transparent border-0 px-0 py-2 d-flex align-items-start">
+                        <span class="badge bg-danger me-2 mt-1">17%+</span>
+                        <div class="text-muted"><strong>Depletion Risk:</strong> High probability of exhausting the portfolio during bear markets.</div>
+                     </li>
+                  </ul>
+               </div>
+            </div>
+         </div>
 
-         <p class="h5"><span class="text-primary me-2">•</span><strong>(Authorized) Month Withdrawal limit
-               (USD)</strong></p>
+         <!-- Row 2: Outputs -->
+         <div class="row g-4 mt-2">
+            <!-- Left Column: Monthly Limits -->
+            <div class="col-lg-6">
+               <div class="card bg-body-tertiary border-0 shadow-sm rounded-4 p-4 h-100">
+                  <h4 class="h5 fw-bold mb-3"><span class="text-primary me-2">•</span>Monthly Authorized Withdrawal Limits</h4>
+                  
+                  <div class="bg-body-secondary p-3 font-monospace rounded-3 mb-3 text-center border">
+                     Monthly Limit = (Stash Size &times; Annual Rate) &divide; 12
+                  </div>
+                  
+                  <p class="text-muted mb-3">
+                     The system dynamically scales your maximum monthly withdrawal allowance based on the current premium or discount of the spot price relative to the 200-WMA:
+                  </p>
+                  
+                  <ul class="list-group list-group-flush bg-transparent">
+                     <li class="list-group-item bg-transparent border-0 px-0 py-1 d-flex justify-content-between text-muted">
+                        <span>Spot &ge; 25% above 200-WMA</span>
+                        <span class="fw-bold text-success">100% Authorized</span>
+                     </li>
+                     <li class="list-group-item bg-transparent border-0 px-0 py-1 d-flex justify-content-between text-muted">
+                        <span>Spot 10% to 25% above 200-WMA</span>
+                        <span class="fw-bold text-success-emphasis">90% Authorized</span>
+                     </li>
+                     <li class="list-group-item bg-transparent border-0 px-0 py-1 d-flex justify-content-between text-muted">
+                        <span>Spot 0% to 10% above 200-WMA</span>
+                        <span class="fw-bold text-warning-emphasis">85% Authorized</span>
+                     </li>
+                     <li class="list-group-item bg-transparent border-0 px-0 py-1 d-flex justify-content-between text-muted">
+                        <span>Spot 0% to 20% below 200-WMA</span>
+                        <span class="fw-bold text-warning">70% Authorized</span>
+                     </li>
+                     <li class="list-group-item bg-transparent border-0 px-0 py-1 d-flex justify-content-between text-muted">
+                        <span>Spot 20% to 30% below 200-WMA</span>
+                        <span class="fw-bold text-danger">50% Authorized</span>
+                     </li>
+                     <li class="list-group-item bg-transparent border-0 px-0 py-1 d-flex justify-content-between text-muted">
+                        <span>Spot 30% to 35% below 200-WMA</span>
+                        <span class="fw-bold text-danger">40% Authorized</span>
+                     </li>
+                     <li class="list-group-item bg-transparent border-0 px-0 py-1 d-flex justify-content-between text-muted">
+                        <span>Spot &gt; 35% below 200-WMA</span>
+                        <span class="fw-bold text-danger">0% (Withdrawals Paused)</span>
+                     </li>
+                  </ul>
+               </div>
+            </div>
 
-         <p> This output is calculated
-            based on BTC stash size * Annual withdrawal / 12 (* USD Spot price).
-            Since the BTC spot price is continuing to change, if the monthly withdrawal is not accomplished all at
-            one time, it is best to refer to the BTC
-            authorized monthly withdrawal amount to stay within limits.</p>
-
-         <p class="h5"><span class="text-primary me-2">•</span><strong>Advanced Withdrawal (No. Months)</strong></p>
-         <p> This output is calculated based on if
-            the BTC spot price is higher than the 200 WMA. Accordingly:</p>
-         <ol class="list-group">
-            <li class="list-group-item border-0">
-               A. if the BTC spot price is between 33% and 66% above the 200-week moving average, then you will be
-               authorized to withdraw for the current month + an additional month.</li>
-            <li class="list-group-item border-0">B. if the BTC spot price is between 66% and 100% above the 200-week
-               moving average, then you will be
-               authorized to withdraw for the current month + 3 additional months.</li>
-            <li class="list-group-item border-0">C. if the BTC spot price is between 100% and 200% above the
-               200-week moving average, then you will be
-               authorized to withdraw for the current month + 5 additional months.</li>
-            <li class="list-group-item border-0"> D. if the BTC spot price is between 200% and 400% above the
-               200-week moving average, then you will be
-               authorized to withdraw for the current month + 11 additional months.</li>
-            <li class="list-group-item border-0"> E. if the BTC spot price is between 400% and 650% above the
-               200-week moving average, then you will be
-               authorized to withdraw for the current month + 23 additional months.</li>
-            <li class="list-group-item border-0"> F. if the BTC spot price is between 650% and 900% above the
-               200-week moving average, then you will be
-               authorized to withdraw for the current month + 35 additional months.</li>
-            <li class="list-group-item border-0"> G. if the BTC spot price is between 900% and 1,400% above the
-               200-week moving average, then you will be
-               authorized to withdraw for the current month + 47 additional months.</li>
-            <li class="list-group-item border-0"> H. if the BTC spot price is greater than 1,400% above the 200-week
-               moving average, then you will be
-               authorized to withdraw for the current month + 59 additional months.</li>
-         </ol>
+            <!-- Right Column: Advanced Withdrawals -->
+            <div class="col-lg-6">
+               <div class="card bg-body-tertiary border-0 shadow-sm rounded-4 p-4 h-100">
+                  <h4 class="h5 fw-bold mb-3"><span class="text-primary me-2">•</span>Advanced Withdrawal Option</h4>
+                  <p class="text-muted mb-3">
+                     When Bitcoin is in a bull market and trading significantly above its 200-WMA, the strategy authorizes you to take multiple months of budget in advance (cashing out during highs to fund future low-budget periods):
+                  </p>
+                  
+                  <div class="table-responsive">
+                     <table class="table table-sm table-hover align-middle">
+                        <thead>
+                           <tr class="small text-uppercase text-muted">
+                              <th>Premium Above 200-WMA</th>
+                              <th class="text-end">Months Authorized</th>
+                           </tr>
+                        </thead>
+                        <tbody class="small text-muted">
+                           <tr>
+                              <td>33% to 66%</td>
+                              <td class="text-end fw-bold text-success">Current + 1 month</td>
+                           </tr>
+                           <tr>
+                              <td>66% to 100%</td>
+                              <td class="text-end fw-bold text-success">Current + 3 months</td>
+                           </tr>
+                           <tr>
+                              <td>100% to 200%</td>
+                              <td class="text-end fw-bold text-success">Current + 5 months</td>
+                           </tr>
+                           <tr>
+                              <td>200% to 400%</td>
+                              <td class="text-end fw-bold text-success">Current + 11 months</td>
+                           </tr>
+                           <tr>
+                              <td>400% to 650%</td>
+                              <td class="text-end fw-bold text-success">Current + 23 months</td>
+                           </tr>
+                           <tr>
+                              <td>650% to 900%</td>
+                              <td class="text-end fw-bold text-success">Current + 35 months</td>
+                           </tr>
+                           <tr>
+                              <td>900% to 1400%</td>
+                              <td class="text-end fw-bold text-success">Current + 47 months</td>
+                           </tr>
+                           <tr>
+                              <td>&gt; 1400%</td>
+                              <td class="text-end fw-bold text-success">Current + 59 months</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+         </div>
       </article>
    </main>
    <footer-component></footer-component>
