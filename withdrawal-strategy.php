@@ -479,50 +479,40 @@
                      When Bitcoin is in a bull market and trading significantly above its 200-WMA, the strategy authorizes you to take multiple months of budget in advance (cashing out during highs to fund future low-budget periods):
                   </p>
                   
-                  <div class="table-responsive">
-                     <table class="table table-sm table-hover align-middle">
-                        <thead>
-                           <tr class="small text-uppercase text-muted">
-                              <th>Premium Above 200-WMA</th>
-                              <th class="text-end">Months Authorized</th>
-                           </tr>
-                        </thead>
-                        <tbody class="small text-muted">
-                           <tr>
-                              <td>33% to 66%</td>
-                              <td class="text-end fw-bold text-success">Current + 1 month</td>
-                           </tr>
-                           <tr>
-                              <td>66% to 100%</td>
-                              <td class="text-end fw-bold text-success">Current + 3 months</td>
-                           </tr>
-                           <tr>
-                              <td>100% to 200%</td>
-                              <td class="text-end fw-bold text-success">Current + 5 months</td>
-                           </tr>
-                           <tr>
-                              <td>200% to 400%</td>
-                              <td class="text-end fw-bold text-success">Current + 11 months</td>
-                           </tr>
-                           <tr>
-                              <td>400% to 650%</td>
-                              <td class="text-end fw-bold text-success">Current + 23 months</td>
-                           </tr>
-                           <tr>
-                              <td>650% to 900%</td>
-                              <td class="text-end fw-bold text-success">Current + 35 months</td>
-                           </tr>
-                           <tr>
-                              <td>900% to 1400%</td>
-                              <td class="text-end fw-bold text-success">Current + 47 months</td>
-                           </tr>
-                           <tr>
-                              <td>&gt; 1400%</td>
-                              <td class="text-end fw-bold text-success">Current + 59 months</td>
-                           </tr>
-                        </tbody>
-                     </table>
-                  </div>
+                   <ul class="list-group list-group-flush bg-transparent">
+                      <li class="list-group-item bg-transparent border-0 px-0 py-1 d-flex justify-content-between text-muted">
+                         <span>33% to 66% premium</span>
+                         <span class="fw-bold text-success">Current + 1 month</span>
+                      </li>
+                      <li class="list-group-item bg-transparent border-0 px-0 py-1 d-flex justify-content-between text-muted">
+                         <span>66% to 100% premium</span>
+                         <span class="fw-bold text-success">Current + 3 months</span>
+                      </li>
+                      <li class="list-group-item bg-transparent border-0 px-0 py-1 d-flex justify-content-between text-muted">
+                         <span>100% to 200% premium</span>
+                         <span class="fw-bold text-success">Current + 5 months</span>
+                      </li>
+                      <li class="list-group-item bg-transparent border-0 px-0 py-1 d-flex justify-content-between text-muted">
+                         <span>200% to 400% premium</span>
+                         <span class="fw-bold text-success">Current + 11 months</span>
+                      </li>
+                      <li class="list-group-item bg-transparent border-0 px-0 py-1 d-flex justify-content-between text-muted">
+                         <span>400% to 650% premium</span>
+                         <span class="fw-bold text-success">Current + 23 months</span>
+                      </li>
+                      <li class="list-group-item bg-transparent border-0 px-0 py-1 d-flex justify-content-between text-muted">
+                         <span>650% to 900% premium</span>
+                         <span class="fw-bold text-success">Current + 35 months</span>
+                      </li>
+                      <li class="list-group-item bg-transparent border-0 px-0 py-1 d-flex justify-content-between text-muted">
+                         <span>900% to 1400% premium</span>
+                         <span class="fw-bold text-success">Current + 47 months</span>
+                      </li>
+                      <li class="list-group-item bg-transparent border-0 px-0 py-1 d-flex justify-content-between text-muted">
+                         <span>&gt; 1400% premium</span>
+                         <span class="fw-bold text-success">Current + 59 months</span>
+                      </li>
+                   </ul>
                </div>
             </div>
          </div>
