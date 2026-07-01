@@ -12,12 +12,12 @@
       {
          "@context": "https://schema.org",
          "@type": "Organization",
-         "name": "bitcoin data.science",
+         "name": "bitcoindata.science",
          "description": "Data analysis and tools for anything related to bitcoin.",
          "alternateName": [
             "bitcoindata.science",
             "Bitcoin Data Science",
-            "bitcoin datascience"
+            "bitcoindata science"
          ],
          "url": "https://bitcoindata.science",
          "logo": "https://bitcoindata.science/img/logo.svg",
@@ -34,7 +34,8 @@
    </header>
    <!-- Page Content -->
    <?php
-   $h1 = 'Welcome to bitcoin data';
+   // Create a gradient effect for bitcoindata on h1
+   $h1 = 'Welcome to <tt class="text-primary fw-bold" style="background: linear-gradient(to right, #d97706, #f4c135); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">bitcoindata</tt>';
    include_once $_SERVER['DOCUMENT_ROOT'] . '/components/page-header.php';
    ?>
    <div class="my-4 row row-cols-1 row-cols-md-2 row-cols-lg-2 row-cols-xxl-3 g-4" id="cards">
@@ -60,14 +61,14 @@
             title: "JJG Withdrawal Strategy",
             description: "Ideas of sustainable withdrawal that calculates monthly budget limits.",
             link: "withdrawal-strategy",
-            action: "Calculate withdrawal limits",
+            action: "Calculate limits",
             icon: '<path d="M5.5 13v1.25c0 .138.112.25.25.25h1a.25.25 0 0 0 .25-.25V13h.5v1.25c0 .138.112.25.25.25h1a.25.25 0 0 0 .25-.25V13h.084c1.992 0 3.416-1.033 3.416-2.82 0-1.502-1.007-2.323-2.186-2.44v-.088c.97-.242 1.683-.974 1.683-2.19C11.997 3.93 10.847 3 9.092 3H9V1.75a.25.25 0 0 0-.25-.25h-1a.25.25 0 0 0-.25.25V3h-.573V1.75a.25.25 0 0 0-.25-.25H5.75a.25.25 0 0 0-.25.25V3l-1.998.011a.25.25 0 0 0-.25.25v.989c0 .137.11.25.248.25l.755-.005a.75.75 0 0 1 .745.75v5.505a.75.75 0 0 1-.75.75l-.748.011a.25.25 0 0 0-.25.25v1c0 .138.112.25.25.25zm1.427-8.513h1.719c.906 0 1.438.498 1.438 1.312 0 .871-.575 1.362-1.877 1.362h-1.28zm0 4.051h1.84c1.137 0 1.756.58 1.756 1.524 0 .953-.626 1.45-2.158 1.45H6.927z" />',
          },
          {
             title: "Giveaway Manager",
             description: "<em>Provably fair</em> giveaway manager. Results easily verified and shareable.",
             link: "https://bitcoindata.science/giveaway-manager",
-            action: "Go to giveaway manager",
+            action: "Go to giveaway",
             icon: '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M21 11.25v8.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 1 0 9.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1 1 14.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z" /></svg>',
          },
          {
@@ -94,7 +95,7 @@
          cardCol.className = 'col';
 
          cardCol.innerHTML = `
-         <div class="card h-100 border-0 bg-body-tertiary p-3 rounded-4 card-home">
+         <div class="card h-100 border-3 bg-body-tertiary p-3 rounded-4 card-home">
             <div class="card-body m-4">
                <div class="icon-content float-end">
                   <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="text-primary text-bold" viewBox="0 0 16 16">${card.icon}
@@ -108,7 +109,8 @@
                </div>
            </div>
            <div class="card-footer bg-transparent border-0 mx-4 pt-0 mt-0">
-               <a href="${card.link}" class="btn btn-primary btn-lg text-normal fs-6 stretched-link py-3 px-4" style="font-weight:500" title="${card.action}">${card.action}</a>
+               <a href="${card.link}" class="btn btn-primary btn-lg text-normal fs-6 stretched-link py-3 px-4" style="font-weight:500" title="${card.action}">${card.action}
+               <svg height="24" class="ms-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></a>
             </div>
          </div>
     `;
