@@ -119,6 +119,7 @@ let options = {
 };
 const chart = new ApexCharts(document.querySelector("#chart"), options);
 chart.render();
+window.chart = chart;
 
 var brushChartOptions = {
     series: [],
@@ -170,12 +171,15 @@ var brushChartOptions = {
 
 const brushChart = new ApexCharts(document.querySelector("#brushChart"), brushChartOptions);
 brushChart.render();
+window.brushChart = brushChart;
 
 // Date and Annotations
 let dateInput = document.getElementById('date');
-dateInput.max = new Date().toISOString().split("T")[0];
-dateInput.min = '2010-07-22';
-dateInput.value = new Date().toISOString().substring(0, 10);
+if (dateInput) {
+    dateInput.max = new Date().toISOString().split("T")[0];
+    dateInput.min = '2010-07-22';
+    dateInput.value = new Date().toISOString().substring(0, 10);
+}
 
 function drawAnnotation(date) {
     let index = findClosestIndex(prices, new Date(dateInput.value).getTime())
