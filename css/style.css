@@ -5,9 +5,9 @@
   /* Refined Bitcoin Orange */
   --theme-purple: #6e2bf2;
   /* Cyber Purple */
-  --theme-blue: #2b5797;
+  --theme-blue: #3f61e8;
   /* Sleek Tech Blue */
-  --theme-blue-alpha: #2b5797cc;
+  --theme-blue-alpha: #5773e0;
   /* Sleek Tech Blue (80% Opacity) */
   --nav-hover-bg: var(--theme-blue-alpha);
   --nav-hover-text: #ffffff;
@@ -17,7 +17,7 @@
 [data-bs-theme="dark"] {
   --theme-orange: #fbbf24;
   --theme-purple: #9d67f7;
-  --theme-blue: #6ea8fe;
+  --theme-blue: #3f61e8;
   --theme-blue-alpha: #6ea8fecc;
   /* 80% Opacity */
   --nav-hover-bg: #343a40;
@@ -27,11 +27,17 @@
 }
 
 [data-bs-theme=dark] body {
-  background-color: #1B1A1C;
+  background: #16131f;
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% 0%, #161436 0%, #1B1A1C 55%);
+  background-attachment: scroll;
 }
 
 body {
-  background-color: #fff;
+  background: #ffffff;
+  background-image:
+    linear-gradient(#eff6ff 0%, #ffffff 60%);
+  background-attachment: scroll;
 }
 
 a {
@@ -110,7 +116,7 @@ span.logo {
 }
 
 .card-home:hover {
-  border: 2px solid var(--theme-blue-alpha) !important;
+  border: 2px solid var(--theme-blue) !important;
   box-shadow: 0 20px 25px -5px rgb(0 0 0 / .1), 0 8px 10px -6px rgb(0 0 0 / .1);
   transition-duration: .3s;
   transition-property: all;

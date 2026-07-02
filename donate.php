@@ -84,7 +84,7 @@
 
    <p class="my-4 pt-4 h4">Are you interested in advertising your brand here?</p>
    If you want to see your brand in our pages, just make an offer and tell us about your product.<br>
-   <a href="mailto:bitmover@protonmail.ch" class="btn btn-primary mt-3 text-decoration-none">Make an offer</a>
+   <a href="mailto:bitmover@protonmail.ch" class="btn btn-primary mt-3 text-decoration-none rounded-pill btn-lg">Make an offer</a>
    </div>
    <!-- /main page -->
    </main>

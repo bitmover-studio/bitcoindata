@@ -68,7 +68,7 @@ $canonical = "https://bitcoindata.science/bot/altcoinstalk/notification";
       </p>
       <div class="mt-2">
         <?php foreach ($notification_data as $i) { ?>
-          <div class="card my-4 border-0 rounded-4">
+          <div class="card my-4 border-1 rounded-4">
             <div class="card-body">
               <h6 class="card-title">
                 <a href="<?php echo $i['board_link']; ?>" target="_blank" rel="noreferrer">
@@ -95,7 +95,7 @@ $canonical = "https://bitcoindata.science/bot/altcoinstalk/notification";
                   data-post-link="<?php echo $i['post_link']; ?>">
                 <label class="form-check-label" for="<?php echo $i['post_link']; ?>label">Mark as read</label>
                 <a href="<?php echo $i['post_link']; ?>" onClick='javascript:markAsRead("<?php echo $i['post_link']; ?>")'
-                  target="_blank" rel="noreferrer" class="btn btn-sm btn-primary float-end me-4">
+                  target="_blank" rel="noreferrer" class="btn rounded-pill btn-primary float-end me-4">
                   Go to post
                 </a>
               </div>

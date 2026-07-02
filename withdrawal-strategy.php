@@ -53,15 +53,13 @@
    <!-- Page Content -->
    <?php
    $h1 = 'JJG Sustainable Withdrawal Strategy';
-   $h2 = 'Ideas of a sustainable withdrawal strategy considering 200-week moving averages.';
+   $h2 = 'Ideas of sustainable withdrawal that calculates monthly budget limits based BTC spot
+         price relative to the 200-Week Moving Average (200-WMA).
+         <span class="small"><a href="https://bitcointalk.org/index.php?topic=5475347.msg63213914#msg63213914"
+               class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover small fw-semibold"
+               title="Reference">by JayJuanGee (JJG)</a> </span>';
    include_once $_SERVER['DOCUMENT_ROOT'] . '/components/page-header.php';
    ?>
-
-      <p class="">Ideas of sustainable withdrawal that calculates monthly budget limits based BTC spot
-         price relative to the 200-Week Moving Average (200-WMA). <span class="small"><a
-               href="https://bitcointalk.org/index.php?topic=5475347.msg63213914#msg63213914"
-               class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover small fw-semibold"
-               title="Reference">by JayJuanGee (JJG)</a> </span></p>
 
    <div class="row row-cols-1 row-cols-lg-4 row-cols-md-2 g-4 mt-2">
       <!-- Card 1: Price Above 200-WMA (%) -->
@@ -403,19 +401,19 @@
                   </p>
                   <ul class="list-group list-group-flush bg-transparent">
                      <li class="list-group-item bg-transparent border-0 px-0 py-2 d-flex align-items-start">
-                        <span class="badge bg-success me-2 mt-1">0% - 5%</span>
+                        <span class="badge bg-success-subtle text-success me-2 mt-1 rounded-pill">0% - 5%</span>
                         <div class="text-muted"><strong>Growth-Oriented:</strong> Stash size will likely continue to grow rapidly in value.</div>
                      </li>
                      <li class="list-group-item bg-transparent border-0 px-0 py-2 d-flex align-items-start">
-                        <span class="badge bg-info me-2 mt-1">6% - 10%</span>
+                        <span class="badge bg-info-subtle text-info me-2 mt-1 rounded-pill">6% - 10%</span>
                         <div class="text-muted"><strong>Sustainable:</strong> Standard target ranges. </div>
                      </li>
                      <li class="list-group-item bg-transparent border-0 px-0 py-2 d-flex align-items-start">
-                        <span class="badge bg-warning me-2 mt-1">11% - 16%</span>
+                        <span class="badge bg-warning-subtle text-warning me-2 mt-1 rounded-pill">11% - 16%</span>
                         <div class="text-muted"><strong>Aggressive:</strong> Less likely to be sustainable over multi-decade cycles.</div>
                      </li>
                      <li class="list-group-item bg-transparent border-0 px-0 py-2 d-flex align-items-start">
-                        <span class="badge bg-danger me-2 mt-1">17%+</span>
+                        <span class="badge bg-danger-subtle text-danger me-2 mt-1 rounded-pill">17%+</span>
                         <div class="text-muted"><strong>Depletion Risk:</strong> High probability of exhausting the portfolio during bear markets.</div>
                      </li>
                   </ul>

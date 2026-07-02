@@ -103,7 +103,7 @@
 
         <div class="form-group row mt-4">
           <div class="col-auto">
-            <button type="submit" class="btn btn-primary btn-lg d-inline-flex align-items-center justify-content-center px-4" id="submitbutton" style="position: relative; overflow: hidden; transition: background-color 0.3s ease;">
+            <button type="submit" class="btn btn-primary btn-lg d-inline-flex align-items-center justify-content-center px-4 rounded-pill " id="submitbutton" style="position: relative; overflow: hidden; transition: background-color 0.3s ease;">
               <span id="submit-label" style="transition: opacity 0.2s, transform 0.2s;">Submit</span>
               <div id="submit-spinner" class="spinner-border spinner-border-sm position-absolute" role="status" style="opacity: 0; transition: opacity 0.2s, transform 0.2s; pointer-events: none;">
                 <span class="visually-hidden">Loading...</span>
@@ -116,15 +116,33 @@
             </button>
           </div>
           <div class="col-auto">
-            <button type="button" class="btn btn-secondary d-inline-block btn-lg px-4"
-              onclick="save_share()">Share</button>
+            <button type="button" class="btn btn-secondary d-inline-flex align-items-center gap-2 btn-lg px-4 rounded-pill"
+              onclick="save_share()">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/>
+              </svg>
+              Share
+            </button>
           </div>
           <div class="col-12 mt-4">
             <label for="url" class="visually-hidden">Share URL</label>
-            <input type="url"
-              class="form-control-lg border-0 bg-body-secondary rounded-2 lh-base fw-normal fs-6 h-100 font-monospace w-100 text-body"
-              id="url" readonly="" onclick="copyurl()" data-toggle="tooltip" data-placement="top" title=""
-              data-original-title="Click to copy to clipboard">
+            <div style="position:relative;">
+              <input type="url"
+                class="form-control-lg border-0 bg-body-secondary rounded-3 lh-base fw-normal fs-6 font-monospace w-100 text-body"
+                id="url" readonly=""
+                style="padding-right: 3rem;"
+                title="Shareable link">
+              <button type="button" id="copy-url-btn" onclick="copyUrlBtn()"
+                title="Copy link"
+                style="position:absolute; right:10px; top:50%; transform:translateY(-50%); background:none; border:none; padding:4px; cursor:pointer; color: var(--bs-secondary-color); line-height:1; transition: color 0.15s ease, transform 0.15s ease;"
+                onmouseenter="this.style.color='var(--bs-primary)'; this.style.transform='translateY(-50%) scale(1.15)'"
+                onmouseleave="this.style.color='var(--bs-secondary-color)'; this.style.transform='translateY(-50%) scale(1)'">
+                <svg id="copy-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 -960 960 960"><path d="M360-240q-33 0-56.5-23.5T280-320v-480q0-33 23.5-56.5T360-880h360q33 0 56.5 23.5T800-800v480q0 33-23.5 56.5T720-240H360Zm0-80h360v-480H360v480ZM200-80q-33 0-56.5-23.5T120-160v-560h80v560h440v80H200Zm160-240v-480 480Z"/></svg>
+                <svg id="check-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16" style="display:none; color:var(--bs-success)">
+                  <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -347,6 +365,21 @@
     // saved and share
     function copyurl() {
       navigator.clipboard.writeText(document.getElementById('url').value)
+    }
+
+    function copyUrlBtn() {
+      const val = document.getElementById('url').value;
+      if (!val) return;
+      navigator.clipboard.writeText(val).then(() => {
+        const copyIcon  = document.getElementById('copy-icon');
+        const checkIcon = document.getElementById('check-icon');
+        copyIcon.style.display  = 'none';
+        checkIcon.style.display = 'inline';
+        setTimeout(() => {
+          copyIcon.style.display  = 'inline';
+          checkIcon.style.display = 'none';
+        }, 2000);
+      });
     }
 
     function save_share() {
