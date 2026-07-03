@@ -383,7 +383,7 @@
          <div class="row g-4">
             <!-- Left Column: BTC Stash Size -->
             <div class="col-lg-6">
-               <div class="card bg-body-tertiary border-0 shadow-sm rounded-4 p-4 h-100">
+               <div class="card bg-body-tertiary shadow-sm rounded-4 p-4 h-100">
                   <h4 class="h5 fw-bold mb-3"><span class="text-primary me-2">•</span>BTC Stash Size</h4>
                   <p class="text-muted">
                      This represents the total size of your Bitcoin portfolio allocated to this specific withdrawal budget (e.g., a starting amount of 21 BTC for developer grants or personal retirement). 
@@ -394,7 +394,7 @@
 
             <!-- Right Column: Annual Withdrawal Rate -->
             <div class="col-lg-6">
-               <div class="card bg-body-tertiary border-0 shadow-sm rounded-4 p-4 h-100">
+               <div class="card bg-body-tertiary shadow-sm rounded-4 p-4 h-100">
                   <h4 class="h5 fw-bold mb-3"><span class="text-primary me-2">•</span>Annual Withdrawal Rate</h4>
                   <p class="text-muted mb-3">
                      Because the strategy values your stash at the 200-WMA (which is historically close to Bitcoin's macro bottoms), the sustainable rate can be higher than the traditional 4% rule.
@@ -425,7 +425,7 @@
          <div class="row g-4 mt-2">
             <!-- Left Column: Monthly Limits -->
             <div class="col-lg-6">
-               <div class="card bg-body-tertiary border-0 shadow-sm rounded-4 p-4 h-100">
+               <div class="card bg-body-tertiary shadow-sm rounded-4 p-4 h-100">
                   <h4 class="h5 fw-bold mb-3"><span class="text-primary me-2">•</span>Monthly Authorized Withdrawal Limits</h4>
                   
                   <div class="bg-body-secondary p-3 font-monospace rounded-3 mb-3 text-center border">
@@ -471,7 +471,7 @@
 
             <!-- Right Column: Advanced Withdrawals -->
             <div class="col-lg-6">
-               <div class="card bg-body-tertiary border-0 shadow-sm rounded-4 p-4 h-100">
+               <div class="card bg-body-tertiary shadow-sm rounded-4 p-4 h-100">
                   <h4 class="h5 fw-bold mb-3"><span class="text-primary me-2">•</span>Advanced Withdrawal Option</h4>
                   <p class="text-muted mb-3">
                      When Bitcoin is in a bull market and trading significantly above its 200-WMA, the strategy authorizes you to take multiple months of budget in advance (cashing out during highs to fund future low-budget periods):

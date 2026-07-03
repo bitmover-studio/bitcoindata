@@ -9,7 +9,7 @@ $showAd = $showAd ?? true;
    <?php if ($showAd): ?>
    <ad-component></ad-component>
    <?php endif; ?>
-   <div class="col-md-10 offset-md-1">
+   <div>
       <h1 class="h1 <?= htmlspecialchars($h1Class) ?> fw-bold mt-5"><?= $h1 ?></h1>
       <?php if (!empty($h2)): ?>
       <h2 class="lead fw-semibold text-muted mb-6"><?= $h2 ?></h2>
