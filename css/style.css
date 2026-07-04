@@ -7,7 +7,7 @@
   /* Cyber Purple */
   --theme-blue: #3f61e8;
   /* Sleek Tech Blue */
-  --theme-blue-alpha: #5773e0;
+  --theme-blue-alpha: #3f61e833;
   /* Sleek Tech Blue (80% Opacity) */
   --nav-hover-bg: var(--theme-blue-alpha);
   --nav-hover-text: #ffffff;
@@ -18,7 +18,7 @@
   --theme-orange: #fbbf24;
   --theme-purple: #9d67f7;
   --theme-blue: #3f61e8;
-  --theme-blue-alpha: #6ea8fecc;
+  --theme-blue-alpha: #3f61e833;
   /* 80% Opacity */
   --nav-hover-bg: #343a40;
   /* Translucent gray/white for dark mode */
@@ -27,16 +27,18 @@
 }
 
 [data-bs-theme=dark] body {
-  background: #16131f;
+  background-color: #1B1A1C;
   background-image:
-    radial-gradient(ellipse 80% 50% at 50% 0%, #161436 0%, #1B1A1C 55%);
+    radial-gradient(ellipse 80% 50% at 50% 0%, #110f29 0%, #1B1A1C 100%);
+  background-size: 100% 1000px;
+  background-repeat: no-repeat;
   background-attachment: scroll;
 }
 
 body {
   background: #ffffff;
   background-image:
-    linear-gradient(#eff6ff 0%, #ffffff 60%);
+    linear-gradient(#eff6ff 0%, #ffffff 1000px);
   background-attachment: scroll;
 }
 
@@ -303,6 +305,14 @@ main {
 .btn-primary:focus,
 .btn-primary:active {
   opacity: 0.85;
+}
+
+#chartTabs .btn-outline-primary:not(.active) {
+  color: var(--bs-btn-active-bg);
+}
+
+#chartTabs .btn-outline-primary:not(.active):hover {
+  background: var(--theme-blue-alpha) !important;
 }
 
 [data-bs-theme="dark"] .bg-primary,

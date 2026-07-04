@@ -54,8 +54,8 @@
          <div class="card bg-body-tertiary border-0 shadow-sm h-100 rounded-4">
             <div class="card-body d-flex flex-column justify-content-between">
                <div>
-                  <div class="card-text text-muted mb-2 small text-uppercase fw-bold">Live Price Data</div>
-                  <h5 class="card-title display-6 fw-semibold text-warning" id="liveSpotPrice">
+                  <div class="card-text text-muted mb-2 small text-uppercase fw-bold">Bitcoin Price</div>
+                  <h5 class="card-title display-6 fw-semibold text-body" id="liveSpotPrice">
                      <span class="spinner-border spinner-border-sm" role="status"></span>
                   </h5>
                </div>
@@ -188,12 +188,12 @@
          <!-- Tabs for Charts -->
          <ul class="nav nav-pills mb-3 justify-content-end" id="chartTabs" role="tablist">
             <li class="nav-item" role="presentation">
-               <button class="btn btn-sm btn-outline-primary active me-2" id="price-tab" data-bs-toggle="pill" data-bs-target="#priceChartContainer" type="button" role="tab" aria-controls="priceChartContainer" aria-selected="true">
+               <button class="btn rounded-pill btn-outline-primary active me-2 border-2" id="price-tab" data-bs-toggle="pill" data-bs-target="#priceChartContainer" type="button" role="tab" aria-controls="priceChartContainer" aria-selected="true">
                   Price Projection
                </button>
             </li>
             <li class="nav-item" role="presentation">
-               <button class="btn btn-sm btn-outline-primary" id="coins-tab" data-bs-toggle="pill" data-bs-target="#coinsChartContainer" type="button" role="tab" aria-controls="coinsChartContainer" aria-selected="false">
+               <button class="btn rounded-pill btn-outline-primary border-2" id="coins-tab" data-bs-toggle="pill" data-bs-target="#coinsChartContainer" type="button" role="tab" aria-controls="coinsChartContainer" aria-selected="false">
                   Coins Needed (Inflation Adj.)
                </button>
             </li>
