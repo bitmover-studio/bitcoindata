@@ -80,7 +80,7 @@ navbarTemplate.innerHTML = `
             <a title="bitcoin data.science" class="navbar-brand text-decoration-none mx-0" href="./">
                 <img src="/img/bitcoin-data-science-logo-web.svg" class="float-start mt-2 me-1"
                     alt="bitcoin data.science" title="bitcoin data.science" height="50" width="50"/>
-                <p class="navbar-text h5  d-none d-xl-block" ><span style="background: linear-gradient(to right, #d97706, #f4c135); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">bitcoindata</span><br />.science</p>
+                <p class="navbar-text h5  d-none d-xl-block" ><span class="text-primary">bitcoindata</span><br />.science</p>
             </a>
         </div>
 

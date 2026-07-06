@@ -49,10 +49,6 @@
       document.head.appendChild(meta);
     }
   </script>
-  <link href="../css/style.css" rel="stylesheet">
-  <script src="../components/navbar.js" defer></script>
-  <script src="../components/footer.js" defer></script>
-  <script src="../components/ad.js" defer></script>
 </head>
 
 <body>
@@ -207,21 +203,8 @@
     </div>
   </main>
   <footer-component></footer-component>
-  <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"
-    integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+  <script src="../modules/crypto-js.min.js"></script>
   <script>
-    $(function () {
-      $('[data-toggle="tooltip"]').tooltip()
-    })
-
     async function go() {
       const submitBtn = document.getElementById('submitbutton');
       const submitLabel = document.getElementById('submit-label');

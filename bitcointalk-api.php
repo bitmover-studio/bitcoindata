@@ -2,95 +2,53 @@
 <html lang="en">
 
 <head>
-   <meta charset="utf-8">
-   <title>bitcoin data.science - Price API</title>
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <meta name="description" content="Data analysis and tools for anything related to bitcoin.">
-   <meta name="robots" content="index, follow" />
-   <meta name="keywords" content="bitcoin, data science, analytics, blockchain, bitcointalk" />
-   <link rel="shortcut icon" href="img/favicon.svg">
-   <link rel="canonical" href="https://bitcoindata.science/bitcointalk-api">
-   <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
-   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
-   <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
-   <link rel="manifest" href="manifest.json" />
-   <link rel="mask-icon" href="img/safari-pinned-tab.svg" color="#111316">
-   <meta name="apple-mobile-web-app-title" content="bitcoin data.science">
-   <meta name="application-name" content="bitcoin data.science">
-   <meta name="msapplication-TileColor" content="#2b5797">
-   <meta name="theme-color" content="#111316">
-   <meta property="og:title" content="bitcoin data.science - Data Analysis and bitcoin" />
-   <meta property="og:type" content="website" />
-   <meta property="og:url" content="https://bitcoindata.science/" />
-   <meta property="og:image" content="https://bitcoindata.science/img/logo.png" />
-   <meta property="og:description" content="Data analysis and tools for anything related to bitcoin." />
-   <meta property="og:locale" content="en_US" />
-   <meta property="og:site_name" content="bitcoin data.science" />
-   <script type="application/ld+json">
-         {
-           "@context": "https://schema.org",
-           "@type": "Organization",
-           "name": "bitcoin data.science",
-           "description": "Data analysis and tools for anything related to bitcoin.",
-           "alternateName": [
-             "bitcoindata.science",
-             "Bitcoin Data Science",
-             "bitcoin datascience"
-           ],
-           "url": "https://bitcoindata.science",
-           "logo": "https://bitcoindata.science/img/logo.svg",
-           "sameAs": [
-             "https://bitcoindata.science"
-           ]
-         }
-      </script>
-   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-   <link href="css/style.css" rel="stylesheet">
-   <script src="components/navbar.js" type="text/javascript" defer></script>
-   <script src="components/footer.js" type="text/javascript" defer></script>
-   <script src="components/ad.js" type="text/javascript" defer></script>
+   <?php
+   $title = "bitcoin data.science - Price API";
+   $description = "Data analysis and tools for anything related to bitcoin.";
+   $canonical = "https://bitcoindata.science/bitcointalk-api";
+   include_once $_SERVER['DOCUMENT_ROOT'] . '/components/head.php';
+   ?>
 </head>
 
 <body>
-   <!-- Navbar -->
    <header>
-      <navbar-component />
+      <navbar-component></navbar-component>
    </header>
    <!-- Page Content -->
-   <main class="container-fluid col-lg-10 col-xl-8">
-         <ad-component></ad-component>
-         <h1 class="h1 display-3 fw-bold">API Docs</h1>
-         <p class="lead"> Using blockchain data from mempool.space and price data from coingecko, exchange.host and
-            binance p2p (in case of BDT), it is now possible to share bitcoin data such as address balances and
-            transactions as an
-            image in bitcointalk.org or any other forum using our API. The data is always updated when reloaded.</p>
+   <?php
+   $h1 = "API Docs";
+   $mainClass = "container-fluid col-lg-10 col-xl-8";
+   include_once $_SERVER['DOCUMENT_ROOT'] . '/components/page-header.php';
+   ?>
+      <p class="lead"> Using blockchain data from mempool.space and price data from coingecko, exchange.host and
+         binance p2p (in case of BDT), it is now possible to share bitcoin data such as address balances and
+         transactions as an
+         image in bitcointalk.org or any other forum using our API. The data is always updated when reloaded.</p>
 
-         <div class="text-center">
-            <h4 class="h4 my-4">Try out our new <em class="text-warning-emphasis">browser extension</em>!</h4>
+      <div class="text-center">
+         <h4 class="h4 my-4">Try out our new <em class="text-warning-emphasis">browser extension</em>!</h4>
 
-            <a href="https://addons.mozilla.org/en-US/firefox/addon/bitcointalk-data-extension/"
-               class="btn btn-dark px-4 text-decoration-none text-white" target="_blank" title="Firefox and Tor" rel="noopener">
-               <img src="img/firefox.svg" alt="Mozilla Firefox and Tor" class="me-3" width="32" height="32">Firefox
-               AMO</a>
-            <a href="https://microsoftedge.microsoft.com/addons/detail/bitcointalk-data-extensio/gcndngnnhncdblgfcbgefmhginmmjfde"
-               class="btn btn-dark px-4 text-decoration-none text-white" target="_blank" title="Microsoft Edge"  rel="noopener">
-               <img src="img/edge.svg" alt="Microsoft Edge" class="me-3" width="32" height="32">Edge Add-ons            </a>
-            <a href="https://greasyfork.org/en/scripts/488031-bitcoindata-extension" class="btn btn-dark px-4 text-decoration-none text-white" target="_blank"  title="Any browser - user script"  rel="noopener">
-               <img src="img/greasy-fork.png" alt="Greasy Fork" class="me-3" width="32" height="32"
-                 >Greasy Fork</a>
-         </div>
-
-         <!-- API Endpoints Generated Here -->
-         <div id="api-endpoints"></div>
+         <a href="https://addons.mozilla.org/en-US/firefox/addon/bitcointalk-data-extension/"
+            class="btn btn-dark px-4 text-decoration-none text-white" target="_blank" title="Firefox and Tor"
+            rel="noopener">
+            <img src="img/firefox.svg" alt="Mozilla Firefox and Tor" class="me-3" width="32" height="32">Firefox
+            AMO</a>
+         <a href="https://microsoftedge.microsoft.com/addons/detail/bitcointalk-data-extensio/gcndngnnhncdblgfcbgefmhginmmjfde"
+            class="btn btn-dark px-4 text-decoration-none text-white" target="_blank" title="Microsoft Edge"
+            rel="noopener">
+            <img src="img/edge.svg" alt="Microsoft Edge" class="me-3" width="32" height="32">Edge Add-ons </a>
+         <a href="https://greasyfork.org/en/scripts/488031-bitcoindata-extension"
+            class="btn btn-dark px-4 text-decoration-none text-white" target="_blank" title="Any browser - user script"
+            rel="noopener">
+            <img src="img/greasy-fork.png" alt="Greasy Fork" class="me-3" width="32" height="32">Greasy Fork</a>
       </div>
+
+      <!-- API Endpoints Generated Here -->
+      <div id="api-endpoints"></div>
       <!-- /main page -->
    </main>
 
-   <footer-component />
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
-      crossorigin="anonymous"></script>
+   <footer-component></footer-component>
    <script>
       const currencies = ["NOFIAT", "USD", "EUR", "GBP", "BRL", "AFN", "ALL", "AMD", "ANG", "AOA", "ARS", "AUD", "AWG", "AZN", "BAM", "BBD", "BDT", "BGN", "BHD", "BIF", "BMD", "BND", "BOB", "BSD", "BTN", "BWP", "BYN", "BZD", "CAD", "CDF", "CHF", "CLF", "CLP", "CNH", "CNY", "COP", "CRC", "CUC", "CUP", "CVE", "CZK", "DJF", "DKK", "DOP", "DZD", "EGP", "ERN", "ETB", "FJD", "FKP", "GEL", "GGP", "GHS", "GIP", "GMD", "GNF", "GTQ", "GYD", "HKD", "HNL", "HRK", "HTG", "HUF", "IDR", "ILS", "IMP", "INR", "IQD", "IRR", "ISK", "JEP", "JMD", "JOD", "JPY", "KES", "KGS", "KHR", "KMF", "KPW", "KRW", "KWD", "KYD", "KZT", "LAK", "LBP", "LKR", "LRD", "LSL", "LYD", "MAD", "MDL", "MGA", "MKD", "MMK", "MNT", "MOP", "MRO", "MRU", "MUR", "MVR", "MWK", "MXN", "MYR", "MZN", "NAD", "NGN", "NIO", "NOK", "NPR", "NZD", "OMR", "PAB", "PEN", "PGK", "PHP", "PKR", "PLN", "PYG", "QAR", "RON", "RSD", "RUB", "RWF", "SAR", "SBD", "SCR", "SDG", "SEK", "SGD", "SHP", "SLL", "SOS", "SRD", "SSP", "STD", "STN", "SVC", "SYP", "SZL", "THB", "TJS", "TMT", "TND", "TOP", "TRY", "TTD", "TWD", "TZS", "UAH", "UGX", "UYU", "UZS", "VES", "VND", "VUV", "WST", "XAF", "XAG", "XAU", "XCD", "XDR", "XOF", "XPD", "XPF", "XPT", "YER", "ZAR", "ZMW", "ZWL"];
 
@@ -140,7 +98,7 @@
                { name: "hex", type: "string", default: "000000", description: "Hexadecimal color code.", inputType: "color" },
                { name: "bold", type: "boolean", default: "false", description: "Display font in bold when true.", inputType: "checkbox" },
                { name: "totalreceived", type: "boolean", default: "false", description: "Display total received amount when true.", inputType: "checkbox" },
-               { name: "receivedfromothers", type: "boolean", default: "false", description: "Display received from other addresses when true.", inputType: "checkbox"}
+               { name: "receivedfromothers", type: "boolean", default: "false", description: "Display received from other addresses when true.", inputType: "checkbox" }
             ]
          },
          {
@@ -203,7 +161,7 @@
          }
 
          const codeEl = document.getElementById(`${epId}-code`);
-         const bbcode = `[url=https://bitcoindata.science/bitcointalk-api.html#${epId}][img height=${ep.imageHeight}]${url}[/img][/url]`;
+         const bbcode = `[url=https://bitcoindata.science/bitcointalk-api#${epId}][img height=${ep.imageHeight}]${url}[/img][/url]`;
          codeEl.innerText = bbcode;
 
          const imgEl = document.getElementById(`${epId}-response`);
@@ -281,7 +239,7 @@
 
             html += `
                <div class="my-5" id="${ep.id}">
-                  <a href="#${ep.id}" class="link-danger">
+                  <a href="#${ep.id}" class="text-body">
                      <h2 class="h2 fw-semibold mb-0">${ep.title}
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link" viewBox="0 0 16 16">
                            <path d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z" />
@@ -293,12 +251,12 @@
                   <p class="h6 my-3 pt-3">Parameters</p>
                   <table class="table table-striped">
                      <thead>
-                        <tr>
-                           <th scope="col">Name</th>
-                           <th scope="col">Type</th>
-                           <th scope="col">Default</th>
-                           <th scope="col">description</th>
-                        </tr>
+                      <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Default</th>
+                        <th scope="col">description</th>
+                      </tr>
                      </thead>
                      <tbody class="table-group-divider">
                         ${paramsRows}
@@ -337,7 +295,7 @@
                            </svg>
                         </div>
                         <div class="row mt-3 col-5 mx-auto">
-                           <button class="btn btn-success" type="button" onclick="reloadImage('${ep.id}')">Reload Image</button>
+                           <button class="btn btn-primary" type="button" onclick="reloadImage('${ep.id}')">Reload Image</button>
                         </div>
                      </div>
                   </div>

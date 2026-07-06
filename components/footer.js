@@ -2,7 +2,7 @@
 
 const footerTemplate = document.createElement('template');
 footerTemplate.innerHTML = `
-<footer class="justify-content-evenly py-4 py-md-5 mt-6 bg-body-tertiary border-0">
+<footer class="justify-content-evenly py-4 py-md-5 mt-6 border-top">
     <div class="container-fluid col-lg-12 col-xl-9 ">
         <div class="row grid gap-3">
             <div class="col-md">

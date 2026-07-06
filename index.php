@@ -35,7 +35,7 @@
    <!-- Page Content -->
    <?php
    // Create a gradient effect for bitcoindata on h1
-   $h1 = 'Welcome to <tt class="text-primary fw-bold" style="background: linear-gradient(to right, #d97706, #f4c135); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">bitcoindata</tt>';
+   $h1 = 'Welcome to <tt class="text-primary fw-bold">bitcoindata</tt>';
    include_once $_SERVER['DOCUMENT_ROOT'] . '/components/page-header.php';
    ?>
    <div class="my-4 row row-cols-1 row-cols-md-2 row-cols-lg-2 row-cols-xxl-3 g-4" id="cards">
@@ -48,11 +48,11 @@
             description: "See the balance of multiple bitcoin addresses at the same time. Scanning QRCode supported.",
             link: "bitcoin-balance-check",
             action: "Check your balance",
-            icon: '<path d="M12.136.326A1.5 1.5 0 0 1 14 1.78V3h.5A1.5 1.5 0 0 1 16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 13.5v-9a1.5 1.5 0 0 1 1.432-1.499L12.136.326zM5.562 3H13V1.78a.5.5 0 0 0-.621-.484L5.562 3zM1.5 4a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-13z" /> </svg>',
+            icon: '<path d="M12.136.326A1.5 1.5 0 0 1 14 1.78V3h.5A1.5 1.5 0 0 1 16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 13.5v-9a1.5 1.5 0 0 1 1.432-1.499L12.136.326zM5.562 3H13V1.78a.5.5 0 0 0-.621-.484L5.562 3zM1.5 4a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-13z" />',
          },
          {
             title: "Unit Converter",
-            description: "Convert bitcoin units BTC, mBTC, uBTC, bitcent, satoshi, finney to USD, EUR or any other fiat currency.",
+            description: "Convert bitcoin units <code>BTC</code>, <code>mBTC</code>, <code>uBTC</code>, <code>bitcent</code>, <code>satoshi</code>, <code>finney</code> to USD, EUR or any other fiat currency.",
             link: "bitcoin-units-converter",
             action: "Convert units",
             icon: '<path fill-rule="evenodd"d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z" />',
@@ -95,22 +95,24 @@
          cardCol.className = 'col';
 
          cardCol.innerHTML = `
-         <div class="card h-100 border-2 bg-body-tertiary p-3 rounded-4 card-home">
-            <div class="card-body m-4">
-               <div class="icon-content float-end">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="text-primary text-bold" viewBox="0 0 16 16">${card.icon}
+         <div class="card h-100 card-home">
+            <div class="card-body p-0">
+               <div class="card-home-icon-wrapper">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">${card.icon}</svg>
                </div>
 
                <div class="text-content">
-                  <h3 class="h3 fw-bold card-title my-2">
+                  <h3 class="card-title-home">
                         ${card.title}
                   </h3>
-                  <p class="card-text text-body-secondary">${card.description}</p>
+                  <p class="card-desc-home">${card.description}</p>
                </div>
            </div>
-           <div class="card-footer bg-transparent border-0 mx-4 pt-0 mt-0">
-               <a href="${card.link}" class="btn btn-primary btn-lg text-normal fs-6 stretched-link py-3 px-4" style="font-weight:500" title="${card.action}">${card.action}
-               <svg height="24" class="ms-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></a>
+           <div class="card-footer-home">
+               <a href="${card.link}" class="btn-home-action stretched-link" title="${card.action}">
+                  <span>${card.action}</span>
+                  <svg height="20" width="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path></svg>
+               </a>
             </div>
          </div>
     `;

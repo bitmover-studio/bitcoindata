@@ -47,15 +47,15 @@
       <h3 class="lead">Use any of the fields below to convert bitcoin units BTC,mBTC, uBTC, satoshi, finney to
          USD, EUR or any other fiat currency.<br></h2>
 
-      <div class="accordion my-3 shadow-sm rounded-top-4 " id="accordion">
-         <div class="accordion-item border-0 shadow-sm">
-            <h3 class="accordion-header" id="howMany">
-               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+      <div class="accordion my-3 shadow-sm rounded-top-4 bg-body-tertiary" id="accordion">
+         <div class="accordion-item border-0 shadow-sm bg-body-tertiary">
+            <h3 class="accordion-header bg-body-tertiary" id="howMany">
+               <button class="accordion-button collapsed bg-body-tertiary" type="button" data-bs-toggle="collapse"
                   data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                   How many fiat currencies are supported?
                </button>
             </h3>
-            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="howMany">
+            <div id="collapseOne" class="accordion-collapse collapse bg-body-tertiary" aria-labelledby="howMany">
                <div class="accordion-body">
                   This service supports <em><strong id="nfiat" class="text-primary-emphasis"> </strong></em> fiat
                   currencies, and their prices are
@@ -64,14 +64,14 @@
                </div>
             </div>
          </div>
-         <div class="accordion-item rounded-bottom-4 border-0 border-top shadow-sm">
-            <h3 class="accordion-header" id="whichCurrencies">
-               <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+         <div class="accordion-item rounded-bottom-4 border-0 border-top shadow-sm bg-body-tertiary">
+            <h3 class="accordion-header bg-body-tertiary" id="whichCurrencies">
+               <button class="accordion-button collapsed bg-body-tertiary" type="button" data-bs-toggle="collapse"
                   data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                   Which currencies are supported?
                </button>
             </h3>
-            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="whichCurrencies">
+            <div id="collapseTwo" class="accordion-collapse collapse bg-body-tertiary" aria-labelledby="whichCurrencies">
                <div class="accordion-body small" id="listSymbols">
                </div>
             </div>
