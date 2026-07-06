@@ -213,7 +213,6 @@ span.logo {
   font-weight: 600;
   color: var(--theme-blue);
   transition: all 0.2s ease;
-  position: relative;
   text-decoration: none;
 }
 
