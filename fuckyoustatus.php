@@ -47,83 +47,76 @@
       Determine the Bitcoin stash required to fund your life, taking into account inflation, withdrawal rates, and long-term price prediction models.
    </p>
 
-   <!-- Summary Cards for Today -->
-   <div class="row row-cols-1 row-cols-lg-4 row-cols-md-2 g-4 mt-2">
-      <!-- Card 1: Today's Prices -->
-      <div class="col px-2">
-         <div class="card bg-body-tertiary border-0 shadow-sm h-100 rounded-4">
-            <div class="card-body d-flex flex-column justify-content-between">
-               <div>
-                  <div class="card-text text-muted mb-2 small text-uppercase fw-bold">Bitcoin Price</div>
-                  <h5 class="card-title display-6 fw-semibold text-body" id="liveSpotPrice">
-                     <span class="spinner-border spinner-border-sm" role="status"></span>
-                  </h5>
-               </div>
-               <div class="mt-3 pt-3 border-top">
-                  <div class="card-text text-muted mb-1 small">Current 200-WMA</div>
-                  <span class="h5 fw-bold text-body-emphasis" id="live200WMA">—</span>
-               </div>
-            </div>
-         </div>
-      </div>
+   <!-- Summary Cards for Today (rendered by JS) -->
+   <div id="summary-cards" class="row row-cols-1 row-cols-lg-4 row-cols-md-2 g-4 mt-2"></div>
 
-      <!-- Card 2: 10% FU Status -->
-      <div class="col px-2">
-         <div class="card bg-body-tertiary border-0 shadow-sm h-100 rounded-4">
-            <div class="card-body d-flex flex-column justify-content-between">
-               <div>
-                  <div class="card-text text-muted mb-2 small text-uppercase fw-bold">10% FU Status</div>
-                  <h5 class="card-title display-6 fw-semibold text-success" id="todayFU10">
-                     <span class="spinner-border spinner-border-sm" role="status"></span>
-                  </h5>
-               </div>
-               <div class="mt-3 pt-3 border-top">
-                  <div class="card-text text-muted mb-1 small" id="todayFU10Desc">Target Portfolio: $800,000</div>
-                  <span class="small text-secondary">Valued at 200-WMA</span>
-               </div>
-            </div>
-         </div>
-      </div>
+   <script>
+      const SUMMARY_CARDS = [
+         {
+            label:    'Bitcoin Price',
+            valueId:  'liveSpotPrice',
+            color:    'text-body',
+            footer: {
+               label:   'Current 200-WMA',
+               labelId: 'live200WMA',
+               sub:     'Current 200-WMA',
+            },
+         },
+         {
+            label:    '10% Withdrawal Rate',
+            valueId:  'todayFU10',
+            color:    'text-success',
+            footer: {
+               label:   'Target Portfolio: $800,000',
+               labelId: 'todayFU10Desc',
+               sub:     'Valued at 200-WMA',
+            },
+         },
+         {
+            label:    '4% Withdrawal Rate',
+            valueId:  'todayFU4',
+            color:    'text-info',
+            footer: {
+               label:   'Target Portfolio: $2,000,000',
+               labelId: 'todayFU4Desc',
+               sub:     'Valued at 200-WMA',
+            },
+         },
+         {
+            label:    'Filthy-Rich Status',
+            valueId:  'todayFR',
+            color:    'text-purple',
+            footer: {
+               label:   'Target Portfolio: $100,000,000',
+               labelId: 'todayFRDesc',
+               sub:     'Valued at 200-WMA',
+            },
+         },
+      ];
 
-      <!-- Card 3: 4% FU Status -->
-      <div class="col px-2">
-         <div class="card bg-body-tertiary border-0 shadow-sm h-100 rounded-4">
-            <div class="card-body d-flex flex-column justify-content-between">
-               <div>
-                  <div class="card-text text-muted mb-2 small text-uppercase fw-bold">4% FU Status</div>
-                  <h5 class="card-title display-6 fw-semibold text-info" id="todayFU4">
-                     <span class="spinner-border spinner-border-sm" role="status"></span>
-                  </h5>
-               </div>
-               <div class="mt-3 pt-3 border-top">
-                  <div class="card-text text-muted mb-1 small" id="todayFU4Desc">Target Portfolio: $2,000,000</div>
-                  <span class="small text-secondary">Valued at 200-WMA</span>
-               </div>
-            </div>
-         </div>
-      </div>
+      document.getElementById('summary-cards').innerHTML = SUMMARY_CARDS.map(card => {
+         const spinner = `<span class="spinner-border spinner-border-sm" role="status"></span>`;
 
-      <!-- Card 4: Filthy-Rich -->
-      <div class="col px-2">
-         <div class="card bg-body-tertiary border-0 shadow-sm h-100 rounded-4">
-            <div class="card-body d-flex flex-column justify-content-between">
-               <div>
-                  <div class="card-text text-muted mb-2 small text-uppercase fw-bold">Filthy-Rich Status</div>
-                  <h5 class="card-title display-6 fw-semibold text-purple" id="todayFR">
-                     <span class="spinner-border spinner-border-sm" role="status"></span>
-                  </h5>
+         const footerInner = `<div class="card-text text-muted mb-1 small" id="${card.footer.labelId}">${card.footer.label}</div>
+               <span class="small text-secondary">${card.footer.sub}</span>`;
+
+         return `
+            <div class="col">
+               <div class="card bg-body-tertiary shadow-sm h-100 rounded-4">
+                  <div class="card-body d-flex flex-column justify-content-between">
+                     <div>
+                        <div class="card-text text-muted mb-2 small text-uppercase fw-bold">${card.label}</div>
+                        <h5 class="card-title display-6 fw-semibold" id="${card.valueId}">${spinner}</h5>
+                     </div>
+                     <div class="mt-3 pt-3 border-top">${footerInner}</div>
+                  </div>
                </div>
-               <div class="mt-3 pt-3 border-top">
-                  <div class="card-text text-muted mb-1 small" id="todayFRDesc">Target Portfolio: $100,000,000</div>
-                  <span class="small text-secondary">Valued at 200-WMA</span>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
+            </div>`;
+      }).join('');
+   </script>
 
    <!-- Controls and Charts Area -->
-   <div class="row mt-4 mb-4 g-4 bg-body-tertiary rounded-4 p-4 shadow-sm">
+   <div class="row mx-0 mt-4 mb-4 g-4 bg-body-tertiary rounded-4 p-4 shadow-sm">
       <!-- Input Sidebar -->
       <div class="col-lg-4 border-end-lg pe-lg-4">
          <h4 class="h5 mb-4 fw-bold text-primary">Calculation Controls</h4>
@@ -157,7 +150,7 @@
                <input type="number" class="form-control font-monospace border-0 bg-body-secondary" id="horizonYears" value="15" min="10" max="20" step="1">
                <span class="input-group-text bg-body-secondary border-0">Years</span>
             </div>
-            <input type="range" class="form-range" id="horizonYearsRange" min="10" max="20" step="1" value="15">
+            <input type="range" class="form-range" id="horizonYearsRange" min="10" max="20" step="1" value="10">
             <div class="form-text small">Extend predictions between 10 and 20 years.</div>
          </div>
 
@@ -167,7 +160,7 @@
             <select class="form-select border-0 bg-body-secondary rounded-3" id="modelSelect">
                <option value="jjg_cycle" selected>JJG Cycle Model (Self-Adjusting)</option>
                <option value="bearish_cycle">Bearish Cycle Model (Diminishing Gains)</option>
-               <option value="power_law">Power Law Regression Model</option>
+               <option value="stable_ratio">Very Bearish Model</option>
             </select>
             <div class="form-text small">Choose how the future 200WMA and Spot Prices are predicted.</div>
          </div>
@@ -176,8 +169,8 @@
          <div class="mb-3">
             <label for="spotPremiumSelect" class="form-label fw-semibold">Future Spot Price Premium</label>
             <select class="form-select border-0 bg-body-secondary rounded-3" id="spotPremiumSelect">
-               <option value="fixed" selected>Fixed 30% Premium above 200WMA</option>
-               <option value="cyclical">Cyclical (-30% bottom / 102% top)</option>
+               <option value="fixed" >Fixed 30% Premium above 200WMA</option>
+               <option value="cyclical" selected>Cyclical (-30% bottom / 102% top)</option>
             </select>
             <div class="form-text small">Assumed spot price relation to the predicted 200WMA.</div>
          </div>
@@ -301,10 +294,11 @@
    <script>
       // Listen for theme mutations to update ApexCharts colors
       var callback = function (mutationsList, observer) {
+         // Look through all mutations that just occured
          for (let mutation of mutationsList) {
+            // If the `data-bs-theme` attribute was modified
             if (mutation.attributeName === 'data-bs-theme') {
-               priceChartInstance.updateOptions({ theme: { mode: localStorage.getItem('theme') } });
-               coinsChartInstance.updateOptions({ theme: { mode: localStorage.getItem('theme') } });
+               recalculate();
             }
          }
       };

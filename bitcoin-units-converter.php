@@ -47,9 +47,9 @@
       <h3 class="lead">Use any of the fields below to convert bitcoin units BTC,mBTC, uBTC, satoshi, finney to
          USD, EUR or any other fiat currency.<br></h2>
 
-      <div class="accordion my-3 shadow-sm rounded-top-4 bg-body-tertiary" id="accordion">
-         <div class="accordion-item border-0 shadow-sm bg-body-tertiary">
-            <h3 class="accordion-header bg-body-tertiary" id="howMany">
+      <div class="accordion my-3 shadow-sm rounded-top-4"  id="accordion">
+         <div class="accordion-item border-0 shadow-sm">
+            <h3 class="accordion-header" id="howMany">
                <button class="accordion-button collapsed bg-body-tertiary" type="button" data-bs-toggle="collapse"
                   data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                   How many fiat currencies are supported?
@@ -64,8 +64,8 @@
                </div>
             </div>
          </div>
-         <div class="accordion-item rounded-bottom-4 border-0 border-top shadow-sm bg-body-tertiary">
-            <h3 class="accordion-header bg-body-tertiary" id="whichCurrencies">
+         <div class="accordion-item rounded-bottom-4 border-0 border-top shadow-sm">
+            <h3 class="accordion-header" id="whichCurrencies">
                <button class="accordion-button collapsed bg-body-tertiary" type="button" data-bs-toggle="collapse"
                   data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                   Which currencies are supported?

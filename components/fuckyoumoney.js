@@ -29,20 +29,17 @@ const GENESIS_MS = 1230940800000;
 const MS_IN_DAY = 24 * 60 * 60 * 1000;
 const MS_IN_YEAR = 365.25 * MS_IN_DAY;
 
-// 1. Calculate Simple Moving Average (SMA)
+// 1. Calculate Simple Moving Average (SMA) — O(N) sliding window
 function calculateSMA(data, period) {
     let sma = [];
-    let sumRunAvg = 0;
+    let windowSum = 0;
     for (let i = 0; i < data.length; i++) {
+        windowSum += data[i][1];
         if (i >= period) {
-            let sum = 0;
-            for (let j = i; j > i - period; j--) {
-                sum += data[j][1];
-            }
-            sma.push([data[i][0], sum / period]);
+            windowSum -= data[i - period][1];
+            sma.push([data[i][0], windowSum / period]);
         } else {
-            sumRunAvg += data[i][1];
-            sma.push([data[i][0], sumRunAvg / (i + 1)]);
+            sma.push([data[i][0], windowSum / (i + 1)]);
         }
     }
     return sma;
@@ -54,39 +51,9 @@ function getBearishGain(date) {
     return getJJGGain(date) * 0.70;
 }
 
-// 3. Linear Regression on Power Law
-function fitPowerLawRegression(smaData) {
-    let sumX = 0, sumY = 0, sumXX = 0, sumXY = 0, n = 0;
-    for (let i = 0; i < smaData.length; i++) {
-        let val = smaData[i][1];
-        let t = smaData[i][0];
-        let days = (t - GENESIS_MS) / MS_IN_DAY;
-        if (days > 0 && val > 0) {
-            let x = Math.log10(days); // X = log10(days since Genesis)
-            let y = Math.log10(val); // Y = log10(200WMA)
-            sumX += x;
-            sumY += y;
-            sumXX += x * x;
-            sumXY += x * y;
-            n++;
-        }
-    }
-    let slope = (sumXY - n * (sumX / n) * (sumY / n)) / (sumXX - n * (sumX / n) * (sumX / n));
-    let intercept = (sumY / n) - slope * (sumX / n);
-
-    // Anchor to latest actual data point
-    let latestActual = smaData[smaData.length - 1];
-    let latestDays = (latestActual[0] - GENESIS_MS) / MS_IN_DAY;
-    let latestExpected = Math.pow(10, intercept) * Math.pow(latestDays, slope);
-    let anchorMultiplier = latestActual[1] / latestExpected;
-
-    return {
-        predict: function (timestamp) {
-            let days = (timestamp - GENESIS_MS) / MS_IN_DAY;
-            if (days <= 0) return 0;
-            return Math.pow(10, intercept) * Math.pow(days, slope) * anchorMultiplier;
-        }
-    };
+// 3. Stable Model — More Bearish (0.5x JJG)
+function getStableGain(date) {
+    return getJJGGain(date) * 0.20;
 }
 
 // 4. JJG Cycle Model Step Gain
@@ -195,9 +162,6 @@ function recalculate() {
     // Latest historical data point timestamp
     const latestHistTimestamp = prices[prices.length - 1][0];
 
-    // Compute Models
-    const powerLawModel = fitPowerLawRegression(sma200);
-
     // Timeline calculations
     let tableRowsHTML = "";
     let csvData = [];
@@ -231,6 +195,7 @@ function recalculate() {
     let computedData = [];
     let jjgRun200WMA = 0;
     let bearishRun200WMA = 0;
+    let stableRun200WMA = 0;
 
     for (let i = 0; i < allDates.length; i++) {
         let d = allDates[i];
@@ -249,6 +214,7 @@ function recalculate() {
             // Sync cyclical projection state
             jjgRun200WMA = wma;
             bearishRun200WMA = wma;
+            stableRun200WMA = wma;
         } else {
             // Predict future WMA based on model selection
             if (selectedModel === "jjg_cycle") {
@@ -261,8 +227,11 @@ function recalculate() {
                 let bearishGain = getBearishGain(d);
                 bearishRun200WMA = bearishRun200WMA * (1 + bearishGain / 100);
                 wma = bearishRun200WMA;
-            } else if (selectedModel === "power_law") {
-                wma = powerLawModel.predict(t);
+            } else if (selectedModel === "stable_ratio") {
+                // Apply semi-annual gain sequentially with more bearish decay
+                let stableGain = getStableGain(d);
+                stableRun200WMA = stableRun200WMA * (1 + stableGain / 100);
+                wma = stableRun200WMA;
             }
 
             // Predict spot price based on premium select
@@ -377,14 +346,16 @@ function recalculate() {
 
 // 7. Draw / Update Price Prediction Chart (Continuous Series with Annotation)
 function updatePriceChart(spotData, wmaData, transitionTimestamp) {
-    const isDark = document.documentElement.getAttribute("data-bs-theme") === "dark";
+    const isDark = localStorage.getItem('theme') === "dark";
 
     let options = {
         chart: {
             height: 380,
             id: 'price-proj-chart',
             toolbar: { show: true },
-            theme: { mode: isDark ? 'dark' : 'light' }
+        },
+        theme: {
+            mode: isDark ? 'dark' : 'light'
         },
         stroke: {
             width: [2, 3],
@@ -468,7 +439,10 @@ function updateCoinsChart(fu10, fu4, fr) {
             height: 380,
             id: 'coins-needed-chart',
             toolbar: { show: true },
-            theme: { mode: isDark ? 'dark' : 'light' }
+            zoom: { enabled: false },
+        },
+        theme: {
+            mode: isDark ? 'dark' : 'light'
         },
         stroke: {
             width: 2.5
@@ -498,7 +472,7 @@ function updateCoinsChart(fu10, fu4, fr) {
         },
         tooltip: {
             x: { format: 'dd MMM yyyy' },
-            theme: 'dark',
+            theme: localStorage.getItem('theme'),
         },
         grid: {
             borderColor: isDark ? '#343a40' : '#dee2e6'

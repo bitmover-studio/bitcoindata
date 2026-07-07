@@ -95,7 +95,7 @@
          cardCol.className = 'col';
 
          cardCol.innerHTML = `
-         <div class="card h-100 card-home">
+         <div class="card h-100 card-home bg-body-tertiary">
             <div class="card-body p-0">
                <div class="card-home-icon-wrapper">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">${card.icon}</svg>

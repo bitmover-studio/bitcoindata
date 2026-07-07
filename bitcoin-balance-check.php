@@ -59,8 +59,8 @@
       <div class="bg-body-tertiary rounded-4 p-md-5 p-4 shadow-sm">
 
          <!-- Instructions -->
-         <p class="fw-semibold text-body-secondary small text-uppercase ls-wide mb-3" style="letter-spacing: .08em;">How it works</p>
-         <div class="row g-3 mb-4">
+         <p class="fw-semibold text-body-secondary small text-uppercase ls-wide mb-5 text-primary" style="letter-spacing: .08em;">How it works</p>
+            <div class="row g-3 mb-4">
             <div class="col-12 col-sm-6 col-lg-5">
                <div class="d-flex align-items-start gap-3">
                   <span class="d-flex align-items-center justify-content-center rounded-circle bg-body-secondary flex-shrink-0" style="width:36px;height:36px;">
