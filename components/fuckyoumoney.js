@@ -305,8 +305,8 @@ function recalculate() {
         tableRowsHTML += `
             <tr class="${rowClass}">
                <td>${dateStr} ${isFuture ? '<span class="badge bg-primary ms-1 small">Proj</span>' : ''}</td>
-               <td>$${Math.round(row.spot).toLocaleString()}</td>
-               <td>$${Math.round(row.wma).toLocaleString()}</td>
+               <td>$${(row.spot).toFixed(2).toLocaleString()}</td>
+               <td>$${(row.wma).toFixed(2).toLocaleString()}</td>
                <td>${gainPercent}</td>
                <td>${spotVs200Str}</td>
                <td class="fw-bold text-success">${row.coins10.toFixed(2)} BTC</td>

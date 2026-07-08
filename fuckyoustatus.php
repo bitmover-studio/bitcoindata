@@ -3,9 +3,9 @@
 
 <head>
    <?php 
-   $title = "Bitcoin Fuck You Money Calculator - bitcoin data.science";
-   $description = "Calculate the amount of bitcoin needed to reach financial independence and 'Fuck You Money' status under different regression models and inflation rates.";
-   $keywords = "Bitcoin, Fuck You Money, Regression, Power Law, Moving Average, 200 Weeks, Inflation, Financial Independence";
+   $title = "Bitcoin Fuck You Status Calculator - bitcoin data.science";
+   $description = "Calculate the amount of bitcoin needed to reach financial independence and 'Fuck You Status' under different regression models and inflation rates.";
+   $keywords = "Bitcoin, Fuck You Status, Fuck you money, Regression, Power Law, Moving Average, 200 Weeks, Inflation, Financial Independence";
    $canonical = "https://bitcoindata.science/fuckyoumoney";
    include_once $_SERVER['DOCUMENT_ROOT'] . '/components/head.php';
    ?>
@@ -13,8 +13,8 @@
       {
         "@context": "https://schema.org",
         "@type": "Organization",
-        "name": "Fuck You Money Calculator",
-        "description": "Calculate the amount of bitcoin needed to reach 'Fuck You Money' status with inflation adjustments and regression models.",
+        "name": "Fuck You Status Calculator",
+        "description": "Calculate the amount of bitcoin needed to reach 'Fuck You Status' with inflation adjustments and regression models.",
         "alternateName": [
           "bitcoindata.science",
           "Bitcoin Data Science"
@@ -38,12 +38,15 @@
    
    <!-- Page Content -->
    <?php
-   $h1 = 'Bitcoin "Fuck You Money" Status';
-   $h2 = 'Calculate how much Bitcoin you need to reach financial independence over the next 10-20 years.';
+   $h1 = 'Fuck You Status';
+   $h2 = 'Calculate how much Bitcoin you need to reach financial independence over the next 10-20 years.
+   <span class="small"><a href="https://bitcointalk.org/index.php?topic=5475347.msg63213914#msg63213914"
+               class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover small fw-semibold"
+               title="Reference">by JayJuanGee (JJG)</a> </span>';
    include_once $_SERVER['DOCUMENT_ROOT'] . '/components/page-header.php';
    ?>
 
-   <p class="text-center mb-4">
+   <p class="mb-4">
       Determine the Bitcoin stash required to fund your life, taking into account inflation, withdrawal rates, and long-term price prediction models.
    </p>
 
@@ -129,7 +132,7 @@
                <span class="input-group-text bg-body-secondary border-0">$</span>
                <input type="number" class="form-control font-monospace border-0 bg-body-secondary" id="annualBudget" value="80000" min="1000" step="5000">
             </div>
-            <input type="range" class="form-range" id="annualBudgetRange" min="20000" max="500000" step="5000" value="80000">
+            <input type="range" class="form-range" id="annualBudgetRange" min="1000" max="1001000" step="5000" value="80000">
             <div class="form-text small">Desired annual nominal purchasing power target (today's dollars).</div>
          </div>
 
@@ -148,11 +151,11 @@
          <div class="mb-4">
             <label for="horizonYears" class="form-label fw-semibold">Projection Horizon</label>
             <div class="input-group mb-2">
-               <input type="number" class="form-control font-monospace border-0 bg-body-secondary" id="horizonYears" value="15" min="10" max="20" step="1">
+               <input type="number" class="form-control font-monospace border-0 bg-body-secondary" id="horizonYears" value="15" min="10" max="60" step="1">
                <span class="input-group-text bg-body-secondary border-0">Years</span>
             </div>
-            <input type="range" class="form-range" id="horizonYearsRange" min="10" max="20" step="1" value="10">
-            <div class="form-text small">Extend predictions between 10 and 20 years.</div>
+            <input type="range" class="form-range" id="horizonYearsRange" min="10" max="60" step="1" value="10">
+            <div class="form-text small">Extend predictions between 10 and 60 years.</div>
          </div>
 
          <!-- Model Selector -->
@@ -228,7 +231,7 @@
    <div class="bg-body-tertiary rounded-4 p-4 shadow-sm mb-5">
       <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap">
          <div>
-            <h4 class="h5 fw-bold text-primary mb-1">Semi-Annual Projection Data Table</h4>
+            <h4 class="section-label mb-1">Semi-Annual Projection Data Table</h4>
             <p class="text-muted small mb-0" id="tableSubtitle">Adjusted starting from today's actual price</p>
          </div>
          <button class="btn btn-sm btn-outline-secondary mt-2 mt-md-0" onclick="exportTableToCSV()">
@@ -263,22 +266,24 @@
       </div>
    </div>
 
-   <article class="mt-5 mb-5">
-      <h4 class="h2 fw-bold my-4">Understanding the Calculations</h4>
-      
-      <div class="row g-4">
-         <div class="col-md-6">
-            <h5 class="h5 fw-semibold text-warning">What is "Fuck You Money" Status?</h5>
-            <p>
-               In personal finance, "Fuck You Money" is the amount of capital required to survive and live comfortably without being dependent on employment or external funding.
+   <article class="bg-body-tertiary rounded-4 p-md-5 p-4 shadow-sm mt-5 mb-5">
+
+      <p class="section-label mb-4">Understanding the Calculations</p>
+
+      <div class="row g-4 g-lg-5 mb-4">
+         <div class="col-lg-6">
+            <h2 class="h5 fw-bold mb-3">What is <span class="text-secondary">"Fuck You Status"?</span></h2>
+            <p class="mb-3">
+               In personal finance, "Fuck You Status" is reaching a wealth status in which you are able to live comfortably at your targeted income level without being dependent on employment or external funding.
+               <div class="text-muted">This level is within the election of the bitcoiner.  The amount could be replacing some portion of your current income level, or it could be replacing your actual income level or multiples of your current income level or it could be some other self-chosen income level that you would like to reach so that you don't have to work any more or rely on external funding and perhaps you would like to live a certain higher standard of living as compared with your current one.</div>
             </p>
             <p>
                By incorporating the <strong>200-week moving average (200WMA)</strong> as a valuation anchor, we insulate our assets from Bitcoin's high volatility. Because the 200WMA has historically acted as a reliable macro-cycle bottom, drawing withdrawals against the 200WMA valuation provides a highly sustainable long-term budget.
             </p>
          </div>
          
-         <div class="col-md-6">
-            <h5 class="h5 fw-semibold text-warning">Inflation and Purchasing Power</h5>
+         <div class="col-lg-6">
+            <h5 class="h5 fw-bold mb-3">Inflation and Purchasing Power</h5>
             <p>
                If you require a $80,000 budget in today's dollars, a constant 3.0% annual inflation rate means that in 10 years, you will need <strong>$107,513</strong> nominal dollars, and in 20 years, you will need <strong>$144,489</strong> nominal dollars to purchase the same goods.
             </p>
