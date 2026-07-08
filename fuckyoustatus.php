@@ -48,7 +48,8 @@
    </p>
 
    <!-- Summary Cards for Today (rendered by JS) -->
-   <div id="summary-cards" class="row row-cols-1 row-cols-lg-4 row-cols-md-2 g-4 mt-2"></div>
+   <p class="section-label mt-5 mb-3">Today's Overview</p>
+   <div id="summary-cards" class="row row-cols-1 row-cols-lg-4 row-cols-md-2 g-4"></div>
 
    <script>
       const SUMMARY_CARDS = [
@@ -119,7 +120,7 @@
    <div class="row mx-0 mt-4 mb-4 g-4 bg-body-tertiary rounded-4 p-4 shadow-sm">
       <!-- Input Sidebar -->
       <div class="col-lg-4 border-end-lg pe-lg-4">
-         <h4 class="h5 mb-4 fw-bold text-primary">Calculation Controls</h4>
+         <h4 class="h5 mb-4 section-label">Calculation Controls</h4>
          
          <!-- Budget Input -->
          <div class="mb-4">

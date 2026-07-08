@@ -67,7 +67,7 @@
       <div class="bg-body-tertiary rounded-4 p-md-5 p-4 shadow-sm">
 
          <!-- How it works -->
-         <p class="fw-semibold text-body-secondary small text-uppercase mb-5 text-primary" style="letter-spacing: .08em;">How it works</p>
+         <p class="section-label mb-5">Instructions</p>
          <div class="row g-3 mb-4">
             <div class="col-12 col-sm-6 col-lg-5">
                <div class="d-flex align-items-start gap-3">
@@ -194,7 +194,7 @@
 
       <!-- Results -->
       <div class="bg-body-tertiary rounded-4 p-md-5 p-4 shadow-sm mt-4" id="results-section">
-         <p class="fw-semibold text-body-secondary small text-uppercase mb-4 text-primary" style="letter-spacing: .08em;">Results</p>
+         <p class="section-label mb-4">Results</p>
          <p class="mb-2">Block hash: <output id="block-output" class="text-break font-monospace"></output></p>
          <div id="verify"></div>
          <p class="mb-2">Decimal number: <code class="text-primary text-break" id="rolled-number"></code></p>
@@ -204,15 +204,16 @@
 
       <!-- Explanation -->
       <article class="bg-body-tertiary rounded-4 p-md-5 p-4 shadow-sm mt-4">
-         <p class="fw-semibold text-body-secondary small text-uppercase mb-4 text-primary" style="letter-spacing: .08em;">How the draw works</p>
+         <p class="section-label mb-4">How the draw works</p>
          <p>
             As the <code>blockhash</code> is just a number, its last 6 digits are converted to <code>decimal</code> using this function:
          </p>
-         <p><code class="text-primary">var decimal = parseInt(blockhash.slice(-6), 16);</code></p>
+         <div class="bg-body-secondary rounded-4 p-3 border-1 border"><code class="text-warning">var decimal = parseInt(blockhash.slice(-6), 16);</code></div>
          <p>Now we have an integer (0 to 16777215) from the <code>blockhash</code>.</p>
          <p>After dividing this <code>decimal</code> by the number of participants, we use the <i>modulo operator (<code>%</code>)</i> to get the division remainder, which becomes the <code>index_number</code>.</p>
-         <p><code class="text-primary">var index_number = decimal % competitors.length;</code></p>
-         <p><code class="text-primary">var winner = competitors[index_number];</code></p>
+         <div class="bg-body-secondary rounded-4 p-3 border-1 border">
+          <code class="text-warning">var index_number = decimal % competitors.length;<br/>
+         var winner = competitors[index_number];</code></div>
          <p class="mb-0">For additional winners, past winners are removed from the list and one more digit is added from the blockhash.</p>
       </article>
 

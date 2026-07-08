@@ -333,6 +333,15 @@ main {
   color: var(--theme-purple) !important;
 }
 
+/* Section label — used for "How it works", "Results", etc. headings */
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--bs-primary);
+}
+
 /* Converter */
 #quickactions .btn {
   font-size: 0.75rem;

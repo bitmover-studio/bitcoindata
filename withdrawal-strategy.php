@@ -61,10 +61,11 @@
    include_once $_SERVER['DOCUMENT_ROOT'] . '/components/page-header.php';
    ?>
 
-   <div class="row row-cols-1 row-cols-lg-4 row-cols-md-2 g-4 mt-2">
+   <p class="section-label mt-5 mb-3">Today's Overview</p>
+   <div class="row row-cols-1 row-cols-lg-4 row-cols-md-2 g-4">
       <!-- Card 1: Price Above 200-WMA (%) -->
       <div class="col px-2">
-         <div class="card bg-body-tertiary border-0 shadow-sm h-100 rounded-4">
+         <div class="card bg-body-tertiary shadow-sm h-100 rounded-4">
             <div class="card-body d-flex flex-column justify-content-between">
                <div>
                   <div class="card-text text-muted mb-2 small text-uppercase fw-bold">Price Above 200-WMA (%)</div>
@@ -82,7 +83,7 @@
 
       <!-- Card 2: BTC Spot Price -->
       <div class="col px-2">
-         <div class="card bg-body-tertiary border-0 shadow-sm h-100 rounded-4">
+         <div class="card bg-body-tertiary shadow-sm h-100 rounded-4">
             <div class="card-body d-flex flex-column justify-content-between">
                <div>
                   <div class="card-text text-muted mb-2 small text-uppercase fw-bold">BTC Spot Price</div>
@@ -100,7 +101,7 @@
 
       <!-- Card 3: 200-Week MA -->
       <div class="col px-2">
-         <div class="card bg-body-tertiary border-0 shadow-sm h-100 rounded-4">
+         <div class="card bg-body-tertiary shadow-sm h-100 rounded-4">
             <div class="card-body d-flex flex-column justify-content-between">
                <div>
                   <div class="card-text text-muted mb-2 small text-uppercase fw-bold">200-Week MA</div>
@@ -118,7 +119,7 @@
 
       <!-- Card 4: Ranges -->
       <div class="col px-2">
-         <div class="card bg-body-tertiary border-0 shadow-sm h-100 rounded-4">
+         <div class="card bg-body-tertiary shadow-sm h-100 rounded-4">
             <div class="card-body d-flex flex-column justify-content-between">
                <div>
                   <div class="card-text text-muted mb-2 small text-uppercase fw-bold">Day's Range</div>
@@ -147,7 +148,7 @@
 
       <div class="row mt-4 mb-1 g-3 bg-body-tertiary rounded-top-4 p-4 shadow-sm">
          <div class="col-md-3 text-end">
-            <p class="h5 mt-3 pt-3">Input Area</p>
+            <p class="h5 mt-3 pt-3 section-label border-bottom pb-1 text-body-secondary">Input Area</p>
             <div class="row g-3 mb-4 pt-3">
                <label for="wrate" class="form-label h6">Annual Withdrawal Rate</label>
                <input value="6" type="range" min="0" max="30" step="0.25" class="form-range float-start" id="wrate"
@@ -284,7 +285,7 @@
             </div>
          </div>
          <div class="col-md-3">
-            <p class="h5 mt-3 pt-3">Output Area</p>
+            <p class="h5 mt-3 pt-3 section-label border-bottom pb-1 text-body-secondary">Output Area</p>
             <h3 class="h6 mt-3 pt-3">Monthly Authorized Withdrawal <a id="monthFormula"
                   class="fw-semibold align-top text-decoration-none">&nbsp;</a>
             </h3>
