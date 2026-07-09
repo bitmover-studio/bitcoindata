@@ -31,106 +31,189 @@ $canonical = "https://bitcoindata.science/bot/altcoinstalk/notification";
     font-size: x-small;
     font-weight: bold;
     padding: 0 0.3em;
-}
+  }
 
-.class-text img {
+  .class-text img {
     max-width: 100%;
     height: auto;
-}
+  }
+  </style>
+</head>
 
-[data-bs-theme=light] .card:not(.bg-body-secondary) {
-  background-color: #f4f6f9cc;
-}
-</style>
 <body>
   <header>
     <base href="/" />
     <navbar-component></navbar-component>
   </header>
-   <?php
-   $h1 = 'Altcoinstalks Notification Bot';
-   $h2 = 'Get notified when you are mentioned or quoted in altcoinstalks posts.';
-   include_once $_SERVER['DOCUMENT_ROOT'] . '/components/page-header.php';
-   ?>
-    <?php
-    if (isset($_GET['user'])) {
+  <?php
+  $h1 = 'Altcoinstalks Notification Bot';
+  $h2 = 'Get notified when you are mentioned or quoted in altcoinstalks posts.';
+  include_once $_SERVER['DOCUMENT_ROOT'] . '/components/page-header.php';
+  ?>
+
+  <div class="py-3">
+
+    <?php if (isset($_GET['user'])) {
       $notification_data = loginAndSearch($user);
 
       // Check if the result is an error message
       if (is_string($notification_data) && strpos($notification_data, 'Error:') === 0) {
-          echo '<div style="height:35vh"><div class="alert alert-danger fw-bold">' . htmlspecialchars($notification_data) . '</div></div>';
+        echo '<div class="bg-body-tertiary rounded-4 p-md-5 p-4 shadow-sm"><div class="alert alert-danger fw-bold mb-0">' . htmlspecialchars($notification_data) . '</div></div>';
       } else {
-      ?>
+    ?>
 
-      <p>
-        In the last 5 days,
-        <?php echo $user; ?> was quoted or mentioned in the posts below:
-      </p>
-      <div class="mt-2">
+      <div class="bg-body-tertiary rounded-4 p-md-5 p-4 shadow-sm">
+        <p class="section-label mb-4">Results</p>
+        <p class="text-body-secondary mb-4">
+          In the last 5 days, <strong><?php echo htmlspecialchars($user); ?></strong> was quoted or mentioned in the posts below:
+        </p>
+
         <?php foreach ($notification_data as $i) { ?>
-          <div class="card my-4 border-1 rounded-4">
-            <div class="card-body">
-              <h6 class="card-title">
-                <a href="<?php echo $i['board_link']; ?>" target="_blank" rel="noreferrer">
-                  <?php echo $i['board']; ?>
-                </a>
-                &nbsp;/&nbsp;
-                <a href="<?php echo $i['post_link']; ?>" onClick='javascript:markAsRead("<?php echo $i['post_link']; ?>")'
-                  target="_blank" rel="noreferrer">
-                  <?php echo $i['post']; ?>
-                </a>
-              </h6>
-              <span class="card-text">Mentioned or quoted by <a href="<?php echo $i['by_link']; ?>" target="_blank"
-                  rel="noreferrer">
-                  <?php echo $i['by'];?>
-                </a></span>
-                <small class="text-body-secondary fw-semibold">
-                  <?php echo $i['date'];?>
-                </small>
-                <div class="class-text">
-                  <?php echo $i['list_posts'];?>
-                </div>
-              <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" role="switch" id="<?php echo $i['post_link']; ?>label"
-                  data-post-link="<?php echo $i['post_link']; ?>">
-                <label class="form-check-label" for="<?php echo $i['post_link']; ?>label">Mark as read</label>
-                <a href="<?php echo $i['post_link']; ?>" onClick='javascript:markAsRead("<?php echo $i['post_link']; ?>")'
-                  target="_blank" rel="noreferrer" class="btn rounded-pill btn-primary float-end me-4">
-                  Go to post
-                </a>
+          <div class="bg-body rounded-4 p-4 mb-3 shadow-sm border border-1">
+
+            <div class="d-flex align-items-start justify-content-between gap-3 mb-2 flex-wrap">
+              <div>
+                <p class="fw-semibold mb-1">
+                  <a href="<?php echo $i['board_link']; ?>" target="_blank" rel="noreferrer" class="text-decoration-none small">
+                    <?php echo $i['board']; ?>
+                  </a>
+                  <span class="small"> / </span>
+                  <a href="<?php echo $i['post_link']; ?>" onClick='javascript:markAsRead("<?php echo $i['post_link']; ?>")'
+                    target="_blank" rel="noreferrer" class="text-decoration-none">
+                    <?php echo $i['post']; ?>
+                  </a>
+                </p>
+                <p class="mb-0 small">
+                  Mentioned or quoted by&nbsp;<a href="<?php echo $i['by_link']; ?>" target="_blank" rel="noreferrer" class="fw-semibold"><?php echo $i['by']; ?></a>
+                  <span class="text-body-secondary ms-2"><?php echo $i['date']; ?></span>
+                </p>
+              </div>
+              <a href="<?php echo $i['post_link']; ?>" onClick='javascript:markAsRead("<?php echo $i['post_link']; ?>")'
+                target="_blank" rel="noreferrer" class="btn btn-primary rounded-pill px-3 flex-shrink-0">
+                Go to post
+              </a>
+            </div>
+
+            <hr class="border-secondary opacity-25 my-3">
+
+            <div class="class-text mb-3">
+              <?php echo $i['list_posts']; ?>
+            </div>
+
+            <div class="form-check form-switch mb-0">
+              <input class="form-check-input" type="checkbox" role="switch"
+                id="<?php echo $i['post_link']; ?>label"
+                data-post-link="<?php echo $i['post_link']; ?>">
+              <label class="form-check-label text-body-secondary small" for="<?php echo $i['post_link']; ?>label">Mark as read</label>
+            </div>
+
+          </div>
+        <?php } ?>
+
+      </div>
+
+    <?php
+      }
+    } else {
+    ?>
+
+      <div class="bg-body-tertiary rounded-4 p-md-5 p-4 shadow-sm">
+
+        <!-- How it works -->
+        <p class="section-label mb-5">How it works</p>
+        <div class="row g-3 mb-4">
+          <div class="col-12 col-sm-6 col-lg-5">
+            <div class="d-flex align-items-start gap-3">
+              <span class="d-flex align-items-center justify-content-center rounded-circle bg-body-secondary flex-shrink-0" style="width:36px;height:36px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="text-primary" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+</svg>
+
+              </span>
+              <div>
+                <p class="fw-semibold mb-0">Specify your username</p>
+                <p class="text-body-secondary mb-0 small">Use your Altcoinstalks username in the input below to fetch recent mentions and quotes.</p>
               </div>
             </div>
           </div>
-        <?php }
-        }?></div>       
-      <?php
-    } else {
-      ?>
-      <p class="lead">Use this tool to know when you were quoted or mentioned in altcoinstalks posts.</p>
-      <h2 class="h3 alert-heading mt-5">Instructions:</h2>
-      <p>To use this tool you must specify a valid <code>username</code> in the URL parameter. Example below:</p>
+          <div class="col-12 col-sm-6 col-lg-5">
+            <div class="d-flex align-items-start gap-3">
+              <span class="d-flex align-items-center justify-content-center rounded-circle bg-body-secondary flex-shrink-0" style="width:36px;height:36px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="text-primary" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z" />
+                </svg>
+              </span>
+              <div>
+                <p class="fw-semibold mb-0">Bookmarkable link</p>
+                <p class="text-body-secondary mb-0 small">Bookmark the URL with your username for quick access anytime on any device.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-5">
+            <div class="d-flex align-items-start gap-3">
+              <span class="d-flex align-items-center justify-content-center rounded-circle bg-body-secondary flex-shrink-0" style="width:36px;height:36px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="text-primary" viewBox="0 0 16 16"><path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/></svg>
+              </span>
+              <div>
+                <p class="fw-semibold mb-0">Last 5 days</p>
+                <p class="text-body-secondary mb-0 small">Shows all posts where you were mentioned or quoted in the past 5 days.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-6 col-lg-5">
+            <div class="d-flex align-items-start gap-3">
+              <span class="d-flex align-items-center justify-content-center rounded-circle bg-body-secondary flex-shrink-0" style="width:36px;height:36px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="text-primary" viewBox="0 0 16 16"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/></svg>
+              </span>
+              <div>
+                <p class="fw-semibold mb-0">Mark as read</p>
+                <p class="text-body-secondary mb-0 small">Track which notifications you've already reviewed — saved in your browser.</p>
+              </div>
+            </div>
+          </div>
+        </div>
 
-      <div
-        class="p-4 bg-secondary-subtle border border-1 rounded font-monospace border-secondary-subtle col-md-10">
-        <a class="link-secondary" href="https://bitcoindata.science/altcoinstalk/notification.php?user=bitmover">
-          https://bitcoindata.science/altcoinstalk/notification.php<span class="link-primary">?user=bitmover</span>
-        </a>
+        <hr class="border-secondary opacity-25 mb-4">
+
+        <!-- Username input -->
+        <form action="javascript:void(0)" onsubmit="goToUser()">
+          <div class="form-floating mb-3 border-0">
+            <input type="text" class="form-control border-0 bg-body-secondary rounded-4 fw-medium"
+              id="usernameInput" placeholder="Your Altcoinstalks username"
+              autocomplete="off" spellcheck="false" autofocus>
+            <label for="usernameInput" class="fw-medium fs-6">Your Altcoinstalks username</label>
+          </div>
+          <div class="d-flex justify-content-start">
+            <button type="submit" class="btn btn-primary btn-lg px-4 fs-6">
+              Check Notifications
+            </button>
+          </div>
+        </form>
+
       </div>
 
-      <?php
-    }
-    ?>
+    <?php } ?>
+
+  </div>
+
   </main>
-   <footer-component></footer-component>
+  <footer-component></footer-component>
 
 </body>
 <script>
+  function goToUser() {
+    const username = document.getElementById('usernameInput').value.trim();
+    if (username) {
+      window.location.href = '/altcoinstalk/notification?user=' + encodeURIComponent(username);
+    }
+  }
+
   function markAsRead(postLink) {
     localStorage.setItem(postLink, 'read');
     closestCheckbox = document.getElementById(postLink+'label')
     closestCheckbox.checked = true;
-    const card = closestCheckbox.closest('.card');
-    card.classList.add('bg-body-secondary');
+    const card = closestCheckbox.closest('.bg-body');
+    card.classList.add('opacity-50');
   }
 
   document.addEventListener('DOMContentLoaded', function () {
@@ -142,19 +225,19 @@ $canonical = "https://bitcoindata.science/bot/altcoinstalk/notification";
 
     checkboxes.forEach((checkbox) => {
       const postLink = checkbox.getAttribute('data-post-link');
-      const card = checkbox.closest('.card');
+      const card = checkbox.closest('.bg-body');
 
       if (localStorageHasKey(postLink)) {
         checkbox.checked = true;
-        card.classList.add('bg-body-secondary');
+        card.classList.add('opacity-50');
       }
 
       checkbox.addEventListener('change', function () {
         if (this.checked) {
-          card.classList.add('bg-body-secondary');
+          card.classList.add('opacity-50');
           localStorage.setItem(postLink, 'read');
         } else {
-          card.classList.remove('bg-body-secondary');
+          card.classList.remove('opacity-50');
           localStorage.removeItem(postLink);
         }
       });
