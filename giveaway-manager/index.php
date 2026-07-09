@@ -148,7 +148,7 @@
             </div>
 
             <div class="d-flex justify-content-start gap-2 gap-md-3 mb-3">
-               <button type="submit" class="btn btn-primary btn-lg d-inline-flex align-items-center justify-content-center px-4 rounded-pill" id="submitbutton" style="position: relative; overflow: hidden; transition: background-color 0.3s ease;">
+               <button type="submit" class="btn btn-primary btn-lg d-inline-flex align-items-center justify-content-center px-4 rounded fs-6" id="submitbutton" style="position: relative; overflow: hidden; transition: background-color 0.3s ease;">
                   <span id="submit-label" style="transition: opacity 0.2s, transform 0.2s;">Pick Winners</span>
                   <div id="submit-spinner" class="spinner-border spinner-border-sm position-absolute" role="status" style="opacity: 0; transition: opacity 0.2s, transform 0.2s; pointer-events: none;">
                     <span class="visually-hidden">Loading...</span>
@@ -159,7 +159,7 @@
                     </svg>
                   </div>
                </button>
-               <button type="button" class="btn btn-secondary border-2 btn-lg d-inline-flex align-items-center gap-2 px-4 rounded-pill"
+               <button type="button" class="btn btn-secondary border-2 btn-lg d-inline-flex align-items-center gap-2 px-4 rounded fs-6"
                  onclick="save_share()">
                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
                    <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z"/>
@@ -230,7 +230,7 @@
          <div class="modal-body text-center" id="modal-winners-list">
          </div>
          <div class="modal-footer justify-content-center border-0">
-           <button type="button" class="btn btn-primary px-5 rounded-pill" data-bs-dismiss="modal">Awesome!</button>
+           <button type="button" class="btn btn-primary px-5 rounded" data-bs-dismiss="modal">Awesome!</button>
          </div>
        </div>
      </div>

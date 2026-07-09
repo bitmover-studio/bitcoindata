@@ -42,6 +42,10 @@
   --bs-border-color-translucent: rgba(51, 65, 85, 0.5);
 }
 
+:root {
+  --bs-blue-alpha: #0d6efdaa;
+}
+
 [data-bs-theme=dark] body {
   background-color: #0f172a;
   background-image:
@@ -83,6 +87,11 @@ a:hover,
 
 [data-bs-theme=dark] .btn {
   color: black;
+  font-weight: 600;
+}
+
+[data-bs-theme=light] .btn {
+  color: white;
   font-weight: 600;
 }
 
@@ -422,6 +431,18 @@ main {
 .btn-primary:focus,
 .btn-primary:active {
   opacity: 0.85;
+}
+
+.btn-blue {
+  background-color: var(--bs-blue);
+  border-color: var(--bs-blue);
+}
+
+.btn-blue:hover,
+.btn-blue:focus,
+.btn-blue:active {
+  background-color: var(--bs-blue-alpha) !important;
+  border-color: var(--bs-blue-alpha) !important;
 }
 
 #chartTabs .btn-outline-primary:not(.active) {

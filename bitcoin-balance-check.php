@@ -118,7 +118,7 @@
          </div>
 
          <div class="d-flex justify-content-start gap-2 gap-md-3">
-            <button type="submit" class="btn btn-primary btn-lg rounded-pill d-inline-flex align-items-center justify-content-center px-4" id="submitbutton" style="position: relative; overflow: hidden; transition: background-color 0.3s ease;">
+            <button type="submit" class="btn btn-primary btn-lg d-inline-flex align-items-center justify-content-center px-4 fs-6" id="submitbutton" style="position: relative; overflow: hidden; transition: background-color 0.3s ease;">
               <span id="submit-label" style="transition: opacity 0.2s, transform 0.2s;">Get Balance</span>
               <div id="submit-spinner" class="spinner-border spinner-border-sm position-absolute" role="status" style="opacity:0; transition: opacity 0.2s, transform 0.2s; pointer-events: none;">
                 <span class="visually-hidden">Loading...</span>
@@ -129,8 +129,7 @@
                 </svg>
               </div>
             </button>
-            <button type="button" class="btn btn-primary btn-lg d-inline-block rounded-pill" title="Scan Address" id="startButton" data-bs-toggle="modal" data-bs-target="#readerModal">
-               <span class="d-none d-md-inline">Scan</span>
+            <button type="button" class="btn btn-secondary btn-lg d-inline-block fs-6 px-md-4" title="Scan Address" id="startButton" data-bs-toggle="modal" data-bs-target="#readerModal">
                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-qr-code my-1" viewBox="0 0 16 16">
                   <path d="M2 2h2v2H2z" />
                   <path d="M6 0v6H0V0zM5 1H1v4h4zM4 12H2v2h2z" />
@@ -138,6 +137,7 @@
                   <path d="M10 0v6h6V0zm5 1v4h-4V1zM8 1V0h1v2H8v2H7V1zm0 5V4h1v2zM6 8V7h1V6h1v2h1V7h5v1h-4v1H7V8zm0 0v1H2V8H1v1H0V7h3v1zm10 1h-1V7h1zm-1 0h-1v2h2v-1h-1zm-4 0h2v1h-1v1h-1zm2 3v-1h-1v1h-1v1H9v1h3v-2zm0 0h3v1h-2v1h-1zm-4-1v1h1v-2H7v1z" />
                   <path d="M7 12h1v3h4v1H7zm9 2v2h-3v-1h2v-1z" />
                </svg>
+              <span class="d-none d-md-inline ms-2">Scan</span>
             </button>
 
          </div>
