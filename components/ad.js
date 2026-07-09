@@ -27,13 +27,13 @@ class Ad extends HTMLElement {
 
     //Just banner 1
     const selectedBanner = this.banners[1];
-    
+
     this.innerHTML = `
       <div class="container text-center my-3 mb-4" id="sp-content">
         <a href="${selectedBanner.link}" 
            title="${selectedBanner.title}" 
            target="_blank" 
-           rel="noopener">
+           referrer="noopener">
           <img class="border-1 border-dark img-fluid d-none d-md-inline-block rounded-3" 
                alt='${selectedBanner.alt}' 
                src="${selectedBanner.desktop}" 
@@ -53,7 +53,7 @@ class Ad extends HTMLElement {
     `;
 
     this.querySelector('.btn-close').addEventListener('click', () => {
-    this.querySelector('#sp-content').style.display = 'none';
+      this.querySelector('#sp-content').style.display = 'none';
     });
   }
 }

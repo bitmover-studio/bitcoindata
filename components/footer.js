@@ -16,13 +16,13 @@ footerTemplate.innerHTML = `
             </div>
             <div class="col-md-3">
                 <p class="text-muted">Social</p>
-                <p class="fw-semibold"><a href="https://bitcointalk.org/index.php?topic=5445282.0" class='footer-link text-decoration-none' title="bitcointalk ANN" target="_blank" rel="noreferrer">bitcointalk.org</a></p>
-                <p class="fw-semibold"><a href="https://github.com/bitmover-studio/bitcoindata" class='footer-link text-decoration-none' title="GitHub Repository" target="_blank" rel="noreferrer">GitHub</a></p>
-                <p class="fw-semibold"><a href="https://www.altcoinstalks.com/index.php?topic=322524.0" class='footer-link text-decoration-none' title="altcoinstalks ANN" target="_blank" rel="noreferrer">Altcoinstalks</a></p>
+                <p class="fw-semibold"><a href="https://bitcointalk.org/index.php?topic=5445282.0" class='footer-link text-decoration-none' title="bitcointalk ANN" target="_blank" referrer="noopener">bitcointalk.org</a></p>
+                <p class="fw-semibold"><a href="https://github.com/bitmover-studio/bitcoindata" class='footer-link text-decoration-none' title="GitHub Repository" target="_blank" referrer="noopener">GitHub</a></p>
+                <p class="fw-semibold"><a href="https://www.altcoinstalks.com/index.php?topic=322524.0" class='footer-link text-decoration-none' title="altcoinstalks ANN" target="_blank" referrer="noopener">Altcoinstalks</a></p>
             </div>
             <div class="col-md-3">
                 <p class="text-muted">Sponsor</p>
-                <a href="https://www.l0tt0.com/?utm_source=bitcoindata.science" class="footer-link text-decoration-none" target="_blank" referrer=noopener noreferrer title="Retro Crypto Casino" alt="Retro Crypto Casino">
+                <a href="https://www.l0tt0.com/?utm_source=bitcoindata.science" class="footer-link text-decoration-none" target="_blank" referrer="noopener" title="Retro Crypto Casino" alt="Retro Crypto Casino">
                     <p class="footer-link fw-semibold mb-2">Retro Crypto Casino</p>
                     <img src="/img/lotto-logo.svg" title="Retro Crypto Casino" alt="l0tt0.com" height="35" class="p-2 bg-l0tt0 rounded-2 px-4" style="background-color: #FBE24B;" />
                 </a>
