@@ -90,10 +90,6 @@ $canonical = "https://bitcoindata.science/bot/altcoinstalk/notification";
                     <span class="text-body-secondary ms-2"><?php echo $i['date']; ?></span>
                   </p>
                 </div>
-                <a href="<?php echo $i['post_link']; ?>" onClick='javascript:markAsRead("<?php echo $i['post_link']; ?>")'
-                  target="_blank" referrer="ugc noopener nofollow" class="btn btn-primary rounded-pill px-3 flex-shrink-0">
-                  Go to post
-                </a>
               </div>
 
               <hr class="border-secondary opacity-25 my-3">
@@ -107,6 +103,10 @@ $canonical = "https://bitcoindata.science/bot/altcoinstalk/notification";
                   id="<?php echo $i['post_link']; ?>label"
                   data-post-link="<?php echo $i['post_link']; ?>">
                 <label class="form-check-label text-body-secondary small" for="<?php echo $i['post_link']; ?>label">Mark as read</label>
+                <a href="<?php echo $i['post_link']; ?>" onClick='javascript:markAsRead("<?php echo $i['post_link']; ?>")'
+                  target="_blank" referrer="ugc noopener nofollow" class="btn btn-primary rounded-pill px-3 flex-shrink-0 float-end">
+                  Go to post
+                </a>
               </div>
 
             </div>
