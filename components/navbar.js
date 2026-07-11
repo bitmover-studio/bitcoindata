@@ -144,7 +144,7 @@ navbarTemplate.innerHTML = `
 
 <div class="modal fade mt-5" id="MenuMobile" tabindex="-1" aria-labelledby="MenuMobileLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content mt-4 border-0 rounded-5">
+    <div class="modal-content mt-4 border-0 rounded-5 bg-body-tertiary">
       <div class="modal-body">
         <button type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Close"></button>
         <ul class="navbar-nav me-auto mb-2 d-flex">
