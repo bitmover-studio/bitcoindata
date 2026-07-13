@@ -51,17 +51,24 @@
          rel="noopener">
          <img src="https://livecoins.com.br/wp-content/uploads/2020/06/Livecoins-Logo.jpg"
             title="Livecoins - Notícias sobre Bitcoin, criptomoedas e Blockchain - Livecoins"
-            alt="livecoins.com.br" height="38" width="140" class="p-2 bg-white rounded" />
+            alt="livecoins.com.br" height="38" width="160" class="p-2 bg-white rounded" />
       </a>
    </div>
    <div class="py-2 px-4">
       <a href="https://landofcrypto.com/bitcoindata-science-review/" title="Land of Crypto" target="_blank" rel="noopener">
-         <img src="img/landofcrypto.png" title="Land of Crypto" alt="Land of Crypto" width="140" class="p-2 bg-black rounded" />
+         <img src="img/landofcrypto.png" title="Land of Crypto" alt="Land of Crypto" width="160" class="p-2 bg-black rounded" />
       </a>
    </div>
    <div class="py-2 px-4">
       <a href="https://bitlist.co/service/bitcoin-data" title="BitList" target="_blank" rel="noopener">
-         <img src="img/bitlist.png" title="BitList" alt="bitlist.co" width="140" class="p-2 bg-black rounded" />
+         <img src="img/bitlist.png" title="BitList" alt="bitlist.co" width="160" class="p-2 bg-black rounded" />
+      </a>
+   </div>
+   <div class="py-2 px-4">
+      <a href="https://kycnot.me/service/bitcoindata" title="KYCnot.me" target="_blank" rel="noopener">
+         <svg xmlns="http://www.w3.org/2000/svg" width="160" viewBox="0 0 204 28" fill="#00c951">
+            <path d=" M1 0a1 1 0 0 0-1 1v26a1 1 0 0 0 1 1h74a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1Zm4 4h2a1 1 0 0 1 1 1v6a1 1 0 0 0 1 1h6a1 1 0 0 1 1 1v3h3a1 1 0 0 1 1 1v3h3a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-3h-3a1 1 0 0 1-1-1v-3H9a1 1 0 0 0-1 1v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Zm12 0h3a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-3a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zm12.82 0h2.37a1 1 0 0 1 .85.46L38 12.27l4.97-7.8A1 1 0 0 1 43.8 4h2.37a1 1 0 0 1 .85 1.54l-6.87 10.8a1 1 0 0 0-.16.53V23a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-6.13a1 1 0 0 0-.15-.53l-6.87-10.8A1 1 0 0 1 29.82 4ZM57 4h14a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H56v12h15a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H57a1 1 0 0 1-1-1v-3h-3a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h3V5a1 1 0 0 1 1-1zm24 0a1 1 0 0 0-1 1v18a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V7.6l9.18 15.9c.18.3.5.5.86.5H99a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v15.4L86.83 4.5a1 1 0 0 0-.87-.5Zm29 0a1 1 0 0 0-1 1v3h12V5a1 1 0 0 0-1-1zm11 4v12h3a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1zm0 12h-12v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1zm-12 0V8h-3a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1zm21-16a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V8h4v15a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V8h4v3a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1zm27 0a1 1 0 0 0-1 1v18a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V11.4l5.53 12.02a1 1 0 0 0 .91.58h3.12a1 1 0 0 0 .91-.58L176 11.4V23a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1h-3.36a1 1 0 0 0-.9.58L168 19.21l-6.73-14.63a1 1 0 0 0-.9-.58Zm32 0a1 1 0 0 0-1 1v3h15a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1zm-1 4h-3a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1h-14a1 1 0 0 1-1-1v-3h7a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1h-7zm-38 12a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1z"></path>
+         </svg>
       </a>
    </div>
 
