@@ -36,7 +36,8 @@
    <!-- Page Content -->
    <?php
    $h1 = 'Show your support';
-   $h2 = 'If this website is useful to you, consider donating to support its development.';   $showAd = false;
+   $h2 = 'If this website is useful to you, consider donating to support its development.';
+   $showAd = false;
    include_once $_SERVER['DOCUMENT_ROOT'] . '/components/page-header.php';
    ?>
 
@@ -59,7 +60,7 @@
       </a>
    </div>
    <div class="py-2 px-4">
-      <a href="https://bitlist.co/service/bitcoin-data-science#review-15" title="BitList" target="_blank" rel="noopener">
+      <a href="https://bitlist.co/service/bitcoin-data" title="BitList" target="_blank" rel="noopener">
          <img src="img/bitlist.png" title="BitList" alt="bitlist.co" width="140" class="p-2 bg-black rounded" />
       </a>
    </div>
