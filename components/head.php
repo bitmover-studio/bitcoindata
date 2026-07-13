@@ -13,14 +13,14 @@ $base = '/';
 <meta name="description" content="<?= htmlspecialchars($description) ?>">
 <meta name="robots" content="index, follow" />
 <meta name="keywords" content="<?= htmlspecialchars($keywords) ?>" />
-<link rel="shortcut icon" href="<?= $base ?>img/favicon.svg">
+<link rel="shortcut icon" href="<?= $base ?>img/icons/favicon.ico">
 <link rel="canonical" href="<?= htmlspecialchars($canonical) ?>">
 <link rel="alternate" hreflang="x-default" href="<?= htmlspecialchars($canonical) ?>" />
-<link rel="apple-touch-icon" sizes="180x180" href="<?= $base ?>img/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="<?= $base ?>img/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="<?= $base ?>img/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="<?= $base ?>img/icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="<?= $base ?>img/icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="<?= $base ?>img/icons/favicon-16x16.png">
 <link rel="manifest" href="<?= $base ?>manifest.json" />
-<link rel="mask-icon" href="<?= $base ?>img/safari-pinned-tab.svg" color="#111316">
+<link rel="mask-icon" href="<?= $base ?>img/icons/safari-pinned-tab.svg" color="#111316">
 <meta name="apple-mobile-web-app-title" content="bitcoin data.science">
 <meta name="application-name" content="bitcoin data.science">
 <meta name="msapplication-TileColor" content="#2b5797">

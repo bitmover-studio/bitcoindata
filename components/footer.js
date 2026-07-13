@@ -11,7 +11,7 @@ footerTemplate.innerHTML = `
                     Support
                 </a>
             <div class="text-muted small my-4">
-                bitcoindata.science © ${new Date().getFullYear()}
+                bitcoindata.science © ${new Date().getFullYear()} · <a href="terms-of-service" class="text-muted text-decoration-none hover-underline">Terms of Service</a>
             </div>
             </div>
             <div class="col-md-3">
