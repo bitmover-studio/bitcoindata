@@ -5,20 +5,16 @@ footerTemplate.innerHTML = `
 <footer class="justify-content-evenly py-4 py-md-5 mt-6 border-top">
     <div class="container-fluid col-lg-12 col-xl-9 ">
         <div class="row grid gap-3">
-            <div class="col-md">
-                <p class="text-muted">Are these tools useful to you? Consider supporting.</p>
-                <a href="donate" class="btn btn-blue btn-lg mt-3 px-5 text-decoration-none fs-6 border-0">
-                    Support
-                </a>
-            <div class="text-muted small my-4">
-                bitcoindata.science © ${new Date().getFullYear()} · <a href="terms-of-service" class="text-muted text-decoration-none hover-underline">Terms of Service</a>
-            </div>
+            <div class="col-md-3">
+                <p class="text-muted">Project</p>
+                <p class="fw-semibold"><a href="donate" class='footer-link text-decoration-none' title="About us">About us</a></p>
+                <p class="fw-semibold"><a href="terms-of-service" class='footer-link text-decoration-none' title="Terms of Service">Terms of Service</a></p>
+                <p class="text-muted small my-4">bitcoindata.science © ${new Date().getFullYear()}</p>
             </div>
             <div class="col-md-3">
                 <p class="text-muted">Social</p>
                 <p class="fw-semibold"><a href="https://bitcointalk.org/index.php?topic=5445282.0" class='footer-link text-decoration-none' title="bitcointalk ANN" target="_blank" referrer="noopener">bitcointalk.org</a></p>
                 <p class="fw-semibold"><a href="https://github.com/bitmover-studio/bitcoindata" class='footer-link text-decoration-none' title="GitHub Repository" target="_blank" referrer="noopener">GitHub</a></p>
-                <p class="fw-semibold"><a href="https://www.altcoinstalks.com/index.php?topic=322524.0" class='footer-link text-decoration-none' title="altcoinstalks ANN" target="_blank" referrer="noopener">Altcoinstalks</a></p>
             </div>
             <div class="col-md-3">
                 <p class="text-muted">Sponsor</p>
