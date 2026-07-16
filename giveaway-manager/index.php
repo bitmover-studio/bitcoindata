@@ -274,7 +274,7 @@
       </p>
 
       <div class="border-top py-5 row">
-        <div class="col-6">
+        <div class="col-md-6">
           <h5 class="fw-bold mb-3">1. Hexadecimal to Decimal</h5>
 
           <p class="text-body-secondary small">
@@ -284,7 +284,7 @@
             This gives us a deterministic number between <code>0</code> and <code>16,777,215</code>.
           </p>
         </div>
-        <div class="col-6">
+        <div class="col-md-6">
           <div class="code-container">
             <div class="code-header d-flex justify-content-between align-items-center">
               <span>JavaScript</span>
@@ -302,7 +302,7 @@
 
       <!-- Step 2 -->
       <div class="border-top py-5 row">
-        <div class="col-6">
+        <div class="col-md-6">
           <h5 class="fw-bold mb-3">2. Selecting the Index</h5>
           <p class="text-body-secondary small">
             We divide the decimal value by the total number of participants and find the division remainder using the <strong>modulo operator (%)</strong>. The remainder acts as the index pointer:
@@ -311,7 +311,7 @@
             The index is guaranteed to fall between <code>0</code> and <code>competitors.length - 1</code>.
           </p>
         </div>
-        <div class="col-6">
+        <div class="col-md-6">
           <div class="code-container">
             <div class="code-header d-flex justify-content-between align-items-center">
               <span>JavaScript</span>
@@ -330,13 +330,13 @@
 
       <!-- Step 3 -->
       <div class="border-top py-5 row">
-        <div class="col-6">
+        <div class="col-md-6">
           <h5 class="fw-bold mb-3">3. Drawing Multiple Winners</h5>
           <p class="text-body-secondary small mb-0">
             To choose multiple winners without duplicates, the selected winner is removed from the array, shrinking the pool. The script shifts the blockhash slice window one index to the left to extract a new, independent entropy chunk, and recalculates:
           </p>
         </div>
-        <div class="col-6">
+        <div class="col-md-6">
           <div class="code-container">
             <div class="code-header d-flex justify-content-between align-items-center">
               <span>JavaScript</span>

@@ -47,9 +47,8 @@
 }
 
 [data-bs-theme=dark] body {
-  background-color: #0f172a;
-  background-image:
-    radial-gradient(ellipse 80% 50% at 50% 0%, #1e293b 0%, #0f172a 100%);
+  background-color: #070a12;
+  background-image: radial-gradient(ellipse 80% 50% at 50% 0%, #1e293b 0%, #070a12 100%);
   background-size: 100% 1000px;
   background-repeat: no-repeat;
   background-attachment: scroll;
@@ -57,8 +56,7 @@
 
 body {
   background: #ffffff;
-  background-image:
-    linear-gradient(#eff6ff 0%, #ffffff 1000px);
+  background-image: linear-gradient(#d9eaff 0%, #ffffff 1000px);
   background-attachment: scroll;
 }
 
@@ -239,21 +237,28 @@ span.logo {
 }
 
 /* Change background on the li pill */
-#nav-lg-menu li:has(a.active),
 #nav-theme-toggler:hover,
 #navbar-toggler:hover,
 .nav-icon-btn:hover {
   background-color: var(--nav-hover-bg) !important;
 }
 
+#nav-lg-menu li:has(a.active.nav-link) {
+  background-color: var(--theme-blue-alpha) !important;
+  border-radius: 0.8rem !important;
+}
+
+#nav-lg-menu li a.active {
+  color: var(--theme-blue) !important;
+}
+
 #MenuMobile li.nav-item:hover,
 #MenuMobile li.nav-item:has(a.active) {
   background-color: var(--nav-hover-bg);
-  border-radius: 0.5rem;
+  border-radius: 0.8rem;
 }
 
 #nav-lg-menu li:hover a,
-#nav-lg-menu li:has(a.active) a,
 #MenuMobile li.nav-item:hover a,
 #MenuMobile li.nav-item:has(a.active) a,
 .nav-icon-btn:hover *,
@@ -528,7 +533,7 @@ input[type=number] {
 .nav-highlight {
   position: absolute;
   background-color: var(--nav-hover-bg);
-  border-radius: 0.5rem;
+  border-radius: 0.8rem;
   transition: width 0.28s cubic-bezier(0.16, 1, 0.3, 1),
     height 0.28s cubic-bezier(0.16, 1, 0.3, 1),
     left 0.28s cubic-bezier(0.16, 1, 0.3, 1),

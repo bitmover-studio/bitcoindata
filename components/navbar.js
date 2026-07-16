@@ -47,7 +47,7 @@ const menuItems = [
   },
   {
     Name: "Giveaway Manager",
-    link: "giveaway-manager/",
+    link: "giveaway-manager",
     icon: `<svg xmlns="http://www.w3.org/2000/svg" height=23 fill="currentColor"  class="mb-2 align-self-middle mb-0" viewBox="0 0 16 16">
       <path d="M3 2.5a2.5 2.5 0 0 1 5 0 2.5 2.5 0 0 1 5 0v.006c0 .07 0 .27-.038.494H15a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 14.5V7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h2.038A2.968 2.968 0 0 1 3 2.506V2.5zm1.068.5H7v-.5a1.5 1.5 0 1 0-3 0c0 .085.002.274.045.43a.522.522 0 0 0 .023.07zM9 3h2.932a.56.56 0 0 0 .023-.07c.043-.156.045-.345.045-.43a1.5 1.5 0 0 0-3 0V3zM1 4v2h6V4H1zm8 0v2h6V4H9zm5 3H9v8h4.5a.5.5 0 0 0 .5-.5V7zm-7 8V7H2v7.5a.5.5 0 0 0 .5.5H7z" />
     </svg>`,
@@ -97,7 +97,7 @@ navbarTemplate.innerHTML = `
                         </a>
                         <ul class="dropdown-menu border-0 rounded-4 shadow mt-2 p-2">
                             ${item.items.map(subItem => `
-                                <li class="nav-item rounded-3 p-1 mt-1">
+                                <li class="nav-item rounded-4 p-1 mt-1">
                                     <a class="nav-link px-3 d-flex align-items-center" href="${subItem.link}" title="${subItem.Name}">
                                         <span>${subItem.Name}</span>
                                     </a>
@@ -209,7 +209,8 @@ class Navbar extends HTMLElement {
       document.body.appendChild(modal);
     }
 
-    let pathname = window.location.pathname.split("/").slice(-1)[0];
+    let paths = window.location.pathname.split("/").filter(Boolean);
+    let pathname = paths[paths.length - 1];
     this.querySelectorAll(`a[href*='${pathname}']`)
       .forEach((el) => el.classList.add("active"));
 
