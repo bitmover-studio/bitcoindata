@@ -261,7 +261,7 @@
       <p class="mb-2">Block hash: <output id="block-output" class="text-break font-monospace"></output></p>
       <div id="verify"></div>
       <p class="mb-2">Decimal number: <code class="text-primary text-break" id="rolled-number"></code></p>
-      <p class="mb-0 pb-0"><strong>Winner: </strong><span class="h4"><span id="winner" class="badge bg-success-subtle text-success"></span></span></p>
+      <p><strong>Winner: </strong><span class="h4"><span id="winner" class="badge bg-success-subtle text-success"></span></span></p>
       <output id="n_winner_div"></output>
     </div>
 
