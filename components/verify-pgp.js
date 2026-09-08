@@ -251,6 +251,17 @@
    }
 
    // ─── Core Verify Handler ─────────────────────────────────────────
+
+   window.launchModal = function (modalId, message) {
+      const modalElement = document.getElementById(modalId);
+      const modal = bootstrap.Modal.getOrCreateInstance(modalElement);
+      if (message) {
+         const modalMessage = document.getElementById("alertModalMessage");
+         modalMessage.textContent = message;
+      }
+      modal.show();
+   }
+
    window.pgpHandleVerify = async function () {
       var mode = getActiveMode();
       var publicKeyArmored, signedMessageText, detachedSigArmored, messageText;
@@ -260,12 +271,12 @@
          signedMessageText = pgpClearsignedBlock.value.trim();
 
          if (!publicKeyArmored || publicKeyArmored === "-----BEGIN PGP PUBLIC KEY BLOCK-----") {
-            alert("Please paste the signer's PGP public key.");
+            launchModal("alertModal", "Please paste the signer's PGP public key.");
             pgpPublicKey.focus();
             return;
          }
          if (!signedMessageText || signedMessageText === "-----BEGIN PGP SIGNED MESSAGE-----") {
-            alert("Please paste the PGP clearsigned message.");
+            launchModal("alertModal", "Please paste the PGP clearsigned message.");
             pgpClearsignedBlock.focus();
             return;
          }
@@ -275,17 +286,17 @@
          detachedSigArmored = pgpDetachedSignature.value.trim();
 
          if (!publicKeyArmored || publicKeyArmored === "-----BEGIN PGP PUBLIC KEY BLOCK-----") {
-            alert("Please paste the signer's PGP public key.");
+            launchModal("alertModal", "Please paste the signer's PGP public key.");
             pgpPublicKeyDetached.focus();
             return;
          }
          if (!messageText) {
-            alert("Please enter the original message.");
+            launchModal("alertModal", "Please enter the original message.");
             pgpDetachedMessage.focus();
             return;
          }
          if (!detachedSigArmored || detachedSigArmored === "-----BEGIN PGP SIGNATURE-----") {
-            alert("Please paste the detached PGP signature.");
+            launchModal("alertModal", "Please paste the detached PGP signature.");
             pgpDetachedSignature.focus();
             return;
          }
@@ -478,12 +489,12 @@
          var block = (pgpClearsignedBlock.value || "").trim();
 
          if (!pubKey || pubKey === "-----BEGIN PGP PUBLIC KEY BLOCK-----") {
-            alert("Please paste the signer's public key before sharing.");
+            launchModal("alertModal", "Please paste the signer's public key before sharing.");
             pgpPublicKey.focus();
             return;
          }
          if (!block || block === "-----BEGIN PGP SIGNED MESSAGE-----") {
-            alert("Please paste the PGP clearsigned message before sharing.");
+            launchModal("alertModal", "Please paste the PGP clearsigned message before sharing.");
             pgpClearsignedBlock.focus();
             return;
          }
@@ -496,17 +507,17 @@
          var sig = (pgpDetachedSignature.value || "").trim();
 
          if (!pubKey || pubKey === "-----BEGIN PGP PUBLIC KEY BLOCK-----") {
-            alert("Please paste the signer's public key before sharing.");
+            launchModal("alertModal", "Please paste the signer's public key before sharing.");
             pgpPublicKeyDetached.focus();
             return;
          }
          if (!msg) {
-            alert("Please enter the original message before sharing.");
+            launchModal("alertModal", "Please enter the original message before sharing.");
             pgpDetachedMessage.focus();
             return;
          }
          if (!sig || sig === "-----BEGIN PGP SIGNATURE-----") {
-            alert("Please paste the detached PGP signature before sharing.");
+            launchModal("alertModal", "Please paste the detached PGP signature before sharing.");
             pgpDetachedSignature.focus();
             return;
          }
@@ -517,7 +528,7 @@
       }
 
       if (typeof CryptoJS === 'undefined') {
-         alert("CryptoJS library is not ready yet. Please wait a moment and try again.");
+         launchModal("alertModal", "CryptoJS library is not ready yet. Please wait a moment and try again.");
          return;
       }
 
@@ -525,7 +536,7 @@
       var origin = window.location.origin;
       var pathname = window.location.pathname;
       var shareUrl = (origin && origin !== "null" ? origin + pathname : "https://bitcoindata.science/verify-pgp") + "#" + encrypted;
-      var bbcode = "Verified [url=" + shareUrl + "]here[/url]";
+      var bbcode = "[url=" + shareUrl + "]" + (pgpResultSuccess.classList.contains("d-none") ? "Verification failed ❌" : "Verified ✅") + "[/url]";
 
       var shareContainer = document.getElementById("pgpShareContainer");
       var shareUrlInput = document.getElementById("pgpShareUrl");

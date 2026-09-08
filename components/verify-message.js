@@ -300,7 +300,7 @@
          }
          return true;
       } else if (!silent) {
-         alert("Could not recognize standard Bitcoin Clearsigned Message format. Please ensure it has '-----BEGIN BITCOIN SIGNED MESSAGE-----' and '-----BEGIN BITCOIN SIGNATURE-----'.");
+         launchModal("alertModal", "Could not recognize standard Bitcoin Clearsigned Message format. Please ensure it has '-----BEGIN BITCOIN SIGNED MESSAGE-----' and '-----BEGIN BITCOIN SIGNATURE-----'.");
          return false;
       }
       return false;
@@ -348,6 +348,16 @@
       verifyBtn.style.pointerEvents = "auto";
    }
 
+   window.launchModal = function (modalId, message) {
+      const modalElement = document.getElementById(modalId);
+      const modal = bootstrap.Modal.getOrCreateInstance(modalElement);
+      if (message) {
+         const modalMessage = document.getElementById("alertModalMessage");
+         modalMessage.textContent = message;
+      }
+      modal.show();
+   }
+
    window.handleVerify = function () {
       // If on Clearsigned Block tab, parse first
       var clearsignTab = document.getElementById('clearsign-tab');
@@ -362,12 +372,12 @@
       validateAddress();
 
       if (!addr) {
-         alert("Please enter a Bitcoin address.");
+         launchModal("alertModal", "Please enter a Bitcoin address.");
          inputAddress.focus();
          return;
       }
       if (!sig) {
-         alert("Please enter the cryptographic signature.");
+         launchModal("alertModal", "Please enter the cryptographic signature.");
          inputSignature.focus();
          return;
       }
@@ -466,7 +476,7 @@
       var sig = inputSignature.value.trim();
 
       if (!addr || !sig) {
-         alert("Please fill in at least the address and signature before sharing.");
+         launchModal("alertModal", "Please fill in at least the address and signature before sharing.");
          return;
       }
 
@@ -477,7 +487,7 @@
       var origin = window.location.origin;
       var pathname = window.location.pathname;
       var shareUrl = (origin && origin !== "null" ? origin + pathname : "https://bitcoindata.science/verify-message") + "#" + encrypted;
-      var bbcode = "Verified [url=" + shareUrl + "]here[/url]";
+      var bbcode = "[url=" + shareUrl + "]" + (resultSuccess.classList.contains("d-none") ? "Verification failed ❌" : "Verified ✅") + "[/url]";
 
       var shareContainer = document.getElementById("shareContainer");
       var shareUrlInput = document.getElementById("shareUrl");
