@@ -4,7 +4,7 @@
 <head>
    <?php
    $title = "bitcoin data.science - Price API";
-   $description = "Data analysis and tools for anything related to bitcoin.";
+   $description = "Embed real-time Bitcoin data in Bitcointalk and forum posts. Display dynamic address balances, transactions, and live crypto prices with our free image API.";
    $canonical = "https://bitcoindata.science/bitcointalk-api";
    include_once $_SERVER['DOCUMENT_ROOT'] . '/components/head.php';
    ?>

@@ -4,7 +4,7 @@
 <head>
   <?php
   $title = "Giveaway Manager - Provably Fair Raffle Tool - bitcoin data.science";
-  $description = "Manage your giveaways easily. Pick winners using provably fair method based on bitcoin blockhash.";
+  $description = "Host provably fair giveaways and raffles using Bitcoin blockhash randomness. Transparently pick winners, share verifiable links, and ensure complete trust.";
   $keywords = "Giveaway Manager,bitcointalk giveaway, giveaways, Raffle, Raffle Manager, blockhash giveaway, blockhash raffle";
   $canonical = "https://bitcoindata.science/giveaway-manager";
   include_once $_SERVER['DOCUMENT_ROOT'] . '/components/head.php';
@@ -15,7 +15,7 @@
       "@graph": [{
         "@type": "WebPage",
         "name": "Giveaway Manager - Provably Fair Raffle Tool",
-        "description": "Manage your giveaways easily. Pick winners using provably fair method based on bitcoin blockhash.",
+        "description": "Host provably fair giveaways and raffles using Bitcoin blockhash randomness. Transparently pick winners, share verifiable links, and ensure complete trust.",
         "alternateName": [
           "bitcoindata.science",
           "Bitcoin Data Science",

@@ -5,7 +5,7 @@ if (isset($_GET['user'])) {
 }
 
 $title = (isset($_GET['user']) ? $user . ' - ' : '') . "Altcoinstalks Notification Bot - bitcoin data.science";
-$description = "Altcoinstalks, Notification, forum notification, notification bot, bot, altcoins, bitcoin";
+$description = "Never miss forum discussions with the Altcoinstalks Notification Bot. Track when your username is mentioned or quoted in posts across all boards in real time.";
 $keywords = "Altcoinstalks Notification Bot";
 $canonical = "https://bitcoindata.science/bot/altcoinstalk/notification";
 ?>

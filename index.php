@@ -4,7 +4,7 @@
 <head>
    <?php
    $title = "bitcoin data.science - Data Analysis and bitcoin";
-   $description = "Data analysis and tools for anything related to bitcoin.";
+   $description = "Explore free Bitcoin tools and analytics on bitcoindata.science: balance checker, unit converter, signature verifier, provably fair giveaways, and live APIs.";
    $canonical = "https://bitcoindata.science/";
    include_once $_SERVER['DOCUMENT_ROOT'] . '/components/head.php';
    ?>
@@ -13,7 +13,7 @@
          "@context": "https://schema.org",
          "@type": "Organization",
          "name": "bitcoindata.science",
-         "description": "Data analysis and tools for anything related to bitcoin.",
+         "description": "Explore free Bitcoin tools and analytics on bitcoindata.science: balance checker, unit converter, signature verifier, provably fair giveaways, and live APIs.",
          "alternateName": [
             "bitcoindata.science",
             "Bitcoin Data Science",

@@ -4,7 +4,7 @@
 <head>
    <?php
    $title = "Get Transaction Hex - bitcoin data.science";
-   $description = "Get Bitcoin Raw Transaction in Hex Format";
+   $description = "Easily retrieve raw Bitcoin transaction hex format by transaction ID (txid). Inspect and copy raw transaction bytecode directly powered by mempool.space data.";
    $keywords = "Bitcoin Transaction Hex,Transaction Hex, Tx Hex, Get Bitcoin Transaction Hex";
    $canonical = "https://bitcoindata.science/bitcoin-raw-transaction-hex";
    include_once $_SERVER['DOCUMENT_ROOT'] . '/components/head.php';
@@ -14,7 +14,7 @@
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "Get Bitcoin Raw Transaction Hex",
-        "description": "Get Bitcoin Raw Transaction in Hex Format",
+        "description": "Easily retrieve raw Bitcoin transaction hex format by transaction ID (txid). Inspect and copy raw transaction bytecode directly powered by mempool.space data.",
         "alternateName": [
           "bitcoindata.science",
           "Bitcoin Data Science",
