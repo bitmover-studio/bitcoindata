@@ -46,7 +46,7 @@
                "name": "Which Bitcoin address types are supported for message verification?",
                "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Standard Legacy addresses (P2PKH, starting with 1), Nested SegWit addresses (P2SH-P2WPKH, starting with 3), and Native SegWit addresses (Bech32 P2WPKH, starting with bc1q) are fully supported."
+                  "text": "Standard Legacy addresses (P2PKH, starting with 1), Nested SegWit addresses (P2SH-P2WPKH, starting with 3), Native SegWit addresses (Bech32 P2WPKH, starting with bc1q), and Taproot addresses (P2TR, starting with bc1p via BIP-322) are fully supported."
                }
             }, {
                "@type": "Question",
@@ -59,9 +59,10 @@
          }]
       }
    </script>
-   <!-- BitcoinJS Libraries -->
+   <!-- BitcoinJS & BIP-322 Libraries -->
    <script src="modules/bitcoinjs-lib.js"></script>
    <script src="modules/bitcoinjs-message.js"></script>
+   <script src="modules/bip322.bundle.js"></script>
    <style>
       .form-control:focus,
       .form-select:focus {
@@ -169,8 +170,8 @@
                   <div>
                      <p class="fw-semibold mb-0">Signer Address</p>
                      <p class="text-body-secondary mb-0 small">Enter the Bitcoin address (Legacy 1..., SegWit
-                        3..., or
-                        Bech32 bc1q...).</p>
+                        3...,
+                        Bech32 bc1q..., or Taproot bc1p...).</p>
                   </div>
                </div>
             </div>
@@ -207,9 +208,7 @@
                   </span>
                   <div>
                      <p class="fw-semibold mb-0">Base64 Signature</p>
-                     <p class="text-body-secondary mb-0 small">The 65-byte ECDSA cryptographic signature generated
-                        by
-                        the signer's wallet.</p>
+                     <p class="text-body-secondary mb-0 small">Standard ECDSA or BIP-322 Schnorr cryptographic signature (Sparrow, Electrum, Core).</p>
                   </div>
                </div>
             </div>
@@ -731,10 +730,8 @@
                <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="faq5"
                   data-bs-parent="#faqAccordion">
                   <div class="accordion-body text-body-secondary small pt-1">
-                     Taproot addresses (starting with <code>bc1p</code>) use Schnorr signatures and a newer proposed
-                     specification called <strong>BIP-322</strong>. Standard Bitcoin wallets (Bitcoin Core, Electrum,
-                     Sparrow) use the established ECDSA format for addresses starting with 1, 3, and bc1q.
-                     <strong>Not</strong> currently supported
+                     Taproot addresses (starting with <code>bc1p</code>) use Schnorr signatures and the <strong>BIP-322</strong>
+                     specification. Both BIP-322 simple signatures (including Sparrow Wallet format) and standard legacy/SegWit ECDSA message signatures are supported right here in your browser.
                   </div>
                </div>
             </div>
@@ -765,7 +762,7 @@
    <footer-component></footer-component>
 
    <script src="modules/crypto-js.min.js"></script>
-   <script src="components/verify-message.js?v=0.2"></script>
+   <script src="components/verify-message.js?v=0.4"></script>
 </body>
 
 </html>
