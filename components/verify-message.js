@@ -107,12 +107,12 @@
    function verifyMessageTolerant(message, address, signature) {
       // 1) Standard verify
       try {
-         return bitcoinMessage.verify(message, address, signature);
+         if (bitcoinMessage.verify(message, address, signature)) return true;
       } catch (e) { }
 
-      // 2) Try with checkSegwitAlways = true
+      // 2) Try with checkSegwitAlways = true (needed for P2SH-P2WPKH 3... addresses)
       try {
-         return bitcoinMessage.verify(message, address, signature, null, true);
+         if (bitcoinMessage.verify(message, address, signature, null, true)) return true;
       } catch (e) { }
 
       // 3) Strip segwit bits from flag byte and retry as pure legacy/compressed
@@ -284,7 +284,7 @@
             address = line.replace(/^Address:\s*/i, "").trim();
          } else if (/^Version:\s*/i.test(line) || /^Hash:\s*/i.test(line)) {
             continue;
-         } else if (/^[13bc][a-km-zA-HJ-NP-Z1-9a-z]{25,90}$/i.test(line) && !address) {
+         } else if (/^([13][a-km-zA-HJ-NP-Z1-9]{25,34}|bc1[a-z0-9]{6,87})$/.test(line) && !address) {
             address = line;
          } else if (/^[A-Za-z0-9+/=]{64,120}$/.test(line)) {
             signature = line;
