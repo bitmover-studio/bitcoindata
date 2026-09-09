@@ -377,6 +377,13 @@
                            <label for="signature" class="text-body-secondary"></label>
                         </div>
                      </div>
+                     <div class="d-flex justify-content-between align-items-center mt-2">
+                        <small class="text-muted">Convert separate fields into a clearsigned message block.</small>
+                        <button type="button" class="btn btn-secondary btn-sm rounded-3" id="extractToClearsignBtn"
+                           onclick="extractFieldsToClearsigned(false)">
+                           Extract to Clearsign &rarr;
+                        </button>
+                     </div>
 
                   </div>
 
@@ -410,7 +417,7 @@
                         </div>
                         <div class="d-flex justify-content-between align-items-center mt-2">
                            <small class="text-muted">Accepts Bitcoin Core, Electrum, Sparrow, and other formats.</small>
-                           <button type="button" class="btn btn-secondary btn-sm rounded-3"
+                           <button type="button" class="btn btn-secondary btn-sm rounded-3" id="extractToFieldsBtn"
                               onclick="parseClearsignedBlock(false)">
                               Extract to Fields &rarr;
                            </button>
@@ -758,7 +765,7 @@
    <footer-component></footer-component>
 
    <script src="modules/crypto-js.min.js"></script>
-   <script src="components/verify-message.js"></script>
+   <script src="components/verify-message.js?v=0.2"></script>
 </body>
 
 </html>

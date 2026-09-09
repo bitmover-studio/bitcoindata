@@ -306,6 +306,55 @@
       return false;
    };
 
+   window.extractFieldsToClearsigned = function (silent) {
+      var addr = inputAddress ? inputAddress.value.trim() : "";
+      var msg = inputMessage ? inputMessage.value : "";
+      var sig = inputSignature ? inputSignature.value.trim() : "";
+
+      if (!addr && !msg && !sig) {
+         if (!silent) {
+            launchModal("alertModal", "Please enter a message, Bitcoin address, or signature to extract to a clearsigned block.");
+         }
+         return false;
+      }
+
+      var sigLines = [];
+      if (addr) sigLines.push(addr);
+      if (sig) sigLines.push(sig);
+      var sigPart = sigLines.length > 0 ? sigLines.join("\n") + "\n" : "";
+
+      var msgContent = msg;
+      if (msgContent) {
+         if (!msgContent.endsWith("\n")) {
+            msgContent += "\n";
+         }
+      } else {
+         msgContent = "\n";
+      }
+
+      var block = "-----BEGIN BITCOIN SIGNED MESSAGE-----\n" +
+         msgContent +
+         "-----BEGIN SIGNATURE-----\n" +
+         sigPart +
+         "-----END BITCOIN SIGNED MESSAGE-----";
+
+      if (clearsignedBlock) {
+         clearsignedBlock.value = block;
+      }
+
+      if (!silent) {
+         var clearsignTabTrigger = document.getElementById('clearsign-tab');
+         if (clearsignTabTrigger && typeof bootstrap !== 'undefined' && bootstrap.Tab) {
+            var tab = bootstrap.Tab.getOrCreateInstance ? bootstrap.Tab.getOrCreateInstance(clearsignTabTrigger) : new bootstrap.Tab(clearsignTabTrigger);
+            tab.show();
+         }
+      }
+      return true;
+   };
+
+   // Alias for convenience
+   window.extractFieldToClearsign = window.extractFieldsToClearsigned;
+
    // ─── Sample Data ──────────────────────────────────────────────────
    window.loadSample = function () {
       inputAddress.value = "1PMycacnJaSqwwJqjawXBErnLsZ7RkXUAs";
