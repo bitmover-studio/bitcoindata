@@ -52,7 +52,6 @@
 
             // Identify address type
             var type = "Bitcoin Address";
-            var isTaproot = false;
             if (addr.startsWith("1")) {
                type = "Legacy (P2PKH)";
             } else if (addr.startsWith("3")) {
@@ -60,21 +59,7 @@
             } else if (addr.toLowerCase().startsWith("bc1q")) {
                type = "Native SegWit (Bech32)";
             } else if (addr.toLowerCase().startsWith("bc1p")) {
-               type = "Taproot (P2TR)";
-               isTaproot = true;
-            }
-
-            // Taproot warning — valid address but unsupported for message verification
-            if (isTaproot) {
-               addressBadge.textContent = type;
-               addressBadge.className = "badge bg-warning-subtle text-warning border border-warning-subtle ms-2";
-               addressBadge.classList.remove("d-none");
-               inputAddress.classList.remove("is-valid");
-               inputAddress.classList.add("is-invalid");
-               if (addressFeedback) {
-                  addressFeedback.textContent = "Taproot (bc1p) addresses use Schnorr signatures (BIP-322) which are not yet supported. Use a Legacy, SegWit, or Bech32 address.";
-               }
-               return undefined;
+               type = "Taproot (P2TR - BIP-322)";
             }
 
             addressBadge.textContent = type;
@@ -88,15 +73,19 @@
             if (isLegacy || isBech32) {
                inputAddress.classList.remove("is-invalid");
                inputAddress.classList.add("is-valid");
-               // Check taproot in fallback mode too
+               var fallbackType = "Bitcoin Address";
                if (addr.toLowerCase().startsWith("bc1p")) {
-                  inputAddress.classList.remove("is-valid");
-                  inputAddress.classList.add("is-invalid");
-                  if (addressFeedback) {
-                     addressFeedback.textContent = "Taproot (bc1p) addresses use Schnorr signatures (BIP-322) which are not yet supported.";
-                  }
-                  return undefined;
+                  fallbackType = "Taproot (P2TR - BIP-322)";
+               } else if (addr.startsWith("1")) {
+                  fallbackType = "Legacy (P2PKH)";
+               } else if (addr.startsWith("3")) {
+                  fallbackType = "Nested SegWit (P2SH)";
+               } else if (addr.toLowerCase().startsWith("bc1q")) {
+                  fallbackType = "Native SegWit (Bech32)";
                }
+               addressBadge.textContent = fallbackType;
+               addressBadge.className = "badge bg-body-secondary text-primary ms-2";
+               addressBadge.classList.remove("d-none");
                return true;
             } else {
                throw new Error("Invalid address pattern");
@@ -107,7 +96,7 @@
          inputAddress.classList.add("is-invalid");
          addressBadge.classList.add("d-none");
          if (addressFeedback) {
-            addressFeedback.textContent = "Please enter a valid Bitcoin address (P2PKH, P2SH, or Bech32).";
+            addressFeedback.textContent = "Please enter a valid Bitcoin address (P2PKH, P2SH, Bech32, or Taproot).";
          }
          return undefined;
       }
@@ -142,24 +131,23 @@
    }
 
    // ─── Core Verify with Message Variants ────────────────────────────
-   // Tries multiple line-ending variants to handle Windows/Unix differences
+   // Tries BIP-322 verification (for Taproot or BIP-322 signatures) and legacy tolerant verification
    function verifyMessageCore(message, address, signatureBase64) {
       if (!address) throw new Error("Please enter a Bitcoin address.");
       if (!signatureBase64) throw new Error("Please enter a signature.");
 
+      // Clean Sparrow Wallet / BIP-322 simple prefix (e.g. "smp:" or "smp")
+      var cleanSig = signatureBase64.trim().replace(/^smp:?/i, '').trim().replace(/\s+/g, '');
+
       // Validate base64
-      var cleanSig = signatureBase64.trim().replace(/\s+/g, '');
       try {
          atob(cleanSig);
       } catch (e) {
          throw new Error("Signature is not a valid Base64 string.");
       }
 
-      // Check signature length (65 bytes)
       var binaryStr = atob(cleanSig);
-      if (binaryStr.length !== 65) {
-         throw new Error("Invalid signature length: " + binaryStr.length + " bytes (expected 65 bytes).");
-      }
+      var isTaproot = address.toLowerCase().startsWith("bc1p");
 
       // Try message variants to handle line ending differences
       var variants = [
@@ -181,10 +169,33 @@
          }
       }
 
-      for (var i = 0; i < uniqueVariants.length; i++) {
-         var result = verifyMessageTolerant(uniqueVariants[i], address, cleanSig);
+      // 1) For Taproot (bc1p) addresses, verify using BIP-322 exclusively
+      if (isTaproot) {
+         if (typeof BIP322 === 'undefined' || !BIP322.Verifier || !BIP322.Verifier.verifySignature) {
+            throw new Error("BIP-322 library is not loaded. Cannot verify Taproot address.");
+         }
+         for (var j = 0; j < uniqueVariants.length; j++) {
+            try {
+               var bip322Result = BIP322.Verifier.verifySignature(address, uniqueVariants[j], cleanSig);
+               if (bip322Result === true) {
+                  return { valid: true, messageUsed: uniqueVariants[j], isBip322: true };
+               }
+            } catch (bip322Err) {
+               // Continue trying variants
+            }
+         }
+         return { valid: false };
+      }
+
+      // 2) Standard Legacy / SegWit check (P2PKH 1..., P2SH 3..., Bech32 bc1q...)
+      if (binaryStr.length !== 65) {
+         throw new Error("Invalid signature length: " + binaryStr.length + " bytes (expected 65 bytes).");
+      }
+
+      for (var k = 0; k < uniqueVariants.length; k++) {
+         var result = verifyMessageTolerant(uniqueVariants[k], address, cleanSig);
          if (result === true) {
-            return { valid: true, messageUsed: uniqueVariants[i] };
+            return { valid: true, messageUsed: uniqueVariants[k], isBip322: false };
          }
       }
 
@@ -452,10 +463,15 @@
 
                // Determine address/key type
                var keyType = "Compressed ECDSA Key";
-               if (addr.startsWith("1")) keyType += " (Legacy P2PKH)";
-               else if (addr.startsWith("3")) keyType += " (Nested SegWit P2SH)";
-               else if (addr.toLowerCase().startsWith("bc1q")) keyType += " (Native SegWit Bech32)";
-               else if (addr.toLowerCase().startsWith("bc1p")) keyType += " (Taproot P2TR)";
+               if (addr.toLowerCase().startsWith("bc1p")) {
+                  keyType = "Schnorr Key (Taproot P2TR - BIP-322)";
+               } else if (addr.startsWith("1")) {
+                  keyType += " (Legacy P2PKH)";
+               } else if (addr.startsWith("3")) {
+                  keyType += " (Nested SegWit P2SH)";
+               } else if (addr.toLowerCase().startsWith("bc1q")) {
+                  keyType += " (Native SegWit Bech32)";
+               }
                resKeyType.textContent = keyType;
 
                // Hide hash row (not computed with simplified approach)

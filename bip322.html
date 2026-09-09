@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>BIP-322 Local Verification</title>
+    <script src="modules/crypto-js.min.js"></script>
+    <script src="modules/bip322.bundle.js"></script>
+    <script src="components/verify-message.js?v=0.2"></script>
+
+</head>
+
+<body>
+
+    <script>
+        // BIP322 is exposed globally via the standalone export
+        const { Verifier } = BIP322;
+
+        const address = 'bc1psmy98zpvh5vrfxcrmekmv74k2zdlmdzvs7pnyetd8a3v6tjt2apq2q7x72';
+        const message = 'This is taproot message';
+        const signatureBase64 = 'smpAUGhpZub60ECot4oXnxrq+o2Bkvia8293FQUuja0rDGZ4ODg8N1mA5KKMOjafcYRO4OmegZsWk9rcBjxKjRVh0DvAQ==';
+        // Clean any Sparrow / BIP-322 simple prefix before verifying
+        const cleanSig = signatureBase64.replace(/^smp:?/i, '').trim();
+
+        // In ACken2/bip322-js, Verifier.verifySignature returns a boolean synchronously (or Promise in some versions)
+        try {
+            const result = Verifier.verifySignature(address, message, cleanSig);
+            Promise.resolve(result).then(isValid => {
+                console.log("Verification result:", isValid);
+                if (isValid) {
+                    console.log("Valid BIP-322 signature!");
+                }
+            }).catch(err => {
+                console.error("Verification error:", err);
+            });
+        } catch (err) {
+            console.error("Verification exception:", err);
+        }
+
+    </script>
+
+</body>
+
+</html>
