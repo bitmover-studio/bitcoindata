@@ -588,6 +588,8 @@
             inputAddress.value = parts[0] || "";
             inputMessage.value = parts[1] || "";
             if (parts[2]) inputSignature.value = parts[2];
+            // Extract to clearsign
+            extractFieldsToClearsigned(false)
             return true;
          }
       } catch (e) { }

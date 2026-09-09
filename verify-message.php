@@ -544,7 +544,7 @@
                      <!-- Details Grid -->
                      <div class="row g-3">
                         <div class="col-12 col-xl-6">
-                           <div class="p-3 rounded-3 bg-body-secondary">
+                           <div class="p-3 rounded-3 bg-body-secondary h-100">
                               <p class="text-body-secondary small mb-1">Verified Address</p>
                               <div class="d-flex align-items-center justify-content-between">
                                  <code class="text-primary font-monospace-sm text-break" id="resAddress"></code>
