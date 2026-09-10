@@ -7,7 +7,7 @@ footerTemplate.innerHTML = `
         <div class="row grid gap-3">
             <div class="col-md-3">
                 <p class="text-muted">Project</p>
-                <p class="fw-semibold"><a href="about" class='footer-link text-decoration-none' title="About us">About us</a></p>
+                <p class="fw-semibold"><a href="donate" class='footer-link text-decoration-none' title="About us">About us</a></p>
                 <p class="fw-semibold"><a href="terms-of-service" class='footer-link text-decoration-none' title="Terms of Service">Terms of Service</a></p>
                 <p class="text-muted small my-4">bitcoindata.science © ${new Date().getFullYear()}</p>
             </div>
