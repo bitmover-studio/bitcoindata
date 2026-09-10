@@ -4,8 +4,8 @@
 <head>
    <?php
    $title = "Verify Bitcoin Signed Message - bitcoin data.science";
-   $description = "Verify the authenticity and integrity of Bitcoin signed messages in your browser. Supports P2PKH, SegWit, and Bech32 Bitcoin addresses.";
-   $keywords = "Verify Bitcoin Message, Bitcoin signature verifier, Bitcoin signed message, verify address signature, bitcoinjs-message, bitcoinjs-lib, SegWit, Bech32, P2PKH";
+   $description = "Verify the authenticity and integrity of Bitcoin signed messages in your browser. Supports Legacy P2PKH, SegWit, Bech32, and Taproot addresses using BIP-322 Schnorr signatures.";
+   $keywords = "Verify Bitcoin Message, Bitcoin signature verifier, Bitcoin signed message, verify address signature, Taproot, Schnorr signature, BIP-322, BIP322, bitcoinjs-message, bitcoinjs-lib, SegWit, Bech32, P2TR, P2PKH";
    $canonical = "https://bitcoindata.science/verify-message";
    include_once $_SERVER['DOCUMENT_ROOT'] . '/components/head.php';
    ?>
@@ -15,7 +15,7 @@
          "@graph": [{
             "@type": "WebPage",
             "name": "Verify Bitcoin Signed Message - bitcoin data.science",
-            "description": "Verify the authenticity of Bitcoin signed messages in your browser. Check signatures for Legacy P2PKH, Nested SegWit P2SH-P2WPKH, and Native SegWit Bech32 P2WPKH addresses.",
+            "description": "Verify the authenticity of Bitcoin signed messages in your browser. Check signatures for Legacy P2PKH, Nested SegWit P2SH-P2WPKH, Native SegWit Bech32 P2WPKH, and Taproot P2TR addresses with BIP-322 Schnorr signatures.",
             "alternateName": [
                "bitcoindata.science",
                "Bitcoin Data Science",
@@ -46,7 +46,14 @@
                "name": "Which Bitcoin address types are supported for message verification?",
                "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Standard Legacy addresses (P2PKH, starting with 1), Nested SegWit addresses (P2SH-P2WPKH, starting with 3), Native SegWit addresses (Bech32 P2WPKH, starting with bc1q), and Taproot addresses (P2TR, starting with bc1p via BIP-322) are fully supported."
+                  "text": "Standard Legacy addresses (P2PKH, starting with 1), Nested SegWit addresses (P2SH-P2WPKH, starting with 3), Native SegWit addresses (Bech32 P2WPKH, starting with bc1q), and Taproot addresses (P2TR, starting with bc1p via BIP-322 Schnorr signatures) are fully supported."
+               }
+            }, {
+               "@type": "Question",
+               "name": "Can I verify Taproot (bc1p...) addresses with BIP-322 Schnorr signatures?",
+               "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. Taproot addresses (starting with bc1p) using BIP-322 Schnorr signatures (including formats from Sparrow Wallet and Bitcoin Core) are fully supported and verified 100% client-side in your browser."
                }
             }, {
                "@type": "Question",
@@ -126,7 +133,7 @@
    <!-- Page Content Header -->
    <?php
    $h1 = '<span class="d-none d-md-inline">Bitcoin </span>Message Verifier';
-   $h2 = 'Verify the authenticity and cryptographic integrity of Bitcoin signed messages.';
+   $h2 = 'Verify the authenticity and cryptographic integrity of Bitcoin signed messages. Supports all address formats.';
    include_once $_SERVER['DOCUMENT_ROOT'] . '/components/page-header.php';
    ?>
 
@@ -311,11 +318,11 @@
                         <div class="position-relative">
                            <input type="text"
                               class="form-control border-0 bg-body-secondary rounded-4 font-monospace-sm py-3 px-3 fw-medium"
-                              id="bitcoinaddress" placeholder="1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa or bc1q..."
+                              id="bitcoinaddress" placeholder="1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa, bc1q..., or bc1p..."
                               onfocus="validateAddress()" oninput="validateAddress()" onchange="validateAddress()"
                               spellcheck="false" autocomplete="off">
                            <div class="invalid-feedback ps-2" id="addressFeedback">Please enter a valid Bitcoin address
-                              (P2PKH, P2SH, or Bech32).</div>
+                              (P2PKH, P2SH, Bech32, or Taproot).</div>
                            <div class="valid-feedback ps-2" id="addressValidFeedback">Valid Bitcoin address</div>
                         </div>
                      </div>
@@ -646,7 +653,6 @@
                      data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false"
                      aria-controls="collapse2">
                      Why would signature verification fail?
-                  </button>
                </h2>
                <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="faq2"
                   data-bs-parent="#faqAccordion">
@@ -659,7 +665,7 @@
                            the one supplied.</li>
                         <li><strong>Truncated signature:</strong> A standard Bitcoin ECDSA signature must be a 65-byte
                            base64 string (starts with <code>H</code>, <code>I</code>, <code>G</code>, <code>J</code>, or
-                           <code>K</code>).
+                           <code>K</code>). For Taproot addresses (<code>bc1p</code>), signatures use the BIP-322 Schnorr specification.
                         </li>
                      </ul>
                   </div>
@@ -677,7 +683,8 @@
                <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="faq3"
                   data-bs-parent="#faqAccordion">
                   <div class="accordion-body text-body-secondary small pt-1">
-                     <ol class="mb-0">
+                     <p class="mb-2"><strong>Legacy &amp; SegWit (ECDSA):</strong></p>
+                     <ol class="mb-3">
                         <li><strong>Magic Prefix:</strong> To prevent a signed message from accidentally being
                            interpreted as a raw Bitcoin transaction, the standard prepends the byte length and string:
                            <code>\x18Bitcoin Signed Message:\n</code>.
@@ -692,6 +699,8 @@
                            equality.
                         </li>
                      </ol>
+                     <p class="mb-2"><strong>Taproot (BIP-322 Schnorr):</strong></p>
+                     <p class="mb-0">Because Schnorr signatures (BIP-340) do not support public key recovery, Taproot addresses cannot use the legacy signing scheme. Instead, <strong>BIP-322</strong> constructs deterministic virtual transactions (<code>toSpend</code> and <code>toSign</code>) committing to the message, verifying the Schnorr signature directly against the Taproot P2TR output script.</p>
                   </div>
                </div>
             </div>
@@ -709,11 +718,10 @@
                   <div class="accordion-body text-body-secondary small pt-1">
                      This tool supports all standard Bitcoin message signing formats:
                      <ul class="mb-0 mt-2">
-                        <li><strong>P2PKH (Legacy):</strong> Addresses starting with <code>1</code> (compressed and
-                           uncompressed public keys).</li>
-                        <li><strong>P2SH-P2WPKH (Nested SegWit):</strong> Addresses starting with <code>3</code>.</li>
-                        <li><strong>Bech32 (Native SegWit):</strong> Addresses starting with <code>bc1q</code>
-                           (BIP-173).</li>
+                        <li><strong>Taproot (P2TR / Bech32m):</strong> Addresses starting with <code>bc1p</code> using Schnorr signatures under the <strong>BIP-322</strong> standard (supported by Sparrow, Bitcoin Core, and modern wallets).</li>
+                        <li><strong>Native SegWit (Bech32):</strong> Addresses starting with <code>bc1q</code> (BIP-173).</li>
+                        <li><strong>Nested SegWit (P2SH-P2WPKH):</strong> Addresses starting with <code>3</code>.</li>
+                        <li><strong>Legacy (P2PKH):</strong> Addresses starting with <code>1</code> (compressed and uncompressed public keys).</li>
                      </ul>
                   </div>
                </div>
@@ -724,14 +732,13 @@
                   <button class="accordion-button collapsed bg-transparent shadow-none fw-semibold fs-6" type="button"
                      data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false"
                      aria-controls="collapse5">
-                     Can I verify Taproot (bc1p...) addresses?
+                     Can I verify Taproot (bc1p...) addresses with BIP-322 Schnorr signatures?
                   </button>
                </h2>
                <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="faq5"
                   data-bs-parent="#faqAccordion">
                   <div class="accordion-body text-body-secondary small pt-1">
-                     Taproot addresses (starting with <code>bc1p</code>) use Schnorr signatures and the <strong>BIP-322</strong>
-                     specification. Both BIP-322 simple signatures (including Sparrow Wallet format) and standard legacy/SegWit ECDSA message signatures are supported right here in your browser.
+                     <strong>Yes, full Taproot and BIP-322 support is built-in!</strong> Taproot addresses (starting with <code>bc1p</code>) use Schnorr signatures (BIP-340) following the <strong>BIP-322</strong> specification. This verifier supports BIP-322 simple format signatures (including Sparrow Wallet format with or without the <code>smp:</code> prefix) as well as Bitcoin Core BIP-322 signatures, verified 100% client-side in your browser.
                   </div>
                </div>
             </div>
@@ -762,7 +769,7 @@
    <footer-component></footer-component>
 
    <script src="modules/crypto-js.min.js"></script>
-   <script src="components/verify-message.js?v=0.4"></script>
+   <script src="components/verify-message.js?v=0.5"></script>
 </body>
 
 </html>

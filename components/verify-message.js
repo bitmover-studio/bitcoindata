@@ -45,7 +45,24 @@
       }
 
       try {
-         if (typeof bitcoinjs !== 'undefined' && bitcoinjs.address && bitcoinjs.address.toOutputScript) {
+         if (typeof bitcoinjs !== 'undefined' && bitcoinjs.address) {
+            // Taproot (bc1p) addresses: validate via fromBech32 directly.
+            // toOutputScript() calls payments.p2tr() internally which requires
+            // initEccLib() — never called in this browser bundle — and throws,
+            // causing valid Taproot addresses to be flagged as invalid.
+            if (addr.toLowerCase().startsWith("bc1p")) {
+               var decoded = bitcoinjs.address.fromBech32(addr);
+               if (decoded.prefix !== "bc" || decoded.version !== 1 || decoded.data.length !== 32) {
+                  throw new Error("Invalid Taproot address");
+               }
+               inputAddress.classList.remove("is-invalid");
+               inputAddress.classList.add("is-valid");
+               addressBadge.textContent = "Taproot (P2TR - BIP-322)";
+               addressBadge.className = "badge bg-body-secondary text-primary ms-2";
+               addressBadge.classList.remove("d-none");
+               return true;
+            }
+
             bitcoinjs.address.toOutputScript(addr);
             inputAddress.classList.remove("is-invalid");
             inputAddress.classList.add("is-valid");
@@ -58,8 +75,6 @@
                type = "Nested SegWit (P2SH)";
             } else if (addr.toLowerCase().startsWith("bc1q")) {
                type = "Native SegWit (Bech32)";
-            } else if (addr.toLowerCase().startsWith("bc1p")) {
-               type = "Taproot (P2TR - BIP-322)";
             }
 
             addressBadge.textContent = type;
