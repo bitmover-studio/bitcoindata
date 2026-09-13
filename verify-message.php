@@ -643,6 +643,7 @@
                      It proves mathematically that the message was signed by whoever controls the private key
                      corresponding to the specified Bitcoin address, and that the message content has not been altered
                      in transit by even a single character. It does not transfer any coins or expose the private key.
+                     Bitcoin signed message is the most straightforward way to prove ownership over a given address.
                   </div>
                </div>
             </div>

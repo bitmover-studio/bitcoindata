@@ -193,7 +193,7 @@
          If this website is useful to you, consider donating to support its development. We host data analysis and tools for anything related to Bitcoin, completely free and open-source. Donate some Bitcoin or other cryptocurrencies to the addresses below:
       </p>
 
-      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3 text-center" id="addresses"></div>
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3 justify-content-center" id="addresses"></div>
    </div>
 
    <!-- Contributors Section (Hall of Fame) -->
@@ -286,7 +286,7 @@
       const addresses = [{
             blockchain: 'Bitcoin',
             ticker: 'BTC',
-            address: 'bc1qnrqfg9p2huh6y5ggsrkz5w8es25yw498n42f5m',
+            address: 'bc1qq77cgh03p302dauqvna92ej8utum8qt4rhyyun',
          },
          {
             blockchain: 'Litecoin',
@@ -299,9 +299,9 @@
             address: '0x6ff37c932d81924190e4bec36d1052dc78126a2d',
          },
          {
-            blockchain: 'Liquid',
-            ticker: 'L-BTC',
-            address: 'VJL5eExSHNCPuKBncgUcSoa1vmB4ajKWY5MBEajZz2aRQUXx5WqwsdKNDu8KgKGHAnn8iK51o3ncmunk',
+            blockchain: 'Monero',
+            ticker: 'XMR',
+            address: '468MGnEmmHZ7QTVKfBSrPhMZinoK8n5TbaKXKXi6irStePvNh5ZDxahXyAei4E8CJXCbNdgaWYhguVdqBow6uEHfSRCJm6E',
          },
       ];
 
