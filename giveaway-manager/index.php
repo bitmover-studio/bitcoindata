@@ -229,26 +229,40 @@
           </button>
         </div>
 
-        <!-- Share URL field -->
-        <div style="position: relative;" class="mb-3">
-          <label for="url" class="visually-hidden">Share URL</label>
-          <input type="url"
-            class="form-control-lg border-0 bg-body-secondary rounded-4 lh-base fw-normal fs-6 font-monospace w-100 text-body"
-            id="url" readonly=""
-            style="padding-right: 3rem;"
-            title="Shareable link">
-          <button type="button" id="copy-url-btn" onclick="copyUrlBtn()"
-            title="Copy link"
-            style="position:absolute; right:10px; top:50%; transform:translateY(-50%); background:none; border:none; padding:4px; cursor:pointer; color: var(--bs-secondary-color); line-height:1; transition: color 0.15s ease, transform 0.15s ease;"
-            onmouseenter="this.style.color='var(--bs-primary)'; this.style.transform='translateY(-50%) scale(1.15)'"
-            onmouseleave="this.style.color='var(--bs-secondary-color)'; this.style.transform='translateY(-50%) scale(1)'">
-            <svg id="copy-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 -960 960 960">
-              <path d="M360-240q-33 0-56.5-23.5T280-320v-480q0-33 23.5-56.5T360-880h360q33 0 56.5 23.5T800-800v480q0 33-23.5 56.5T720-240H360Zm0-80h360v-480H360v480ZM200-80q-33 0-56.5-23.5T120-160v-560h80v560h440v80H200Zm160-240v-480 480Z" />
-            </svg>
-            <svg id="check-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16" style="display:none; color:var(--bs-success)">
-              <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z" />
-            </svg>
-          </button>
+        <!-- Share options container -->
+        <div id="shareContainer" class="w-100 mt-3 d-none">
+          <div class="p-3 rounded-4 bg-body-secondary border border-secondary border-opacity-10 text-start">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <span class="fw-semibold small text-body-secondary">Share Results</span>
+              <button type="button" class="btn-close btn-close-sm"
+                onclick="document.getElementById('shareContainer').classList.add('d-none')"
+                aria-label="Close"></button>
+            </div>
+
+            <!-- Option 1: Permalink -->
+            <div class="mb-3">
+              <label for="shareUrl" class="text-body-secondary small fw-medium mb-1 d-block">Permalink</label>
+              <div class="input-group">
+                <input type="text" id="shareUrl"
+                  class="form-control form-control-sm font-monospace small bg-body border-0" readonly
+                  onclick="this.select()">
+                <button class="btn btn-primary btn-sm px-3" type="button" id="copyShareBtn"
+                  onclick="copyShareUrl('shareUrl', 'copyShareBtn')">Copy Link</button>
+              </div>
+            </div>
+
+            <!-- Option 2: BBCode for Forums -->
+            <div>
+              <label for="shareBbcode" class="text-body-secondary small fw-medium mb-1 d-block">BBCode (Forums)</label>
+              <div class="input-group">
+                <input type="text" id="shareBbcode"
+                  class="form-control form-control-sm font-monospace small bg-body border-0" readonly
+                  onclick="this.select()">
+                <button class="btn btn-secondary btn-sm px-3" type="button" id="copyBbcodeBtn"
+                  onclick="copyShareUrl('shareBbcode', 'copyBbcodeBtn')">Copy BBCode</button>
+              </div>
+            </div>
+          </div>
         </div>
 
       </form>
@@ -257,7 +271,15 @@
 
     <!-- Results -->
     <div class="bg-body-tertiary rounded-4 p-md-5 p-4 shadow-sm mt-4" id="results-section">
-      <p class="section-label mb-4">Results</p>
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <p class="section-label mb-0">Results</p>
+        <button type="button" class="btn btn-secondary btn-sm d-inline-flex align-items-center gap-1" onclick="save_share()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z" />
+          </svg>
+          Share
+        </button>
+      </div>
       <p class="mb-2">Block hash: <output id="block-output" class="text-break font-monospace"></output></p>
       <div id="verify"></div>
       <p class="mb-2">Decimal number: <code class="text-primary text-break" id="rolled-number"></code></p>
@@ -520,24 +542,35 @@
       window.location.replace(window.location.pathname + "#" + payload);
     }
 
-    // saved and share
-    function copyurl() {
-      navigator.clipboard.writeText(document.getElementById('url').value)
+    // Share and copy helpers
+    function copyShareUrl(inputId, btnId) {
+      inputId = inputId || 'shareUrl';
+      btnId = btnId || 'copyShareBtn';
+      const input = document.getElementById(inputId);
+      const btn = document.getElementById(btnId);
+      if (!input) return;
+
+      navigator.clipboard.writeText(input.value).then(() => {
+        if (btn) {
+          const origText = btn.textContent;
+          btn.textContent = 'Copied!';
+          const wasPrimary = btn.classList.contains('btn-primary');
+          btn.classList.remove('btn-primary', 'btn-secondary');
+          btn.classList.add('btn-success');
+          setTimeout(() => {
+            btn.textContent = origText;
+            btn.classList.remove('btn-success');
+            btn.classList.add(wasPrimary ? 'btn-primary' : 'btn-secondary');
+          }, 1800);
+        }
+      }).catch(err => {
+        console.warn('Clipboard copy error:', err);
+      });
     }
 
-    function copyUrlBtn() {
-      const val = document.getElementById('url').value;
-      if (!val) return;
-      navigator.clipboard.writeText(val).then(() => {
-        const copyIcon = document.getElementById('copy-icon');
-        const checkIcon = document.getElementById('check-icon');
-        copyIcon.style.display = 'none';
-        checkIcon.style.display = 'inline';
-        setTimeout(() => {
-          copyIcon.style.display = 'inline';
-          checkIcon.style.display = 'none';
-        }, 2000);
-      });
+    function copyurl() {
+      const el = document.getElementById('shareUrl') || document.getElementById('url');
+      if (el) navigator.clipboard.writeText(el.value);
     }
 
     function copyCode(btn) {
@@ -555,11 +588,31 @@
     }
 
     function save_share() {
-      let competitors_for_share = document.getElementById("manually").value
-      let share_block = document.getElementById("block").value
-      let share_n_winners = document.getElementById("n_winners").value
-      let encrypted = CryptoJS.AES.encrypt(share_block + '&' + share_n_winners + '&' + competitors_for_share, "bitcoin");
-      document.getElementById("url").value = 'https://bitcoindata.science/giveaway-manager/#' + encrypted;
+      const competitors_for_share = document.getElementById("manually").value;
+      const share_block = document.getElementById("block").value;
+      const share_n_winners = document.getElementById("n_winners").value;
+      const encrypted = CryptoJS.AES.encrypt(share_block + '&' + share_n_winners + '&' + competitors_for_share, "bitcoin");
+
+      const origin = window.location.origin;
+      const pathname = window.location.pathname;
+      const shareUrl = (origin && origin !== "null" ? origin + pathname : "https://bitcoindata.science/giveaway-manager/") + "#" + encrypted;
+      const bbcode = "[url=" + shareUrl + "]Giveaway Result[/url]";
+
+      const shareContainer = document.getElementById("shareContainer");
+      const shareUrlInput = document.getElementById("shareUrl");
+      const shareBbcodeInput = document.getElementById("shareBbcode");
+
+      if (shareUrlInput) shareUrlInput.value = shareUrl;
+      if (shareBbcodeInput) shareBbcodeInput.value = bbcode;
+      if (shareContainer) {
+        shareContainer.classList.remove("d-none");
+        shareContainer.scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest'
+        });
+      }
+
+      copyShareUrl('shareUrl', 'copyShareBtn');
     }
 
     //load saved data

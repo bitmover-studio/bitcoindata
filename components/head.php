@@ -41,15 +41,12 @@ $base = '/';
   })();
 </script>
 
-<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-
-<!-- Bootstrap CSS e JS (CDN) -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous" defer></script>
+<link href="<?= $base ?>modules/bootstrap.min.css" rel="stylesheet">
+<script src="<?= $base ?>modules/bootstrap.bundle.min.js" defer></script>
 
 <link href="<?= $base ?>css/style.css?v=3.03" rel="stylesheet">
 <script src="<?= $base ?>components/navbar.js" defer></script>
 <script src="<?= $base ?>components/footer.js?v=2.01" defer></script>
-<!-- Simple Analytics -->
+
 <script async defer src="https://bitcoindata.science/api/simple.php/proxy.js" data-collect-dnt="true"></script>
 <script async src="https://bitcoindata.science/api/simple.php/auto-events.js" data-collect="outbound,emails" data-use-title="true" data-full-urls="true"></script>

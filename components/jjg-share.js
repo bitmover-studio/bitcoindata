@@ -14,7 +14,11 @@ function save_share() {
     let simulationDate = document.getElementById("simulationDate").value;
     let checkedPrice = document.getElementById("togglePrice").checked;
     let encrypted = CryptoJS.AES.encrypt(btcStashSize + '&' + annualWithdrawalRate + '&' + inputDate + '&' + checkedDate + '&' + simulationDate + '&' + checkedPrice, "bitcoin");
-    document.getElementById("shareURL").innerText = 'https://bitcoindata.science/withdrawal-strategy#' + encrypted;
+    const url = 'https://bitcoindata.science/withdrawal-strategy#' + encrypted;
+    document.getElementById("shareURL").value = url;
+    document.getElementById("shareBBCode").value = '[url=' + url + ']JJG Withdrawal Strategy calculator[/url]';
+    const area = document.getElementById("shareInputArea");
+    if (area) area.classList.remove('d-none');
 }
 
 // Load saved data from shareable URL
@@ -38,7 +42,7 @@ if (payload) {
     document.getElementById("simulationDate").value = saved_data_array[4];
     document.getElementById("togglePrice").checked = saved_data_array[5] === 'true';
 
-// Load data from past local sessions
+    // Load data from past local sessions
 } else if (window.localStorage["annualWithdrawalRate"] && window.localStorage["btcStashSize"]) {
     document.getElementById("wrate").value = window.localStorage["annualWithdrawalRate"];
     document.getElementById("stash").value = window.localStorage["btcStashSize"];
@@ -46,7 +50,9 @@ if (payload) {
 }
 
 function copyurl(target) {
-    navigator.clipboard.writeText(document.getElementById(target).innerText);
+    const el = document.getElementById(target);
+    const text = el.value !== undefined ? el.value : el.innerText;
+    navigator.clipboard.writeText(text);
 }
 
 // Save to local storage
@@ -63,21 +69,11 @@ function restoreDefaults() {
     calculateWithdrawalLimit();
 }
 
-// Toasts
 const toastTrigger = document.getElementById('saveInputs');
 const saveInputsToast = document.getElementById('saveInputsToast');
 if (toastTrigger) {
     const toastBootstrap = bootstrap.Toast.getOrCreateInstance(saveInputsToast);
     toastTrigger.addEventListener('click', () => {
-        toastBootstrap.show();
-    });
-}
-
-const toastTriggerShare = document.getElementById('shareInputs');
-const shareInputsToast = document.getElementById('shareInputsToast');
-if (toastTriggerShare) {
-    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(shareInputsToast);
-    toastTriggerShare.addEventListener('click', () => {
         toastBootstrap.show();
     });
 }
