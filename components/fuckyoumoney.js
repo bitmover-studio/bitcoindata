@@ -704,8 +704,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setupSyncInputs("horizonYears", "horizonYearsRange");
 
     // Initialize horizon to reach 2090 by default
-    const currentYear = new Date().getFullYear();
-    const defaultHorizon = Math.max(10, 2090 - currentYear);
+    const defaultHorizon = 10;
     const horizonInput = document.getElementById("horizonYears");
     const horizonRange = document.getElementById("horizonYearsRange");
     if (horizonInput && horizonRange) {

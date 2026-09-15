@@ -28,7 +28,7 @@
    </script>
    <script src="modules/crypto-js.min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-   <script src="components/fuckyoumoney.js?v=4" defer></script>
+   <script src="components/fuckyoumoney.js?v=1" defer></script>
 </head>
 
 <body>
@@ -208,7 +208,7 @@
                <label for="horizonYears" class="form-label fw-semibold">Projection Horizon</label>
                <div class="input-group mb-2">
                   <input type="number" class="form-control font-monospace border-0 bg-body-secondary" id="horizonYears"
-                     value="64" min="10" max="70" step="1">
+                     value="10" min="10" max="70" step="1">
                   <span class="input-group-text bg-body-secondary border-0">Years</span>
                </div>
                <input type="range" class="form-range" id="horizonYearsRange" min="10" max="70" step="1" value="64">
