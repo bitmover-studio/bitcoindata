@@ -67,6 +67,7 @@ function getJJGGain(date) {
 
     if (periods < 0) return 0;
 
+    // Manually curated JJG gains for Cycles 4–7 (periods 0–31)
     const tableGains = [
         // 2024-2027 (Cycle 4)
         21.23, 17.97, 15.42, 44.00, 20.00, 15.00, 12.00, 11.40,
@@ -75,20 +76,33 @@ function getJJGGain(date) {
         // 2032-2035 (Cycle 6)
         12.00, 12.24, 12.48, 12.73, 7.00, 6.65, 6.32, 6.00,
         // 2036-2039 (Cycle 7)
-        10.00, 10.20, 10.40, 10.60, 5.50, 5.20, 4.90, 4.60
+        10.00, 10.20, 10.40, 10.61, 6.00, 5.70, 5.42, 5.14
     ];
 
     if (periods < tableGains.length) {
         return tableGains[periods];
+    }
+
+    // ----- Auto-adjusting extrapolation for Cycle 8+ -----
+    // Each halving cycle = 8 semi-annual periods (4 bull + 4 bear).
+    // Bull-phase base: decreases by 1% per cycle, flooring at 4%
+    // Bear-phase base: decreases by 1% per cycle, flooring at 3%
+    // Within each phase, bull gains escalate +2% per step, bear gains decay −5% per step.
+    // At the floor, the repeating cycle is: 4.00, 4.08, 4.16, 4.24, 3.00, 2.85, 2.71, 2.57
+
+    let cycleIdx = Math.floor(periods / 8); // 0-based cycle index (Cycle 4 = 0)
+    let stepInCycle = periods % 8;          // 0-7 position within the cycle
+    let n = cycleIdx - 1;                   // offset from Cycle 5 (Cycle 5 = n=0)
+
+    let bullBase = Math.max(4, 11 - n);
+    let bearBase = Math.max(3, 8 - n);
+
+    if (stepInCycle < 4) {
+        // Bull phase (first 4 periods): base × 1.02^step
+        return bullBase * Math.pow(1.02, stepInCycle);
     } else {
-        // Extrapolate beyond 2039 by decaying the Cycle 7 gains by ~80% per cycle
-        let cycleIdx = Math.floor(periods / 8);
-        let stepInCycle = periods % 8;
-        let baseCycle7 = tableGains.slice(24, 32);
-        // let decay = Math.pow(0.8, cycleIdx - 3);
-        // removed decay
-        let decay = 1;
-        return baseCycle7[stepInCycle] * decay;
+        // Bear phase (last 4 periods): base × 0.95^(step offset)
+        return bearBase * Math.pow(0.95, stepInCycle - 4);
     }
 }
 
@@ -128,7 +142,8 @@ function recalculate() {
     const inflationRate = isNaN(rawInflation) ? 3.0 : rawInflation;
 
     const rawHorizon = parseInt(document.getElementById("horizonYears").value, 10);
-    const horizonYears = isNaN(rawHorizon) || rawHorizon < 1 ? 15 : rawHorizon;
+    const defaultHorizon = Math.max(10, 2090 - new Date().getFullYear());
+    const horizonYears = isNaN(rawHorizon) || rawHorizon < 1 ? defaultHorizon : rawHorizon;
     const selectedModel = document.getElementById("modelSelect").value;
     const spotPremiumSelect = document.getElementById("spotPremiumSelect").value;
 
@@ -397,7 +412,7 @@ function updatePriceChart(spotData, wmaData, transitionTimestamp) {
                 label: {
                     borderColor: '#20c997',
                     style: {
-                        color: '#fff',
+                        color: isDark ? '#000' : '#fff',
                         background: '#20c997'
                     },
                     text: 'Prediction Start'
@@ -516,6 +531,128 @@ window.exportTableToCSV = function () {
     document.body.removeChild(link);
 };
 
+// ─── Share (CryptoJS AES encrypted URL) ────────────────────────────
+const SHARE_KEY = "btc-fu-status";
+const SHARE_DELIMITER = "\n---\n";
+
+window.saveAndShare = function () {
+    const budget = document.getElementById("annualBudget").value;
+    const inflation = document.getElementById("inflationRate").value;
+    const horizon = document.getElementById("horizonYears").value;
+    const model = document.getElementById("modelSelect").value;
+    const premium = document.getElementById("spotPremiumSelect").value;
+
+    const payload = budget + SHARE_DELIMITER + inflation + SHARE_DELIMITER + horizon + SHARE_DELIMITER + model + SHARE_DELIMITER + premium;
+    let encrypted = "";
+    if (typeof CryptoJS !== 'undefined' && CryptoJS.AES) {
+        encrypted = CryptoJS.AES.encrypt(payload, SHARE_KEY).toString();
+    }
+
+    const origin = window.location.origin;
+    const pathname = window.location.pathname;
+    const shareUrl = (origin && origin !== "null" ? origin + pathname : "https://bitcoindata.science/fuckyoumoney") + "#" + encrypted;
+    const formattedBudget = Number(budget).toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+    const bbcode = "[url=" + shareUrl + "]Bitcoin Fuck You Status (" + formattedBudget + "/yr budget, " + inflation + "% inflation)[/url]";
+
+    const shareContainer = document.getElementById("shareContainer");
+    const shareUrlInput = document.getElementById("shareUrl");
+    const shareBbcodeInput = document.getElementById("shareBbcode");
+
+    if (shareUrlInput) shareUrlInput.value = shareUrl;
+    if (shareBbcodeInput) shareBbcodeInput.value = bbcode;
+    if (shareContainer) shareContainer.classList.remove("d-none");
+
+    copyShareUrl("shareUrl", "copyShareBtn");
+};
+
+window.copyShareUrl = function (inputId, btnId) {
+    inputId = inputId || "shareUrl";
+    btnId = btnId || "copyShareBtn";
+    const input = document.getElementById(inputId);
+    const btn = document.getElementById(btnId);
+    if (!input) return;
+
+    navigator.clipboard.writeText(input.value).then(function () {
+        if (btn) {
+            const origText = btn.textContent;
+            btn.textContent = "Copied!";
+            const wasPrimary = btn.classList.contains("btn-primary");
+            btn.classList.remove("btn-primary", "btn-secondary");
+            btn.classList.add("btn-success");
+            setTimeout(function () {
+                btn.textContent = origText;
+                btn.classList.remove("btn-success");
+                btn.classList.add(wasPrimary ? "btn-primary" : "btn-secondary");
+            }, 1800);
+        }
+    }).catch(function (err) {
+        console.warn("Clipboard copy error:", err);
+    });
+};
+
+function tryLoadEncrypted(hash) {
+    if (!hash || typeof CryptoJS === 'undefined' || !CryptoJS.AES) return false;
+    try {
+        const decrypted = CryptoJS.AES.decrypt(hash, SHARE_KEY);
+        const plaintext = decrypted.toString(CryptoJS.enc.Utf8);
+        if (!plaintext || plaintext.indexOf(SHARE_DELIMITER) === -1) return false;
+
+        const parts = plaintext.split(SHARE_DELIMITER);
+        if (parts.length >= 5) {
+            applyLoadedParams(parts[0], parts[1], parts[2], parts[3], parts[4]);
+            return true;
+        }
+    } catch (e) { }
+    return false;
+}
+
+function tryLoadPlainParams(hash) {
+    if (!hash) return false;
+    try {
+        const params = new URLSearchParams(hash);
+        const budget = params.get("budget") || params.get("annualBudget");
+        const inflation = params.get("inflation") || params.get("inflationRate");
+        const horizon = params.get("horizon") || params.get("horizonYears");
+        const model = params.get("model") || params.get("modelSelect");
+        const premium = params.get("premium") || params.get("spotPremiumSelect");
+
+        if (budget || inflation || horizon || model || premium) {
+            applyLoadedParams(budget, inflation, horizon, model, premium);
+            return true;
+        }
+    } catch (e) { }
+    return false;
+}
+
+function applyLoadedParams(budget, inflation, horizon, model, premium) {
+    if (budget) {
+        const bInput = document.getElementById("annualBudget");
+        const bRange = document.getElementById("annualBudgetRange");
+        if (bInput) bInput.value = budget;
+        if (bRange) bRange.value = budget;
+    }
+    if (inflation) {
+        const iInput = document.getElementById("inflationRate");
+        const iRange = document.getElementById("inflationRateRange");
+        if (iInput) iInput.value = inflation;
+        if (iRange) iRange.value = inflation;
+    }
+    if (horizon) {
+        const hInput = document.getElementById("horizonYears");
+        const hRange = document.getElementById("horizonYearsRange");
+        if (hInput) hInput.value = horizon;
+        if (hRange) hRange.value = horizon;
+    }
+    if (model) {
+        const mSelect = document.getElementById("modelSelect");
+        if (mSelect) mSelect.value = model;
+    }
+    if (premium) {
+        const pSelect = document.getElementById("spotPremiumSelect");
+        if (pSelect) pSelect.value = premium;
+    }
+}
+
 // Global theme updater
 window.updateChartThemes = function (theme) {
     let mode = (theme === 'dark') ? 'dark' : 'light';
@@ -566,13 +703,25 @@ document.addEventListener("DOMContentLoaded", () => {
     setupSyncInputs("inflationRate", "inflationRateRange");
     setupSyncInputs("horizonYears", "horizonYearsRange");
 
+    // Initialize horizon to reach 2090 by default
+    const currentYear = new Date().getFullYear();
+    const defaultHorizon = Math.max(10, 2090 - currentYear);
+    const horizonInput = document.getElementById("horizonYears");
+    const horizonRange = document.getElementById("horizonYearsRange");
+    if (horizonInput && horizonRange) {
+        horizonInput.max = Math.max(70, defaultHorizon);
+        horizonRange.max = Math.max(70, defaultHorizon);
+        horizonInput.value = defaultHorizon;
+        horizonRange.value = defaultHorizon;
+    }
+
     // Recalculate on drop-down changes
     document.getElementById("modelSelect").addEventListener("change", recalculate);
     document.getElementById("spotPremiumSelect").addEventListener("change", recalculate);
 
     // Fetch Prices and MA data
     const priceUrl = 'https://bitcoindata.science/api/priceusd.json';
-    const chartUrl = 'api/marketchart.php';
+    const chartUrl = 'https://bitcoindata.science/api/marketchart.php';
 
     Promise.all([
         fetchJsonSafely(priceUrl),
@@ -611,11 +760,20 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("liveSpotPrice").innerHTML = latestSpotPrice.toLocaleString("en-US", { style: "currency", currency: "USD" });
         document.getElementById("live200WMA").innerHTML = latest200WMA.toLocaleString("en-US", { style: "currency", currency: "USD" });
 
-        // Trigger first calculations
-        recalculate();
-
         // Setup highlights for period select buttons
         setupPeriodButtons();
+
+        // Check URL hash/search for shared parameters
+        let hash = window.location.hash ? window.location.hash.substring(1) : "";
+        if (!hash && window.location.search) {
+            hash = window.location.search.substring(1);
+        }
+        if (hash) {
+            tryLoadEncrypted(hash) || tryLoadPlainParams(hash);
+        }
+
+        // Trigger first calculations
+        recalculate();
 
         // Trigger window resize event on tab switch so ApexCharts resizes correctly
         document.querySelectorAll('button[data-bs-toggle="tab"], button[data-bs-toggle="pill"]').forEach(tabEl => {

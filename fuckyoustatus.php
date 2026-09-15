@@ -26,8 +26,9 @@
          ]
       }
    </script>
+   <script src="modules/crypto-js.min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-   <script src="components/fuckyoumoney.js" defer></script>
+   <script src="components/fuckyoumoney.js?v=4" defer></script>
 </head>
 
 <body>
@@ -207,11 +208,11 @@
                <label for="horizonYears" class="form-label fw-semibold">Projection Horizon</label>
                <div class="input-group mb-2">
                   <input type="number" class="form-control font-monospace border-0 bg-body-secondary" id="horizonYears"
-                     value="15" min="10" max="60" step="1">
+                     value="64" min="10" max="70" step="1">
                   <span class="input-group-text bg-body-secondary border-0">Years</span>
                </div>
-               <input type="range" class="form-range" id="horizonYearsRange" min="10" max="60" step="1" value="15">
-               <div class="form-text small">Extend predictions between 10 and 60 years.</div>
+               <input type="range" class="form-range" id="horizonYearsRange" min="10" max="70" step="1" value="64">
+               <div class="form-text small">Extend predictions up to 2090 (between 10 and 70 years).</div>
             </div>
 
             <!-- Model Selector -->
@@ -255,7 +256,15 @@
                   CHARTS
                </button>
             </li>
-            <li class="ms-auto d-flex align-items-end">
+            <li class="ms-auto d-flex align-items-end gap-2">
+               <button type="button" class="btn btn-sm btn-secondary mb-1" id="shareBtn" onclick="saveAndShare()"
+                  title="Share this calculation">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor"
+                     class="bi bi-share me-1" viewBox="0 0 16 16">
+                     <path
+                        d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z" />
+                  </svg>Share
+               </button>
                <button class="btn btn-sm btn-secondary mb-1" onclick="exportTableToCSV()"
                   title="Export projections to CSV">
                   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor"
@@ -268,6 +277,42 @@
                </button>
             </li>
          </ul>
+
+         <!-- Share options container -->
+         <div id="shareContainer" class="w-100 my-2 d-none">
+            <div class="p-3 rounded-4 bg-body-secondary border border-secondary border-opacity-10 shadow-sm">
+               <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span class="fw-semibold small text-body-secondary">Share Calculation</span>
+                  <button type="button" class="btn-close btn-close-sm"
+                     onclick="document.getElementById('shareContainer').classList.add('d-none')"
+                     aria-label="Close"></button>
+               </div>
+
+               <!-- Option 1: Permalink -->
+               <div class="mb-3">
+                  <label for="shareUrl" class="text-body-secondary small fw-medium mb-1 d-block">Permalink</label>
+                  <div class="input-group">
+                     <input type="text" id="shareUrl"
+                        class="form-control form-control-sm font-monospace-sm bg-body border-0" readonly
+                        onclick="this.select()">
+                     <button class="btn btn-primary btn-sm px-3" type="button" id="copyShareBtn"
+                        onclick="copyShareUrl('shareUrl', 'copyShareBtn')">Copy Link</button>
+                  </div>
+               </div>
+
+               <!-- Option 2: BBCode for Forums -->
+               <div>
+                  <label for="shareBbcode" class="text-body-secondary small fw-medium mb-1 d-block">BBCode (Forums)</label>
+                  <div class="input-group">
+                     <input type="text" id="shareBbcode"
+                        class="form-control form-control-sm font-monospace-sm bg-body border-0" readonly
+                        onclick="this.select()">
+                     <button class="btn btn-secondary btn-sm px-3" type="button" id="copyBbcodeBtn"
+                        onclick="copyShareUrl('shareBbcode', 'copyBbcodeBtn')">Copy BBCode</button>
+                  </div>
+               </div>
+            </div>
+         </div>
 
          <div class="tab-content bg-body-tertiary rounded-bottom-4 shadow-sm p-4 border-top-0" id="mainViewTabsContent">
             <!-- Charts Tab Pane -->
@@ -431,13 +476,13 @@
                Each halving cycle spans 8 semi-annual periods (~4 years). The gain table encodes this pattern: the first 4 periods carry higher growth (bullish phase), while the last 4 carry lower growth (consolidation phase). Across successive cycles, peak gains diminish — reflecting the empirical observation that each cycle's returns moderate as Bitcoin's market capitalization grows.
             </p>
             <p>
-               Beyond the explicitly defined cycles (past 2039), gains are extrapolated by applying a 20% decay factor per cycle to the last known cycle's values:
+               Beyond the explicitly defined cycles (past 2039), gains are self-adjusting: each cycle's base gain decreases by 1% until reaching a permanent floor. The formulas are:
             </p>
             <div class="bg-body-secondary rounded-3 p-3 font-monospace small mb-3">
-               g<sub>future</sub> = g<sub>base</sub> &times; 0.8<sup>(cycle − 3)</sup>
+               g<sub>bull</sub> = max(4, 11 &minus; n) &nbsp;&nbsp; g<sub>bear</sub> = max(3, 8 &minus; n)
             </div>
             <p class="text-muted small">
-               This ensures the model remains bounded and converges toward slower growth over very long horizons, consistent with eventual market maturation.
+               where <span class="font-monospace">n</span> is the cycle offset from Cycle 5. Within each phase, bull gains escalate +2% per step and bear gains decay &minus;5% per step. The gains decrease by ~1% per cycle until reaching a repeating floor of 4%/3% (bull/bear) — representing Bitcoin's mature, steady-state growth.
             </p>
          </div>
       </div>
