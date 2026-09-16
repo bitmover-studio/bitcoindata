@@ -83,7 +83,7 @@
    </script>
    <script src="modules/crypto-js.min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-   <script src="components/dca-bitcoin.js?v=1" defer></script>
+   <script src="components/dca-bitcoin.js?v=0.2" defer></script>
 </head>
 
 <body>
@@ -212,6 +212,14 @@
                <div class="col-12 text-start">
                   <label for="startDate" class="form-label fw-semibold">Start Date</label>
                   <input type="date" class="form-control border-0 bg-body-secondary font-monospace" id="startDate">
+               </div>
+            </div>
+
+            <!-- End Date -->
+            <div class="row g-3 mb-4">
+               <div class="col-12 text-start">
+                  <label for="endDate" class="form-label fw-semibold">End Date</label>
+                  <input type="date" class="form-control border-0 bg-body-secondary font-monospace" id="endDate">
                </div>
             </div>
 

@@ -91,8 +91,17 @@ function simulateDCA() {
     const amount = parseFloat(document.getElementById("investAmount").value) || 100;
     const freq = parseInt(document.getElementById("frequency").value) || 7;
     const startStr = document.getElementById("startDate").value;
+    const endStr = document.getElementById("endDate") ? document.getElementById("endDate").value : "";
 
     if (!priceHistory.length || !startStr) return;
+
+    if (endStr && startStr) {
+        const startTs = new Date(startStr).getTime();
+        const endTs = new Date(endStr).getTime();
+        if (startTs > endTs) return;
+    }
+
+    const endBuyTs = endStr ? new Date(endStr + "T23:59:59Z").getTime() : Infinity;
 
     const slicedData = sliceChart(priceHistory, startStr);
     if (!slicedData.length) return;
@@ -107,7 +116,7 @@ function simulateDCA() {
     for (let i = 0; i < slicedData.length; i++) {
         const [ts, price] = slicedData[i];
 
-        if (isBuyDay(ts, freq, startStr)) {
+        if (ts <= endBuyTs && isBuyDay(ts, freq, startStr)) {
             const btcBought = amount / price;
             totalInvested += parseFloat(amount.toFixed(2));
             totalBTC += parseFloat(btcBought.toFixed(8));
@@ -336,8 +345,9 @@ window.saveAndShare = function () {
     const amount = document.getElementById("investAmount").value;
     const freq = document.getElementById("frequency").value;
     const start = document.getElementById("startDate").value;
+    const end = document.getElementById("endDate") ? document.getElementById("endDate").value : "";
 
-    const payload = amount + SHARE_DELIMITER + freq + SHARE_DELIMITER + start;
+    const payload = amount + SHARE_DELIMITER + freq + SHARE_DELIMITER + start + SHARE_DELIMITER + end;
     let encrypted = "";
     if (typeof CryptoJS !== "undefined" && CryptoJS.AES) {
         encrypted = CryptoJS.AES.encrypt(payload, SHARE_KEY).toString();
@@ -345,10 +355,11 @@ window.saveAndShare = function () {
 
     const origin = window.location.origin;
     const pathname = window.location.pathname;
-    const shareUrl = (origin && origin !== "null" ? origin + pathname : "https://bitcoindata.science/dca-bitcoin") + "#" + encrypted;
+    const shareUrl = (origin && origin !== "null" ? origin + pathname : "https://bitcoindata.science/dca-calculator") + "#" + encrypted;
 
     const freqLabel = { "1": "Daily", "7": "Weekly", "15": "Biweekly", "30": "Monthly" }[freq] || freq + "d";
-    const bbcode = "[url=" + shareUrl + "]Bitcoin DCA Calculator ($" + amount + " " + freqLabel + ", since " + start + ")[/url]";
+    const endText = end ? " to " + end : "";
+    const bbcode = "[url=" + shareUrl + "]Bitcoin DCA Calculator ($" + amount + " " + freqLabel + ", " + start + endText + ")[/url]";
 
     const shareContainer = document.getElementById("shareContainer");
     const shareUrlInput = document.getElementById("shareUrl");
@@ -395,7 +406,7 @@ function tryLoadEncrypted(hash) {
 
         const parts = plaintext.split(SHARE_DELIMITER);
         if (parts.length >= 3) {
-            applyLoadedParams(parts[0], parts[1], parts[2]);
+            applyLoadedParams(parts[0], parts[1], parts[2], parts[3] || "");
             return true;
         }
     } catch (e) { }
@@ -409,16 +420,17 @@ function tryLoadPlainParams(hash) {
         const amount = params.get("amount") || params.get("investAmount");
         const freq = params.get("freq") || params.get("frequency");
         const start = params.get("start") || params.get("startDate");
+        const end = params.get("end") || params.get("endDate");
 
-        if (amount || freq || start) {
-            applyLoadedParams(amount, freq, start);
+        if (amount || freq || start || end) {
+            applyLoadedParams(amount, freq, start, end);
             return true;
         }
     } catch (e) { }
     return false;
 }
 
-function applyLoadedParams(amount, freq, start) {
+function applyLoadedParams(amount, freq, start, end) {
     if (amount) {
         const aInput = document.getElementById("investAmount");
         const aRange = document.getElementById("investAmountRange");
@@ -432,6 +444,10 @@ function applyLoadedParams(amount, freq, start) {
     if (start) {
         const sInput = document.getElementById("startDate");
         if (sInput) sInput.value = start;
+    }
+    if (end) {
+        const eInput = document.getElementById("endDate");
+        if (eInput) eInput.value = end;
     }
 }
 
@@ -447,10 +463,11 @@ window.exportDCAToCSV = function () {
     ).join("\n");
 
     const todayStr = new Date().toISOString().split("T")[0];
+    const endVal = document.getElementById("endDate")?.value || todayStr;
     const blob = new Blob([header + rows], { type: "text/csv;charset=utf-8;" });
     const link = document.createElement("a");
     link.href = URL.createObjectURL(blob);
-    link.download = "bitcoin-dca-" + document.getElementById("startDate").value + "-to-" + todayStr + ".csv";
+    link.download = "bitcoin-dca-" + document.getElementById("startDate").value + "-to-" + endVal + ".csv";
     link.click();
 };
 
@@ -477,16 +494,23 @@ function setDefaultDates() {
     threeYearsAgo.setFullYear(threeYearsAgo.getFullYear() - 3);
 
     const startInput = document.getElementById("startDate");
+    const endInput = document.getElementById("endDate");
 
     const minDate = "2010-07-22";
     const maxDate = today.toISOString().split("T")[0];
     const defaultStart = threeYearsAgo.toISOString().split("T")[0];
 
-    startInput.min = minDate;
-    startInput.max = maxDate;
+    if (startInput) {
+        startInput.min = minDate;
+        startInput.max = maxDate;
+        if (!startInput.value) startInput.value = defaultStart;
+    }
 
-    // Only set defaults if not overridden by URL
-    if (!startInput.value) startInput.value = defaultStart;
+    if (endInput) {
+        endInput.min = minDate;
+        endInput.max = maxDate;
+        if (!endInput.value) endInput.value = maxDate;
+    }
 }
 
 // ---- Initialization ----
@@ -509,7 +533,7 @@ document.addEventListener("DOMContentLoaded", function () {
     setupSyncInputs("investAmount", "investAmountRange");
 
     // 5. Attach change listeners to recalculate on input changes
-    ["frequency", "startDate"].forEach(id => {
+    ["frequency", "startDate", "endDate"].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.addEventListener("change", simulateDCA);
     });
