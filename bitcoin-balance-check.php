@@ -3,9 +3,9 @@
 
 <head>
    <?php
-   $title = "Bitcoin Balance Checker - bitcoin data.science";
-   $description = "Check the balance of multiple bitcoin addresses and wallets. Scan bitcoin address QR Code for balance.";
-   $keywords = "Bitcoin Address Balance Checker, bitcoin, balance, checker, address, addresses, multiple addresses, QRCode, QR Code";
+   $title = "Bitcoin Address Balance Checker | Multiple BTC Wallets";
+   $description = "Check the balance of multiple Bitcoin addresses instantly. Supports all address formats (Legacy, SegWit, Taproot), QR code scanning, and batch lookup of up to 465 addresses at once.";
+   $keywords = "Bitcoin balance checker, check Bitcoin address balance, BTC wallet balance, Bitcoin address lookup, multiple Bitcoin addresses, Bitcoin QR code scanner, check BTC balance, Bitcoin wallet checker, Taproot address balance, SegWit address balance, batch Bitcoin balance check, Bitcoin address validator";
    $canonical = "https://bitcoindata.science/bitcoin-balance-check";
    include_once $_SERVER['DOCUMENT_ROOT'] . '/components/head.php';
    ?>
@@ -13,29 +13,86 @@
       {
          "@context": "https://schema.org",
          "@graph": [{
-            "@type": "WebPage",
-            "name": "Check the balance of your bitcoin addresses. Scan Bitcoin QR Code.",
-            "description": "Check the balance of multiple bitcoin addresses and wallets. Scan bitcoin address for balance.",
-            "alternateName": [
-               "bitcoindata.science",
-               "Bitcoin Data Science",
-               "bitcoin datascience"
-            ],
+            "@type": "WebApplication",
+            "name": "Bitcoin Address Balance Checker",
+            "description": "Check the balance of multiple Bitcoin addresses and wallets instantly. Supports QR code scanning and batch lookup of up to 465 addresses.",
             "url": "https://bitcoindata.science/bitcoin-balance-check",
+            "applicationCategory": "FinanceApplication",
+            "operatingSystem": "Any",
+            "browserRequirements": "Requires JavaScript",
+            "offers": {
+               "@type": "Offer",
+               "price": "0",
+               "priceCurrency": "USD"
+            },
+            "creator": {
+               "@type": "Organization",
+               "name": "bitcoin data.science",
+               "url": "https://bitcoindata.science"
+            },
             "sameAs": [
                "https://bitcoindata.science/bitcoin-balance-check.php"
             ]
          }, {
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+               "@type": "ListItem",
+               "position": 1,
+               "name": "Home",
+               "item": "https://bitcoindata.science"
+            }, {
+               "@type": "ListItem",
+               "position": 2,
+               "name": "Bitcoin Address Balance Checker",
+               "item": "https://bitcoindata.science/bitcoin-balance-check"
+            }]
+         }, {
             "@type": "FAQPage",
             "mainEntity": [{
                "@type": "Question",
-               "name": "How to check the balance of Multiple Addresses from Different Bitcoin Wallets?",
+               "name": "How do I check the balance of multiple Bitcoin addresses at once?",
                "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "The bitcoindata.science balance checker allows you to check up to 465 addresses simultaneously. It supports scanning QR codes. Simply enter your addresses or scan them."
+                  "text": "Paste up to 465 Bitcoin addresses into the text area, one per line, and click 'Get Balance'. The tool fetches live blockchain data for all addresses simultaneously and displays each balance in BTC and its USD equivalent."
+               }
+            }, {
+               "@type": "Question",
+               "name": "What Bitcoin address formats are supported?",
+               "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "The balance checker supports all Bitcoin address formats: Legacy addresses starting with 1, P2SH (multisig/SegWit-compatible) addresses starting with 3, Native SegWit (bech32) addresses starting with bc1q, and Taproot (bech32m) addresses starting with bc1p."
+               }
+            }, {
+               "@type": "Question",
+               "name": "Can I scan a Bitcoin QR code to check its balance?",
+               "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. Click the 'Scan' button to open your device's camera and scan any Bitcoin address QR code. The scanned address is automatically added to the text area and you can check its balance instantly."
+               }
+            }, {
+               "@type": "Question",
+               "name": "Is my Bitcoin address data stored on any server?",
+               "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No. Your addresses are only cached locally in your browser's storage for convenience. No address data is stored on any server. The tool queries blockchain data directly and all processing happens client-side."
+               }
+            }, {
+               "@type": "Question",
+               "name": "Does the balance update automatically?",
+               "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. When checking 20 or fewer addresses, the page automatically refreshes the balance data every 20 minutes so you can monitor incoming transactions in near real-time without manually reloading."
                }
             }]
          }]
+      }
+   </script>
+   <script>
+      if (window.location.search.length > 0) {
+         const meta = document.createElement("meta");
+         meta.name = "robots";
+         meta.content = "noindex, follow";
+         document.head.appendChild(meta);
       }
    </script>
    <script src="components/balance-check.js" type="text/javascript" defer></script>
@@ -51,7 +108,7 @@
    <!-- Page Content -->
    <?php
    $h1 = '<span class="d-none d-md-inline">Bitcoin</span> Address Balance Checker';
-   $h2 = 'See the balance of multiple bitcoin addresses at the same time.';
+   $h2 = 'Check the balance of multiple Bitcoin addresses and wallets instantly. Supports QR code scanning and batch lookup.';
    include_once $_SERVER['DOCUMENT_ROOT'] . '/components/page-header.php';
    ?>
    <div class="py-3">
