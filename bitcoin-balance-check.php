@@ -87,14 +87,6 @@
          }]
       }
    </script>
-   <script>
-      if (window.location.search.length > 0) {
-         const meta = document.createElement("meta");
-         meta.name = "robots";
-         meta.content = "noindex, follow";
-         document.head.appendChild(meta);
-      }
-   </script>
    <script src="components/balance-check.js" type="text/javascript" defer></script>
    <script src="modules/html5-qrcode.min.js" type="text/javascript"></script>
    <script src="components/qrcodes.js" type="text/javascript" defer></script>

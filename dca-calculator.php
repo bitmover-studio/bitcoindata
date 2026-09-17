@@ -13,7 +13,8 @@
       {
          "@context": "https://schema.org",
          "@graph": [{
-            "@type": "WebPage",
+            "@type": "WebApplication",
+            "applicationCategory": "FinanceApplication",
             "name": "Bitcoin DCA Calculator — Dollar Cost Averaging BTC",
             "description": "Calculate the historical returns of dollar cost averaging into Bitcoin. Simulate weekly or monthly recurring purchases over any timeframe and see how your BTC investment would have grown.",
             "alternateName": [
@@ -25,6 +26,19 @@
             "sameAs": [
                "https://bitcoindata.science/dca-calculator.php"
             ]
+         }, {
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+               "@type": "ListItem",
+               "position": 1,
+               "name": "Home",
+               "item": "https://bitcoindata.science"
+            }, {
+               "@type": "ListItem",
+               "position": 2,
+               "name": "Bitcoin DCA Calculator",
+               "item": "https://bitcoindata.science/dca-calculator"
+            }]
          }, {
             "@type": "FAQPage",
             "mainEntity": [{
@@ -71,14 +85,6 @@
                }
             }]
          }]
-      }
-   </script>
-   <script>
-      if (window.location.search.length > 0) {
-         const meta = document.createElement("meta");
-         meta.name = "robots";
-         meta.content = "noindex, follow";
-         document.head.appendChild(meta);
       }
    </script>
    <script src="modules/crypto-js.min.js"></script>

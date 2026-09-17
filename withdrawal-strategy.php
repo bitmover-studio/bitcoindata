@@ -27,14 +27,6 @@
          ]
       }
    </script>
-   <script>
-      if (window.location.search.length > 0) {
-         const meta = document.createElement("meta");
-         meta.name = "robots";
-         meta.content = "noindex, follow";
-         document.head.appendChild(meta);
-      }
-   </script>
    <script src="modules/crypto-js.min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
    <script src="components/strategy.js" async></script>
