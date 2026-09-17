@@ -3,7 +3,7 @@
 
 <head>
    <?php
-   $title = "Bitcoin DCA Calculator — Dollar Cost Averaging BTC - bitcoin data.science";
+   $title = "Bitcoin DCA Calculator — Dollar Cost Averaging BTC";
    $description = "Calculate the returns of dollar cost averaging into Bitcoin. See how a recurring weekly or monthly BTC purchase would have performed over any historical timeframe.";
    $keywords = "Bitcoin DCA, dollar cost averaging Bitcoin, DCA calculator, DCA BTC, Bitcoin investment calculator, recurring Bitcoin buy, Bitcoin savings plan, stack sats, Bitcoin recurring purchase";
    $canonical = "https://bitcoindata.science/dca-calculator";

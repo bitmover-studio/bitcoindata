@@ -26,6 +26,19 @@
                "https://bitcoindata.science/verify-message.php"
             ]
          }, {
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+               "@type": "ListItem",
+               "position": 1,
+               "name": "Home",
+               "item": "https://bitcoindata.science"
+            }, {
+               "@type": "ListItem",
+               "position": 2,
+               "name": "Verify Bitcoin Message",
+               "item": "https://bitcoindata.science/verify-message"
+            }]
+         }, {
             "@type": "FAQPage",
             "mainEntity": [{
                "@type": "Question",

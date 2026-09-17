@@ -3,7 +3,7 @@
 
 <head>
    <?php
-   $title = "Get Transaction Hex - bitcoin data.science";
+   $title = "Bitcoin Raw Transaction Hex";
    $description = "Easily retrieve raw Bitcoin transaction hex format by transaction ID (txid). Inspect and copy raw transaction bytecode directly powered by mempool.space data.";
    $keywords = "Bitcoin Transaction Hex,Transaction Hex, Tx Hex, Get Bitcoin Transaction Hex";
    $canonical = "https://bitcoindata.science/bitcoin-raw-transaction-hex";
@@ -11,20 +11,20 @@
    ?>
    <script type="application/ld+json">
       {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Get Bitcoin Raw Transaction Hex",
-        "description": "Easily retrieve raw Bitcoin transaction hex format by transaction ID (txid). Inspect and copy raw transaction bytecode directly powered by mempool.space data.",
-        "alternateName": [
-          "bitcoindata.science",
-          "Bitcoin Data Science",
-          "bitcoin datascience"
-        ],
-        "url": "https://bitcoindata.science",
-        "logo": "https://bitcoindata.science/img/logo.svg",
-        "sameAs": [
-          "https://bitcoindata.science"
-        ]
+         "@context": "https://schema.org",
+         "@type": "Organization",
+         "name": "Bitcoin Raw Transaction Hex",
+         "description": "Easily retrieve raw Bitcoin transaction hex format by transaction ID (txid). Inspect and copy raw transaction bytecode directly powered by mempool.space data.",
+         "alternateName": [
+            "bitcoindata.science",
+            "Bitcoin Data Science",
+            "bitcoin datascience"
+         ],
+         "url": "https://bitcoindata.science",
+         "logo": "https://bitcoindata.science/img/logo.svg",
+         "sameAs": [
+            "https://bitcoindata.science"
+         ]
       }
    </script>
 </head>
@@ -57,7 +57,6 @@
    </main>
    <footer-component></footer-component>
    <script>
-
       const outputArea = document.getElementById("hex")
       var hex = "";
       async function handleClick() {
@@ -75,12 +74,10 @@
             const data = await response.text();
             let txHex = data;
             return "<p>Transaction Hex:</p> <code class='text-break text-warning-emphasis'> " + txHex + "</code>"
-         }
-         catch (error) {
+         } catch (error) {
             console.warn(error)
          }
       };
-
    </script>
 </body>
 

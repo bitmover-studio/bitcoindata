@@ -3,7 +3,7 @@
 
 <head>
    <?php
-   $title = "JJG Withdrawal Strategy - bitcoin data.science";
+   $title = "JJG Withdrawal Strategy - ";
    $description = "Ideas of sustainable withdrawal that attempts to measure monthly budget limits based spot price relative to the 200-week moving average";
    $keywords = "Withdrawal, profit, Strategy, bitcoin, moving average, 200 weeks";
    $canonical = "https://bitcoindata.science/withdrawal-strategy";
@@ -25,7 +25,65 @@
          "sameAs": [
             "https://bitcoindata.science"
          ]
-      }
+      }, {
+         "@type": "BreadcrumbList",
+         "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://bitcoindata.science"
+         }, {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Withdrawal Strategy",
+            "item": "https://bitcoindata.science/withdrawal-strategy"
+         }]
+      }, {
+         "@type": "FAQPage",
+         "mainEntity": [{
+            "@type": "Question",
+            "name": "What is the JJG Withdrawal Strategy?",
+            "acceptedAnswer": {
+               "@type": "Answer",
+               "text": "The JJG Withdrawal Strategy is a retirement income strategy for Bitcoin investors that calculates a sustainable monthly withdrawal amount based on Bitcoin's price relative to its 200-week moving average (200-WMA)."
+            }
+         }, {
+            "@type": "Question",
+            "name": "How is the monthly withdrawal calculated?",
+            "acceptedAnswer": {
+               "@type": "Answer",
+               "text": "The monthly withdrawal is calculated as a percentage of your Bitcoin stash, with the percentage determined by how far the current Bitcoin price is above or below the 200-week moving average. When the price is above the 200-WMA, the withdrawal percentage increases, and when it's below, it decreases."
+            }
+         }, {
+            "@type": "Question",
+            "name": "What is the 200-week moving average (200-WMA)?",
+            "acceptedAnswer": {
+               "@type": "Answer",
+               "text": "The 200-week moving average is a long-term trend indicator that smooths out price data over 200 weeks (approximately 4 years). It's widely considered a key support level for Bitcoin during bear markets and a potential indicator of long-term trend changes."
+            }
+         }, {
+            "@type": "Question",
+            "name": "Is this a get rich quick scheme?",
+            "acceptedAnswer": {
+               "@type": "Answer",
+               "text": "No, this is not a get rich quick scheme. It is a long-term strategy designed for capital preservation and sustainable income over many years, not rapid wealth accumulation."
+            }
+         }, {
+            "@type": "Question",
+            "name": "What are the risks of this strategy?",
+            "acceptedAnswer": {
+               "@type": "Answer",
+               "text": "As with any investment strategy, there are risks. This strategy does not guarantee profits and assumes the continuation of historical Bitcoin market cycles. The value of your Bitcoin can decrease significantly, and there is no assurance that past performance will continue into the future."
+            }
+         }, {
+            "@type": "Question",
+            "name": "What is the goal of this strategy?",
+            "acceptedAnswer": {
+               "@type": "Answer",
+               "text": "The goal of this strategy is to provide a sustainable withdrawal rate for Bitcoin investors who want to generate income from their Bitcoin holdings while preserving capital over the long term."
+            }
+         }]
+      }]
    </script>
    <script src="modules/crypto-js.min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>

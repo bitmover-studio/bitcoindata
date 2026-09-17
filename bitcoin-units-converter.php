@@ -2,8 +2,8 @@
 <html lang="en">
 
 <head>
-   <?php 
-   $title = "Bitcoin Units Converter - bitcoin data.science";
+   <?php
+   $title = "Bitcoin Units Converter - BTC, mBTC, uBTC";
    $description = "Easily convert Bitcoin units — BTC, mBTC, μBTC, satoshi, and finney — to USD, EUR, RUB, BRL, TRY and other 168 fiat currencies with our fast and accurate Bitcoin Units Converter. Perfect for traders & crypto enthusiasts.";
    $keywords = "Bitcoin,Units,Converter,BTC,mBTC,satoshi,EUR,USD,RUB,TRY,BRL,finney,μBTC,uBTC,cBTC";
    $canonical = "https://bitcoindata.science/bitcoin-unit-converter";
@@ -11,20 +11,100 @@
    ?>
    <script type="application/ld+json">
       {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Bitcoin Units Converter",
-        "description": "Convert bitcoin units BTC,mBTC, uBTC, satoshi, finney to USD, EUR and 170 other fiat currencies.",
-        "alternateName": [
-          "bitcoindata.science",
-          "Bitcoin Data Science",
-          "bitcoin datascience"
-        ],
-        "url": "https://bitcoindata.science",
-        "logo": "https://bitcoindata.science/img/logo.svg",
-        "sameAs": [
-          "https://bitcoindata.science"
-        ]
+         "@context": "https://schema.org",
+         "@type": "Organization",
+         "name": "Bitcoin Units Converter",
+         "description": "Convert bitcoin units BTC,mBTC, uBTC, satoshi, finney to USD, EUR and 170 other fiat currencies.",
+         "alternateName": [
+            "bitcoindata.science",
+            "Bitcoin Data Science",
+            "bitcoin datascience"
+         ],
+         "url": "https://bitcoindata.science",
+         "logo": "https://bitcoindata.science/img/logo.svg",
+         "sameAs": [
+            "https://bitcoindata.science"
+         ]
+      }, {
+         "@type": "BreadcrumbList",
+         "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://bitcoindata.science"
+         }, {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Bitcoin Units Converter",
+            "item": "https://bitcoindata.science/bitcoin-units-converter"
+         }]
+      }, {
+         "@type": "FAQPage",
+         "mainEntity": [{
+               "@type": "Question",
+               "name": "What is Bitcoin Units Converter?",
+               "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Bitcoin Units Converter is a free online tool that allows you to convert bitcoin units (BTC, mBTC, μBTC, satoshi, finney) to USD, EUR, RUB, BRL, TRY and 170 other fiat currencies. It provides real-time price updates and supports instant conversions with high accuracy."
+               }
+            },
+            {
+               "@type": "Question",
+               "name": "How many fiat currencies does the converter support?",
+               "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Our Bitcoin Units Converter supports 170 fiat currencies from around the world, including USD, EUR, RUB, BRL, TRY and many more. All currencies are updated in real-time to ensure accurate conversions."
+               }
+            },
+            {
+               "@type": "Question",
+               "name": "What are the supported Bitcoin units?",
+               "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "The tool supports all major bitcoin units: BTC (bitcoin), mBTC (millibit), μBTC (bit), sat (satoshi), cBTC (bitcent), finney, and msat (millisatoshi - available only in the Lightning Network). You can convert between any of these units effortlessly."
+               }
+            },
+            {
+               "@type": "Question",
+               "name": "Is the price data real-time?",
+               "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, all fiat currency prices are updated in real-time to provide you with the most accurate conversion rates possible. The prices are sourced from reliable market data feeds to ensure accuracy."
+               }
+            },
+            {
+               "@type": "Question",
+               "name": "Do I need to register to use the converter?",
+               "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "No, the Bitcoin Units Converter is completely free to use and requires no registration. You can use it anytime, anywhere without any restrictions."
+               }
+            },
+            {
+               "@type": "Question",
+               "name": "Can I convert multiple units at once?",
+               "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, you can convert any bitcoin unit to any fiat currency, or vice versa. Simply enter a value in any field, and the tool will automatically calculate the equivalent values in all other units."
+               }
+            },
+            {
+               "@type": "Question",
+               "name": "Are the conversions accurate?",
+               "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, the converter uses high-precision algorithms and real-time market data to ensure accurate conversions. Our tools are tested regularly to maintain accuracy."
+               }
+            },
+            {
+               "@type": "Question",
+               "name": "Can I use the tool on mobile devices?",
+               "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes, our converter is fully responsive and works seamlessly on all devices, including desktops, tablets, and smartphones. You can access it from any device with an internet connection."
+               }
+            }
+         ]
       }
    </script>
    <script src="components/unit-converter.js" type="text/javascript" defer></script>
@@ -44,10 +124,10 @@
    include_once $_SERVER['DOCUMENT_ROOT'] . '/components/page-header.php';
    ?>
 
-      <h3 class="lead">Use any of the fields below to convert bitcoin units BTC,mBTC, uBTC, satoshi, finney to
-         USD, EUR or any other fiat currency.<br></h2>
+   <h3 class="lead">Use any of the fields below to convert bitcoin units BTC,mBTC, uBTC, satoshi, finney to
+      USD, EUR or any other fiat currency.<br></h2>
 
-      <div class="accordion my-3 shadow-sm rounded-top-4"  id="accordion">
+      <div class="accordion my-3 shadow-sm rounded-top-4" id="accordion">
          <div class="accordion-item border-0 shadow-sm">
             <h3 class="accordion-header" id="howMany">
                <button class="accordion-button collapsed bg-body-tertiary" type="button" data-bs-toggle="collapse"
@@ -83,14 +163,42 @@
          <div class="row">
             <div id="unit-container" class="col-md-6"></div>
             <script>
-               const unitList = [
-                  { id: 'inputBTC', label: 'bitcoin', title: 'BTC', value: 1 },
-                  { id: 'inputcBTC', label: 'bitcent', title: 'cBTC' },
-                  { id: 'inputmBTC', label: 'millibit', title: 'mBTC' },
-                  { id: 'inputuBTC', label: 'bit', title: 'μBTC' },
-                  { id: 'inputFinney', label: 'finney', title: 'finney' },
-                  { id: 'inputsat', label: `satoshi`, title: 'sat' },
-                  { id: 'inputmsat', label: `millisatoshi (<a class="conversor small" href="https://en.bitcoin.it/wiki/Lightning_Network" data-bs-toggle="tooltip" data-bs-title="Available only in the Lightning Network">Lightning Network</a>)`, title: 'msat' }
+               const unitList = [{
+                     id: 'inputBTC',
+                     label: 'bitcoin',
+                     title: 'BTC',
+                     value: 1
+                  },
+                  {
+                     id: 'inputcBTC',
+                     label: 'bitcent',
+                     title: 'cBTC'
+                  },
+                  {
+                     id: 'inputmBTC',
+                     label: 'millibit',
+                     title: 'mBTC'
+                  },
+                  {
+                     id: 'inputuBTC',
+                     label: 'bit',
+                     title: 'μBTC'
+                  },
+                  {
+                     id: 'inputFinney',
+                     label: 'finney',
+                     title: 'finney'
+                  },
+                  {
+                     id: 'inputsat',
+                     label: `satoshi`,
+                     title: 'sat'
+                  },
+                  {
+                     id: 'inputmsat',
+                     label: `millisatoshi (<a class="conversor small" href="https://en.bitcoin.it/wiki/Lightning_Network" data-bs-toggle="tooltip" data-bs-title="Available only in the Lightning Network">Lightning Network</a>)`,
+                     title: 'msat'
+                  }
                ];
 
                const container = document.getElementById('unit-container');
@@ -115,7 +223,6 @@
                      `;
                   container.innerHTML += unitHTML;
                });
-
             </script>
 
             <div class="col-md-6">
@@ -182,8 +289,8 @@
 
       <!-- /main page -->
 
-   </main>
-   <footer-component></footer-component>
+      </main>
+      <footer-component></footer-component>
 </body>
 
 </html>
