@@ -6,7 +6,7 @@
    $title = "Bitcoin DCA Calculator — Dollar Cost Averaging BTC - bitcoin data.science";
    $description = "Calculate the returns of dollar cost averaging into Bitcoin. See how a recurring weekly or monthly BTC purchase would have performed over any historical timeframe.";
    $keywords = "Bitcoin DCA, dollar cost averaging Bitcoin, DCA calculator, DCA BTC, Bitcoin investment calculator, recurring Bitcoin buy, Bitcoin savings plan, stack sats, Bitcoin recurring purchase";
-   $canonical = "https://bitcoindata.science/dca-bitcoin";
+   $canonical = "https://bitcoindata.science/dca-calculator";
    include_once $_SERVER['DOCUMENT_ROOT'] . '/components/head.php';
    ?>
    <script type="application/ld+json">
@@ -21,9 +21,9 @@
                "Bitcoin Data Science",
                "Bitcoin DCA"
             ],
-            "url": "https://bitcoindata.science/dca-bitcoin",
+            "url": "https://bitcoindata.science/dca-calculator",
             "sameAs": [
-               "https://bitcoindata.science/dca-bitcoin.php"
+               "https://bitcoindata.science/dca-calculator.php"
             ]
          }, {
             "@type": "FAQPage",
@@ -94,7 +94,7 @@
 
    <!-- Page Content -->
    <?php
-   $h1 = 'Bitcoin DCA Calculator';
+   $h1 = 'Bitcoin DCA Calculator — Dollar Cost Averaging BTC';
    $h2 = 'See how dollar cost averaging into Bitcoin would have performed. Simulate weekly or monthly recurring purchases over any historical timeframe.';
    include_once $_SERVER['DOCUMENT_ROOT'] . '/components/page-header.php';
    ?>
@@ -179,7 +179,7 @@
    <div class="mt-4 mb-1 bg-body-tertiary rounded-4 p-4 shadow-sm">
       <div class="row g-3">
          <div class="col-md-3">
-            <p class="h5 mt-3 pt-3 section-label border-bottom pb-1 text-primary">DCA Settings</p>
+            <p class="h5 mt-3 pt-3 section-label border-bottom pb-1 text-primary">DCA Calculator Settings</p>
 
             <!-- Investment Amount -->
             <div class="row g-3 mb-4 pt-3">

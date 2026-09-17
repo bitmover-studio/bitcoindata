@@ -208,11 +208,6 @@
          <!-- JayJuanGee -->
          <div class="col">
             <div class="card h-100 border-0 bg-body-secondary p-4 rounded-4 text-center">
-               <div class="d-flex align-items-center justify-content-center mx-auto mb-3 bg-primary-subtle text-primary rounded-circle" style="width: 56px; height: 56px;">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="var(--theme-blue)" viewBox="0 0 16 16">
-                     <path d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm11.5 5.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
-                  </svg>
-               </div>
                <h5 class="fw-bold mb-2">
                   <a href="https://bitcointalk.org/index.php?action=profile;u=252510" title="JayJuanGee" target="_blank" rel="noopener" class="text-primary text-decoration-none">
                      JayJuanGee
@@ -227,11 +222,6 @@
          <!-- Timelord2067 -->
          <div class="col">
             <div class="card h-100 border-0 bg-body-secondary p-4 rounded-4 text-center">
-               <div class="d-flex align-items-center justify-content-center mx-auto mb-3 bg-primary-subtle text-primary rounded-circle" style="width: 56px; height: 56px;">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="var(--theme-blue)" viewBox="0 0 16 16">
-                     <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
-                  </svg>
-               </div>
                <h5 class="fw-bold mb-2">
                   <a href="https://bitcointalk.org/index.php?action=profile;u=131361" title="Timelord2067" target="_blank" rel="noopener" class="text-primary text-decoration-none">
                      Timelord2067
@@ -246,11 +236,6 @@
          <!-- examplens -->
          <div class="col">
             <div class="card h-100 border-0 bg-body-secondary p-4 rounded-4 text-center">
-               <div class="d-flex align-items-center justify-content-center mx-auto mb-3 bg-primary-subtle text-primary rounded-circle" style="width: 56px; height: 56px;">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="var(--theme-blue)" viewBox="0 0 16 16">
-                     <path d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.371 2.371 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976l2.61-3.045zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0zM1.5 8.5A.5.5 0 0 1 2 9v6h1v-5a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v5h4v-5a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v5h1V9a.5.5 0 0 1 1 0v6.5a.5.5 0 0 1-.5.5H1.5a.5.5 0 0 1-.5-.5V9a.5.5 0 0 1 .5-.5z" />
-                  </svg>
-               </div>
                <h5 class="fw-bold mb-2">
                   <a href="https://bitcointalk.org/index.php?action=profile;u=314792" title="examplens" target="_blank" rel="noopener" class="text-primary text-decoration-none">
                      examplens
