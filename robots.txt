@@ -1,12 +1,11 @@
 User-agent: *
-Allow: /api/priceusd.json
-Allow: /api/marketchart.php
 Disallow: /cdn-cgi/
 Disallow: /cgi-bin/
 Disallow: /scripts/
 Disallow: /tmp/
 Disallow: /api/
+Allow: /api/priceusd.json
+Allow: /api/marketchart.php
 Disallow: /backend/
-
 
 Sitemap: https://bitcoindata.science/sitemap.xml
