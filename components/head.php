@@ -28,10 +28,15 @@ $base = '/';
 <meta property="og:title" content="<?= htmlspecialchars($title) ?>" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="<?= htmlspecialchars($canonical) ?>" />
-<meta property="og:image" content="https://bitcoindata.science/img/logo.png" />
+<meta property="og:image" content="https://bitcoindata.science/img/og-image.png" />
 <meta property="og:description" content="<?= htmlspecialchars($description) ?>" />
 <meta property="og:locale" content="en_US" />
 <meta property="og:site_name" content="bitcoin data.science" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="<?= htmlspecialchars($title) ?>" />
+<meta name="twitter:description" content="<?= htmlspecialchars($description) ?>" />
+<meta name="twitter:image" content="https://bitcoindata.science/img/og-image.png" />
+<meta name="twitter:image:alt" content="<?= htmlspecialchars($title) ?>" />
 
 <!-- Aplly theme to avoid (FOUC) -->
 <script>

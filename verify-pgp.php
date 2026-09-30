@@ -3,7 +3,7 @@
 
 <head>
    <?php
-   $title = "Verify PGP Signed Message - bitcoin data.science";
+   $title = "Verify PGP Signature and Messages";
    $description = "Verify the authenticity and integrity of PGP/GPG signed messages in your browser. Supports clearsigned and detached signatures with OpenPGP.js — 100% client-side.";
    $keywords = "Verify PGP Message, PGP signature verifier, GPG verify, OpenPGP verify, clearsigned message, PGP public key, digital signature";
    $canonical = "https://bitcoindata.science/verify-pgp";
@@ -14,8 +14,8 @@
          "@context": "https://schema.org",
          "@graph": [{
             "@type": "WebPage",
-            "name": "Verify PGP Signed Message - bitcoin data.science",
-            "description": "Verify the authenticity of PGP/GPG signed messages in your browser. Verify the letters of guarantee, clearsigned messages, detached signatures, and inline-signed messages — 100% client-side using OpenPGP.js.",
+            "name": "Verify PGP Signature and Messages - bitcoin data.science",
+            "description": "Verify the authenticity and integrity of PGP/GPG signatures and messages in your browser. Supports clearsigned and detached signatures with OpenPGP.js — 100% client-side.",
             "alternateName": [
                "bitcoindata.science",
                "Bitcoin Data Science",
@@ -29,10 +29,10 @@
             "@type": "FAQPage",
             "mainEntity": [{
                "@type": "Question",
-               "name": "What is a PGP signed message?",
+               "name": "What is a PGP signature?",
                "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "A PGP signed message is a cryptographic proof produced using the private key of a PGP key pair. It proves authorship and confirms the message content has not been altered, without revealing the private key."
+                  "text": "A PGP signature is a cryptographic proof produced using the private key of a PGP key pair. It proves authorship and confirms the message content has not been altered, without revealing the private key."
                }
             }, {
                "@type": "Question",
@@ -129,7 +129,7 @@
    <!-- Page Content Header -->
    <?php
    $h1 = '<span class="d-none d-md-inline">PGP </span>Signature Verifier';
-   $h2 = 'Verify the authenticity and cryptographic integrity of PGP/GPG signed messages and letters of guarantee.';
+   $h2 = 'Verify the authenticity and cryptographic integrity of PGP/GPG signatures and messages.';
    include_once $_SERVER['DOCUMENT_ROOT'] . '/components/page-header.php';
    ?>
 
