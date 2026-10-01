@@ -87,47 +87,47 @@
 
    <script>
       const SUMMARY_CARDS = [{
-            label: 'Bitcoin Price',
-            valueId: 'liveSpotPrice',
-            color: 'text-body',
-            footer: {
-               label: 'Current 200-WMA',
-               labelId: 'live200WMA',
-               sub: 'Current 200-WMA',
-            },
+         label: 'Bitcoin Price',
+         valueId: 'liveSpotPrice',
+         color: 'text-body',
+         footer: {
+            label: 'Current 200-WMA',
+            labelId: 'live200WMA',
+            sub: 'Current 200-WMA',
          },
-         {
-            label: '10% Withdrawal Rate',
-            valueId: 'todayFU10',
-            color: 'text-success',
-            tooltip: 'JJG proposes as bitcoin sustainable',
-            footer: {
-               label: 'Target Portfolio: $800,000',
-               labelId: 'todayFU10Desc',
-               sub: 'Valued at 200-WMA',
-            },
+      },
+      {
+         label: '10% Withdrawal Rate',
+         valueId: 'todayFU10',
+         color: 'text-success',
+         tooltip: 'JJG proposes as bitcoin sustainable',
+         footer: {
+            label: 'Target Portfolio: $800,000',
+            labelId: 'todayFU10Desc',
+            sub: 'Valued at 200-WMA',
          },
-         {
-            label: '4% Withdrawal Rate',
-            valueId: 'todayFU4',
-            color: 'text-info',
-            tooltip: 'Recommended level for traditional assets',
-            footer: {
-               label: 'Target Portfolio: $2,000,000',
-               labelId: 'todayFU4Desc',
-               sub: 'Valued at 200-WMA',
-            },
+      },
+      {
+         label: '4% Withdrawal Rate',
+         valueId: 'todayFU4',
+         color: 'text-info',
+         tooltip: 'Recommended level for traditional assets',
+         footer: {
+            label: 'Target Portfolio: $2,000,000',
+            labelId: 'todayFU4Desc',
+            sub: 'Valued at 200-WMA',
          },
-         {
-            label: 'Filthy-Rich Status',
-            valueId: 'todayFR',
-            color: 'text-purple',
-            footer: {
-               label: 'Fixed Target: $100,000,000',
-               labelId: 'todayFRDesc',
-               sub: 'Valued at 200-WMA',
-            },
+      },
+      {
+         label: 'Filthy-Rich Status',
+         valueId: 'todayFR',
+         color: 'text-purple',
+         footer: {
+            label: 'Fixed Target: $100,000,000',
+            labelId: 'todayFRDesc',
+            sub: 'Valued at 200-WMA',
          },
+      },
       ];
 
       document.getElementById('summary-cards').innerHTML = SUMMARY_CARDS.map(card => {
@@ -220,8 +220,8 @@
                <label for="modelSelect" class="form-label fw-semibold">Prediction Model</label>
                <select class="form-select border-0 bg-body-secondary rounded-3" id="modelSelect">
                   <option value="jjg_cycle" selected>JJG Cycle Model (Self-Adjusting)</option>
-                  <option value="bearish_cycle">Bearish Cycle Model (Diminishing Gains)</option>
-                  <option value="stable_ratio">Stable Cycle Model</option>
+                  <!-- <option value="bearish_cycle">Bearish Cycle Model (Diminishing Gains)</option>
+                  <option value="stable_ratio">Stable Cycle Model</option> -->
                </select>
                <div class="form-text small">Choose how the future 200WMA and Spot Prices are predicted.</div>
             </div>
@@ -230,8 +230,8 @@
             <div class="mb-3">
                <label for="spotPremiumSelect" class="form-label fw-semibold">Future Spot Price Premium</label>
                <select class="form-select border-0 bg-body-secondary rounded-3" id="spotPremiumSelect">
-                  <option value="fixed">Fixed 30% Premium above 200WMA</option>
-                  <option value="cyclical" selected>Cyclical (-30% bottom / 102% top)</option>
+                  <option value="fixed" selected>Fixed 30% Premium above 200WMA</option>
+                  <option value="cyclical">Cyclical (-30% bottom / 102% top)</option>
                </select>
                <div class="form-text small">Assumed spot price relation to the predicted 200WMA.</div>
             </div>
@@ -302,7 +302,8 @@
 
                <!-- Option 2: BBCode for Forums -->
                <div>
-                  <label for="shareBbcode" class="text-body-secondary small fw-medium mb-1 d-block">BBCode (Forums)</label>
+                  <label for="shareBbcode" class="text-body-secondary small fw-medium mb-1 d-block">BBCode
+                     (Forums)</label>
                   <div class="input-group">
                      <input type="text" id="shareBbcode"
                         class="form-control form-control-sm font-monospace-sm bg-body border-0" readonly
@@ -316,8 +317,7 @@
 
          <div class="tab-content bg-body-tertiary rounded-bottom-4 shadow-sm p-4 border-top-0" id="mainViewTabsContent">
             <!-- Charts Tab Pane -->
-            <div class="tab-pane fade " id="chartsViewPane" role="tabpanel"
-               aria-labelledby="charts-view-tab">
+            <div class="tab-pane fade " id="chartsViewPane" role="tabpanel" aria-labelledby="charts-view-tab">
                <!-- Sub-tabs for chart types -->
                <ul class="nav nav-pills mb-3 justify-content-end" id="chartTabs" role="tablist">
                   <li class="nav-item" role="presentation">
@@ -382,10 +382,10 @@
                   </div>
                </div>
 
-               <div class="table-responsive">
+               <div class="table-responsive" style="max-height: 500px; overflow-y: auto;">
                   <table class="table table-sm table-borderless table-hover align-middle small" id="projectionsTable">
-                     <thead>
-                        <tr class="text-nowrap text-center border-bottom">
+                     <thead class="sticky-top bg-body-tertiary border-0">
+                        <tr class="text-nowrap text-center">
                            <th class="fw-semibold text-body-secondary">Date</th>
                            <th class="fw-semibold text-body-secondary">Spot</th>
                            <th class="fw-semibold text-body-secondary">200 WMA</th>
@@ -420,32 +420,56 @@
          <div class="col-lg-6">
             <h2 class="h5 fw-bold mb-3">What is <span class="text-muted">"Fuck You Status"?</span></h2>
             <p class="mb-3">
-               In personal finance, "Fuck You Status" is reaching a wealth status in which you are able to live comfortably at your targeted income level without being dependent on employment or external funding.
+               In personal finance, "Fuck You Status" is reaching a wealth status in which you are able to live
+               comfortably at your targeted income level without being dependent on employment or external funding.
             </p>
             <p class="mb-3">
-               In bitcoin, we can attempt to calculate what we believe to be our fuck you status level in a way that we are able to either completely discontinue working or alternatively we could calculate a level of income that we would like to get from our bitcoin in order to supplement any other income that we might have.
+               In bitcoin, we can attempt to calculate what we believe to be our fuck you status level in a way that we
+               are able to either completely discontinue working or alternatively we could calculate a level of income
+               that we would like to get from our bitcoin in order to supplement any other income that we might have.
             </p>
             <p class="mb-3">
-               The amount could be replacing some portion of your current income level, or it could be replacing your actual income level or multiples of your current income level or it could be some other self-chosen income level that you would like to reach so that you don't have to work any more or rely on external funding and perhaps you would like to live a certain standard of living that is higher than your current one.
+               The amount could be replacing some portion of your current income level, or it could be replacing your
+               actual income level or multiples of your current income level or it could be some other self-chosen
+               income level that you would like to reach so that you don't have to work any more or rely on external
+               funding and perhaps you would like to live a certain standard of living that is higher than your current
+               one.
             </p>
             <p class="mb-3">
-               By incorporating the <strong>200-week moving average (200WMA)</strong> as a valuation anchor, we attempt to take our valuation out of the noice of Bitcoin's seemingly inevitable high volatility. Because the 200WMA has historically acted as a relatively reliable macro-cycle bottom, drawing withdrawals (and valuating BTC holdings) against the 200WMA seems to provide greater potential for sustainable long-term budgeting and planning.
+               By incorporating the <strong>200-week moving average (200WMA)</strong> as a valuation anchor, we attempt
+               to take our valuation out of the noice of Bitcoin's seemingly inevitable high volatility. Because the
+               200WMA has historically acted as a relatively reliable macro-cycle bottom, drawing withdrawals (and
+               valuating BTC holdings) against the 200WMA seems to provide greater potential for sustainable long-term
+               budgeting and planning.
             </p>
          </div>
 
          <div class="col-lg-6">
             <h5 class="h5 fw-bold mb-3">Inflation and Purchasing Power</h5>
             <p>
-               Since we use $80k per year as a default reference income point, we like to consider how many BTC a bitcoiner might need in order to support such income level at any time, and of course, you can adjust the annual dollar amount that you feel that you might want/need.
+               Since we use $80k per year as a default reference income point, we like to consider how many BTC a
+               bitcoiner might need in order to support such income level at any time, and of course, you can adjust the
+               annual dollar amount that you feel that you might want/need.
             </p>
             <p>
-               For example, if you require a <strong>$80,000 annual budget</strong> in today's dollars, a constant 3.0% annual inflation rate means that in 10 years, you will need <strong>$107,513</strong> in nominal dollars for that year, and in 20 years, you will need $144,489 nominal dollars in that year to purchase the same goods/services in that year.
+               For example, if you require a <strong>$80,000 annual budget</strong> in today's dollars, a constant 3.0%
+               annual inflation rate means that in 10 years, you will need <strong>$107,513</strong> in nominal dollars
+               for that year, and in 20 years, you will need $144,489 nominal dollars in that year to purchase the same
+               goods/services in that year.
             </p>
             <p>
-               In accordance with the example, if we are presuming an ability to continue to live at the same standard of living and we are desiring to not deplete our bitcoin holdings, then our bitcoin would need to appreciate on average at least at the same rate that we are withdrawing value from it in order to continue to be able to sustain an adequate amount of income in subsequent years. Accordingly, when we are going through sustainable withdrawal, our goal is to not deplete our bitcoin faster than it is appreciating, even though at any time, we could decide to take ourselves out of sustainable withdrawal and to deplete our bitcoin holdings at a rate that is no longer sustainable.
+               In accordance with the example, if we are presuming an ability to continue to live at the same standard
+               of living and we are desiring to not deplete our bitcoin holdings, then our bitcoin would need to
+               appreciate on average at least at the same rate that we are withdrawing value from it in order to
+               continue to be able to sustain an adequate amount of income in subsequent years. Accordingly, when we are
+               going through sustainable withdrawal, our goal is to not deplete our bitcoin faster than it is
+               appreciating, even though at any time, we could decide to take ourselves out of sustainable withdrawal
+               and to deplete our bitcoin holdings at a rate that is no longer sustainable.
             </p>
             <p>
-               This tool adjusts your required nominal portfolios dynamically. Consequently, if Bitcoin's price appreciation outpaces inflation, the absolute number of Bitcoins you need to hold decreases dramatically over time.
+               This tool adjusts your required nominal portfolios dynamically. Consequently, if Bitcoin's price
+               appreciation outpaces inflation, the absolute number of Bitcoins you need to hold decreases dramatically
+               over time.
             </p>
          </div>
       </div>
@@ -460,29 +484,41 @@
          <div class="col-lg-6">
             <h2 class="h5 fw-bold mb-3">200WMA <span class="text-secondary">Semi-Annual Compounding</span></h2>
             <p>
-               The 200-week moving average (200WMA) <strong>and the BTC Spot price</strong> is projected forward using a semi-annual compounding model. Starting from the last known historical 200WMA value, each 6-month period applies a percentage gain:
+               The 200-week moving average (200WMA) <strong>and the BTC Spot price</strong> is projected forward using a
+               semi-annual compounding model. Starting from the last known historical 200WMA value, each 6-month period
+               applies a percentage gain:
             </p>
             <div class="bg-body-secondary rounded-3 p-3 font-monospace small mb-3">
                WMA<sub>n+1</sub> = WMA<sub>n</sub> &times; (1 + g<sub>n</sub> / 100)
             </div>
             <p>
-               where gn is the gain for the n-th semi-annual period. These gains are derived from a lookup table (<strong>from the %Gain/Time values in the table</strong>) that reflects <strong>JJG projections</strong> of Bitcoin's halving-cycle dynamics — the pattern of accelerating growth in the first half of each ~4-year cycle followed by decelerating growth in the second half.
+               where gn is the gain for the n-th semi-annual period. These gains are derived from a lookup table
+               (<strong>from the %Gain/Time values in the table</strong>) that reflects <strong>JJG projections</strong>
+               of Bitcoin's halving-cycle dynamics — the pattern of accelerating growth in the first half of each
+               ~4-year cycle followed by decelerating growth in the second half.
             </p>
          </div>
 
          <div class="col-lg-6">
             <h2 class="h5 fw-bold mb-3">Halving <span class="text-secondary">Cycle Structure</span></h2>
             <p>
-               Each halving cycle spans 8 semi-annual periods (~4 years). The gain table encodes this pattern: the first 4 periods carry higher growth (bullish phase), while the last 4 carry lower growth (consolidation phase). Across successive cycles, peak gains diminish — reflecting the empirical observation that each cycle's returns moderate as Bitcoin's market capitalization grows.
+               Each halving cycle spans 8 semi-annual periods (~4 years). The gain table encodes this pattern: the first
+               4 periods carry higher growth (bullish phase), while the last 4 carry lower growth (consolidation phase).
+               Across successive cycles, peak gains diminish — reflecting the empirical observation that each cycle's
+               returns moderate as Bitcoin's market capitalization grows.
             </p>
             <p>
-               Beyond the explicitly defined cycles (past 2039), gains are self-adjusting: each cycle's base gain decreases by 1% until reaching a permanent floor. The formulas are:
+               Beyond the explicitly defined cycles (past 2039), gains are self-adjusting: each cycle's base gain
+               decreases by 1% until reaching a permanent floor. The formulas are:
             </p>
             <div class="bg-body-secondary rounded-3 p-3 font-monospace small mb-3">
                g<sub>bull</sub> = max(4, 11 &minus; n) &nbsp;&nbsp; g<sub>bear</sub> = max(3, 8 &minus; n)
             </div>
             <p class="text-muted small">
-               where <span class="font-monospace">n</span> is the cycle offset from Cycle 5. Within each phase, bull gains escalate +2% per step and bear gains decay &minus;5% per step. The gains decrease by ~1% per cycle until reaching a repeating floor of 4%/3% (bull/bear) — representing Bitcoin's mature, steady-state growth.
+               where <span class="font-monospace">n</span> is the cycle offset from Cycle 5. Within each phase, bull
+               gains escalate +2% per step and bear gains decay &minus;5% per step. The gains decrease by ~1% per cycle
+               until reaching a repeating floor of 4%/3% (bull/bear) — representing Bitcoin's mature, steady-state
+               growth.
             </p>
          </div>
       </div>
@@ -490,7 +526,8 @@
       <div class="row g-4 g-lg-5 mb-4">
          <div class="col-lg-6">
             <h2 class="h5 fw-bold mb-3">Three <span class="text-secondary">Model Variants</span></h2>
-            <p>The tool offers three prediction models, each applying a different scaling factor to the base JJG gain table:</p>
+            <p>The tool offers three prediction models, each applying a different scaling factor to the base JJG gain
+               table:</p>
             <table class="table table-sm table-borderless small mb-3">
                <thead>
                   <tr class="border-bottom">
@@ -565,7 +602,8 @@
                time — this is the core insight of the model.
             </p>
             <p class="text-muted small mb-0">
-               <strong>Filthy-Rich status</strong> uses a $100,000,000 baseline target adjusted for inflation over time, representing an ultra-high-net-worth purchasing power benchmark.
+               <strong>Filthy-Rich status</strong> uses a $100,000,000 baseline target adjusted for inflation over time,
+               representing an ultra-high-net-worth purchasing power benchmark.
             </p>
          </div>
       </div>
@@ -577,7 +615,7 @@
 
    <script>
       // Listen for theme mutations to update ApexCharts colors
-      var callback = function(mutationsList, observer) {
+      var callback = function (mutationsList, observer) {
          // Look through all mutations that just occured
          for (let mutation of mutationsList) {
             // If the `data-bs-theme` attribute was modified

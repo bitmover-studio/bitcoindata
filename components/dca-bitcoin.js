@@ -243,19 +243,38 @@ function initCharts() {
         },
         dataLabels: { enabled: false },
         tooltip: {
-            theme: "dark",
+            theme: theme,
             shared: true,
             intersect: false,
-            x: { show: true, format: "yyyy/MM/dd" },
-            y: {
-                formatter: function (val, opts) {
-                    if (val == null) return "";
-                    const sIdx = opts && opts.seriesIndex !== undefined ? opts.seriesIndex : -1;
-                    if (sIdx === 2) {
-                        return fmtBTC(val) + " BTC";
-                    }
-                    return fmtUSD(val);
-                }
+            custom: function ({ series, seriesIndex, dataPointIndex: dpi, w }) {
+                const colors = w.globals.colors;
+                const seriesNames = w.globals.seriesNames;
+                const date = new Date(w.globals.seriesX[0][dpi]);
+                const dateStr = date.toISOString().split("T")[0].replace(/-/g, "/");
+
+                const invested = series[0] && series[0][dpi] != null ? series[0][dpi] : null;
+                const portfolioVal = series[1] && series[1][dpi] != null ? series[1][dpi] : null;
+                const btc = series[2] && series[2][dpi] != null ? series[2][dpi] : null;
+                const avgPrice = (btc > 0 && invested > 0) ? (invested / btc) : null;
+
+                const row = (color, label, value) =>
+                    `<div class="apexcharts-tooltip-series-group apexcharts-active" style="display:flex; align-items:center; padding: 4px 12px;">` +
+                    `<span class="apexcharts-tooltip-marker rounded-circle" style="background-color:${color}; width:10px; height:10px; display:inline-block; margin-right:6px; flex-shrink:0;"></span>` +
+                    `<div style="display:flex; justify-content:space-between; width:100%; gap:16px;">` +
+                    `<span style="opacity:0.75;">${label}:</span>` +
+                    `<span style="font-weight:600;">${value}</span>` +
+                    `</div></div>`;
+
+                const divider = `<div style="border-top: 1px solid var(--bs-border-color); margin: 3px 0;"></div>`;
+
+                let html = `<div class="apexcharts-tooltip-title" style="font-family:Helvetica,Arial,sans-serif; font-size:12px; padding:6px 12px; border-bottom:1px solid var(--bs-border-color);">${dateStr}</div>`;
+
+                if (invested != null) html += row(colors[0], seriesNames[0], fmtUSD(invested));
+                if (portfolioVal != null) html += row(colors[1], seriesNames[1], fmtUSD(portfolioVal));
+                if (btc != null) html += row(colors[2], seriesNames[2], fmtBTC(btc) + " BTC");
+                if (avgPrice != null) html += divider + row("transparent", "Average Bitcoin Price", fmtUSD2(avgPrice));
+
+                return html;
             }
         },
         grid: {
@@ -474,7 +493,12 @@ window.exportDCAToCSV = function () {
 // ---- Theme Updater (called from PHP MutationObserver) ----
 window.updateChartThemes = function (theme) {
     const mode = theme === "dark" ? "dark" : "light";
-    if (dcaMainChart) dcaMainChart.updateOptions({ theme: { mode: mode } });
+    if (dcaMainChart) {
+        dcaMainChart.updateOptions({
+            theme: { mode: mode },
+            tooltip: { theme: mode }
+        });
+    }
 };
 
 // ---- Input Sync ----

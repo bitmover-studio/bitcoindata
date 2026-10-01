@@ -329,9 +329,9 @@ function recalculate() {
                <td>${(row.wma).toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 })}</td>
                <td>${gainPercent}</td>
                <td>${spotVs200Str}</td>
-               <td class="fw-semibold text-success">${row.coins10.toLocaleString("en-US", { maximumFractionDigits: 2 })} BTC</td>
-               <td class="fw-semibold text-info">${row.coins4.toLocaleString("en-US", { maximumFractionDigits: 2 })} BTC</td>
-               <td class="fw-semibold" style="color: #6f42c1;">${row.coinsFR.toLocaleString("en-US", { maximumFractionDigits: 2 })} BTC</td>
+               <td class="fw-semibold text-success">${row.coins10.toLocaleString("en-US", { maximumFractionDigits: 4 })} BTC</td>
+               <td class="fw-semibold text-info">${row.coins4.toLocaleString("en-US", { maximumFractionDigits: 4 })} BTC</td>
+               <td class="fw-semibold" style="color: #6f42c1;">${row.coinsFR.toLocaleString("en-US", { maximumFractionDigits: 4 })} BTC</td>
             </tr>
         `;
 
@@ -341,9 +341,9 @@ function recalculate() {
             Math.round(row.wma),
             gainPercent,
             spotVs200Str,
-            row.coins10.toFixed(2),
-            row.coins4.toFixed(2),
-            row.coinsFR.toFixed(2)
+            row.coins10.toFixed(4),
+            row.coins4.toFixed(4),
+            row.coinsFR.toFixed(4)
         ]);
     });
 

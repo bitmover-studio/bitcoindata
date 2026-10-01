@@ -100,7 +100,7 @@
 
    <!-- Page Content -->
    <?php
-   $h1 = 'Bitcoin DCA Calculator — Dollar Cost Averaging BTC';
+   $h1 = 'Bitcoin DCA Calculator';
    $h2 = 'See how dollar cost averaging into Bitcoin would have performed. Simulate weekly or monthly recurring purchases over any historical timeframe.';
    include_once $_SERVER['DOCUMENT_ROOT'] . '/components/page-header.php';
    ?>
@@ -193,10 +193,11 @@
                   <label for="investAmount" class="form-label fw-semibold">Investment Amount (USD)</label>
                   <div class="input-group mb-2">
                      <span class="input-group-text bg-body-secondary border-0">$</span>
-                     <input type="number" class="form-control font-monospace border-0 bg-body-secondary" id="investAmount"
-                        value="100" min="1" max="100000" step="10">
+                     <input type="number" class="form-control font-monospace border-0 bg-body-secondary"
+                        id="investAmount" value="100" min="1" max="100000" step="10">
                   </div>
-                  <input type="range" class="form-range" id="investAmountRange" min="1" max="10000" step="10" value="100">
+                  <input type="range" class="form-range" id="investAmountRange" min="1" max="10000" step="10"
+                     value="100">
                </div>
             </div>
 
@@ -308,8 +309,7 @@
          <div class="accordion-item bg-transparent border-bottom border-secondary border-opacity-10 py-2">
             <h2 class="accordion-header" id="faq1">
                <button class="accordion-button collapsed bg-transparent shadow-none fw-semibold fs-6" type="button"
-                  data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="false"
-                  aria-controls="collapse1">
+                  data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
                   What is Dollar Cost Averaging (DCA) in Bitcoin?
                </button>
             </h2>
@@ -330,8 +330,7 @@
          <div class="accordion-item bg-transparent border-bottom border-secondary border-opacity-10 py-2">
             <h2 class="accordion-header" id="faq2">
                <button class="accordion-button collapsed bg-transparent shadow-none fw-semibold fs-6" type="button"
-                  data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false"
-                  aria-controls="collapse2">
+                  data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
                   Is DCA a good strategy for investing in Bitcoin?
                </button>
             </h2>
@@ -352,8 +351,7 @@
          <div class="accordion-item bg-transparent border-bottom border-secondary border-opacity-10 py-2">
             <h2 class="accordion-header" id="faq3">
                <button class="accordion-button collapsed bg-transparent shadow-none fw-semibold fs-6" type="button"
-                  data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false"
-                  aria-controls="collapse3">
+                  data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
                   How much should I invest in Bitcoin using DCA?
                </button>
             </h2>
@@ -374,8 +372,7 @@
          <div class="accordion-item bg-transparent border-bottom border-secondary border-opacity-10 py-2">
             <h2 class="accordion-header" id="faq4">
                <button class="accordion-button collapsed bg-transparent shadow-none fw-semibold fs-6" type="button"
-                  data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false"
-                  aria-controls="collapse4">
+                  data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
                   What is the best frequency for DCA into Bitcoin — weekly or monthly?
                </button>
             </h2>
@@ -387,7 +384,8 @@
                      price swings.</p>
                   <p class="mb-0">Monthly DCA is simpler to manage and often aligns better with pay cycles. The
                      difference in returns between weekly and monthly DCA over a multi-year period is typically small.
-                     The most important factor is <strong>consistency</strong> — choose a frequency that fits your budget
+                     The most important factor is <strong>consistency</strong> — choose a frequency that fits your
+                     budget
                      and schedule, and stick with it.</p>
                </div>
             </div>
@@ -396,8 +394,7 @@
          <div class="accordion-item bg-transparent border-bottom border-secondary border-opacity-10 py-2">
             <h2 class="accordion-header" id="faq5">
                <button class="accordion-button collapsed bg-transparent shadow-none fw-semibold fs-6" type="button"
-                  data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false"
-                  aria-controls="collapse5">
+                  data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
                   How does Bitcoin DCA compare to lump sum investing?
                </button>
             </h2>
@@ -419,8 +416,7 @@
          <div class="accordion-item bg-transparent py-2">
             <h2 class="accordion-header" id="faq6">
                <button class="accordion-button collapsed bg-transparent shadow-none fw-semibold fs-6" type="button"
-                  data-bs-toggle="collapse" data-bs-target="#collapse6" aria-expanded="false"
-                  aria-controls="collapse6">
+                  data-bs-toggle="collapse" data-bs-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
                   Can I lose money with Bitcoin DCA?
                </button>
             </h2>
@@ -430,7 +426,8 @@
                   <p class="mb-2">Yes, it is possible to experience a temporary unrealized loss (paper loss) with DCA,
                      especially if you start buying during a market peak and stop during a bear market bottom.</p>
                   <p class="mb-0">However, historical data shows that <strong>no one who has DCA'd into Bitcoin for at
-                        least 3 years has ever had a negative return</strong>, regardless of their start date. The longer
+                        least 3 years has ever had a negative return</strong>, regardless of their start date. The
+                     longer
                      your DCA timeframe, the lower your risk and the higher your probability of substantial gains. This
                      calculator lets you verify this claim against any historical period.</p>
                </div>
@@ -445,7 +442,7 @@
 
    <script>
       // Listen for theme mutations to update ApexCharts colors
-      var callback = function(mutationsList, observer) {
+      var callback = function (mutationsList, observer) {
          for (let mutation of mutationsList) {
             if (mutation.attributeName === 'data-bs-theme') {
                if (typeof updateChartThemes === 'function') {
