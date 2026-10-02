@@ -8,6 +8,28 @@
    $canonical = "https://bitcoindata.science/bitcointalk-api";
    include_once $_SERVER['DOCUMENT_ROOT'] . '/components/head.php';
    ?>
+   <script type="application/ld+json">
+      {
+         "@context": "https://schema.org",
+         "@type": "BreadcrumbList",
+         "itemListElement": [{
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://bitcoindata.science"
+         }, {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Forum Tools",
+            "item": "https://bitcoindata.science/#forum-tools"
+         }, {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Price API",
+            "item": "https://bitcoindata.science/bitcointalk-api"
+         }]
+      }
+   </script>
 </head>
 
 <body>

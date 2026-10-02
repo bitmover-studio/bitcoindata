@@ -12,7 +12,8 @@
    <script type="application/ld+json">
       {
          "@context": "https://schema.org",
-         "@type": "Organization",
+         "@graph": [{
+            "@type": "Organization",
          "name": "Bitcoin Units Converter",
          "description": "Convert bitcoin units BTC,mBTC, uBTC, satoshi, finney to USD, EUR and 170 other fiat currencies.",
          "alternateName": [
@@ -35,6 +36,11 @@
          }, {
             "@type": "ListItem",
             "position": 2,
+            "name": "Bitcoin Tools",
+            "item": "https://bitcoindata.science/#bitcoin-tools"
+         }, {
+            "@type": "ListItem",
+            "position": 3,
             "name": "Bitcoin Units Converter",
             "item": "https://bitcoindata.science/bitcoin-units-converter"
          }]
@@ -105,8 +111,9 @@
                }
             }
          ]
-      }
-   </script>
+      }]
+   }
+</script>
    <script src="components/unit-converter.js" type="text/javascript" defer></script>
 
 </head>

@@ -14,6 +14,28 @@ $canonical = "https://bitcoindata.science/bot/altcoinstalk/notification";
 
 <head>
   <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/components/head.php'; ?>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://bitcoindata.science"
+      }, {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Forum Tools",
+        "item": "https://bitcoindata.science/#forum-tools"
+      }, {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Altcoinstalks Notification Bot",
+        "item": "https://bitcoindata.science/altcoinstalk/notification.php"
+      }]
+    }
+  </script>
   <style>
     blockquote {
       font-size: small;

@@ -26,6 +26,24 @@
           "https://bitcoindata.science"
         ]
       }, {
+        "@type": "BreadcrumbList",
+        "itemListElement": [{
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://bitcoindata.science"
+        }, {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Forum Tools",
+          "item": "https://bitcoindata.science/#forum-tools"
+        }, {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Giveaway Manager",
+          "item": "https://bitcoindata.science/giveaway-manager"
+        }]
+      }, {
         "@type": "FAQPage",
         "mainEntity": [{
           "@type": "Question",

@@ -12,18 +12,48 @@
    <script type="application/ld+json">
       {
          "@context": "https://schema.org",
-         "@type": "Organization",
-         "name": "Fuck You Status Calculator",
-         "description": "Calculate the amount of bitcoin needed to reach 'Fuck You Status' with inflation adjustments and regression models.",
-         "alternateName": [
-            "bitcoindata.science",
-            "Bitcoin Data Science"
-         ],
-         "url": "https://bitcoindata.science",
-         "logo": "https://bitcoindata.science/img/logo.svg",
-         "sameAs": [
-            "https://bitcoindata.science"
-         ]
+         "@graph": [{
+            "@type": "Organization",
+            "name": "Fuck You Status Calculator",
+            "description": "Calculate the amount of bitcoin needed to reach 'Fuck You Status' with inflation adjustments and regression models.",
+            "alternateName": [
+               "bitcoindata.science",
+               "Bitcoin Data Science"
+            ],
+            "url": "https://bitcoindata.science",
+            "logo": "https://bitcoindata.science/img/logo.svg",
+            "sameAs": [
+               "https://bitcoindata.science"
+            ]
+         }, {
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+               "@type": "ListItem",
+               "position": 1,
+               "name": "Home",
+               "item": "https://bitcoindata.science"
+            }, {
+               "@type": "ListItem",
+               "position": 2,
+               "name": "JayJuanGee (JJG)",
+               "item": "https://bitcoindata.science/#jjg"
+            }, {
+               "@type": "ListItem",
+               "position": 3,
+               "name": "Fuck You Status",
+               "item": "https://bitcoindata.science/fuckyoustatus"
+            }]
+         }, {
+            "@type": "FAQPage",
+            "mainEntity": [{
+               "@type": "Question",
+               "name": "How many bitcoins are needed to achieve financial independence?",
+               "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "The amount of bitcoin needed to achieve financial independence depends on your desired annual income and the withdrawal rate you choose. You can use the calculator to determine the exact amount needed based on your specific circumstances."
+               }
+            }]
+         }]
       }
    </script>
    <script src="modules/crypto-js.min.js"></script>
@@ -411,6 +441,8 @@
          </div>
       </div>
    </div>
+
+   <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/components/jjg-disclaimer.php'; ?>
 
    <article class="bg-body-tertiary rounded-4 p-md-5 p-4 shadow-sm mt-5 mb-5">
 

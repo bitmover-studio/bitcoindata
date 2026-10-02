@@ -12,19 +12,39 @@
    <script type="application/ld+json">
       {
          "@context": "https://schema.org",
-         "@type": "Organization",
-         "name": "Bitcoin Raw Transaction Hex",
-         "description": "Easily retrieve raw Bitcoin transaction hex format by transaction ID (txid). Inspect and copy raw transaction bytecode directly powered by mempool.space data.",
-         "alternateName": [
-            "bitcoindata.science",
-            "Bitcoin Data Science",
-            "bitcoin datascience"
-         ],
-         "url": "https://bitcoindata.science",
-         "logo": "https://bitcoindata.science/img/logo.svg",
-         "sameAs": [
-            "https://bitcoindata.science"
-         ]
+         "@graph": [{
+            "@type": "Organization",
+            "name": "Bitcoin Raw Transaction Hex",
+            "description": "Easily retrieve raw Bitcoin transaction hex format by transaction ID (txid). Inspect and copy raw transaction bytecode directly powered by mempool.space data.",
+            "alternateName": [
+               "bitcoindata.science",
+               "Bitcoin Data Science",
+               "bitcoin datascience"
+            ],
+            "url": "https://bitcoindata.science",
+            "logo": "https://bitcoindata.science/img/logo.svg",
+            "sameAs": [
+               "https://bitcoindata.science"
+            ]
+         }, {
+            "@type": "BreadcrumbList",
+            "itemListElement": [{
+               "@type": "ListItem",
+               "position": 1,
+               "name": "Home",
+               "item": "https://bitcoindata.science"
+            }, {
+               "@type": "ListItem",
+               "position": 2,
+               "name": "Other Tools",
+               "item": "https://bitcoindata.science/#other-tools"
+            }, {
+               "@type": "ListItem",
+               "position": 3,
+               "name": "Raw Tx Hex",
+               "item": "https://bitcoindata.science/bitcoin-raw-transaction-hex"
+            }]
+         }]
       }
    </script>
 </head>

@@ -49,8 +49,9 @@ $base = '/';
 <link href="<?= $base ?>modules/bootstrap.min.css" rel="stylesheet">
 <script src="<?= $base ?>modules/bootstrap.bundle.min.js" defer></script>
 
-<link href="<?= $base ?>css/style.css?v=3.03" rel="stylesheet">
-<script src="<?= $base ?>components/navbar.js" defer></script>
+<link href="<?= $base ?>css/style.css?v=3.05" rel="stylesheet">
+<script src="<?= $base ?>components/navbar.js?v=2.00" defer></script>
+<script src="<?= $base ?>components/breadcrumbs.js?v=1.01" defer></script>
 <script src="<?= $base ?>components/footer.js?v=2.01" defer></script>
 
 <script async defer src="https://bitcoindata.science/api/simple.php/proxy.js" data-collect-dnt="true"></script>

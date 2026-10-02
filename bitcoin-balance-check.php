@@ -43,6 +43,11 @@
             }, {
                "@type": "ListItem",
                "position": 2,
+               "name": "Bitcoin Tools",
+               "item": "https://bitcoindata.science/#bitcoin-tools"
+            }, {
+               "@type": "ListItem",
+               "position": 3,
                "name": "Bitcoin Address Balance Checker",
                "item": "https://bitcoindata.science/bitcoin-balance-check"
             }]

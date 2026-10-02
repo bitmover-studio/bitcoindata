@@ -35,6 +35,11 @@
             }, {
                "@type": "ListItem",
                "position": 2,
+               "name": "Bitcoin Tools",
+               "item": "https://bitcoindata.science/#bitcoin-tools"
+            }, {
+               "@type": "ListItem",
+               "position": 3,
                "name": "Verify Bitcoin Message",
                "item": "https://bitcoindata.science/verify-message"
             }]

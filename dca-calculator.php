@@ -36,6 +36,11 @@
             }, {
                "@type": "ListItem",
                "position": 2,
+               "name": "Bitcoin Tools",
+               "item": "https://bitcoindata.science/#bitcoin-tools"
+            }, {
+               "@type": "ListItem",
+               "position": 3,
                "name": "Bitcoin DCA Calculator",
                "item": "https://bitcoindata.science/dca-calculator"
             }]

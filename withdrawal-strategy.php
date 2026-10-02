@@ -12,7 +12,8 @@
    <script type="application/ld+json">
       {
          "@context": "https://schema.org",
-         "@type": "Organization",
+         "@graph": [{
+            "@type": "Organization",
          "name": "Withdrawal Strategy ",
          "description": "Ideas of sustainable withdrawal that calculates monthly budget limits based BTC spot price relative to the 200-Week Moving Average (200-WMA).",
          "alternateName": [
@@ -35,6 +36,11 @@
          }, {
             "@type": "ListItem",
             "position": 2,
+            "name": "JayJuanGee (JJG)",
+            "item": "https://bitcoindata.science/#jjg"
+         }, {
+            "@type": "ListItem",
+            "position": 3,
             "name": "Withdrawal Strategy",
             "item": "https://bitcoindata.science/withdrawal-strategy"
          }]
@@ -46,6 +52,13 @@
             "acceptedAnswer": {
                "@type": "Answer",
                "text": "The JJG Withdrawal Strategy is a retirement income strategy for Bitcoin investors that calculates a sustainable monthly withdrawal amount based on Bitcoin's price relative to its 200-week moving average (200-WMA)."
+            }
+         }, {
+            "@type": "Question",
+            "name": "How to sustainable withdrawal from your bitcoin stash for life?",
+            "acceptedAnswer": {
+               "@type": "Answer",
+               "text": "You can withdraw a percentage of your bitcoin stash every month, with the percentage determined by how far the current Bitcoin price is above or below the 200-week moving average. When the price is above the 200-WMA, the withdrawal percentage increases, and when it's below, it decreases."
             }
          }, {
             "@type": "Question",
@@ -84,13 +97,14 @@
             }
          }]
       }]
-   </script>
-   <script src="modules/crypto-js.min.js"></script>
+   }
+</script>
+   <script src="/modules/crypto-js.min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-   <script src="components/strategy.js" async></script>
-   <script src="components/jjg-chart-options.js" async></script>
-   <script src="components/jjg-stash-chart.js" async></script>
-   <script src="components/jjg-share.js?v=1" async></script>
+   <script src="/components/strategy.js" async></script>
+   <script src="/components/jjg-chart-options.js" async></script>
+   <script src="/components/jjg-stash-chart.js" async></script>
+   <script src="/components/jjg-share.js?v=1" async></script>
 </head>
 
 <body>
@@ -175,7 +189,8 @@
                      <span id="minDayPrice" class="small text-secondary">&nbsp;</span>
                      <span id="maxDayPrice" class="small text-secondary">&nbsp;</span>
                   </div>
-                  <div class="progress mb-2" role="progressbar" aria-label="Day's Range" id="priceRange" style="height: 0.3rem;">
+                  <div class="progress mb-2" role="progressbar" aria-label="Day's Range" id="priceRange"
+                     style="height: 0.3rem;">
                      <div class="progress-bar bg-secondary" id="priceRangeLength" style="width: 0%;"></div>
                   </div>
                </div>
@@ -185,7 +200,8 @@
                      <span id="min200WPrice" class="small text-secondary">&nbsp;</span>
                      <span id="max200WPrice" class="small text-secondary">&nbsp;</span>
                   </div>
-                  <div class="progress" role="progressbar" aria-label="200-Week's Range" id="price200WRange" style="height: 0.3rem;">
+                  <div class="progress" role="progressbar" aria-label="200-Week's Range" id="price200WRange"
+                     style="height: 0.3rem;">
                      <div class="progress-bar bg-secondary" id="price200WRangeLength" style="width: 0%;"></div>
                   </div>
                </div>
@@ -210,15 +226,14 @@
          </div>
          <div class="row g-3">
             <div class="form-floating gx-1 mb-3 col-6 col-sm-12">
-               <input type="number" class="form-control font-monospace border-0 bg-body-secondary rounded-4"
-                  id="stash" placeholder="BTC Stash" step="0.01" min="0" value="1"
-                  onChange="calculateWithdrawalLimit()">
+               <input type="number" class="form-control font-monospace border-0 bg-body-secondary rounded-4" id="stash"
+                  placeholder="BTC Stash" step="0.01" min="0" value="1" onChange="calculateWithdrawalLimit()">
                <label for="stash">BTC stash size</label>
             </div>
             <div class="form-floating gx-1 col-6 col-sm-12">
                <input type="date" title="choose a date"
-                  class="form-control  font-monospace border-0 bg-body-secondary rounded-4" id="date"
-                  min="2010-08-02" onChange="drawAnnotation(this.value)">
+                  class="form-control  font-monospace border-0 bg-body-secondary rounded-4" id="date" min="2010-08-02"
+                  onChange="drawAnnotation(this.value)">
                <label for="date">Choose a date</label>
             </div>
             <div class="col-6 col-sm-12">
@@ -293,8 +308,8 @@
                      </button>
                      <button type="button" title="refresh" class="btn btn-secondary shadow-sm"
                         onclick="restoreDefaults()">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="24" fill="currentColor"
-                           viewBox="0 -960 960 960" width="24">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="24" fill="currentColor" viewBox="0 -960 960 960"
+                           width="24">
                            <path
                               d="M480-160q-134 0-227-93t-93-227q0-134 93-227t227-93q69 0 132 28.5T720-690v-110h80v280H520v-80h168q-32-56-87.5-88T480-720q-100 0-170 70t-70 170q0 100 70 170t170 70q77 0 139-44t87-116h84q-28 106-114 173t-196 67Z" />
                         </svg>
@@ -318,15 +333,21 @@
                   </div>
                   <div id="shareInputArea" class="d-none mt-2 float-start w-100">
                      <div class="input-group input-group-sm mb-1">
-                        <input type="text" id="shareURL" class="form-control font-monospace bg-body border-0" readonly onclick="this.select()">
-                        <button class="btn btn-secondary btn-sm" type="button" onclick="copyurl('shareURL')">Copy Link</button>
+                        <input type="text" id="shareURL" class="form-control font-monospace bg-body border-0" readonly
+                           onclick="this.select()">
+                        <button class="btn btn-secondary btn-sm" type="button" onclick="copyurl('shareURL')">Copy
+                           Link</button>
                      </div>
                      <div class="input-group input-group-sm">
-                        <input type="text" id="shareBBCode" class="form-control font-monospace bg-body border-0" readonly onclick="this.select()">
-                        <button class="btn btn-secondary btn-sm" type="button" onclick="copyurl('shareBBCode')">Copy BBCode</button>
+                        <input type="text" id="shareBBCode" class="form-control font-monospace bg-body border-0"
+                           readonly onclick="this.select()">
+                        <button class="btn btn-secondary btn-sm" type="button" onclick="copyurl('shareBBCode')">Copy
+                           BBCode</button>
                      </div>
                   </div>
-                  <p class="float-end">Price data by <a href="https://www.coingecko.com?utm_source=bitcoindata.science&utm_medium=referral" title="">coingecko</a></p>
+                  <p class="float-end">Price data by <a
+                        href="https://www.coingecko.com?utm_source=bitcoindata.science&utm_medium=referral"
+                        title="">coingecko</a></p>
                </div>
             </div>
 
@@ -344,8 +365,8 @@
          </div>
          <div class="form-floating mb-3">
             <input type="text" class="form-control font-monospace border-0 bg-body-secondary rounded-4"
-               id="allowedvalue" placeholder="Authorized Withdrawal USD" onChange="calculateWithdrawalLimit()"
-               value="0" disabled>
+               id="allowedvalue" placeholder="Authorized Withdrawal USD" onChange="calculateWithdrawalLimit()" value="0"
+               disabled>
             <label for="allowedvalue">Authorized Withdrawal USD</label>
          </div>
 
@@ -362,15 +383,14 @@
             <label for="monthAdvance">No. Months in Advance</label>
          </div>
          <div class="form-floating mb-3">
-            <input type="text" class="form-control font-monospace border-0 bg-body-secondary rounded-4"
-               id="allowedAdv" placeholder="Advanced Withdrawal" onChange="calculateWithdrawalLimit()" value="0"
-               disabled>
+            <input type="text" class="form-control font-monospace border-0 bg-body-secondary rounded-4" id="allowedAdv"
+               placeholder="Advanced Withdrawal" onChange="calculateWithdrawalLimit()" value="0" disabled>
             <label for="allowedAdv">Advanced BTC Withdrawal</label>
          </div>
          <div class="form-floating mb-3">
             <input type="text" class="form-control font-monospace border-0 bg-body-secondary rounded-4"
-               id="allowedAdvVal" placeholder="Advanced Withdrawal USD" onChange="calculateWithdrawalLimit()"
-               value="0" disabled>
+               id="allowedAdvVal" placeholder="Advanced Withdrawal USD" onChange="calculateWithdrawalLimit()" value="0"
+               disabled>
             <label for="allowedAdvVal">Advanced Withdrawal USD</label>
          </div>
       </div>
@@ -390,14 +410,13 @@
       <div class="col-md-6 col-lg-2">
          <div class="form-floating mb-3">
             <input type="text" class="form-control font-monospace border-0 bg-body-secondary rounded-4"
-               id="currentStash" placeholder="Current Stash" onChange="calculateWithdrawalLimit()" value="0"
-               disabled>
+               id="currentStash" placeholder="Current Stash" onChange="calculateWithdrawalLimit()" value="0" disabled>
             <label for="allowed">Current Stash</label>
          </div>
          <div class="form-floating mb-3">
             <input type="text" class="form-control font-monospace border-0 bg-body-secondary rounded-4"
-               id="amountWithdrawn" placeholder="Total Amount Withdrawn" onChange="calculateWithdrawalLimit()"
-               value="0" disabled>
+               id="amountWithdrawn" placeholder="Total Amount Withdrawn" onChange="calculateWithdrawalLimit()" value="0"
+               disabled>
             <label for="allowed">Amount Withdrawn (BTC)</label>
          </div>
          <div class="form-floating mb-3">
@@ -424,8 +443,11 @@
       <!-- Presumptions Callout -->
       <div class="bg-body-tertiary p-4 rounded-4 shadow-sm mb-5">
          <h4 class="h5 fw-bold text-primary mb-3">Underlying Presumptions</h4>
-         <p class="mb-2">This tool is designed to help individuals, institutions, or developer funds manage their Bitcoin holdings and employ sustainable, volatility-adjusted withdrawal methods.</p>
-         <p class="mb-0 text-muted small">Note: This is not a short-term trading tool; it is a long-term capital preservation and budgeting strategy that dynamically adjusts your cash flow based on the 200-week moving average (200-WMA).</p>
+         <p class="mb-2">This tool is designed to help individuals, institutions, or developer funds manage their
+            Bitcoin holdings and employ sustainable, volatility-adjusted withdrawal methods.</p>
+         <p class="mb-0 text-muted small">Note: This is not a short-term trading tool; it is a long-term capital
+            preservation and budgeting strategy that dynamically adjusts your cash flow based on the 200-week moving
+            average (200-WMA).</p>
       </div>
 
       <!-- Two Column Layout for Calculator Details -->
@@ -435,7 +457,8 @@
             <div class="card bg-body-tertiary shadow-sm rounded-4 p-4 h-100">
                <h4 class="h5 fw-bold mb-3"><span class="text-primary me-2">•</span>BTC Stash Size</h4>
                <p class="text-muted">
-                  This represents the total size of your Bitcoin portfolio allocated to this specific withdrawal budget (e.g., a starting amount of 21 BTC for developer grants or personal retirement).
+                  This represents the total size of your Bitcoin portfolio allocated to this specific withdrawal budget
+                  (e.g., a starting amount of 21 BTC for developer grants or personal retirement).
                   You can allocate all or just a segment of your holdings to this strategy to ensure capital longevity.
                </p>
             </div>
@@ -446,12 +469,14 @@
             <div class="card bg-body-tertiary shadow-sm rounded-4 p-4 h-100">
                <h4 class="h5 fw-bold mb-3"><span class="text-primary me-2">•</span>Annual Withdrawal Rate</h4>
                <p class="text-muted mb-3">
-                  Because the strategy values your stash at the 200-WMA (which is historically close to Bitcoin's macro bottoms), the sustainable rate can be higher than the traditional 4% rule.
+                  Because the strategy values your stash at the 200-WMA (which is historically close to Bitcoin's macro
+                  bottoms), the sustainable rate can be higher than the traditional 4% rule.
                </p>
                <ul class="list-group list-group-flush bg-transparent">
                   <li class="list-group-item bg-transparent border-0 px-0 py-2 d-flex align-items-start">
                      <span class="badge bg-success-subtle text-success me-2 mt-1 rounded-pill">0% - 5%</span>
-                     <div class="text-muted"><strong>Growth-Oriented:</strong> Stash size will likely continue to grow rapidly in value.</div>
+                     <div class="text-muted"><strong>Growth-Oriented:</strong> Stash size will likely continue to grow
+                        rapidly in value.</div>
                   </li>
                   <li class="list-group-item bg-transparent border-0 px-0 py-2 d-flex align-items-start">
                      <span class="badge bg-info-subtle text-info me-2 mt-1 rounded-pill">6% - 10%</span>
@@ -459,11 +484,13 @@
                   </li>
                   <li class="list-group-item bg-transparent border-0 px-0 py-2 d-flex align-items-start">
                      <span class="badge bg-warning-subtle text-warning me-2 mt-1 rounded-pill">11% - 16%</span>
-                     <div class="text-muted"><strong>Aggressive:</strong> Less likely to be sustainable over multi-decade cycles.</div>
+                     <div class="text-muted"><strong>Aggressive:</strong> Less likely to be sustainable over
+                        multi-decade cycles.</div>
                   </li>
                   <li class="list-group-item bg-transparent border-0 px-0 py-2 d-flex align-items-start">
                      <span class="badge bg-danger-subtle text-danger me-2 mt-1 rounded-pill">17%+</span>
-                     <div class="text-muted"><strong>Depletion Risk:</strong> High probability of exhausting the portfolio during bear markets.</div>
+                     <div class="text-muted"><strong>Depletion Risk:</strong> High probability of exhausting the
+                        portfolio during bear markets.</div>
                   </li>
                </ul>
             </div>
@@ -475,42 +502,51 @@
          <!-- Left Column: Monthly Limits -->
          <div class="col-lg-6">
             <div class="card bg-body-tertiary shadow-sm rounded-4 p-4 h-100">
-               <h4 class="h5 fw-bold mb-3"><span class="text-primary me-2">•</span>Monthly Authorized Withdrawal Limits</h4>
+               <h4 class="h5 fw-bold mb-3"><span class="text-primary me-2">•</span>Monthly Authorized Withdrawal Limits
+               </h4>
 
                <div class="bg-body-secondary p-3 font-monospace rounded-3 mb-3 text-center border">
                   Monthly Limit = (Stash Size &times; Annual Rate) &divide; 12
                </div>
 
                <p class="text-muted mb-3">
-                  The system dynamically scales your maximum monthly withdrawal allowance based on the current premium or discount of the spot price relative to the 200-WMA:
+                  The system dynamically scales your maximum monthly withdrawal allowance based on the current premium
+                  or discount of the spot price relative to the 200-WMA:
                </p>
 
                <ul class="list-group list-group-flush bg-transparent">
-                  <li class="list-group-item bg-transparent border-0 px-0 py-1 d-flex justify-content-between text-muted">
+                  <li
+                     class="list-group-item bg-transparent border-0 px-0 py-1 d-flex justify-content-between text-muted">
                      <span>Spot &ge; 25% above 200-WMA</span>
                      <span class="fw-bold text-success">100% Authorized</span>
                   </li>
-                  <li class="list-group-item bg-transparent border-0 px-0 py-1 d-flex justify-content-between text-muted">
+                  <li
+                     class="list-group-item bg-transparent border-0 px-0 py-1 d-flex justify-content-between text-muted">
                      <span>Spot 10% to 25% above 200-WMA</span>
                      <span class="fw-bold text-success-emphasis">90% Authorized</span>
                   </li>
-                  <li class="list-group-item bg-transparent border-0 px-0 py-1 d-flex justify-content-between text-muted">
+                  <li
+                     class="list-group-item bg-transparent border-0 px-0 py-1 d-flex justify-content-between text-muted">
                      <span>Spot 0% to 10% above 200-WMA</span>
                      <span class="fw-bold text-warning-emphasis">85% Authorized</span>
                   </li>
-                  <li class="list-group-item bg-transparent border-0 px-0 py-1 d-flex justify-content-between text-muted">
+                  <li
+                     class="list-group-item bg-transparent border-0 px-0 py-1 d-flex justify-content-between text-muted">
                      <span>Spot 0% to 20% below 200-WMA</span>
                      <span class="fw-bold text-warning">70% Authorized</span>
                   </li>
-                  <li class="list-group-item bg-transparent border-0 px-0 py-1 d-flex justify-content-between text-muted">
+                  <li
+                     class="list-group-item bg-transparent border-0 px-0 py-1 d-flex justify-content-between text-muted">
                      <span>Spot 20% to 30% below 200-WMA</span>
                      <span class="fw-bold text-danger">50% Authorized</span>
                   </li>
-                  <li class="list-group-item bg-transparent border-0 px-0 py-1 d-flex justify-content-between text-muted">
+                  <li
+                     class="list-group-item bg-transparent border-0 px-0 py-1 d-flex justify-content-between text-muted">
                      <span>Spot 30% to 35% below 200-WMA</span>
                      <span class="fw-bold text-danger">40% Authorized</span>
                   </li>
-                  <li class="list-group-item bg-transparent border-0 px-0 py-1 d-flex justify-content-between text-muted">
+                  <li
+                     class="list-group-item bg-transparent border-0 px-0 py-1 d-flex justify-content-between text-muted">
                      <span>Spot &gt; 35% below 200-WMA</span>
                      <span class="fw-bold text-danger">0% (Withdrawals Paused)</span>
                   </li>
@@ -523,39 +559,49 @@
             <div class="card bg-body-tertiary shadow-sm rounded-4 p-4 h-100">
                <h4 class="h5 fw-bold mb-3"><span class="text-primary me-2">•</span>Advanced Withdrawal Option</h4>
                <p class="text-muted mb-3">
-                  When Bitcoin is in a bull market and trading significantly above its 200-WMA, the strategy authorizes you to take multiple months of budget in advance (cashing out during highs to fund future low-budget periods):
+                  When Bitcoin is in a bull market and trading significantly above its 200-WMA, the strategy authorizes
+                  you to take multiple months of budget in advance (cashing out during highs to fund future low-budget
+                  periods):
                </p>
 
                <ul class="list-group list-group-flush bg-transparent">
-                  <li class="list-group-item bg-transparent border-0 px-0 py-1 d-flex justify-content-between text-muted">
+                  <li
+                     class="list-group-item bg-transparent border-0 px-0 py-1 d-flex justify-content-between text-muted">
                      <span>33% to 66% premium</span>
                      <span class="fw-bold text-success">Current + 1 month</span>
                   </li>
-                  <li class="list-group-item bg-transparent border-0 px-0 py-1 d-flex justify-content-between text-muted">
+                  <li
+                     class="list-group-item bg-transparent border-0 px-0 py-1 d-flex justify-content-between text-muted">
                      <span>66% to 100% premium</span>
                      <span class="fw-bold text-success">Current + 3 months</span>
                   </li>
-                  <li class="list-group-item bg-transparent border-0 px-0 py-1 d-flex justify-content-between text-muted">
+                  <li
+                     class="list-group-item bg-transparent border-0 px-0 py-1 d-flex justify-content-between text-muted">
                      <span>100% to 200% premium</span>
                      <span class="fw-bold text-success">Current + 5 months</span>
                   </li>
-                  <li class="list-group-item bg-transparent border-0 px-0 py-1 d-flex justify-content-between text-muted">
+                  <li
+                     class="list-group-item bg-transparent border-0 px-0 py-1 d-flex justify-content-between text-muted">
                      <span>200% to 400% premium</span>
                      <span class="fw-bold text-success">Current + 11 months</span>
                   </li>
-                  <li class="list-group-item bg-transparent border-0 px-0 py-1 d-flex justify-content-between text-muted">
+                  <li
+                     class="list-group-item bg-transparent border-0 px-0 py-1 d-flex justify-content-between text-muted">
                      <span>400% to 650% premium</span>
                      <span class="fw-bold text-success">Current + 23 months</span>
                   </li>
-                  <li class="list-group-item bg-transparent border-0 px-0 py-1 d-flex justify-content-between text-muted">
+                  <li
+                     class="list-group-item bg-transparent border-0 px-0 py-1 d-flex justify-content-between text-muted">
                      <span>650% to 900% premium</span>
                      <span class="fw-bold text-success">Current + 35 months</span>
                   </li>
-                  <li class="list-group-item bg-transparent border-0 px-0 py-1 d-flex justify-content-between text-muted">
+                  <li
+                     class="list-group-item bg-transparent border-0 px-0 py-1 d-flex justify-content-between text-muted">
                      <span>900% to 1400% premium</span>
                      <span class="fw-bold text-success">Current + 47 months</span>
                   </li>
-                  <li class="list-group-item bg-transparent border-0 px-0 py-1 d-flex justify-content-between text-muted">
+                  <li
+                     class="list-group-item bg-transparent border-0 px-0 py-1 d-flex justify-content-between text-muted">
                      <span>&gt; 1400% premium</span>
                      <span class="fw-bold text-success">Current + 59 months</span>
                   </li>
@@ -564,11 +610,14 @@
          </div>
       </div>
    </article>
+
+   <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/components/jjg-disclaimer.php'; ?>
+
    </main>
    <footer-component></footer-component>
 
    <script>
-      var callback = function(mutationsList, observer) {
+      var callback = function (mutationsList, observer) {
          // Look through all mutations that just occured
          for (let mutation of mutationsList) {
             // If the `data-bs-theme` attribute was modified
