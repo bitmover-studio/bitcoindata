@@ -233,7 +233,8 @@
                   </span>
                   <div>
                      <p class="fw-semibold mb-0">Base64 Signature</p>
-                     <p class="text-body-secondary mb-0 small">Standard ECDSA or BIP-322 Schnorr cryptographic signature (Sparrow, Electrum, Core).</p>
+                     <p class="text-body-secondary mb-0 small">Standard ECDSA or BIP-322 Schnorr cryptographic signature
+                        (Sparrow, Electrum, Core).</p>
                   </div>
                </div>
             </div>
@@ -483,7 +484,7 @@
 
                   <!-- Share button -->
                   <button type="button"
-                     class="btn btn-secondary btn-lg fs-6 px-4 rounded-3 d-inline-flex align-items-center gap-2"
+                     class="btn btn-outline-secondary btn-lg fs-6 px-4 rounded-3 d-inline-flex align-items-center gap-2"
                      id="shareBtn" onclick="saveAndShare()">
                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-share" viewBox="0 0 16 16">
@@ -684,7 +685,8 @@
                            the one supplied.</li>
                         <li><strong>Truncated signature:</strong> A standard Bitcoin ECDSA signature must be a 65-byte
                            base64 string (starts with <code>H</code>, <code>I</code>, <code>G</code>, <code>J</code>, or
-                           <code>K</code>). For Taproot addresses (<code>bc1p</code>), signatures use the BIP-322 Schnorr specification.
+                           <code>K</code>). For Taproot addresses (<code>bc1p</code>), signatures use the BIP-322
+                           Schnorr specification.
                         </li>
                      </ul>
                   </div>
@@ -719,7 +721,11 @@
                         </li>
                      </ol>
                      <p class="mb-2"><strong>Taproot (BIP-322 Schnorr):</strong></p>
-                     <p class="mb-0">Because Schnorr signatures (BIP-340) do not support public key recovery, Taproot addresses cannot use the legacy signing scheme. Instead, <strong>BIP-322</strong> constructs deterministic virtual transactions (<code>toSpend</code> and <code>toSign</code>) committing to the message, verifying the Schnorr signature directly against the Taproot P2TR output script.</p>
+                     <p class="mb-0">Because Schnorr signatures (BIP-340) do not support public key recovery, Taproot
+                        addresses cannot use the legacy signing scheme. Instead, <strong>BIP-322</strong> constructs
+                        deterministic virtual transactions (<code>toSpend</code> and <code>toSign</code>) committing to
+                        the message, verifying the Schnorr signature directly against the Taproot P2TR output script.
+                     </p>
                   </div>
                </div>
             </div>
@@ -737,10 +743,14 @@
                   <div class="accordion-body text-body-secondary small pt-1">
                      This tool supports all standard Bitcoin message signing formats:
                      <ul class="mb-0 mt-2">
-                        <li><strong>Taproot (P2TR / Bech32m):</strong> Addresses starting with <code>bc1p</code> using Schnorr signatures under the <strong>BIP-322</strong> standard (supported by Sparrow, Bitcoin Core, and modern wallets).</li>
-                        <li><strong>Native SegWit (Bech32):</strong> Addresses starting with <code>bc1q</code> (BIP-173).</li>
+                        <li><strong>Taproot (P2TR / Bech32m):</strong> Addresses starting with <code>bc1p</code> using
+                           Schnorr signatures under the <strong>BIP-322</strong> standard (supported by Sparrow, Bitcoin
+                           Core, and modern wallets).</li>
+                        <li><strong>Native SegWit (Bech32):</strong> Addresses starting with <code>bc1q</code>
+                           (BIP-173).</li>
                         <li><strong>Nested SegWit (P2SH-P2WPKH):</strong> Addresses starting with <code>3</code>.</li>
-                        <li><strong>Legacy (P2PKH):</strong> Addresses starting with <code>1</code> (compressed and uncompressed public keys).</li>
+                        <li><strong>Legacy (P2PKH):</strong> Addresses starting with <code>1</code> (compressed and
+                           uncompressed public keys).</li>
                      </ul>
                   </div>
                </div>
@@ -757,7 +767,11 @@
                <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="faq5"
                   data-bs-parent="#faqAccordion">
                   <div class="accordion-body text-body-secondary small pt-1">
-                     <strong>Yes, full Taproot and BIP-322 support is built-in!</strong> Taproot addresses (starting with <code>bc1p</code>) use Schnorr signatures (BIP-340) following the <strong>BIP-322</strong> specification. This verifier supports BIP-322 simple format signatures (including Sparrow Wallet format with or without the <code>smp:</code> prefix) as well as Bitcoin Core BIP-322 signatures, verified 100% client-side in your browser.
+                     <strong>Yes, full Taproot and BIP-322 support is built-in!</strong> Taproot addresses (starting
+                     with <code>bc1p</code>) use Schnorr signatures (BIP-340) following the <strong>BIP-322</strong>
+                     specification. This verifier supports BIP-322 simple format signatures (including Sparrow Wallet
+                     format with or without the <code>smp:</code> prefix) as well as Bitcoin Core BIP-322 signatures,
+                     verified 100% client-side in your browser.
                   </div>
                </div>
             </div>

@@ -489,7 +489,7 @@
 
                   <!-- Share button -->
                   <button type="button"
-                     class="btn btn-secondary btn-lg fs-6 px-4 rounded-3 d-inline-flex align-items-center gap-2"
+                     class="btn btn-outline-secondary btn-lg fs-6 px-4 rounded-3 d-inline-flex align-items-center gap-2"
                      id="pgpShareBtn" onclick="pgpSaveAndShare()">
                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-share" viewBox="0 0 16 16">

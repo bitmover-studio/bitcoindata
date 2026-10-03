@@ -2,9 +2,9 @@
 
 const footerTemplate = document.createElement('template');
 footerTemplate.innerHTML = `
-<footer class="justify-content-evenly py-4 py-md-5 mt-6 border-top">
-    <div class="container-fluid col-lg-12 col-xl-9 ">
-        <div class="row grid gap-3">
+<footer class="justify-content-evenly py-4 py-md-5">
+    <div class="container-fluid px-4 px-lg-5">
+        <div class="row grid gap-3 border-top pt-4">
             <div class="col-md-3">
                 <p class="text-muted">Project</p>
                 <p class="fw-semibold"><a href="donate" class='footer-link text-decoration-none' title="About us">About us</a></p>

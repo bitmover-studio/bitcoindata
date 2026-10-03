@@ -36,12 +36,19 @@
   --nav-dropdown-text: #cecece;
 
   /* Bootstrap Override variables matching premium card styles */
-  --bs-tertiary-bg: #1e293b;
-  --bs-tertiary-bg-rgb: 30, 41, 59;
+  --bs-tertiary-bg: #1e293bbb;
+  --bs-tertiary-bg-rgb: 25, 36, 53;
   --bs-secondary-bg: #0f172a;
   --bs-secondary-bg-rgb: 15, 23, 42;
   --bs-border-color: #334155;
   --bs-border-color-translucent: rgba(51, 65, 85, 0.5);
+
+  --bs-alert-bg: #3992ff33;
+  --bs-info-bg-subtle: #3992ff33;
+  --bs-alert-color: rgb(142 205 255);
+  --bs-info-rgb: rgb(142 205 255);
+  --bs-alert-border-color: rgb(142 205 255);
+  --bs-info-border-subtle: rgb(142 205 255);
 }
 
 :root {
@@ -112,18 +119,166 @@ span.logo {
   width: 150px;
 }
 
-/* Navbar */
-#topnav,
-#navbar-toggler {
-  -webkit-backdrop-filter: blur(12px) !important;
-  backdrop-filter: blur(12px) !important;
-  background-color: rgba(var(--bs-tertiary-bg-rgb), 0.7) !important;
-  /* Semi-transparent light background */
+/* ═══════════════════════════════════════════════
+   SIDEBAR LAYOUT
+════════════════════════════════════════════════ */
+:root {
+  --sidebar-width: 250px;
 }
 
-#nav-lg-menu>li {
-  font-size: 15px;
-  margin-right: 1rem;
+.sidebar-label {
+  font-weight: 600;
+}
+
+/* Push body into a flex column on mobile, CSS Grid on desktop */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+footer-component,
+body>footer {
+  display: block;
+  width: 100%;
+}
+
+@media (min-width: 992px) {
+  body {
+    display: grid;
+    grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+    grid-template-rows: 1fr auto;
+    grid-template-areas:
+      "sidebar main"
+      "sidebar footer";
+    min-height: 100vh;
+  }
+
+  /* The <header> (which wraps navbar-component) becomes the sidebar column */
+  body>header {
+    grid-area: sidebar;
+    width: var(--sidebar-width);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    z-index: 1000;
+  }
+
+  /* Main content sits in the right column, top area */
+  main {
+    grid-area: main;
+    min-width: 0;
+  }
+
+  /* Footer sits in the right column, bottom area */
+  footer-component,
+  body>footer {
+    grid-area: footer;
+    min-width: 0;
+    display: block;
+    width: 100%;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   SIDEBAR COMPONENT
+════════════════════════════════════════════════ */
+#sidebar-desktop {
+  width: var(--sidebar-width);
+  height: 100vh;
+  background-color: rgba(var(--bs-tertiary-bg-rgb), 0.85);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border-right: 1px solid var(--bs-border-color);
+}
+
+/* Mobile top bar */
+#mobile-topbar {
+  background-color: rgba(var(--bs-tertiary-bg-rgb), 0.9);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+}
+
+/* Sidebar nav links */
+.sidebar-nav-link {
+  color: var(--bs-body-color);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: background-color 0.18s ease, color 0.18s ease;
+}
+
+.sidebar-nav-link:hover {
+  background-color: var(--nav-hover-bg);
+  color: var(--bs-body-color);
+}
+
+.sidebar-nav-link.active {
+  background-color: var(--theme-blue-alpha) !important;
+  color: var(--theme-blue) !important;
+  font-weight: 600;
+}
+
+.sidebar-sub-link {
+  font-size: 0.8125rem;
+  font-weight: 400;
+  opacity: 0.9;
+}
+
+.sidebar-group-toggle {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--bs-body-color);
+  cursor: pointer;
+  transition: background-color 0.18s ease;
+}
+
+.sidebar-group-toggle:hover {
+  background-color: var(--nav-hover-bg);
+}
+
+.sidebar-chevron {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0.5;
+}
+
+.sidebar-icon {
+  opacity: 0.7;
+}
+
+.sidebar-nav-link.active .sidebar-icon,
+.sidebar-nav-link:hover .sidebar-icon {
+  opacity: 1;
+}
+
+.sidebar-brand-text {
+  font-size: 0.95rem;
+  line-height: 1.2;
+}
+
+.sidebar-brand-sub {
+  font-size: 0.75rem;
+}
+
+/* Theme toggle buttons in sidebar */
+#nav-theme-toggler button {
+  opacity: 0.65;
+  transition: opacity 0.2s ease;
+}
+
+#nav-theme-toggler button:hover {
+  opacity: 1;
+}
+
+/* Offcanvas sidebar width */
+#sidebarOffcanvas {
+  width: 280px;
 }
 
 [data-bs-theme=dark] .bg-body-secondary {
@@ -230,66 +385,6 @@ span.logo {
 
 .card-home:hover .btn-home-action svg {
   transform: translateX(4px);
-}
-
-/* Add smooth transitions to base states */
-#nav-lg-menu li,
-.nav-icon-btn {
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-/* Change background on the li pill */
-#nav-theme-toggler:hover,
-#navbar-toggler:hover,
-.nav-icon-btn:hover {
-  background-color: var(--nav-hover-bg) !important;
-}
-
-#nav-lg-menu li:has(a.active.nav-link) {
-  background-color: var(--theme-blue-alpha) !important;
-  border-radius: 0.8rem !important;
-}
-
-#nav-lg-menu li a.active {
-  color: var(--theme-blue) !important;
-}
-
-#MenuMobile li.nav-item:hover,
-#MenuMobile li.nav-item:has(a.active) {
-  background-color: var(--nav-hover-bg);
-  border-radius: 0.8rem;
-}
-
-#nav-lg-menu li:hover a,
-#MenuMobile li.nav-item:hover a,
-#MenuMobile li.nav-item:has(a.active) a,
-.nav-icon-btn:hover *,
-.nav-icon-btn:hover span {
-  color: var(--nav-hover-text) !important;
-}
-
-.dropdown-menu span {
-  color: var(--nav-dropdown-text) !important;
-}
-
-.nav-icon-btn:hover .navbar-toggler-icon {
-  filter: brightness(0) invert(1);
-}
-
-#MenuMobile {
-  font-size: 18px;
-  font-weight: 600;
-}
-
-#MenuMobile i {
-  height: 50px;
-}
-
-
-#nav-lg-menu a {
-  display: inline-block;
-  position: relative;
-  background-color: transparent;
 }
 
 /* main */
@@ -492,7 +587,6 @@ main {
   color: var(--theme-blue) !important;
   background-color: rgba(38, 178, 160, 0.1) !important;
   border-color: var(--theme-blue) !important;
-  transform: translateY(-1px);
 }
 
 .btn-outline-secondary:focus-visible,
@@ -535,7 +629,6 @@ main {
   color: var(--theme-blue) !important;
   background-color: rgba(45, 212, 191, 0.15) !important;
   border-color: var(--theme-blue) !important;
-  transform: translateY(-1px);
 }
 
 [data-bs-theme="dark"] .btn-outline-secondary:focus-visible {
@@ -639,74 +732,7 @@ input[type=number] {
   margin-bottom: 6rem !important;
 }
 
-/* Phantom-style Sliding Nav Indicator */
-#nav-lg-menu {
-  position: relative;
-}
 
-#nav-lg-menu>li {
-  position: relative;
-  z-index: 1;
-}
-
-.nav-highlight {
-  position: absolute;
-  background-color: var(--nav-hover-bg);
-  border-radius: 0.8rem;
-  transition: width 0.28s cubic-bezier(0.16, 1, 0.3, 1),
-    height 0.28s cubic-bezier(0.16, 1, 0.3, 1),
-    left 0.28s cubic-bezier(0.16, 1, 0.3, 1),
-    top 0.28s cubic-bezier(0.16, 1, 0.3, 1),
-    opacity 0.2s ease,
-    transform 0.2s ease;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0;
-  transform: scale(0.95);
-}
-
-.dropdown-highlight {
-  background-color: var(--nav-hover-bg);
-  border-radius: 0.375rem;
-}
-
-/* Smooth expand/collapse dropdown — state is driven entirely by WAAPI in navbar.js */
-#nav-lg-menu .dropdown-menu {
-  display: block !important;
-  visibility: hidden;
-  opacity: 0;
-  pointer-events: none;
-  transform: scaleY(0.7) scaleX(0.95);
-  transform-origin: top center;
-  position: absolute;
-  top: calc(100% + 6px);
-  left: 50%;
-  translate: -50% 0;
-  z-index: 1000;
-  min-width: 230px;
-}
-
-#nav-lg-menu .dropdown-menu>li {
-  position: relative;
-  z-index: 1;
-}
-
-#nav-lg-menu .dropdown-menu>li a {
-  transition: color 0.2s ease;
-}
-
-/* Mobile accordion chevron */
-.mobile-accordion-chevron {
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  flex-shrink: 0;
-}
-
-.mobile-accordion-toggle {
-  cursor: pointer;
-  font-size: inherit;
-  font-weight: inherit;
-  color: inherit;
-}
 
 /* TableFU FUStatus Table */
 

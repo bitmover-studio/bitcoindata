@@ -139,8 +139,12 @@
       <div class="row g-3 mb-4">
         <div class="col-12 col-sm-6 col-lg-5">
           <div class="d-flex align-items-start gap-3">
-            <span class="d-flex align-items-center justify-content-center rounded-circle bg-body-secondary flex-shrink-0" style="width:36px;height:36px;">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary" style="rotate:180deg;">
+            <span
+              class="d-flex align-items-center justify-content-center rounded-circle bg-body-secondary flex-shrink-0"
+              style="width:36px;height:36px;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="text-primary" style="rotate:180deg;">
                 <path d="M16 5H3" />
                 <path d="M16 12H3" />
                 <path d="M16 19H3" />
@@ -151,47 +155,62 @@
             </span>
             <div>
               <p class="fw-semibold mb-0">One competitor per line</p>
-              <p class="text-body-secondary mb-0 small">Paste your list of participants, one name or identifier per line.</p>
+              <p class="text-body-secondary mb-0 small">Paste your list of participants, one name or identifier per
+                line.</p>
             </div>
           </div>
         </div>
         <div class="col-12 col-sm-6 col-lg-5">
           <div class="d-flex align-items-start gap-3">
-            <span class="d-flex align-items-center justify-content-center rounded-circle bg-body-secondary flex-shrink-0" style="width:36px;height:36px;">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="text-primary" viewBox="0 0 16 16">
+            <span
+              class="d-flex align-items-center justify-content-center rounded-circle bg-body-secondary flex-shrink-0"
+              style="width:36px;height:36px;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="text-primary"
+                viewBox="0 0 16 16">
                 <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z" />
                 <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0" />
               </svg>
             </span>
             <div>
               <p class="fw-semibold mb-0">Set a target block</p>
-              <p class="text-body-secondary mb-0 small">Enter the Bitcoin block number whose hash will seed the random draw.</p>
+              <p class="text-body-secondary mb-0 small">Enter the Bitcoin block number whose hash will seed the random
+                draw.</p>
             </div>
           </div>
         </div>
         <div class="col-12 col-sm-6 col-lg-5">
           <div class="d-flex align-items-start gap-3">
-            <span class="d-flex align-items-center justify-content-center rounded-circle bg-body-secondary flex-shrink-0" style="width:36px;height:36px;">
-              <svg xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 -960 960 960" width="16px" fill="currentColor" class="text-primary">
-                <path d="M80-120v-80h360v-447q-26-9-45-28t-28-45H240l120 280q0 50-41 85t-99 35q-58 0-99-35t-41-85l120-280h-80v-80h247q12-35 43-57.5t70-22.5q39 0 70 22.5t43 57.5h247v80h-80l120 280q0 50-41 85t-99 35q-58 0-99-35t-41-85l120-280H593q-9 26-28 45t-45 28v447h360v80H80Zm585-320h150l-75-174-75 174Zm-520 0h150l-75-174-75 174Zm335-280q17 0 28.5-11.5T520-760q0-17-11.5-28.5T480-800q-17 0-28.5 11.5T440-760q0 17 11.5 28.5T480-720Z" />
+            <span
+              class="d-flex align-items-center justify-content-center rounded-circle bg-body-secondary flex-shrink-0"
+              style="width:36px;height:36px;">
+              <svg xmlns="http://www.w3.org/2000/svg" height="16px" viewBox="0 -960 960 960" width="16px"
+                fill="currentColor" class="text-primary">
+                <path
+                  d="M80-120v-80h360v-447q-26-9-45-28t-28-45H240l120 280q0 50-41 85t-99 35q-58 0-99-35t-41-85l120-280h-80v-80h247q12-35 43-57.5t70-22.5q39 0 70 22.5t43 57.5h247v80h-80l120 280q0 50-41 85t-99 35q-58 0-99-35t-41-85l120-280H593q-9 26-28 45t-45 28v447h360v80H80Zm585-320h150l-75-174-75 174Zm-520 0h150l-75-174-75 174Zm335-280q17 0 28.5-11.5T520-760q0-17-11.5-28.5T480-800q-17 0-28.5 11.5T440-760q0 17 11.5 28.5T480-720Z" />
               </svg>
             </span>
             <div>
               <p class="fw-semibold mb-0">Provably fair</p>
-              <p class="text-body-secondary mb-0 small">Winners are derived from the blockhash — verifiable by anyone on the blockchain.</p>
+              <p class="text-body-secondary mb-0 small">Winners are derived from the blockhash — verifiable by anyone on
+                the blockchain.</p>
             </div>
           </div>
         </div>
         <div class="col-12 col-sm-6 col-lg-5">
           <div class="d-flex align-items-start gap-3">
-            <span class="d-flex align-items-center justify-content-center rounded-circle bg-body-secondary flex-shrink-0" style="width:36px;height:36px;">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="text-primary" viewBox="0 0 16 16">
-                <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z" />
+            <span
+              class="d-flex align-items-center justify-content-center rounded-circle bg-body-secondary flex-shrink-0"
+              style="width:36px;height:36px;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="text-primary"
+                viewBox="0 0 16 16">
+                <path
+                  d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z" />
               </svg>
             </span>
             <div>
               <p class="fw-semibold mb-0">Shareable link</p>
-              <p class="text-body-secondary mb-0 small">Generate a link to share your giveaway setup — data is encrypted client-side.</p>
+              <p class="text-body-secondary mb-0 small">Generate a link to share your giveaway setup — data is encrypted
+                client-side.</p>
             </div>
           </div>
         </div>
@@ -222,29 +241,36 @@
             <div class="form-floating border-0">
               <input type="number" min="0" step="1"
                 onkeypress="return (event.charCode == 8 || event.charCode == 0 || event.charCode == 13) ? null : event.charCode >= 48 && event.charCode <= 57"
-                class="form-control border-0 bg-body-secondary rounded-4 lh-base fw-medium text-body-emphasis" id="block"
-                value="0">
+                class="form-control border-0 bg-body-secondary rounded-4 lh-base fw-medium text-body-emphasis"
+                id="block" value="0">
               <label for="block" class="fw-medium lh-base fs-6">Target Block</label>
             </div>
           </div>
         </div>
 
         <div class="d-flex justify-content-start gap-2 gap-md-3 mb-3">
-          <button type="submit" class="btn btn-primary btn-lg d-inline-flex align-items-center justify-content-center px-4 rounded fs-6" id="submitbutton" style="position: relative; overflow: hidden; transition: background-color 0.3s ease;">
+          <button type="submit"
+            class="btn btn-primary btn-lg d-inline-flex align-items-center justify-content-center px-4 rounded fs-6"
+            id="submitbutton" style="position: relative; overflow: hidden; transition: background-color 0.3s ease;">
             <span id="submit-label" style="transition: opacity 0.2s, transform 0.2s;">Pick Winners</span>
-            <div id="submit-spinner" class="spinner-border spinner-border-sm position-absolute" role="status" style="opacity: 0; transition: opacity 0.2s, transform 0.2s; pointer-events: none;">
+            <div id="submit-spinner" class="spinner-border spinner-border-sm position-absolute" role="status"
+              style="opacity: 0; transition: opacity 0.2s, transform 0.2s; pointer-events: none;">
               <span class="visually-hidden">Loading...</span>
             </div>
-            <div id="submit-success" style="opacity: 0; transform: scale(0.5); position: absolute; transition: opacity 0.2s, transform 0.2s; pointer-events: none;">
-              <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <div id="submit-success"
+              style="opacity: 0; transform: scale(0.5); position: absolute; transition: opacity 0.2s, transform 0.2s; pointer-events: none;">
+              <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="3" fill="none"
+                stroke-linecap="round" stroke-linejoin="round">
                 <path d="M20 6L9 17l-5-5" />
               </svg>
             </div>
           </button>
-          <button type="button" class="btn btn-secondary border-2 btn-lg d-inline-flex align-items-center gap-2 px-4 rounded fs-6"
+          <button type="button"
+            class="btn btn-outline-secondary border-2 btn-lg d-inline-flex align-items-center gap-2 px-4 rounded fs-6"
             onclick="save_share()">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z" />
+              <path
+                d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z" />
             </svg>
             Share
           </button>
@@ -256,8 +282,7 @@
             <div class="d-flex justify-content-between align-items-center mb-2">
               <span class="fw-semibold small text-body-secondary">Share Results</span>
               <button type="button" class="btn-close btn-close-sm"
-                onclick="document.getElementById('shareContainer').classList.add('d-none')"
-                aria-label="Close"></button>
+                onclick="document.getElementById('shareContainer').classList.add('d-none')" aria-label="Close"></button>
             </div>
 
             <!-- Option 1: Permalink -->
@@ -294,9 +319,11 @@
     <div class="bg-body-tertiary rounded-4 p-md-5 p-4 shadow-sm mt-4" id="results-section">
       <div class="d-flex justify-content-between align-items-center mb-4">
         <p class="section-label mb-0">Results</p>
-        <button type="button" class="btn btn-secondary btn-sm d-inline-flex align-items-center gap-1" onclick="save_share()">
+        <button type="button" class="btn btn-secondary btn-sm d-inline-flex align-items-center gap-1"
+          onclick="save_share()">
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
-            <path d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z" />
+            <path
+              d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z" />
           </svg>
           Share
         </button>
@@ -304,7 +331,8 @@
       <p class="mb-2">Block hash: <output id="block-output" class="text-break font-monospace"></output></p>
       <div id="verify"></div>
       <p class="mb-2">Decimal number: <code class="text-primary text-break" id="rolled-number"></code></p>
-      <p><strong>Winner: </strong><span class="h4"><span id="winner" class="badge bg-success-subtle text-success"></span></span></p>
+      <p><strong>Winner: </strong><span class="h4"><span id="winner"
+            class="badge bg-success-subtle text-success"></span></span></p>
       <output id="n_winner_div"></output>
     </div>
 
@@ -313,7 +341,10 @@
       <p class="section-label mb-4">How the draw works</p>
       <h3 class="fw-bold mb-3">Provably Fair Selection Algorithm</h3>
       <p class="text-body-secondary mb-4">
-        A draw is <strong>provably fair</strong> when the winner is selected deterministically from an unpredictable, publicly verifiable seed. This tool uses the hash of a Bitcoin block as its source of entropy. Because Bitcoin block hashes are generated by decentralized miners solving complex cryptographic puzzles, they cannot be manipulated or predicted beforehand.
+        A draw is <strong>provably fair</strong> when the winner is selected deterministically from an unpredictable,
+        publicly verifiable seed. This tool uses the hash of a Bitcoin block as its source of entropy. Because Bitcoin
+        block hashes are generated by decentralized miners solving complex cryptographic puzzles, they cannot be
+        manipulated or predicted beforehand.
       </p>
 
       <div class="border-top py-5 row">
@@ -321,7 +352,9 @@
           <h5 class="fw-bold mb-3">1. Hexadecimal to Decimal</h5>
 
           <p class="text-body-secondary small">
-            The target block hash is a 64-character hexadecimal string. To perform arithmetic, we extract the last 6 characters (which range from <code>000000</code> to <code>ffffff</code>) and convert them into a base-10 integer:
+            The target block hash is a 64-character hexadecimal string. To perform arithmetic, we extract the last 6
+            characters (which range from <code>000000</code> to <code>ffffff</code>) and convert them into a base-10
+            integer:
           </p>
           <p class="text-body-secondary small mb-0">
             This gives us a deterministic number between <code>0</code> and <code>16,777,215</code>.
@@ -331,14 +364,19 @@
           <div class="code-container">
             <div class="code-header d-flex justify-content-between align-items-center">
               <span>JavaScript</span>
-              <button class="btn btn-sm btn-link p-0 text-white-50 hover-white" onclick="copyCode(this)" title="Copy Code">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-copy" viewBox="0 0 16 16">
-                  <path fill-rule="evenodd" d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V2Zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H6Z" />
-                  <path d="M2 5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2h-1a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h1V5H2Z" />
+              <button class="btn btn-sm btn-link p-0 text-white-50 hover-white" onclick="copyCode(this)"
+                title="Copy Code">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-copy"
+                  viewBox="0 0 16 16">
+                  <path fill-rule="evenodd"
+                    d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V2Zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H6Z" />
+                  <path
+                    d="M2 5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2h-1a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h1V5H2Z" />
                 </svg>
               </button>
             </div>
-            <pre class="code-body"><code><span class="code-keyword">let</span> decimal = <span class="code-function">parseInt</span>(blockhash.<span class="code-function">slice</span>(-<span class="code-number">6</span>), <span class="code-number">16</span>);</code></pre>
+            <pre
+              class="code-body"><code><span class="code-keyword">let</span> decimal = <span class="code-function">parseInt</span>(blockhash.<span class="code-function">slice</span>(-<span class="code-number">6</span>), <span class="code-number">16</span>);</code></pre>
           </div>
         </div>
       </div>
@@ -348,7 +386,8 @@
         <div class="col-md-6">
           <h5 class="fw-bold mb-3">2. Selecting the Index</h5>
           <p class="text-body-secondary small">
-            We divide the decimal value by the total number of participants and find the division remainder using the <strong>modulo operator (%)</strong>. The remainder acts as the index pointer:
+            We divide the decimal value by the total number of participants and find the division remainder using the
+            <strong>modulo operator (%)</strong>. The remainder acts as the index pointer:
           </p>
           <p class="text-body-secondary small mb-0">
             The index is guaranteed to fall between <code>0</code> and <code>competitors.length - 1</code>.
@@ -358,10 +397,14 @@
           <div class="code-container">
             <div class="code-header d-flex justify-content-between align-items-center">
               <span>JavaScript</span>
-              <button class="btn btn-sm btn-link p-0 text-white-50 hover-white" onclick="copyCode(this)" title="Copy Code">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-copy" viewBox="0 0 16 16">
-                  <path fill-rule="evenodd" d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V2Zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H6Z" />
-                  <path d="M2 5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2h-1a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h1V5H2Z" />
+              <button class="btn btn-sm btn-link p-0 text-white-50 hover-white" onclick="copyCode(this)"
+                title="Copy Code">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-copy"
+                  viewBox="0 0 16 16">
+                  <path fill-rule="evenodd"
+                    d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V2Zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H6Z" />
+                  <path
+                    d="M2 5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2h-1a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h1V5H2Z" />
                 </svg>
               </button>
             </div>
@@ -376,17 +419,23 @@
         <div class="col-md-6">
           <h5 class="fw-bold mb-3">3. Drawing Multiple Winners</h5>
           <p class="text-body-secondary small mb-0">
-            To choose multiple winners without duplicates, the selected winner is removed from the array, shrinking the pool. The script shifts the blockhash slice window one index to the left to extract a new, independent entropy chunk, and recalculates:
+            To choose multiple winners without duplicates, the selected winner is removed from the array, shrinking the
+            pool. The script shifts the blockhash slice window one index to the left to extract a new, independent
+            entropy chunk, and recalculates:
           </p>
         </div>
         <div class="col-md-6">
           <div class="code-container">
             <div class="code-header d-flex justify-content-between align-items-center">
               <span>JavaScript</span>
-              <button class="btn btn-sm btn-link p-0 text-white-50 hover-white" onclick="copyCode(this)" title="Copy Code">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-copy" viewBox="0 0 16 16">
-                  <path fill-rule="evenodd" d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V2Zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H6Z" />
-                  <path d="M2 5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2h-1a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h1V5H2Z" />
+              <button class="btn btn-sm btn-link p-0 text-white-50 hover-white" onclick="copyCode(this)"
+                title="Copy Code">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-copy"
+                  viewBox="0 0 16 16">
+                  <path fill-rule="evenodd"
+                    d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V2Zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H6Z" />
+                  <path
+                    d="M2 5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2h-1a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h1V5H2Z" />
                 </svg>
               </button>
             </div>

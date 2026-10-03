@@ -49,10 +49,10 @@ $base = '/';
 <link href="<?= $base ?>modules/bootstrap.min.css" rel="stylesheet">
 <script src="<?= $base ?>modules/bootstrap.bundle.min.js" defer></script>
 
-<link href="<?= $base ?>css/style.css?v=3.05" rel="stylesheet">
-<script src="<?= $base ?>components/navbar.js?v=2.00" defer></script>
+<link href="<?= $base ?>css/style.css?v=3.12" rel="stylesheet">
+<script src="<?= $base ?>components/navbar.js?v=3.00" defer></script>
 <script src="<?= $base ?>components/breadcrumbs.js?v=1.01" defer></script>
-<script src="<?= $base ?>components/footer.js?v=2.01" defer></script>
+<script src="<?= $base ?>components/footer.js?v=2.02" defer></script>
 
 <script async defer src="https://bitcoindata.science/api/simple.php/proxy.js" data-collect-dnt="true"></script>
 <script async src="https://bitcoindata.science/api/simple.php/auto-events.js" data-collect="outbound,emails" data-use-title="true" data-full-urls="true"></script>

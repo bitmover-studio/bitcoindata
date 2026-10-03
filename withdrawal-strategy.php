@@ -258,11 +258,11 @@
             </div>
             <div class="col-6 col-sm-12">
                <div class="d-flex justify-content-end align-items-center">
-                  <span class="me-1 text-primary-emphasis fw-semibold">Spot price</span>
+                  <span class="me-1 section-label text-body-secondary">Spot price</span>
                   <div class="form-check form-switch">
                      <input class="form-check-input" type="checkbox" role="switch" id="togglePrice"
                         onchange="calculateWithdrawalLimit();">
-                     <label class="form-check-label  text-primary-emphasis fw-semibold" for="togglePrice">200 WMA
+                     <label class="form-check-label section-label text-body-secondary" for="togglePrice">200 WMA
                         Price</label>
                   </div>
                </div>
@@ -306,16 +306,16 @@
                         onclick="saveToLocalStorage()">Save
                         inputs
                      </button>
-                     <button type="button" title="refresh" class="btn btn-secondary shadow-sm"
+                     <button type="button" title="refresh" class="btn btn-outline-secondary shadow-sm"
                         onclick="restoreDefaults()">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="24" fill="currentColor" viewBox="0 -960 960 960"
+                        <svg xmlns="http://www.w3.org/2000/svg" height="22" fill="currentColor" viewBox="0 -960 960 960"
                            width="24">
                            <path
                               d="M480-160q-134 0-227-93t-93-227q0-134 93-227t227-93q69 0 132 28.5T720-690v-110h80v280H520v-80h168q-32-56-87.5-88T480-720q-100 0-170 70t-70 170q0 100 70 170t170 70q77 0 139-44t87-116h84q-28 106-114 173t-196 67Z" />
                         </svg>
                      </button>
-                     <button type="button" id="shareInputs" title="Share" class="btn btn-secondary shadow-sm px-3"
-                        onclick="save_share()">
+                     <button type="button" id="shareInputs" title="Share"
+                        class="btn btn-outline-secondary shadow-sm px-3" onclick="save_share()">
                         Share
                      </button>
                      <div class="toast-container position-absolute mt-3">
@@ -437,12 +437,10 @@
 
 
    <article id="how" class="my-6">
-      <h3 class="display-5 fw-bold text-center mb-5">How to use the information provided through this tool:
-      </h3>
 
       <!-- Presumptions Callout -->
       <div class="bg-body-tertiary p-4 rounded-4 shadow-sm mb-5">
-         <h4 class="h5 fw-bold text-primary mb-3">Underlying Presumptions</h4>
+         <h3 class="section-label text-primary mb-3">Underlying Presumptions</h3>
          <p class="mb-2">This tool is designed to help individuals, institutions, or developer funds manage their
             Bitcoin holdings and employ sustainable, volatility-adjusted withdrawal methods.</p>
          <p class="mb-0 text-muted small">Note: This is not a short-term trading tool; it is a long-term capital
