@@ -41,7 +41,7 @@
    <!-- Hero Section: Welcome Text (Left) + Floating Spotlight Card (Right) -->
    <section class="row align-items-center justify-content-between g-4 g-xl-5 pt-3 pb-4 mb-5">
       <!-- Welcome Text (Left) -->
-      <div class="col-12 col-lg-7">
+      <div class="col-12 col-xxl-7">
          <div class="pe-lg-3">
             <h1 class="display-5 fw-bold mb-3 lh-sm">
                Explore <samp class="text-primary">bitcoindata</samp> utilities
