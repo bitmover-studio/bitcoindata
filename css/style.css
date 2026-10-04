@@ -43,12 +43,12 @@
   --bs-border-color: #334155;
   --bs-border-color-translucent: rgba(51, 65, 85, 0.5);
 
-  --bs-alert-bg: #3992ff33;
-  --bs-info-bg-subtle: #3992ff33;
-  --bs-alert-color: rgb(142 205 255);
-  --bs-info-rgb: rgb(142 205 255);
-  --bs-alert-border-color: rgb(142 205 255);
-  --bs-info-border-subtle: rgb(142 205 255);
+  --bs-alert-bg: #091f3b;
+  --bs-info-bg-subtle: #091f3b;
+  --bs-alert-color: #091f3b;
+  --bs-info-rgb: #091f3b;
+  --bs-alert-border-color: #091f3b;
+  --bs-info-border-subtle: #091f3b;
 }
 
 :root {

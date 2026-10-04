@@ -435,8 +435,9 @@
    </div>
    </div>
 
+   <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/components/jjg-disclaimer.php'; ?>
 
-   <article id="how" class="my-6">
+   <article id="how">
 
       <!-- Presumptions Callout -->
       <div class="bg-body-tertiary p-4 rounded-4 shadow-sm mb-5">
@@ -608,8 +609,6 @@
          </div>
       </div>
    </article>
-
-   <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/components/jjg-disclaimer.php'; ?>
 
    </main>
    <footer-component></footer-component>

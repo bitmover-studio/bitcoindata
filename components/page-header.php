@@ -6,10 +6,10 @@ $h1Class = $h1Class ?? 'display-5';
 $showAd = $showAd ?? true;
 ?>
 <main class="<?= htmlspecialchars($mainClass) ?>">
-   <div id="breadcrumb-container" class="mt-2"></div>
    <?php if ($showAd): ?>
       <?php include __DIR__ . '/ad.php'; ?>
    <?php endif; ?>
+   <div id="breadcrumb-container" class="mt-2"></div>
    <?php if (!empty($h1)): ?>
       <div class="pt-4">
          <h1 class="h1 <?= htmlspecialchars($h1Class) ?> fw-bold mt-5"><?= $h1 ?></h1>

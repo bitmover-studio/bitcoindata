@@ -51,7 +51,7 @@ $base = '/';
 
 <link href="<?= $base ?>css/style.css?v=3.12" rel="stylesheet">
 <script src="<?= $base ?>components/navbar.js?v=3.00" defer></script>
-<script src="<?= $base ?>components/breadcrumbs.js?v=1.01" defer></script>
+<script src="<?= $base ?>components/breadcrumbs.js?v=1.03" defer></script>
 <script src="<?= $base ?>components/footer.js?v=2.02" defer></script>
 
 <script async defer src="https://bitcoindata.science/api/simple.php/proxy.js" data-collect-dnt="true"></script>

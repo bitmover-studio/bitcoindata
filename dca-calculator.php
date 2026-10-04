@@ -258,38 +258,6 @@
                </button>
             </div>
 
-            <!-- Share options container -->
-            <div id="shareContainer" class="w-100 mt-3 d-none text-start">
-               <div class="p-3 rounded-4 bg-body-secondary border border-secondary border-opacity-10">
-                  <div class="d-flex justify-content-between align-items-center mb-2">
-                     <span class="fw-semibold small text-body-secondary">Share Calculation</span>
-                     <button type="button" class="btn-close btn-close-sm"
-                        onclick="document.getElementById('shareContainer').classList.add('d-none')"
-                        aria-label="Close"></button>
-                  </div>
-                  <div class="mb-3">
-                     <label for="shareUrl" class="text-body-secondary small fw-medium mb-1 d-block">Permalink</label>
-                     <div class="input-group">
-                        <input type="text" id="shareUrl"
-                           class="form-control form-control-sm font-monospace bg-body border-0" readonly
-                           onclick="this.select()">
-                        <button class="btn btn-primary btn-sm px-3" type="button" id="copyShareBtn"
-                           onclick="copyShareUrl('shareUrl', 'copyShareBtn')">Copy Link</button>
-                     </div>
-                  </div>
-                  <div>
-                     <label for="shareBbcode" class="text-body-secondary small fw-medium mb-1 d-block">BBCode
-                        (Forums)</label>
-                     <div class="input-group">
-                        <input type="text" id="shareBbcode"
-                           class="form-control form-control-sm font-monospace bg-body border-0" readonly
-                           onclick="this.select()">
-                        <button class="btn btn-secondary btn-sm px-3" type="button" id="copyBbcodeBtn"
-                           onclick="copyShareUrl('shareBbcode', 'copyBbcodeBtn')">Copy BBCode</button>
-                     </div>
-                  </div>
-               </div>
-            </div>
          </div>
 
          <div class="col-md-9">
@@ -303,143 +271,41 @@
             </div>
          </div>
       </div>
+      <!-- Share options container -->
+      <div id="shareContainer" class="w-100 mt-3 d-none text-start">
+         <div class="p-3 rounded-4 bg-body-secondary border border-secondary border-opacity-10">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+               <span class="fw-semibold small text-body-secondary">Share Calculation</span>
+               <button type="button" class="btn-close btn-close-sm"
+                  onclick="document.getElementById('shareContainer').classList.add('d-none')"
+                  aria-label="Close"></button>
+            </div>
+            <div class="mb-3">
+               <label for="shareUrl" class="text-body-secondary small fw-medium mb-1 d-block">Permalink</label>
+               <div class="input-group">
+                  <input type="text" id="shareUrl" class="form-control form-control-sm font-monospace bg-body border-0"
+                     readonly onclick="this.select()">
+                  <button class="btn btn-primary btn-sm px-3" type="button" id="copyShareBtn"
+                     onclick="copyShareUrl('shareUrl', 'copyShareBtn')">Copy Link</button>
+               </div>
+            </div>
+            <div>
+               <label for="shareBbcode" class="text-body-secondary small fw-medium mb-1 d-block">BBCode
+                  (Forums)</label>
+               <div class="input-group">
+                  <input type="text" id="shareBbcode"
+                     class="form-control form-control-sm font-monospace bg-body border-0" readonly
+                     onclick="this.select()">
+                  <button class="btn btn-secondary btn-sm px-3" type="button" id="copyBbcodeBtn"
+                     onclick="copyShareUrl('shareBbcode', 'copyBbcodeBtn')">Copy BBCode</button>
+               </div>
+            </div>
+         </div>
+      </div>
    </div>
 
    <!-- FAQ Section -->
-   <article class="mt-5 mb-5 bg-body-tertiary p-4 rounded-4 mx-0">
-      <p class="section-label mt-5 mb-3">Frequently Asked Questions about Bitcoin DCA</p>
-
-      <div class="accordion accordion-flush" id="faqAccordion">
-
-         <div class="accordion-item bg-transparent border-bottom border-secondary border-opacity-10 py-2">
-            <h2 class="accordion-header" id="faq1">
-               <button class="accordion-button collapsed bg-transparent shadow-none fw-semibold fs-6" type="button"
-                  data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="false" aria-controls="collapse1">
-                  What is Dollar Cost Averaging (DCA) in Bitcoin?
-               </button>
-            </h2>
-            <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="faq1"
-               data-bs-parent="#faqAccordion">
-               <div class="accordion-body text-body-secondary small pt-1">
-                  <p class="mb-2">Dollar Cost Averaging (DCA) is an investment strategy where you buy a fixed dollar
-                     amount of Bitcoin at regular intervals — for example, $100 every week — regardless of whether the
-                     price is up or down.</p>
-                  <p class="mb-0">This approach smooths out the effects of volatility by ensuring you buy more BTC when
-                     prices are low and less when prices are high. Over time, your average purchase price tends to be
-                     lower than the average market price, because you're consistently accumulating through all market
-                     conditions rather than trying to time the perfect entry point.</p>
-               </div>
-            </div>
-         </div>
-
-         <div class="accordion-item bg-transparent border-bottom border-secondary border-opacity-10 py-2">
-            <h2 class="accordion-header" id="faq2">
-               <button class="accordion-button collapsed bg-transparent shadow-none fw-semibold fs-6" type="button"
-                  data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse2">
-                  Is DCA a good strategy for investing in Bitcoin?
-               </button>
-            </h2>
-            <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="faq2"
-               data-bs-parent="#faqAccordion">
-               <div class="accordion-body text-body-secondary small pt-1">
-                  <p class="mb-2">DCA is widely regarded as one of the most disciplined and psychologically comfortable
-                     strategies for accumulating Bitcoin. It removes the need to predict short-term price movements and
-                     automates the investment process.</p>
-                  <p class="mb-0">Historically, anyone who consistently DCA'd into Bitcoin for 3 or more years has been
-                     profitable, regardless of when they started — including those who began buying at all-time highs.
-                     The strategy particularly shines during bear markets, where lower prices allow you to accumulate
-                     more BTC per purchase, setting up significant gains during the next bull cycle.</p>
-               </div>
-            </div>
-         </div>
-
-         <div class="accordion-item bg-transparent border-bottom border-secondary border-opacity-10 py-2">
-            <h2 class="accordion-header" id="faq3">
-               <button class="accordion-button collapsed bg-transparent shadow-none fw-semibold fs-6" type="button"
-                  data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="false" aria-controls="collapse3">
-                  How much should I invest in Bitcoin using DCA?
-               </button>
-            </h2>
-            <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="faq3"
-               data-bs-parent="#faqAccordion">
-               <div class="accordion-body text-body-secondary small pt-1">
-                  <p class="mb-2">Only invest what you can comfortably afford to lose. A common starting point is to
-                     allocate a small, fixed percentage of your income — such as $10, $50, or $100 per week — to
-                     Bitcoin.</p>
-                  <p class="mb-0">The key principle of DCA is <strong>consistency over size</strong>. Even very small
-                     weekly purchases of $10-$25 can compound into meaningful holdings over a 5-10 year horizon, thanks
-                     to Bitcoin's long-term price appreciation trend. The best amount is one that you can sustain for
-                     years without financial stress.</p>
-               </div>
-            </div>
-         </div>
-
-         <div class="accordion-item bg-transparent border-bottom border-secondary border-opacity-10 py-2">
-            <h2 class="accordion-header" id="faq4">
-               <button class="accordion-button collapsed bg-transparent shadow-none fw-semibold fs-6" type="button"
-                  data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
-                  What is the best frequency for DCA into Bitcoin — weekly or monthly?
-               </button>
-            </h2>
-            <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="faq4"
-               data-bs-parent="#faqAccordion">
-               <div class="accordion-body text-body-secondary small pt-1">
-                  <p class="mb-2">Both weekly and monthly DCA produce similar long-term results. Weekly purchases
-                     provide slightly better price averaging due to more frequent sampling across Bitcoin's volatile
-                     price swings.</p>
-                  <p class="mb-0">Monthly DCA is simpler to manage and often aligns better with pay cycles. The
-                     difference in returns between weekly and monthly DCA over a multi-year period is typically small.
-                     The most important factor is <strong>consistency</strong> — choose a frequency that fits your
-                     budget
-                     and schedule, and stick with it.</p>
-               </div>
-            </div>
-         </div>
-
-         <div class="accordion-item bg-transparent border-bottom border-secondary border-opacity-10 py-2">
-            <h2 class="accordion-header" id="faq5">
-               <button class="accordion-button collapsed bg-transparent shadow-none fw-semibold fs-6" type="button"
-                  data-bs-toggle="collapse" data-bs-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
-                  How does Bitcoin DCA compare to lump sum investing?
-               </button>
-            </h2>
-            <div id="collapse5" class="accordion-collapse collapse" aria-labelledby="faq5"
-               data-bs-parent="#faqAccordion">
-               <div class="accordion-body text-body-secondary small pt-1">
-                  <p class="mb-2">Lump sum investing outperforms DCA in strong, sustained uptrends because all capital
-                     is deployed at the earliest (lowest) price. However, it carries the significant risk of buying at a
-                     market top.</p>
-                  <p class="mb-0">DCA reduces this timing risk by spreading purchases across different price points. In
-                     a volatile asset like Bitcoin — which routinely experiences 30-80% drawdowns — DCA provides
-                     substantially better <strong>risk-adjusted returns</strong> and far greater psychological comfort.
-                     For most people who don't have a lump sum ready or want to reduce risk, DCA is the superior
-                     approach.</p>
-               </div>
-            </div>
-         </div>
-
-         <div class="accordion-item bg-transparent py-2">
-            <h2 class="accordion-header" id="faq6">
-               <button class="accordion-button collapsed bg-transparent shadow-none fw-semibold fs-6" type="button"
-                  data-bs-toggle="collapse" data-bs-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
-                  Can I lose money with Bitcoin DCA?
-               </button>
-            </h2>
-            <div id="collapse6" class="accordion-collapse collapse" aria-labelledby="faq6"
-               data-bs-parent="#faqAccordion">
-               <div class="accordion-body text-body-secondary small pt-1">
-                  <p class="mb-2">Yes, it is possible to experience a temporary unrealized loss (paper loss) with DCA,
-                     especially if you start buying during a market peak and stop during a bear market bottom.</p>
-                  <p class="mb-0">However, historical data shows that <strong>no one who has DCA'd into Bitcoin for at
-                        least 3 years has ever had a negative return</strong>, regardless of their start date. The
-                     longer
-                     your DCA timeframe, the lower your risk and the higher your probability of substantial gains. This
-                     calculator lets you verify this claim against any historical period.</p>
-               </div>
-            </div>
-         </div>
-
-      </div>
+   <article class="bg-body-tertiary rounded-4 p-md-5 p-4 shadow-sm mt-5 mb-4" id="accordion-faq" data-items="6">
    </article>
 
    </main>

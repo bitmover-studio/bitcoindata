@@ -187,9 +187,7 @@ function buildSidebarItems() {
 // ─── Template ─────────────────────────────────────────────────────────────
 const navbarTemplate = document.createElement('template');
 navbarTemplate.innerHTML = `
-<!-- ═══════════════════════════════════════════════════
-     MOBILE TOP BAR (visible < lg)
-════════════════════════════════════════════════════ -->
+<!--  MOBILE TOP BAR (visible < lg) -->
 <nav id="mobile-topbar" class="d-flex d-lg-none align-items-center justify-content-between px-3 py-2 border-bottom">
     <a href="/" class="d-flex align-items-center gap-2 text-decoration-none">
       <img src="/img/bitcoin-data-science-logo-web.svg" alt="bitcoindata.science" height="40" width="40">
@@ -210,9 +208,8 @@ navbarTemplate.innerHTML = `
   </div>
 </nav>
 
-<!-- ═══════════════════════════════════════════════════
-     DESKTOP SIDEBAR (visible ≥ lg, fixed left)
-════════════════════════════════════════════════════ -->
+<!--   DESKTOP SIDEBAR (visible ≥ lg, fixed left -->
+
 <aside id="sidebar-desktop" class="d-none d-lg-flex flex-column">
   <!-- Brand -->
   <div class="sidebar-brand d-flex align-items-center gap-2 px-3 py-4 mb-2">
@@ -239,9 +236,7 @@ navbarTemplate.innerHTML = `
   </div>
 </aside>
 
-<!-- ═══════════════════════════════════════════════════
-     OFFCANVAS MOBILE SIDEBAR
-════════════════════════════════════════════════════ -->
+<!--   OFFCANVAS MOBILE SIDEBAR  -->
 <div class="offcanvas offcanvas-start" tabindex="-1" id="sidebarOffcanvas" aria-labelledby="sidebarOffcanvasLabel">
   <div class="offcanvas-header border-bottom pb-3">
     <a href="/" class="d-flex align-items-center gap-2 text-decoration-none">

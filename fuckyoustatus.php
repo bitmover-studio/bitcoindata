@@ -286,64 +286,7 @@
                   CHARTS
                </button>
             </li>
-            <li class="ms-auto d-flex align-items-end gap-2">
-               <button type="button" class="btn btn-sm btn-outline-secondary mb-1" id="shareBtn"
-                  onclick="saveAndShare()" title="Share this calculation">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor"
-                     class="bi bi-share me-1" viewBox="0 0 16 16">
-                     <path
-                        d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z" />
-                  </svg>Share
-               </button>
-               <button class="btn btn-sm btn-outline-secondary mb-1" onclick="exportTableToCSV()"
-                  title="Export projections to CSV">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor"
-                     class="bi bi-download me-1" viewBox="0 0 16 16">
-                     <path
-                        d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5" />
-                     <path
-                        d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z" />
-                  </svg>CSV
-               </button>
-            </li>
          </ul>
-
-         <!-- Share options container -->
-         <div id="shareContainer" class="w-100 my-2 d-none">
-            <div class="p-3 rounded-4 bg-body-secondary border border-secondary border-opacity-10 shadow-sm">
-               <div class="d-flex justify-content-between align-items-center mb-2">
-                  <span class="fw-semibold small text-body-secondary">Share Calculation</span>
-                  <button type="button" class="btn-close btn-close-sm"
-                     onclick="document.getElementById('shareContainer').classList.add('d-none')"
-                     aria-label="Close"></button>
-               </div>
-
-               <!-- Option 1: Permalink -->
-               <div class="mb-3">
-                  <label for="shareUrl" class="text-body-secondary small fw-medium mb-1 d-block">Permalink</label>
-                  <div class="input-group">
-                     <input type="text" id="shareUrl"
-                        class="form-control form-control-sm font-monospace-sm bg-body border-0" readonly
-                        onclick="this.select()">
-                     <button class="btn btn-primary btn-sm px-3" type="button" id="copyShareBtn"
-                        onclick="copyShareUrl('shareUrl', 'copyShareBtn')">Copy Link</button>
-                  </div>
-               </div>
-
-               <!-- Option 2: BBCode for Forums -->
-               <div>
-                  <label for="shareBbcode" class="text-body-secondary small fw-medium mb-1 d-block">BBCode
-                     (Forums)</label>
-                  <div class="input-group">
-                     <input type="text" id="shareBbcode"
-                        class="form-control form-control-sm font-monospace-sm bg-body border-0" readonly
-                        onclick="this.select()">
-                     <button class="btn btn-secondary btn-sm px-3" type="button" id="copyBbcodeBtn"
-                        onclick="copyShareUrl('shareBbcode', 'copyBbcodeBtn')">Copy BBCode</button>
-                  </div>
-               </div>
-            </div>
-         </div>
 
          <div class="tab-content bg-body-tertiary rounded-bottom-4 shadow-sm p-4 border-top-0" id="mainViewTabsContent">
             <!-- Charts Tab Pane -->
@@ -436,6 +379,62 @@
                         </tr>
                      </tbody>
                   </table>
+               </div>
+            </div>
+         </div>
+         <div class="mt-2">
+            <button type="button" class="btn btn-outline-secondary mb-1" id="shareBtn" onclick="saveAndShare()"
+               title="Share this calculation">
+               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor"
+                  class="bi bi-share me-1" viewBox="0 0 16 16">
+                  <path
+                     d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z" />
+               </svg>Share
+            </button>
+            <button class="btn btn-outline-secondary mb-1" onclick="exportTableToCSV()"
+               title="Export projections to CSV">
+               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor"
+                  class="bi bi-download me-1" viewBox="0 0 16 16">
+                  <path
+                     d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5" />
+                  <path
+                     d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z" />
+               </svg>CSV
+            </button>
+         </div>
+         <!-- Share options container -->
+         <div id="shareContainer" class="w-100 my-2 d-none">
+            <div class="p-3 rounded-4 bg-body-tertiary border border-opacity-10 shadow-sm">
+               <div class="d-flex justify-content-between align-items-center mb-2">
+                  <span class="section-label text-body-secondary">Share Calculation</span>
+                  <button type="button" class="btn-close btn-close-sm"
+                     onclick="document.getElementById('shareContainer').classList.add('d-none')"
+                     aria-label="Close"></button>
+               </div>
+
+               <!-- Option 1: Permalink -->
+               <div class="mb-3">
+                  <label for="shareUrl" class="text-body-secondary small fw-medium mb-1 d-block">Permalink</label>
+                  <div class="input-group">
+                     <input type="text" id="shareUrl"
+                        class="form-control form-control-sm font-monospace-sm bg-body border-0" readonly
+                        onclick="this.select()">
+                     <button class="btn btn-primary btn-sm px-3" type="button" id="copyShareBtn"
+                        onclick="copyShareUrl('shareUrl', 'copyShareBtn')">Copy Link</button>
+                  </div>
+               </div>
+
+               <!-- Option 2: BBCode for Forums -->
+               <div>
+                  <label for="shareBbcode" class="text-body-secondary small fw-medium mb-1 d-block">BBCode
+                     (Forums)</label>
+                  <div class="input-group">
+                     <input type="text" id="shareBbcode"
+                        class="form-control form-control-sm font-monospace-sm bg-body border-0" readonly
+                        onclick="this.select()">
+                     <button class="btn btn-secondary btn-sm px-3" type="button" id="copyBbcodeBtn"
+                        onclick="copyShareUrl('shareBbcode', 'copyBbcodeBtn')">Copy BBCode</button>
+                  </div>
                </div>
             </div>
          </div>
