@@ -308,7 +308,17 @@ function recalculate() {
         let isFuture = (index > lastActualDateIndex);
         let rowClass = isFuture ? "text-body-secondary" : "";
 
-        let gainPercent = "—";
+        // Calculate percentual gains/losses of 200wma compare to the previous 200wma, when isFuture false for tables
+        function getGainPreviousRow(date) {
+            let prevDate = date - (60 * 60 * 24 * 180 * 1000);
+            let prevDateSpot = sma200[findClosestIndex(sma200, prevDate)][1];
+            let currentDateSpot = sma200[findClosestIndex(sma200, date)][1];
+            let gain = (currentDateSpot - prevDateSpot) / prevDateSpot;
+            return gain.toLocaleString("en-US", { style: "percent", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+
+        let gainPercent = getGainPreviousRow(row.date);
+
         if (isFuture && selectedModel === "jjg_cycle") {
             gainPercent = "+" + getJJGGain(row.date).toFixed(2) + "%";
         } else if (isFuture && selectedModel === "bearish_cycle") {

@@ -365,7 +365,7 @@
                            <th class="fw-semibold text-body-secondary">Date</th>
                            <th class="fw-semibold text-body-secondary">Spot</th>
                            <th class="fw-semibold text-body-secondary">200 WMA</th>
-                           <th class="fw-semibold text-body-secondary">% Gain / Time</th>
+                           <th class="fw-semibold text-body-secondary">200 WMA Gain</th>
                            <th class="fw-semibold text-body-secondary">200 WMA Premium</th>
                            <th class="fw-semibold text-body-secondary">Coins (10% FU)</th>
                            <th class="fw-semibold text-body-secondary">Coins (4% FU)</th>
