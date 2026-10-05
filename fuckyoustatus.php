@@ -58,7 +58,7 @@
    </script>
    <script src="modules/crypto-js.min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-   <script src="components/fuckyoumoney.js?v=1" defer></script>
+   <script src="components/fuckyoumoney.js?v=2" defer></script>
 </head>
 
 <body>
@@ -165,10 +165,13 @@
 
          const tooltipHtml = card.tooltip ? `
             <span role="button" class="text-secondary text-lowercase fw-normal ms-1" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="${card.tooltip}">
-               <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" class="bi bi-info-circle align-baseline" viewBox="0 0 16 16">
-                  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
-                  <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
-               </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+               class="lucide lucide-info preview-icon">
+               <circle cx="12" cy="12" r="10" />
+               <path d="M12 16v-4" />
+               <path d="M12 8h.01" />
+            </svg>
             </span>` : '';
 
          const footerInner = `<div class="card-text text-muted mb-1 small" id="${card.footer.labelId}">${card.footer.label}</div>
@@ -179,7 +182,7 @@
                <div class="card bg-body-tertiary shadow-sm h-100 rounded-4">
                   <div class="card-body d-flex flex-column justify-content-between">
                      <div>
-                        <div class="card-text text-muted mb-2 small text-uppercase fw-bold">${card.label}${tooltipHtml}</div>
+                        <div class="card-text text-muted mb-2 section-label">${card.label}${tooltipHtml}</div>
                         <h5 class="card-title display-6 fw-semibold" id="${card.valueId}">${spinner}</h5>
                      </div>
                      <div class="mt-3 pt-3 border-top">${footerInner}</div>
@@ -273,14 +276,14 @@
          <!-- Tabbed Navigation: Charts / Table -->
          <ul class="nav nav-tabs mb-0" id="mainViewTabs" role="tablist">
             <li class="nav-item" role="presentation">
-               <button class="nav-link text-body active" id="table-view-tab" data-bs-toggle="tab"
+               <button class="nav-link text-body active rounded-top-4" id="table-view-tab" data-bs-toggle="tab"
                   data-bs-target="#tableViewPane" type="button" role="tab" aria-controls="tableViewPane"
                   aria-selected="true">
                   DATA TABLE
                </button>
             </li>
             <li class="nav-item" role="presentation">
-               <button class="nav-link text-body" id="charts-view-tab" data-bs-toggle="tab"
+               <button class="nav-link text-body rounded-top-4" id="charts-view-tab" data-bs-toggle="tab"
                   data-bs-target="#chartsViewPane" type="button" role="tab" aria-controls="chartsViewPane"
                   aria-selected="false">
                   CHARTS
@@ -385,20 +388,18 @@
          <div class="mt-2">
             <button type="button" class="btn btn-outline-secondary mb-1" id="shareBtn" onclick="saveAndShare()"
                title="Share this calculation">
-               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor"
-                  class="bi bi-share me-1" viewBox="0 0 16 16">
+               <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="48 -912 864 864" width="18px"
+                  fill="currentColor" class="me-2">
                   <path
-                     d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z" />
+                     d="M648-96q-50 0-85-35t-35-85q0-9 4-29L295-390q-16 14-36.05 22-20.04 8-42.95 8-50 0-85-35t-35-85q0-50 35-85t85-35q23 0 43 8t36 22l237-145q-2-7-3-13.81-1-6.81-1-15.19 0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35q-23 0-43-8t-36-22L332-509q2 7 3 13.81 1 6.81 1 15.19 0 8.38-1 15.19-1 6.81-3 13.81l237 145q16-14 36.05-22 20.04-8 42.95-8 50 0 85 35t35 85q0 50-35 85t-85 35q-23 0-43-8t-36-22L332-509q2 7 3 13.81 1 6.81 1 15.19 0 8.38-1 15.19-1 6.81-3 13.81l237 145q16-14 36.05-22 20.04-8 42.95-8 50 0 85 35t35 85q0 50-35 85t-85 35q-23 0-43-8t-36-22L332-509q2 7 3 13.81 1 6.81 1 15.19 0 8.38-1 15.19-1 6.81-3 13.81l237 145q16-14 36.05-22 20.04-8 42.95-8 50 0 85 35t35 85q0 50-35 85t-85 35Zm0-72q20.4 0 34.2-13.8Q696-195.6 696-216q0-20.4-13.8-34.2Q668.4-264 648-264q-20.4 0-34.2 13.8Q600-236.4 600-216q0 20.4 13.8 34.2Q627.6-168 648-168ZM216-432q20.4 0 34.2-14 13.8-14 13.8-34t-13.8-34q-13.8-14-34.2-14-20.4 0-34.2 14-13.8 14-13.8 34t13.8 34q13.8 14 34.2 14Zm466-277.8q14-13.8 14-34.2 0-20.4-13.8-34.2Q668.4-792 648-792q-20.4 0-34.2 13.8Q600-764.4 600-744q0 20.4 14 34.2 14 13.8 34 13.8t34-13.8ZM648-216ZM216-480Zm432-264Z" />
                </svg>Share
             </button>
             <button class="btn btn-outline-secondary mb-1" onclick="exportTableToCSV()"
                title="Export projections to CSV">
-               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor"
-                  class="bi bi-download me-1" viewBox="0 0 16 16">
+               <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="48 -912 864 864" width="18px"
+                  fill="currentColor" class="me-2">
                   <path
-                     d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5" />
-                  <path
-                     d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z" />
+                     d="M480-336 288-528l51-51 105 105v-342h72v342l105-105 51 51-192 192ZM263.72-192Q234-192 213-213.15T192-264v-72h72v72h432v-72h72v72q0 29.7-21.16 50.85Q725.68-192 695.96-192H263.72Z" />
                </svg>CSV
             </button>
          </div>

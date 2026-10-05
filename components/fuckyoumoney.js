@@ -590,8 +590,19 @@ window.copyShareUrl = function (inputId, btnId) {
     });
 };
 
+function loadSharedState() {
+    let hash = window.location.hash ? window.location.hash.substring(1) : "";
+    if (!hash && window.location.search) {
+        hash = window.location.search.substring(1);
+    }
+    if (!hash) return false;
+    return tryLoadEncrypted(hash) || tryLoadPlainParams(hash);
+}
+
 function tryLoadEncrypted(hash) {
     if (!hash || typeof CryptoJS === 'undefined' || !CryptoJS.AES) return false;
+    try { hash = decodeURIComponent(hash); } catch (e) { }
+    hash = hash.replace(/ /g, "+");
     try {
         const decrypted = CryptoJS.AES.decrypt(hash, SHARE_KEY);
         const plaintext = decrypted.toString(CryptoJS.enc.Utf8);
@@ -714,6 +725,9 @@ document.addEventListener("DOMContentLoaded", () => {
         horizonRange.value = defaultHorizon;
     }
 
+    // Restore shared inputs from URL right away (does not depend on API fetches)
+    loadSharedState();
+
     // Recalculate on drop-down changes
     document.getElementById("modelSelect").addEventListener("change", recalculate);
     document.getElementById("spotPremiumSelect").addEventListener("change", recalculate);
@@ -762,14 +776,8 @@ document.addEventListener("DOMContentLoaded", () => {
         // Setup highlights for period select buttons
         setupPeriodButtons();
 
-        // Check URL hash/search for shared parameters
-        let hash = window.location.hash ? window.location.hash.substring(1) : "";
-        if (!hash && window.location.search) {
-            hash = window.location.search.substring(1);
-        }
-        if (hash) {
-            tryLoadEncrypted(hash) || tryLoadPlainParams(hash);
-        }
+        // Re-apply shared parameters (in case anything reset them)
+        loadSharedState();
 
         // Trigger first calculations
         recalculate();
