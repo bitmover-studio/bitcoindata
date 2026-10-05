@@ -35,7 +35,7 @@
             }, {
                "@type": "ListItem",
                "position": 2,
-               "name": "JayJuanGee (JJG)",
+               "name": "JayJuanGee (JJG) Tools",
                "item": "https://bitcoindata.science/#jjg"
             }, {
                "@type": "ListItem",
@@ -69,7 +69,7 @@
 
    <!-- Page Content -->
    <?php
-   $h1 = 'JJG Fuck You Status';
+   $h1 = 'Fuck You Status';
    $h2 = 'Calculate how much Bitcoin you need to reach financial independence. 
       <span class="small"><a href="https://bitcointalk.org/index.php?topic=5376945.msg58719591#msg58719591"
             class="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover small fw-semibold"

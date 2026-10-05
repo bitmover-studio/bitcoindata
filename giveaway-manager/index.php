@@ -265,8 +265,8 @@
               </svg>
             </div>
           </button>
-          <button type="button"
-            class="btn btn-outline-secondary border-2 btn-lg d-inline-flex align-items-center gap-2 px-4 rounded fs-6"
+          <button type="button" id="sharebutton"
+            class="btn btn-outline-secondary border-2 btn-lg d-inline-flex align-items-center gap-2 px-4 rounded fs-6 d-none"
             onclick="save_share()">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
               <path
@@ -316,17 +316,9 @@
     </div>
 
     <!-- Results -->
-    <div class="bg-body-tertiary rounded-4 p-md-5 p-4 shadow-sm mt-4" id="results-section">
-      <div class="d-flex justify-content-between align-items-center mb-4">
+    <div class="bg-body-tertiary rounded-4 p-md-5 p-4 shadow-sm mt-4 d-none" id="results-section">
+      <div class="justify-content-between align-items-center mb-4">
         <p class="section-label mb-0">Results</p>
-        <button type="button" class="btn btn-secondary btn-sm d-inline-flex align-items-center gap-1"
-          onclick="save_share()">
-          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
-            <path
-              d="M13.5 1a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5zm-8.5 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm11 5.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3z" />
-          </svg>
-          Share
-        </button>
       </div>
       <p class="mb-2">Block hash: <output id="block-output" class="text-break font-monospace"></output></p>
       <div id="verify"></div>
@@ -475,6 +467,19 @@
       const submitLabel = document.getElementById('submit-label');
       const submitSpinner = document.getElementById('submit-spinner');
       const submitSuccess = document.getElementById('submit-success');
+      const shareBtn = document.getElementById('sharebutton');
+      const resultsSection = document.getElementById('results-section');
+
+      if (resultsSection) {
+        resultsSection.classList.remove('d-none');
+      }
+      if (shareBtn) {
+        shareBtn.classList.add('d-none');
+      }
+      const shareContainer = document.getElementById('shareContainer');
+      if (shareContainer) {
+        shareContainer.classList.add('d-none');
+      }
 
       const winnerDiv = document.getElementById("winner");
       const nWinnerDiv = document.getElementById("n_winner_div");
@@ -543,6 +548,10 @@
               competitors.splice(n_winner_index_number, 1);
             }
           }
+        }
+
+        if (shareBtn) {
+          shareBtn.classList.remove('d-none');
         }
 
         document.getElementById('modal-winners-list').innerHTML = modalWinnersHtml;

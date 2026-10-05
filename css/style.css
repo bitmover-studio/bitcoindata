@@ -15,10 +15,10 @@
   --nav-dropdown-text: #413f3f;
 
   /* Bootstrap Override variables matching premium card styles */
-  --bs-tertiary-bg: #ffffff;
-  --bs-tertiary-bg-rgb: 255, 255, 255;
-  --bs-secondary-bg: #f1f5f9;
-  --bs-secondary-bg-rgb: 241, 245, 249;
+  --bs-tertiary-bg: #f6f6f7;
+  --bs-tertiary-bg-rgb: rgb(246, 246, 247);
+  --bs-secondary-bg: #fff;
+  --bs-secondary-bg-rgb: 255, 255, 255;
   --bs-border-color: rgba(0, 0, 0, 0.08);
   --bs-border-color-translucent: rgba(0, 0, 0, 0.08);
 }
@@ -65,8 +65,6 @@
 
 body {
   background: #ffffff;
-  background-image: linear-gradient(#ecf3fc 0%, #ffffff 1000px);
-  background-attachment: scroll;
 }
 
 a {
@@ -190,9 +188,7 @@ body>footer {
 #sidebar-desktop {
   width: var(--sidebar-width);
   height: 100vh;
-  background-color: rgba(var(--bs-tertiary-bg-rgb), 0.85);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
+  background-color: var(--bs-tertiary-bg);
   border-right: 1px solid var(--bs-border-color);
 }
 
@@ -763,4 +759,53 @@ input[type=number] {
 #chartTabs .nav-link {
   color: var(--bs-primary);
   font-weight: 600;
+}
+
+/* ==========================================================================
+   Landing Page Hero Styles (Lucide-inspired)
+   ========================================================================== */
+.hero-title-accent {
+  background: linear-gradient(135deg, var(--theme-blue, #26b2a0) 0%, #3b82f6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+[data-bs-theme="dark"] .hero-title-accent {
+  background: linear-gradient(135deg, var(--theme-blue, #2dd4bf) 0%, #60a5fa 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero-vector-svg {
+  max-height: 440px;
+  overflow: visible;
+  filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.04));
+}
+
+[data-bs-theme="dark"] .hero-vector-svg {
+  filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.25));
+}
+
+.hero-dash-anim {
+  animation: heroDash 24s linear infinite;
+}
+
+@keyframes heroDash {
+  to {
+    stroke-dashoffset: -200;
+  }
+}
+
+.hero-float-anim {
+  animation: heroFloat 6s ease-in-out infinite;
+}
+
+@keyframes heroFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
 }

@@ -13,8 +13,8 @@ footerTemplate.innerHTML = `
             </div>
             <div class="col-md-3">
                 <p class="text-muted">Social</p>
-                <p class="fw-semibold"><a href="https://bitcointalk.org/index.php?topic=5445282.0" class='footer-link text-decoration-none' title="bitcointalk ANN" target="_blank" referrer="noopener">bitcointalk.org</a></p>
-                <p class="fw-semibold"><a href="https://github.com/bitmover-studio/bitcoindata" class='footer-link text-decoration-none' title="GitHub Repository" target="_blank" referrer="noopener">GitHub</a></p>
+                <p class="fw-semibold"><a href="https://bitcointalk.org/index.php?topic=5445282.0" class='footer-link text-decoration-none' title="bitcointalk ANN" target="_blank" referrer="noopener">bitcointalk.org <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" class="text-muted opacity-50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right preview-icon"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a></p>
+                <p class="fw-semibold"><a href="https://github.com/bitmover-studio/bitcoindata" class='footer-link text-decoration-none' title="GitHub Repository" target="_blank" referrer="noopener">GitHub <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" class="text-muted opacity-50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right preview-icon"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a></p>
             </div>
             <div class="col-md-3">
                 <p class="text-muted">Sponsor</p>

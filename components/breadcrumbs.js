@@ -97,20 +97,30 @@ function initBreadcrumbsFromSchema() {
   // 2. Preceding the main <h1>
   // 3. Prepending to <main>
   const container = document.getElementById("breadcrumb-container");
+  const h1 = document.querySelector("main h1") || document.querySelector("h1");
+  const main = document.querySelector("main");
+
   if (container) {
     container.appendChild(nav);
-    return;
-  }
-
-  const h1 = document.querySelector("main h1") || document.querySelector("h1");
-  if (h1 && h1.parentNode) {
+  } else if (h1 && h1.parentNode) {
     h1.parentNode.insertBefore(nav, h1);
-    return;
+  } else if (main) {
+    main.prepend(nav);
   }
 
-  const main = document.querySelector("main");
-  if (main) {
-    main.prepend(nav);
+  // Add category name (breadcrumb item 2) immediately before h1 as section-label header
+  if (h1 && h1.parentNode && items.length >= 2 && items[1]?.name) {
+    const prev = h1.previousElementSibling;
+    if (!prev || !prev.classList.contains("section-label")) {
+      const p = document.createElement("p");
+      p.className = "section-label mb-1";
+      p.textContent = items[1].name;
+      h1.parentNode.insertBefore(p, h1);
+
+      // Tighten gap between section-label and h1
+      h1.classList.remove("mt-5");
+      h1.classList.add("mt-1");
+    }
   }
 }
 

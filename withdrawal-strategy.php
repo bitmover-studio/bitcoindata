@@ -36,7 +36,7 @@
          }, {
             "@type": "ListItem",
             "position": 2,
-            "name": "JayJuanGee (JJG)",
+            "name": "JayJuanGee (JJG) Tools",
             "item": "https://bitcoindata.science/#jjg"
          }, {
             "@type": "ListItem",
@@ -114,7 +114,7 @@
    </header>
    <!-- Page Content -->
    <?php
-   $h1 = 'JJG Sustainable Withdrawal Strategy';
+   $h1 = 'Sustainable Withdrawal Strategy';
    $h2 = 'Ideas of sustainable withdrawal that calculates monthly budget limits based BTC spot
          price relative to the 200-Week Moving Average (200-WMA).
          <span class="small"><a href="https://bitcointalk.org/index.php?topic=5475347.msg63213914#msg63213914"
@@ -312,11 +312,15 @@
                            width="24">
                            <path
                               d="M480-160q-134 0-227-93t-93-227q0-134 93-227t227-93q69 0 132 28.5T720-690v-110h80v280H520v-80h168q-32-56-87.5-88T480-720q-100 0-170 70t-70 170q0 100 70 170t170 70q77 0 139-44t87-116h84q-28 106-114 173t-196 67Z" />
-                        </svg>
+                        </svg> Reset
                      </button>
                      <button type="button" id="shareInputs" title="Share"
                         class="btn btn-outline-secondary shadow-sm px-3" onclick="save_share()">
-                        Share
+                        <svg xmlns="http://www.w3.org/2000/svg" height="18px" viewBox="48 -912 864 864" width="18px"
+                           fill="currentColor" class="me-2">
+                           <path
+                              d="M648-96q-50 0-85-35t-35-85q0-9 4-29L295-390q-16 14-36.05 22-20.04 8-42.95 8-50 0-85-35t-35-85q0-50 35-85t85-35q23 0 43 8t36 22l237-145q-2-7-3-13.81-1-6.81-1-15.19 0-50 35-85t85-35q50 0 85 35t35 85q0 50-35 85t-85 35q-23 0-43-8t-36-22L332-509q2 7 3 13.81 1 6.81 1 15.19 0 8.38-1 15.19-1 6.81-3 13.81l237 145q16-14 36.05-22 20.04-8 42.95-8 50 0 85 35t35 85q0 50-35 85t-85 35q-23 0-43-8t-36-22L332-509q2 7 3 13.81 1 6.81 1 15.19 0 8.38-1 15.19-1 6.81-3 13.81l237 145q16-14 36.05-22 20.04-8 42.95-8 50 0 85 35t35 85q0 50-35 85t-85 35q-23 0-43-8t-36-22L332-509q2 7 3 13.81 1 6.81 1 15.19 0 8.38-1 15.19-1 6.81-3 13.81l237 145q16-14 36.05-22 20.04-8 42.95-8 50 0 85 35t35 85q0 50-35 85t-85 35Zm0-72q20.4 0 34.2-13.8Q696-195.6 696-216q0-20.4-13.8-34.2Q668.4-264 648-264q-20.4 0-34.2 13.8Q600-236.4 600-216q0 20.4 13.8 34.2Q627.6-168 648-168ZM216-432q20.4 0 34.2-14 13.8-14 13.8-34t-13.8-34q-13.8-14-34.2-14-20.4 0-34.2 14-13.8 14-13.8 34t13.8 34q13.8 14 34.2 14Zm466-277.8q14-13.8 14-34.2 0-20.4-13.8-34.2Q668.4-792 648-792q-20.4 0-34.2 13.8Q600-764.4 600-744q0 20.4 14 34.2 14 13.8 34 13.8t34-13.8ZM648-216ZM216-480Zm432-264Z" />
+                        </svg>Share
                      </button>
                      <div class="toast-container position-absolute mt-3">
                         <div class="toast align-items-center text-bg-primary " role="alert" id="saveInputsToast"
