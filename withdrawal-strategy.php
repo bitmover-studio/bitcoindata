@@ -3,9 +3,9 @@
 
 <head>
    <?php
-   $title = "JJG Withdrawal Strategy - ";
-   $description = "Ideas of sustainable withdrawal that attempts to measure monthly budget limits based spot price relative to the 200-week moving average";
-   $keywords = "Withdrawal, profit, Strategy, bitcoin, moving average, 200 weeks";
+   $title = "JJG Withdrawal Strategy - Sustainable Bitcoin Withdrawal";
+   $description = "Ideas of sustainable withdrawal that attempts to measure monthly budget limits based spot price relative to the 200-week moving average for retirement.";
+   $keywords = "Withdrawal, profit, Strategy, bitcoin, moving average, 200 weeks, retirement, sustainable withdrawal, bitcoin retirement.";
    $canonical = "https://bitcoindata.science/withdrawal-strategy";
    include_once $_SERVER['DOCUMENT_ROOT'] . '/components/head.php';
    ?>

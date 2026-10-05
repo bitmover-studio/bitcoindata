@@ -777,6 +777,7 @@ input[type=number] {
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
 .hero-vector-svg {
   max-height: 440px;
   overflow: visible;
@@ -802,10 +803,50 @@ input[type=number] {
 }
 
 @keyframes heroFloat {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-8px);
   }
+}
+
+/* Diamond grid background — reusable on any page/section.
+   Add .bg-diamond-grid to a container; use --opacity-low for more discrete. */
+.bg-diamond-grid {
+  position: relative;
+  isolation: isolate;
+}
+
+.bg-diamond-grid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: url("/img/diamond-grid.svg") no-repeat right top / 1200px 600px;
+}
+
+.bg-diamond-grid--opacity-low::before {
+  opacity: 0.50;
+}
+
+.hero-tool-icon svg {
+  width: 200px;
+  height: 200px;
+  max-width: 100%;
+  max-height: 200px;
+}
+
+/* Lucide stroke-based icons */
+.hero-tool-icon svg[fill="none"] {
+  stroke: url(#heroGradient);
+}
+
+/* Fill-based icons */
+.hero-tool-icon svg:not([fill="none"]) {
+  fill: url(#heroGradient);
 }

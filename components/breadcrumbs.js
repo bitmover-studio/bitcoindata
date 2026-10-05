@@ -113,7 +113,7 @@ function initBreadcrumbsFromSchema() {
     const prev = h1.previousElementSibling;
     if (!prev || !prev.classList.contains("section-label")) {
       const p = document.createElement("p");
-      p.className = "section-label mb-1";
+      p.className = "section-label";
       p.textContent = items[1].name;
       h1.parentNode.insertBefore(p, h1);
 
