@@ -130,7 +130,7 @@
          <div class="card bg-body-tertiary shadow-sm h-100 rounded-4">
             <div class="card-body d-flex flex-column justify-content-between">
                <div>
-                  <div class="card-text text-muted mb-2 small text-uppercase fw-bold">Price Above 200-WMA (%)</div>
+                  <div class="card-text text-muted mb-2 small section-label">Price Above 200-WMA (%)</div>
                   <h5 class="card-title display-6 fw-semibold" id="pricesma">
                      <span class="spinner-border spinner-border-sm" role="status"></span>
                   </h5>
@@ -148,7 +148,7 @@
          <div class="card bg-body-tertiary shadow-sm h-100 rounded-4">
             <div class="card-body d-flex flex-column justify-content-between">
                <div>
-                  <div class="card-text text-muted mb-2 small text-uppercase fw-bold">BTC Spot Price</div>
+                  <div class="card-text text-muted mb-2 small section-label">BTC Spot Price</div>
                   <h5 class="card-title display-6 fw-semibold text-body" id="BTCPrice">
                      <span class="spinner-border spinner-border-sm" role="status"></span>
                   </h5>
@@ -166,7 +166,7 @@
          <div class="card bg-body-tertiary shadow-sm h-100 rounded-4">
             <div class="card-body d-flex flex-column justify-content-between">
                <div>
-                  <div class="card-text text-muted mb-2 small text-uppercase fw-bold">200-Week MA</div>
+                  <div class="card-text text-muted mb-2 small section-label">200-Week MA</div>
                   <h5 class="card-title display-6 fw-semibold text-body" id="sma">
                      <span class="spinner-border spinner-border-sm" role="status"></span>
                   </h5>
@@ -184,7 +184,7 @@
          <div class="card bg-body-tertiary shadow-sm h-100 rounded-4">
             <div class="card-body d-flex flex-column justify-content-between">
                <div>
-                  <div class="card-text text-muted mb-2 small text-uppercase fw-bold">Day's Range</div>
+                  <div class="card-text text-muted mb-2 small section-label">Day's Range</div>
                   <div class="d-flex justify-content-between align-items-center mb-1">
                      <span id="minDayPrice" class="small text-secondary">&nbsp;</span>
                      <span id="maxDayPrice" class="small text-secondary">&nbsp;</span>
@@ -400,7 +400,7 @@
       </div>
    </div>
    <div class="row g-3 bg-body-tertiary rounded-bottom-4 p-4 shadow-sm mt-2">
-      <h4 class="fw-semibold my-3">Simulation</h4>
+      <h4 class="section-label my-3">Simulation</h4>
       <div class="col-md-6 col-lg-3">
          <p>You can simulate what your portfolio would be like if you had already started this strategy.</p>
          <small>Considering you withdrawal at fixed dates 8th and 22nd each month.</small>

@@ -21,6 +21,9 @@
   --bs-secondary-bg-rgb: 255, 255, 255;
   --bs-border-color: rgba(0, 0, 0, 0.08);
   --bs-border-color-translucent: rgba(0, 0, 0, 0.08);
+
+  /* Ambient grid background line color */
+  --grid-line-color: rgba(148, 163, 184, 0.225);
 }
 
 [data-bs-theme="dark"] {
@@ -49,6 +52,9 @@
   --bs-info-rgb: #091f3b;
   --bs-alert-border-color: #091f3b;
   --bs-info-border-subtle: #091f3b;
+
+  /* Ambient grid background line color (Dark mode subtle white) */
+  --grid-line-color: rgba(255, 255, 255, 0.055);
 }
 
 :root {
@@ -832,6 +838,38 @@ input[type=number] {
 
 .bg-diamond-grid--opacity-low::before {
   opacity: 0.50;
+}
+
+/* Ambient grid background (Cloudflare Wallet style) — applied to subpages */
+.bg-grid-pattern {
+  position: relative;
+  isolation: isolate;
+}
+
+.bg-grid-pattern::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--grid-max-height, 700px);
+  max-height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--grid-line-color, #17171409) 1px, #0000 1px),
+    linear-gradient(90deg, var(--grid-line-color, #17171409) 1px, #0000 1px);
+  background-size: 72px 72px;
+  -webkit-mask-image:
+    linear-gradient(to bottom, #000 0%, #0000 84%),
+    linear-gradient(to right, #0000 0%, #000 80%);
+
+  mask-image:
+    linear-gradient(to bottom, #000 0%, #0000 84%),
+    linear-gradient(to right, #0000 0%, #000 80%);
+
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
 }
 
 .hero-tool-icon svg {

@@ -4,7 +4,7 @@ $h2 = $h2 ?? '';
 $mainClass = $mainClass ?? 'container-fluid px-4 px-lg-5';
 $h1Class = $h1Class ?? 'display-5 fw-bold mb-3 lh-sm tracking-tight hero-heading';
 $showAd = $showAd ?? true;
-$showBG = $showBG ?? false;
+$showBG = $showBG ?? true;
 
 // Load shared menu data to pick the tool icon for the hero area
 $menuData = include __DIR__ . '/menu-data.php';
@@ -39,8 +39,7 @@ if (!empty($heroIcon)) {
    $heroSvg = str_ireplace('currentColor', 'url(#heroGradient)', $heroSvg);
 }
 ?>
-<main
-   class="<?= htmlspecialchars($mainClass) ?> <?php if ($showBG): ?> bg-diamond-grid--opacity-low bg-diamond-grid <?php endif; ?>">
+<main class="<?= htmlspecialchars($mainClass) ?> <?php if ($showBG): ?> bg-grid-pattern <?php endif; ?>">
    <?php if ($showAd): ?>
       <?php include __DIR__ . '/ad.php'; ?>
    <?php endif; ?>
@@ -49,7 +48,7 @@ if (!empty($heroIcon)) {
       <section class="page-hero-section pt-5 mt-4 pb-2 mb-4">
          <div class="row align-items-center justify-content-between g-4">
             <!-- Left Column: Title & Description -->
-            <div class="col-12 col-lg-8 col-xl-8">
+            <div class="col-12 col-lg-7 col-xl-6">
                <h1 class="h1 <?= htmlspecialchars($h1Class) ?>"><?= $h1 ?></h1>
                <?php if (!empty($h2)): ?>
                   <h2 class="lead text-muted mb-3 fw-normal"><?= $h2 ?></h2>

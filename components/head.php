@@ -49,7 +49,7 @@ $base = '/';
 <link href="<?= $base ?>modules/bootstrap.min.css" rel="stylesheet">
 <script src="<?= $base ?>modules/bootstrap.bundle.min.js" defer></script>
 
-<link href="<?= $base ?>css/style.css?v=3.15" rel="stylesheet">
+<link href="<?= $base ?>css/style.css?v=3.17" rel="stylesheet">
 <script>const menuData = <?= json_encode(include __DIR__ . '/menu-data.php', JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG) ?>;</script>
 <script src="<?= $base ?>components/navbar.js?v=3.01" defer></script>
 <script src="<?= $base ?>components/breadcrumbs.js?v=1.03" defer></script>

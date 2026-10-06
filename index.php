@@ -3,7 +3,7 @@
 
 <head>
    <?php
-   $title = "bitcoin data.science - Data Analysis and bitcoin";
+   $title = "bitcoindata.science - Collection of Free Bitcoin Tools";
    $description = "Explore free Bitcoin tools and analytics on bitcoindata.science: balance checker, unit converter, signature verifier, provably fair giveaways, and live APIs.";
    $canonical = "https://bitcoindata.science/";
    include_once $_SERVER['DOCUMENT_ROOT'] . '/components/head.php';
@@ -46,16 +46,17 @@
          <div class="pe-lg-3">
 
             <!-- Headline -->
-            <p class="section-label">Developed for the Bitcoin community</p>
+            <p class="section-label">Built for the Bitcoin community</p>
             <h1 class="display-4 fw-bold mb-3 lh-sm tracking-tight hero-heading">
                <span class="hero-title-accent">Useful &amp;</span><br>
-               <span class="text-body-emphasis">free Bitcoin tools</span>
+               <span class="text-body-emphasis">Free Bitcoin tools</span>
             </h1>
 
             <!-- Tagline -->
             <p class="lead text-body-secondary mb-4 fw-normal fs-5">
-               Made for the Bitcoin community. Open-source suite of analytics, cryptographic tools, and valuation
-               models.
+               Open-source collection of Bitcoin analytics, financial calculators, cryptographic tools,
+               valuation models, and market utilities — built to help the Bitcoin community better understand, analyze,
+               and navigate the crypto ecosystem.
             </p>
 
             <!-- Action Buttons -->

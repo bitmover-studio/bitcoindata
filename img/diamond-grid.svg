@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="600" height="350" viewBox="0 0 620 280" fill="none">
   <defs>
     <!-- Seamless 2:1 isometric diamond blueprint pattern -->
-    <pattern id="isoDiamond" width="60" height="30" patternUnits="userSpaceOnUse">
-      <path d="M0 0 L60 30 M0 30 L60 0" stroke="#94a3b8" stroke-opacity="0.32" stroke-width="1" />
+    <pattern id="isoDiamond" width="72" height="36" patternUnits="userSpaceOnUse">
+      <path d="M0 0 L72 36 M0 36 L72 0" stroke="#94a3b8" stroke-opacity="0.32" stroke-width="1" />
     </pattern>
 
     <!-- Concentrated top-right fade mask: completely 0 opacity at top (y<=30), bottom (y>=230), and left (x<=190) -->
