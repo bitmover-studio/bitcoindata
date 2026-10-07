@@ -554,7 +554,7 @@
                            </svg>
                         </div>
                         <div>
-                           <h4 class="h5 fw-bold text-success mb-1">Good Signature (Verified)</h4>
+                           <h3 class="h5 fw-bold text-success mb-1">Good Signature (Verified)</h3>
                            <p class="text-body-secondary mb-0 small" id="successDesc">The cryptographic signature is
                               valid
                               and
@@ -672,6 +672,7 @@
                      data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false"
                      aria-controls="collapse2">
                      Why would signature verification fail?
+                  </button>
                </h2>
                <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="faq2"
                   data-bs-parent="#faqAccordion">

@@ -106,7 +106,7 @@
       }]
    }
 </script>
-   <script src="components/unit-converter.js" type="text/javascript" defer></script>
+   <script src="components/unit-converter.js" defer></script>
 
 </head>
 
