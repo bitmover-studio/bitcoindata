@@ -441,6 +441,7 @@
 
   </div>
 
+  </main>
   <!-- Winner Modal -->
   <div class="modal fade" id="winnerModal" tabindex="-1" aria-labelledby="winnerModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-sm">
@@ -457,8 +458,6 @@
       </div>
     </div>
   </div>
-
-  </main>
   <footer-component></footer-component>
   <script src="../modules/crypto-js.min.js"></script>
   <script>
