@@ -52,7 +52,11 @@ $base = '/';
 <link href="<?= $base ?>css/style.css?v=3.17" rel="stylesheet">
 <script>const menuData = <?= json_encode(include __DIR__ . '/menu-data.php', JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG) ?>;</script>
 <script src="<?= $base ?>components/navbar.js?v=3.01" defer></script>
-<script src="<?= $base ?>components/breadcrumbs.js?v=1.03" defer></script>
+<?php
+// Breadcrumbs + FAQ accordion are rendered server-side (SEO) from the page's JSON-LD
+require_once __DIR__ . '/breadcrumbs.php';
+bd_start_schema_render();
+?>
 <script src="<?= $base ?>components/footer.js?v=2.02" defer></script>
 
 <script async defer src="https://bitcoindata.science/api/simple.php/proxy.js" data-collect-dnt="true"></script>
