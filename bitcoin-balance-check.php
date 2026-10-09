@@ -65,7 +65,7 @@
                "name": "What Bitcoin address formats are supported?",
                "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "The balance checker supports all Bitcoin address formats: Legacy addresses starting with 1, P2SH (multisig/SegWit-compatible) addresses starting with 3, Native SegWit (bech32) addresses starting with bc1q, and Taproot (bech32m) addresses starting with bc1p."
+                  "text": "The balance checker supports all Bitcoin address formats: Legacy addresses (P2PKH) starting with 1, multisig/SegWit-compatible (P2SH) addresses starting with 3, Native SegWit (bech32) addresses starting with bc1q, and Taproot (bech32m) addresses starting with bc1p."
                }
             }, {
                "@type": "Question",
@@ -288,6 +288,9 @@
          </div>
       </div>
    </div>
+   <!-- FAQ Section -->
+   <article class="bg-body-tertiary rounded-4 p-md-5 p-4 shadow-sm mt-5 mb-4" id="accordion-faq" data-items="4">
+   </article>
    </main>
    <footer-component></footer-component>
 </body>

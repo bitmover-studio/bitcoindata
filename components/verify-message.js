@@ -184,10 +184,12 @@
          }
       }
 
-      // 1) For Taproot (bc1p) addresses, verify using BIP-322 exclusively
-      if (isTaproot) {
+      // 1) BIP-322: Taproot (bc1p) addresses always, and any address whose signature
+      //    is not a 65-byte compact (BIP-137) signature — i.e. a BIP-322 "simple"
+      //    witness (e.g. P2WPKH bc1q, P2SH-P2WPKH, P2WSH multisig).
+      if (isTaproot || binaryStr.length !== 65) {
          if (typeof BIP322 === 'undefined' || !BIP322.Verifier || !BIP322.Verifier.verifySignature) {
-            throw new Error("BIP-322 library is not loaded. Cannot verify Taproot address.");
+            throw new Error("BIP-322 library is not loaded. Cannot verify BIP-322 signature.");
          }
          for (var j = 0; j < uniqueVariants.length; j++) {
             try {
@@ -301,7 +303,8 @@
             continue;
          } else if (/^([13][a-km-zA-HJ-NP-Z1-9]{25,34}|bc1[a-z0-9]{6,87})$/.test(line) && !address) {
             address = line;
-         } else if (/^[A-Za-z0-9+/=]{64,120}$/.test(line)) {
+         } else if (/^(?:smp:?)?[A-Za-z0-9+/]{64,}={0,2}$/.test(line)) {
+            // Compact (88 chars) or BIP-322 witness (variable, optionally "smp"-prefixed)
             signature = line;
          }
       }

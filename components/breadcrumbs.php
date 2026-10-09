@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Server-side rendering of Bootstrap breadcrumbs and FAQ accordion from the
  * page's Schema.org JSON-LD (PHP port of breadcrumbs.js).
@@ -74,17 +75,34 @@ function bd_format_answer(string $text): string
    return $out;
 }
 
+function bd_highlight_code_terms(string $text): string
+{
+   $terms = ['bech32m', 'bech32', 'P2PKH', 'P2SH'];
+
+   usort($terms, fn($a, $b) => strlen($b) - strlen($a));
+   $pattern = '/\b(' . implode('|', array_map('preg_quote', $terms)) . ')\b/';
+
+   return preg_replace($pattern, '<code>$1</code>', $text);
+}
+
 function bd_render_faq_items(array $questions): string
 {
    $out = [];
    $n = count($questions);
    foreach ($questions as $index => $q) {
       $id = $index + 1;
-      $question = bd_h($q['name'] ?? '');
+
+      $questionRaw = bd_h($q['name'] ?? '');
       $ans = $q['acceptedAnswer'] ?? '';
       $answerRaw = is_string($ans) ? $ans : (string)($ans['text'] ?? '');
-      $answer = bd_format_answer($answerRaw);
-      $border = $index === $n - 1 ? '' : 'border-bottom border-secondary border-opacity-10';
+      $answerFormatted = bd_format_answer($answerRaw);
+
+      // Apply <code>
+      $question = bd_highlight_code_terms($questionRaw);
+      $answer   = bd_highlight_code_terms($answerFormatted);
+
+      $border = ($index === $n - 1) ? '' : 'border-bottom border-secondary border-opacity-10';
+
       $out[] = <<<HTML
 <div class="accordion-item bg-transparent {$border} py-2">
    <h2 class="accordion-header" id="faq{$id}">
@@ -113,8 +131,12 @@ function bd_render_schema_html(string $html): string
       $replaced = 0;
       $html = preg_replace_callback(
          '#(<div\b[^>]*\bid=["\']breadcrumb-container["\'][^>]*>)(\s*)(</div>)#i',
-         function ($m) use ($nav) { return $m[1] . $nav . $m[3]; },
-         $html, 1, $replaced
+         function ($m) use ($nav) {
+            return $m[1] . $nav . $m[3];
+         },
+         $html,
+         1,
+         $replaced
       );
       if (!$replaced) {
          $html = preg_replace('#(<h1\b)#i', addcslashes($nav, '\\$') . '$1', $html, 1);
@@ -161,7 +183,8 @@ function bd_render_schema_html(string $html): string
                . '<div class="accordion accordion-flush" id="faqAccordion">' . $itemsHtml . '</div>'
                . "</$tag>";
          },
-         $html, 1
+         $html,
+         1
       );
    }
 
