@@ -570,7 +570,11 @@
       var origin = window.location.origin;
       var pathname = window.location.pathname;
       var shareUrl = (origin && origin !== "null" ? origin + pathname : "https://bitcoindata.science/verify-message") + "#" + encrypted;
-      var bbcode = "[url=" + shareUrl + "]" + (resultSuccess.classList.contains("d-none") ? "Verification failed ❌" : "Verified ✅") + "[/url]";
+      var isSuccess = !resultSuccess.classList.contains("d-none");
+      var status = isSuccess
+         ? "✅ Verified Bitcoin Signature for [tt]" + addr + "[/tt]"
+         : "❌ Invalid Bitcoin Signature for [tt]" + addr + "[/tt]";
+      var bbcode = "[url=" + shareUrl + "]" + status + "[/url]";
 
       var shareContainer = document.getElementById("shareContainer");
       var shareUrlInput = document.getElementById("shareUrl");
