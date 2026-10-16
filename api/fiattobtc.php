@@ -24,19 +24,14 @@ $currency = strtoupper($currency);
 
 $rates = getFiatRates($currency);
 
-if ($rates === 0 || $rates === null || $rates === false) {
+if (!$btcpriceusd || !$rates || $rates <= 0 || $btcpriceusd <= 0) {
     $string = "Error fetching rate";
 } else {
-    $str = $amount * $btcpriceusd * $rates;
-    $string = number_format($str, 2);
-    if (!$nocurrency) { $string = $string . " " . $currency;}
-}
-$str = $fiatamount / ($btcpriceusd * $rates);
-$string = number_format($str, 8);
-if (strtolower($coin) === 'bitcoin') {
-    $string = $string . " BTC";
-} else {
-    $string = $string;
+    $str = $fiatamount / ($btcpriceusd * $rates);
+    $string = number_format($str, 8);
+    if (strtolower($coin) === 'bitcoin') {
+        $string = $string . " BTC";
+    }
 }
 
 header('Content-type: image/gif'); // filetype
@@ -67,20 +62,7 @@ if (isset($_GET["bold"])) {
 
 printDate($image, $height, $textcolor);
 
-header('Content-type: image/gif');
-
-$filenameParts = ['fiattobtc'];
-if (isset($coin)) $filenameParts[] = $coin;
-if (isset($currency)) $filenameParts[] = $currency;
-if (isset($fiatamount)) $filenameParts[] = $fiatamount;
-if (isset($hex)) $filenameParts[] = $hex;
-if (isset($_GET['date'])) $filenameParts[] = 'date';
-if (isset($_GET['bold'])) $filenameParts[] = 'bold';
-$filename = implode('_', $filenameParts) . '.gif';
-
-imagegif($image, $filename);
-
-readfile($filename);
+imagegif($image);
 imagedestroy($image); // free up memory
 exit;
 

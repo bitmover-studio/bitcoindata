@@ -73,7 +73,7 @@ function getBTCPriceUsd($coin)
     if ($price !== null) {
         $cacheData = ['price' => $price];
         $json = json_encode($cacheData, JSON_PRETTY_PRINT);
-        file_put_contents($storedPricefile, $json);
+        file_put_contents($storedPricefile, $json, LOCK_EX);
         return $price;
     }
 
@@ -139,7 +139,7 @@ function getFiatRates($currency)
         $rateData = $responseJson->quotes;
         // Cache the successful response
         $json = json_encode($rateData, JSON_PRETTY_PRINT);
-        file_put_contents($storedRatesfile, $json);
+        file_put_contents($storedRatesfile, $json, LOCK_EX);
         if (isset($rateData->{$usdcurrency})) {
             return $rateData->{$usdcurrency};
         }
@@ -155,7 +155,7 @@ function getFiatRates($currency)
             $rateData->USDUSD = 1.0; // Add USD base rate
             // Cache the transformed data
             $json = json_encode($rateData, JSON_PRETTY_PRINT);
-            file_put_contents($storedRatesfile, $json);
+            file_put_contents($storedRatesfile, $json, LOCK_EX);
             if (isset($rateData->{$usdcurrency})) {
                 return $rateData->{$usdcurrency};
             }

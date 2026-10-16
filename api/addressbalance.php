@@ -21,26 +21,30 @@ if ($currency === "NOFIAT")
 else
     $rates = getFiatRates($currency);
 
-$price = $btcpriceusd * $rates;
+$price = ($btcpriceusd && $rates) ? ($btcpriceusd * $rates) : 0;
 
 if (isset($_GET["receivedfromothers"])) {
     $dataUrl = "https://mempool.space/api/address/" . $address . "/txs";
     $explorerjsonArray = getData($dataUrl);
     $addressbalance = 0;
-    foreach ($explorerjsonArray as $transaction) {
-        $isFromSelf = false;
-        // Check if the address is in any of the transaction's inputs.
-        foreach ($transaction->vin as $input) {
-            if (isset($input->prevout->scriptpubkey_address) && $input->prevout->scriptpubkey_address === $address) {
-                $isFromSelf = true;
-                break; // Found the address in inputs
+    if (is_array($explorerjsonArray)) {
+        foreach ($explorerjsonArray as $transaction) {
+            $isFromSelf = false;
+            // Check if the address is in any of the transaction's inputs.
+            if (isset($transaction->vin) && is_array($transaction->vin)) {
+                foreach ($transaction->vin as $input) {
+                    if (isset($input->prevout->scriptpubkey_address) && $input->prevout->scriptpubkey_address === $address) {
+                        $isFromSelf = true;
+                        break; // Found the address in inputs
+                    }
+                }
             }
-        }
-        // Sum the values of all outputs sent to this address that are not from the address itself.
-        if (!$isFromSelf) {
-            foreach ($transaction->vout as $output) {
-                if (isset($output->scriptpubkey_address) && $output->scriptpubkey_address === $address) {
-                    $addressbalance += $output->value;
+            // Sum the values of all outputs sent to this address that are not from the address itself.
+            if (!$isFromSelf && isset($transaction->vout) && is_array($transaction->vout)) {
+                foreach ($transaction->vout as $output) {
+                    if (isset($output->scriptpubkey_address) && $output->scriptpubkey_address === $address) {
+                        $addressbalance += $output->value;
+                    }
                 }
             }
         }
@@ -50,9 +54,12 @@ if (isset($_GET["receivedfromothers"])) {
     $dataUrl = "https://mempool.space/api/address/" . $address;
     $explorerjsonArray = getData($dataUrl);
 
-    $addressbalance = ($explorerjsonArray->chain_stats->funded_txo_sum - $explorerjsonArray->chain_stats->spent_txo_sum) / 100000000;
-    if (isset($_GET["totalreceived"])) {
-        $addressbalance = $explorerjsonArray->chain_stats->funded_txo_sum / 100000000;
+    $addressbalance = 0;
+    if ($explorerjsonArray && isset($explorerjsonArray->chain_stats)) {
+        $addressbalance = ($explorerjsonArray->chain_stats->funded_txo_sum - $explorerjsonArray->chain_stats->spent_txo_sum) / 100000000;
+        if (isset($_GET["totalreceived"])) {
+            $addressbalance = $explorerjsonArray->chain_stats->funded_txo_sum / 100000000;
+        }
     }
 }
 
@@ -93,20 +100,6 @@ if (isset($_GET["bold"])) {
     $height = (imagefontheight($font)+1);
 }
 
-// Note: header('Content-type: image/gif'); was called twice in your original code, removed the duplicate here.
-
-$filenameParts = ['addressbalance'];
-if (isset($address)) $filenameParts[] = $address;
-if (isset($hex)) $filenameParts[] = $hex;
-if (isset($_GET['totalreceived'])) $filenameParts[] = 'totalreceived';
-if (isset($_GET['receivedfromothers'])) $filenameParts[] = 'receivedfromothers';
-if (isset($_GET['bold'])) $filenameParts[] = 'bold';
-if (isset($_GET['short'])) $filenameParts[] = 'short'; // Added parameter to filename
-
-$filename = implode('_', $filenameParts) . '.gif';
-
-imagegif($image, $filename);
-
-readfile($filename);
+imagegif($image);
 imagedestroy($image); // free up memory
 exit;

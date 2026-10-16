@@ -27,7 +27,7 @@ $currency = strtoupper($currency);
 
 $rates = getFiatRates($currency);
 
-if ($rates === 0 || $rates === null || $rates === false) {
+if (!$btcpriceusd || !$rates || $rates <= 0 || $btcpriceusd <= 0) {
     $string = "Error fetching rate";
 } else {
     $str = $amount * $btcpriceusd * $rates;
@@ -62,21 +62,7 @@ if (isset($_GET["bold"])) {
 
 printDate($image,$height,$textcolor);
 
-header('Content-type: image/gif');
-
-$filenameParts = ['localprice'];
-if (isset($coin)) $filenameParts[] = $coin;
-if (isset($currency)) $filenameParts[] = $currency;
-if (isset($amount)) $filenameParts[] = $amount;
-if (isset($hex)) $filenameParts[] = $hex;
-if (isset($_GET['nocurrency']) && $_GET['nocurrency'] !== 'false') $filenameParts[] = 'nocurrency';
-if (isset($_GET['date'])) $filenameParts[] = 'date';
-if (isset($_GET['bold'])) $filenameParts[] = 'bold';
-$filename = implode('_', $filenameParts) . '.gif';
-
-imagegif($image, $filename);
-
-readfile($filename);
+imagegif($image);
 imagedestroy($image); // free up memory
 exit;
 
