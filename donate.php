@@ -143,7 +143,7 @@
                </ul>
             </div>
             <div class="mt-auto">
-               <a href="mailto:bitmover@protonmail.ch"
+               <a href="mailto:contact@bitcoindata.science"
                   class="btn btn-primary w-100 text-decoration-none btn-lg py-3 fw-bold">
                   Make an offer
                </a>
@@ -298,25 +298,25 @@
 
       // Address list
       const addresses = [{
-         blockchain: 'Bitcoin',
-         ticker: 'BTC',
-         address: 'bc1qq77cgh03p302dauqvna92ej8utum8qt4rhyyun',
-      },
-      {
-         blockchain: 'Litecoin',
-         ticker: 'LTC',
-         address: 'ltc1qwl4f9xupajtzwcusftsqgu5u7fclzgvjar9pt5',
-      },
-      {
-         blockchain: 'Ethereum',
-         ticker: 'ETH',
-         address: '0x6ff37c932d81924190e4bec36d1052dc78126a2d',
-      },
-      {
-         blockchain: 'Monero',
-         ticker: 'XMR',
-         address: '468MGnEmmHZ7QTVKfBSrPhMZinoK8n5TbaKXKXi6irStePvNh5ZDxahXyAei4E8CJXCbNdgaWYhguVdqBow6uEHfSRCJm6E',
-      },
+            blockchain: 'Bitcoin',
+            ticker: 'BTC',
+            address: 'bc1qq77cgh03p302dauqvna92ej8utum8qt4rhyyun',
+         },
+         {
+            blockchain: 'Litecoin',
+            ticker: 'LTC',
+            address: 'ltc1qwl4f9xupajtzwcusftsqgu5u7fclzgvjar9pt5',
+         },
+         {
+            blockchain: 'Ethereum',
+            ticker: 'ETH',
+            address: '0x6ff37c932d81924190e4bec36d1052dc78126a2d',
+         },
+         {
+            blockchain: 'Monero',
+            ticker: 'XMR',
+            address: '468MGnEmmHZ7QTVKfBSrPhMZinoK8n5TbaKXKXi6irStePvNh5ZDxahXyAei4E8CJXCbNdgaWYhguVdqBow6uEHfSRCJm6E',
+         },
       ];
 
       const addressesArea = document.getElementById("addresses");
