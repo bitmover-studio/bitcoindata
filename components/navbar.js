@@ -91,7 +91,7 @@ navbarTemplate.innerHTML = `
 <!--  MOBILE TOP BAR (visible < lg) -->
 <nav id="mobile-topbar" class="d-flex d-lg-none align-items-center justify-content-between px-3 py-2 border-bottom">
     <a href="/" class="d-flex align-items-center gap-2 text-decoration-none">
-      <img src="/img/bitcoin-data-science-logo-web.svg" alt="bitcoindata.science" height="40" width="40" class="opacity-50">
+      <img src="/img/bitcoin-data-science-logo-web.svg" alt="bitcoindata.science" height="40" width="40" class="opacity-75">
       <div class="lh-sm">
         <div class="fw-bold sidebar-brand-text"><span class="text-primary">bitcoindata</span></div>
         <div class="sidebar-brand-sub text-muted small">.science</div>
