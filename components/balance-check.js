@@ -116,7 +116,7 @@ async function getBalances(price) {
   sortBalanceDescending(balance);
 
   // 1. Calculate the total wallet balance
-  const totalWalletBalance = balance.reduce((a, e) => a + e.balance, 0) || 1;
+  const totalWalletBalance = balance.reduce((a, e) => a + e.balance, 0);
 
   const submitBtn = document.getElementById("submitbutton");
   if (submitBtn) {
@@ -171,7 +171,7 @@ async function getBalances(price) {
 
   ${balance.map(i => {
     // 2. Calculate share percentage of the total pool
-    const sharePercentage = (i.balance / totalWalletBalance) * 100;
+    const sharePercentage = totalWalletBalance > 0 ? (i.balance / totalWalletBalance) * 100 : 0;
     
     return `
     <div class="p-3 my-3 fw-semibold border-0 rounded" onMouseOver="this.classList.add('bg-primary-subtle')" onMouseOut="this.classList.remove('bg-primary-subtle')" id=${i.address}>
