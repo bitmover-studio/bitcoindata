@@ -100,8 +100,8 @@
          <div class="hero-vector-wrapper position-relative w-100" style="max-width: 520px;">
             <svg class="hero-vector-svg w-100 h-auto" viewBox="0 0 520 400" fill="none"
                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-               <image href="/img/bitcoin-data-science-logo-web.svg" xlink:href="/img/bitcoin-data-science-logo-web.svg"
-                  x="150" y="90" width="220" height="220" class="opacity-75" />
+               <image href="/img/modern-logo.png" xlink:href="/img/bitcoin-data-science-logo-web.svg" x="150" y="90"
+                  width="220" height="220" class="opacity-75" />
             </svg>
          </div>
       </div>

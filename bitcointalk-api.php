@@ -42,32 +42,32 @@
    $mainClass = "container-fluid col-lg-10 col-xl-8";
    include_once $_SERVER['DOCUMENT_ROOT'] . '/components/page-header.php';
    ?>
-      <p class="lead"> Using blockchain data from mempool.space and price data from coingecko, exchange.host and
-         binance p2p (in case of BDT), it is now possible to share bitcoin data such as address balances and
-         transactions as an
-         image in bitcointalk.org or any other forum using our API. The data is always updated when reloaded.</p>
+   <p class="lead"> Using blockchain data from mempool.space and price data from coingecko, exchange.host and
+      binance p2p (in case of BDT), it is now possible to share bitcoin data such as address balances and
+      transactions as an
+      image in bitcointalk.org or any other forum using our API. The data is always updated when reloaded.</p>
 
-      <div class="text-center">
-         <h4 class="h4 my-4">Try out our new <em class="text-warning-emphasis">browser extension</em>!</h4>
+   <div class="text-center">
+      <h4 class="h4 my-4">Try out our new <em class="text-warning-emphasis">browser extension</em>!</h4>
 
-         <a href="https://addons.mozilla.org/en-US/firefox/addon/bitcointalk-data-extension/"
-            class="btn btn-dark px-4 text-decoration-none text-white" target="_blank" title="Firefox and Tor"
-            rel="noopener">
-            <img src="img/firefox.svg" alt="Mozilla Firefox and Tor" class="me-3" width="32" height="32">Firefox
-            AMO</a>
-         <a href="https://microsoftedge.microsoft.com/addons/detail/bitcointalk-data-extensio/gcndngnnhncdblgfcbgefmhginmmjfde"
-            class="btn btn-dark px-4 text-decoration-none text-white" target="_blank" title="Microsoft Edge"
-            rel="noopener">
-            <img src="img/edge.svg" alt="Microsoft Edge" class="me-3" width="32" height="32">Edge Add-ons </a>
-         <a href="https://greasyfork.org/en/scripts/488031-bitcoindata-extension"
-            class="btn btn-dark px-4 text-decoration-none text-white" target="_blank" title="Any browser - user script"
-            rel="noopener">
-            <img src="img/greasy-fork.png" alt="Greasy Fork" class="me-3" width="32" height="32">Greasy Fork</a>
-      </div>
+      <a href="https://addons.mozilla.org/en-US/firefox/addon/bitcointalk-data-extension/"
+         class="btn btn-dark px-4 text-decoration-none text-white" target="_blank" title="Firefox and Tor"
+         rel="noopener">
+         <img src="img/firefox.svg" alt="Mozilla Firefox and Tor" class="me-3" width="32" height="32">Firefox
+         AMO</a>
+      <a href="https://microsoftedge.microsoft.com/addons/detail/bitcointalk-data-extensio/gcndngnnhncdblgfcbgefmhginmmjfde"
+         class="btn btn-dark px-4 text-decoration-none text-white" target="_blank" title="Microsoft Edge"
+         rel="noopener">
+         <img src="img/edge.svg" alt="Microsoft Edge" class="me-3" width="32" height="32">Edge Add-ons </a>
+      <a href="https://greasyfork.org/en/scripts/604804-bitcoindata-extension"
+         class="btn btn-dark px-4 text-decoration-none text-white" target="_blank" title="Any browser - user script"
+         rel="noopener">
+         <img src="img/greasy-fork.png" alt="Greasy Fork" class="me-3" width="32" height="32">Greasy Fork</a>
+   </div>
 
-      <!-- API Endpoints Generated Here -->
-      <div id="api-endpoints"></div>
-      <!-- /main page -->
+   <!-- API Endpoints Generated Here -->
+   <div id="api-endpoints"></div>
+   <!-- /main page -->
    </main>
 
    <footer-component></footer-component>
