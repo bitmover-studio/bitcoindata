@@ -104,13 +104,27 @@
    </script>
    <style>
       /* Bootstrap carousel: bottom padding for indicators, dark controls on the light mockup */
-      .smf-carousel .carousel-item { padding-bottom: 2.5rem; }
-      .smf-carousel .carousel-indicators { margin-bottom: 0; }
-      .smf-carousel .carousel-indicators [data-bs-target] { background-color: #476C8E; }
+      .smf-carousel .carousel-item {
+         padding-bottom: 2.5rem;
+      }
+
+      .smf-carousel .carousel-indicators {
+         margin-bottom: 0;
+      }
+
+      .smf-carousel .carousel-indicators [data-bs-target] {
+         background-color: #476C8E;
+      }
+
       .smf-carousel .carousel-control-prev,
-      .smf-carousel .carousel-control-next { width: 8%; }
+      .smf-carousel .carousel-control-next {
+         width: 8%;
+      }
+
       .smf-carousel .carousel-control-prev-icon,
-      .smf-carousel .carousel-control-next-icon { filter: invert(1) grayscale(1) brightness(0.3); }
+      .smf-carousel .carousel-control-next-icon {
+         filter: invert(1) grayscale(1) brightness(0.3);
+      }
 
       /* Mockup of the Bitcointalk SMF .catbg3 hover card for live demonstration */
       .smf-demo-post {
@@ -290,8 +304,9 @@
                <a href="https://addons.mozilla.org/en-US/firefox/addon/bitcointalk-data-extension/"
                   class="btn btn-outline-secondary px-3 py-2 d-inline-flex align-items-center gap-2 text-decoration-none"
                   target="_blank" rel="noopener" title="Install on Mozilla Firefox and Tor Browser">
-                  <img src="/img/firefox.svg" alt="Firefox AMO" width="24" height="24">
-                  <span>Firefox</span>
+                  <img src="/img/firefox.svg" alt="Firefox" width="24" height="24">
+                  <img src="/img/tor.svg" alt="Tor Browser" width="24" height="24">
+                  <span>Firefox / Tor</span>
                </a>
                <a href="https://microsoftedge.microsoft.com/addons/detail/bitcointalk-data-extensio/gcndngnnhncdblgfcbgefmhginmmjfde"
                   class="btn btn-outline-secondary px-3 py-2 d-inline-flex align-items-center gap-2 text-decoration-none"
@@ -393,16 +408,16 @@
                         <div class="mb-2 small" style="color:#476C8E; font-weight:bold;">
                            Re: Escrow address &amp; payout verification
                         </div>
-                         <p class="mb-3 text-truncate">
-                            Funds held at <span class="smf-demo-addr">1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa</span>
-                         </p>
+                        <p class="mb-3 text-truncate">
+                           Funds held at <span class="smf-demo-addr">1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa</span>
+                        </p>
 
-                         <div class="smf-hover-preview mx-auto">
-                            <div class="smf-hover-header">
-                               <span>bitcoindata.science</span>
-                               <span class="smf-hover-pill">Address</span>
-                            </div>
-                            <div class="smf-hover-body">
+                        <div class="smf-hover-preview mx-auto">
+                           <div class="smf-hover-header">
+                              <span>bitcoindata.science</span>
+                              <span class="smf-hover-pill">Address</span>
+                           </div>
+                           <div class="smf-hover-body">
                               <div
                                  class="smf-hover-surface d-flex justify-content-between align-items-center px-2 py-1 mb-2"
                                  style="font-family: Consolas, monospace; font-size: 11px;">
@@ -452,16 +467,16 @@
                         <div class="mb-2 small" style="color:#476C8E; font-weight:bold;">
                            Re: Escrow address &amp; payout verification
                         </div>
-                         <p class="mb-3 text-truncate">
-                            Payout broadcast in tx <span class="smf-demo-addr">f4184fc596403b9d638783cf57adfe4c…</span>
-                         </p>
+                        <p class="mb-3 text-truncate">
+                           Payout broadcast in tx <span class="smf-demo-addr">f4184fc596403b9d638783cf57adfe4c…</span>
+                        </p>
 
-                         <div class="smf-hover-preview mx-auto">
-                            <div class="smf-hover-header">
-                               <span>bitcoindata.science</span>
-                               <span class="smf-hover-pill">Confirmed #882,410</span>
-                            </div>
-                            <div class="smf-hover-body">
+                        <div class="smf-hover-preview mx-auto">
+                           <div class="smf-hover-header">
+                              <span>bitcoindata.science</span>
+                              <span class="smf-hover-pill">Confirmed #882,410</span>
+                           </div>
+                           <div class="smf-hover-body">
                               <div
                                  class="smf-hover-surface d-flex justify-content-between align-items-center px-2 py-1 mb-2"
                                  style="font-family: Consolas, monospace; font-size: 11px;">
@@ -646,7 +661,9 @@
          if (!carouselEl) return;
          const items = carouselEl.querySelectorAll('.carousel-item');
          const equalize = () => {
-            items.forEach(i => { i.style.minHeight = ''; });
+            items.forEach(i => {
+               i.style.minHeight = '';
+            });
             let max = 0;
             items.forEach(i => {
                const active = i.classList.contains('active');
@@ -654,7 +671,9 @@
                max = Math.max(max, i.offsetHeight);
                if (!active) i.style.display = '';
             });
-            items.forEach(i => { i.style.minHeight = max + 'px'; });
+            items.forEach(i => {
+               i.style.minHeight = max + 'px';
+            });
          };
          window.addEventListener('load', equalize);
          window.addEventListener('resize', equalize);
